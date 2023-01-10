@@ -1,0 +1,51 @@
+<!-- matrix.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrix Input</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div id="matrix-input">
+            <table class="table table-bordered">
+              <!-- table rows and cells go here -->
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <button id="add-row" class="btn btn-primary">Add Row</button>
+        </div>
+        <div class="col-md-6">
+          <button id="add-col" class="btn btn-primary">Add Column</button>
+        </div>
+      </div>
+      <!-- <button id="save-button" class="btn btn-primary">Save</button> -->
+      <button id="next-button" class="btn btn-primary">Next</button>
+      <div id="matrix-container"></div>
+
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="matrix.js"></script>
+    <!-- <script>
+      // Create matrix input table
+      let matrixInputTable = createMatrixInputTable(3, 3);
+      document.getElementById("matrix-input").appendChild(matrixInputTable);
+
+      // Get references to the buttons
+      let addRowButton = document.getElementById("add-row");
+      let addColButton = document.getElementById("add-col");
+
+      // Attach event listeners to the buttons
+      addRowButton.addEventListener("click", addRow);
+      addColButton.addEventListener("click", addCol);
+    </script> -->
+  </body>
+</html>

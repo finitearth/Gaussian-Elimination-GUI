@@ -1,0 +1,25 @@
+<!-- matrix_display.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Matrix Display</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div id="matrix-container"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="matrix.js"></script>
+  <script>
+    // let matrix = JSON.parse(localStorage.getItem("matrix"));
+    // read cookie
+    matrix = JSON.parse(document.cookie);
+    let matrixTable = createMatrixTable(matrix);
+    document.getElementById("matrix-container").appendChild(matrixTable);
+  </script>
+</html>
