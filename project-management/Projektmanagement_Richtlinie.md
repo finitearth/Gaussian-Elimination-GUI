@@ -20,3 +20,11 @@
 - Zeiten und Aufwandsschätzungen werden zur Vereinfachung auf Viertel-Stunden gerundet angegeben
 - Zur Berechnung des Gesamtaufwands eines Tickets kann die Zeitübersicht des bearbeitenden Teammitglieds herangezogen werden (dort sind die zugehörigen Tickets erfasst).
 - Für Absprachen, Ticket-Review, etc. wird ein fester, wöchentlicher Absprache-Termin (30min) festgelegt, der bei Bedarf zwar verschoben werden kann, jedoch zwingend einmal pro Woche stattfunden soll
+- In Tickets werden die kleinstmöglichen Arbeitseinheiten umgewandelt, die jeweils von einer einzelnen Person erfüllt werden können.
+- alle Regeln zum Projektmanagement sind in einer Richtlinie (dieses Dokument) festgehalten
+
+
+## Zu klärende Punkte:
+- Pull-Prinzip von Kanban statt aktiver Zuweisung durch Team
+- Begrenzung Anzahl Buckets
+- Rollen der einzelnen Teammitglieder festlegen: Besonders die Ernennung des Prozessverantwortlichen
