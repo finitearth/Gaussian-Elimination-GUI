@@ -26,5 +26,7 @@
 
 ## Zu klärende Punkte:
 - Pull-Prinzip von Kanban statt aktiver Zuweisung durch Team
-- Begrenzung Anzahl Buckets
+- Begrenzung Anzahl Tickets pro Bucket
 - Rollen der einzelnen Teammitglieder festlegen: Besonders die Ernennung des Prozessverantwortlichen
+- Lasten-/Pflichtenheft
+- Meilensteinplanung
