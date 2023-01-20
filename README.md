@@ -1,5 +1,7 @@
 # Gaussian-Elimination-GUI
 
+[Projekt-Management-Erfassung](https://studdhbwravensburgde-my.sharepoint.com/:x:/g/personal/zehle_stud_dhbw-ravensburg_de/EXdnNVqxOzZCrMk2JGXxkzEBhl5z2LFMcxcc-FJXPtnsGg?e=dXEflv)
+
 ## Aufgabenstellung
 ### Problemstellung:
 In der linearen Algebra wird Gauß-Algorithmus beispielsweise zur Lösung linearer Gleichungssysteme, für Matrizengleichungen und zur Determinantenberechnung eingesetzt. Der Algorithmus arbeitet iterativ auf Matrizendarstellungen, an denen sich in jedem Schritt nur wenig ändert, aber viel zu schreiben ist. Dies lässt sich über eine
