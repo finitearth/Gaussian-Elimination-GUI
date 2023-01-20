@@ -3,6 +3,10 @@
 ## DD.MM.YYYY (Besprechung Mockup und Prios)
 1. Ist ein responsives Design und Eignung für verschiedene Geräte gefordert? (PC/Laptop, Tablet, Smartphone)
 2. Wird Wert auf die Code-Qualität gelegt?
+3. Projektmanagement mit Kanban: Nur Kanban-Board nutzen oder auch streng die Kanban Richtlinien (Pull-Prinzip, etc.) befolgen.
+
+### Ideen:
+1. Bei Matrixinversion und Gleichungsssytem lösen: Eingabezeilen statt vielen Dropdowns. Alternativ: statt geteilt nur mal (und dann muss halt 1/x angegeben werden) Oder: ein Dropdown für alle Zeilen drunter
 
 ## 13.01.2023 (Kick-Off)
 1. Was gehört alles noch zum Projekt? (Nur Abgabe der html/css/js-Dateien oder z.B. auch noch Produktivsetzung auf Webserver)
