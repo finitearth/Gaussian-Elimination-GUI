@@ -4,9 +4,20 @@
 1. Ist ein responsives Design und Eignung für verschiedene Geräte gefordert? (PC/Laptop, Tablet, Smartphone)
 2. Wird Wert auf die Code-Qualität gelegt?
 3. Projektmanagement mit Kanban: Nur Kanban-Board nutzen oder auch streng die Kanban Richtlinien (Pull-Prinzip, etc.) befolgen.
+4. Sammlung von Anforderungen: Lastenheft? Pflichtenheft?
 
 ### Ideen:
-1. Bei Matrixinversion und Gleichungsssytem lösen: Eingabezeilen statt vielen Dropdowns. Alternativ: statt geteilt nur mal (und dann muss halt 1/x angegeben werden) Oder: ein Dropdown für alle Zeilen drunter
+1. Bei Matrixinversion und Gleichungsssytem lösen: Eingabezeilen statt vielen Dropdowns. Alternativ: statt geteilt nur mal (und dann muss halt 1/x angegeben werden), statt minus nur plus (und dann negative Zahlen) Oder: ein Dropdown für alle Zeilen drunter
+2. Historie für Gleichungssystem Lösen und Matrixinversion: Vergangene Schritte darstellen und zum Ausdrucken zur Verfügung stellen (alternativ: als PDF)
+2. Matrizenrechnungen: beliebig viele Matrizen und Rechnung über Eingabefeld (mit Validation) für flexible Rechnungen (auch z.B. Multiplikation mit Skalar)
+3. Schwierigkeitslevel definieren, evtl. mit Übungsaufgaben und Tipps/Hinweisen für den Nutzer.
+4. Am Ende des Rechnungsweges bei der Lösung von Gleichungssystemen Vorschläge ausgeben, wie man schneller an das Ergebnis kommen kann
+5. Ablesbare Teilergebnisse bei der Lösung des Gleichungssystems ausgeben lassen
+6. Matrixinversion: Vorbelegung mit Einheitsmatrix
+7. Statt "Berechne Fertig"-Button neuen Tab (unten) Lösung
+8. Bei unendlich vielen Lösungen: Ausgabe einer parametrisierten Lösung mit Eingabefeld für den Parameterwert
+8. Krasse Idee: Gleichungssystem (bei 2 Dimensionen) durch Geraden im Koordinaten-System visualisieren
+
 
 ## 13.01.2023 (Kick-Off)
 1. Was gehört alles noch zum Projekt? (Nur Abgabe der html/css/js-Dateien oder z.B. auch noch Produktivsetzung auf Webserver)

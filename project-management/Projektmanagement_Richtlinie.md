@@ -21,7 +21,9 @@
 - Zur Berechnung des Gesamtaufwands eines Tickets kann die Zeitübersicht des bearbeitenden Teammitglieds herangezogen werden (dort sind die zugehörigen Tickets erfasst).
 - Für Absprachen, Ticket-Review, etc. wird ein fester, wöchentlicher Absprache-Termin (30min) festgelegt, der bei Bedarf zwar verschoben werden kann, jedoch zwingend einmal pro Woche stattfunden soll
 - In Tickets werden die kleinstmöglichen Arbeitseinheiten umgewandelt, die jeweils von einer einzelnen Person erfüllt werden können.
-- alle Regeln zum Projektmanagement sind in einer Richtlinie (dieses Dokument) festgehalten
+- Der gesamte Ablaufplan des Projekts wird über eine Meilensteinplanung dargestellt und dient als grobe Orientierung.
+- Als Prozessverantwortlicher trägt Nick Hillebrand 
+- Alle Regeln zum Projektmanagement sind in einer Richtlinie (dieses Dokument) festgehalten.
 
 
 ## Zu klärende Punkte:
@@ -29,4 +31,3 @@
 - Begrenzung Anzahl Tickets pro Bucket
 - Rollen der einzelnen Teammitglieder festlegen: Besonders die Ernennung des Prozessverantwortlichen
 - Lasten-/Pflichtenheft
-- Meilensteinplanung
