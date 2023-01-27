@@ -1,6 +1,6 @@
 # Fragen an Kunden
 
-## DD.MM.YYYY (Besprechung Mockup und Prios)
+## 31.01.2023 (Besprechung Mockup und Prios)
 1. Ist ein responsives Design und Eignung für verschiedene Geräte gefordert? (PC/Laptop, Tablet, Smartphone)
 2. Wird Wert auf die Code-Qualität gelegt?
 3. Projektmanagement mit Kanban: Nur Kanban-Board nutzen oder auch streng die Kanban Richtlinien (Pull-Prinzip, etc.) befolgen.
