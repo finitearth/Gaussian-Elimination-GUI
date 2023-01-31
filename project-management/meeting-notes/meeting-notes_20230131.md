@@ -61,6 +61,6 @@ Prio 3:
 - Zusätzliche Dokumentation für Quellcode außerhalb des Codes (u.a. für Grundstruktur, z.B. UML) notwendig
 
 ## Aktionen:	
-- Mockups als Bilddateien an Kunde senden
-- Dokument zur Sammlung aller Anforderung soll erstellt werden (Lastenheft/Pflichtenheft)
+- Mockups als Bilddateien an Kunden senden
+- Dokument zur Sammlung aller Anforderung erstellen (Lastenheft/Pflichtenheft)
 - Allgemein: Implementierung / Umsetzung der Mockups
