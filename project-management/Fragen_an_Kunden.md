@@ -1,5 +1,8 @@
 # Fragen an Kunden
 
+## Offene Fragen:
+- Impressum nötig? (eigenes oder Link auf Impressum von Kirchbergnet)
+
 ## 31.01.2023 (Besprechung Mockup und Prios)
 ### Fragen an Kunde:
 1. Ist ein responsives Design und Eignung für verschiedene Geräte gefordert? (PC/Laptop, Tablet, Smartphone)
