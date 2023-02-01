@@ -8,10 +8,12 @@ var matrix1 = new Matrix([
 ]);
 
 let matrix2 = new Matrix([
-    [new Fraction(1, 1), new Fraction(1, 1), new Fraction(1, 1)],
+    [new Fraction(2, 1), new Fraction(2, 1), new Fraction(2, 1)],
     [new Fraction(2, 1), new Fraction(2, 1), new Fraction(2, 1)]
 ]);
 
-console.log(matrix1.multiplyMatrixByScalar(new Fraction(4, 1)).array);
+// console.log(matrix1.getColumn(0));
 
-console.log(new Fraction(1, 1).multiply(new Fraction(6, 3)));
+// console.log(matrix1.multiplyMatrixByScalar(new Fraction(4, 1)).array);
+console.log(matrix2.matrixProduct(matrix1).array);
+// console.log(new Fraction(1, 1).multiply(new Fraction(6, 3)));

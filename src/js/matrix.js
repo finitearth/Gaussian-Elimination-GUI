@@ -19,38 +19,44 @@ export class Matrix{
     }
 
     // scalarProduct(other) {
-    //     let c = 0;
-    //     for (let i = 0; i < this.columns; i++) {
-    //         c += this.array[0][i] * other.array[i][0];
+    //     let c = new Fraction(0, 1);
+    //     for (let i = 0; i <= this.columns; i++) {
+    //         c = c.add(
+    //                 this.getRow(i).array
+    //                 .multiply(other.array[i])
+    //         );
     //     }
     //     return c;
     // }
 
-
-
-    // matrixProduct(other) {
-    //     let newArray = [];
-    //     for (let i = 0; i < this.rows; i++) {
-    //         newArray[i] = [];
-    //         for (let j = 0; j < other.columns; j++) {
-    //             newArray[i][j] = this.array[];
-    //         }
-    //     }
-    //     return new Matrix(newArray);
-    // }
-
-    getRow(iRow) {
-        return this.array[iRow];
+    matrixProduct(other) {
+        let newArray = [];
+        for (let i = 0; i < this.nRows; i++) {
+            newArray[i] = [];
+            for (let j = 0; j < other.nColumns; j++) {
+                let c = new Fraction(0, 1);
+                for (let k = 0; k < this.nColumns; k++) {
+                    c = c.add(
+                        this.array[i][k].multiply(other.array[k][j])
+                    );
+                }
+                newArray[i][j] = c;
+            }
+        }
+        return new Matrix(newArray);
     }
 
-    // make a pub
+    getRow(iRow) {
+        let newArray = new Matrix([this.array[iRow]]);
+        return newArray;
+    }
 
     getColumn(iColumn) {
         let column = [];
         for (let i = 0; i < this.nRows; i++) {
             column[i] = this.array[i][iColumn];
         }
-        return column;
+        return new Matrix(column);
     }
 
     addRow(iRow, otherRow) {
@@ -59,7 +65,7 @@ export class Matrix{
         return this;
     }
 
-    static multiplyRowByScalar(iRow, scalar) {
+    multiplyRowByScalar(iRow, scalar) {
         this.array[iRow] = this.array[iRow].multiply(scalar);
         return this;
     }
@@ -72,7 +78,7 @@ export class Matrix{
                 newArray[i][j] = this.array[i][j].multiply(scalar);
             }
         }
-        
+
         return new Matrix(newArray);
     }
 }
