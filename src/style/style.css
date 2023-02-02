@@ -1,0 +1,36 @@
+.after_header{
+    margin-top: 5%;
+}
+
+main{
+    padding-left: 1.5%;
+}
+
+.blue_line{
+    border-left: 6px solid rgb(0, 133 ,252);
+    margin-right: 10px;
+    height: 500px;
+}
+
+h1{
+    font-size: xx-large;
+    font-weight: normal;
+}
+
+
+.main_text{
+    padding-top: 0.5%;
+    padding-left: 0.5%;
+    font-size: x-large;
+    line-height: 1.5;
+}
+
+
+a{
+    text-decoration: none;
+    color: rgb(0, 133 ,252);
+}
+
+img{
+    float: right;
+}
