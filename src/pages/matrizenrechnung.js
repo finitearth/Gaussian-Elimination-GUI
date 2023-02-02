@@ -46,7 +46,7 @@ class Table {
     window.onload = init;
       function init(){
         let table = new Table();
-        document.getElementById("dingensbbumens").innerHtml = table.getHtml();
+        document.getElementById("dingensbbumens").innerHTML = table.getHtml();
         // document.getElementById("RowAdder").addEventListener("click", table.addRow); 
       }
-})(window, document, undefined);
+})(window, document);
