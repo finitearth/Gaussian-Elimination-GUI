@@ -21,13 +21,15 @@ class Table {
         </tr>
         <button>Add Row</button>
         <button>Add Column</button>
-        <button>Remove Row</button>
+        <button id="RowAdder">Remove Row</button>
         <button>Remove Column</button>
         `;
+        
     this.endOfHtml = "</table>";
     }
 
     addRow() {
+        console.log("huhu")
         this.html += `<tr>
         <td><input type="number" name="b11" value="0"></td>
         <td><input type="number" name="b12" value="0"></td>
@@ -40,13 +42,11 @@ class Table {
     }
 }
 
-
-
-
 (function(window, document, undefined){
     window.onload = init;
       function init(){
         let table = new Table();
-        document.getElementById("dingensbbumens").innerHTML = table.getHtml();
+        document.getElementById("dingensbbumens").innerHtml = table.getHtml();
+        // document.getElementById("RowAdder").addEventListener("click", table.addRow); 
       }
 })(window, document, undefined);
