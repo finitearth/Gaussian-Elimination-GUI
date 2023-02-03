@@ -20,4 +20,4 @@ Implementierung einer webbasierten Oberfläche, in der der Gauß-Algorithmus Sch
 ## Set-Up
 In order to run the webpage, you need to allow the imports inside of the js-files. To do this you can either
 - start chrome via `chrome.exe --allow-file-access-from-files`
-- install module "http-server" via `npm install http-server`; than run `http-server` and open the displayed localhost page.
+- install module "http-server" via `npm install http-server`; than run `http-server --cors` and open the displayed localhost page.
