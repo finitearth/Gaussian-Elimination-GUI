@@ -16,3 +16,8 @@ Implementierung einer webbasierten Oberfläche, in der der Gauß-Algorithmus Sch
 - Die Anwendung ist als Web-Anwendung umzusetzen
 - HTML und JavaScript ohne ergänzende Frameworks/Bibliotheken
 - Kanban im Projektmanagement
+
+## Set-Up
+In order to run the webpage, you need to allow the imports inside of the js-files. To do this you can either
+- start chrome via `chrome.exe --allow-file-access-from-files`
+- install module "http-server" via `npm install http-server`; than run `http-server` and open the displayed localhost page.
