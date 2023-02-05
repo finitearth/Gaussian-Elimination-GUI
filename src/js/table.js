@@ -1,9 +1,12 @@
 import { designConfig } from "./config.js";
 import { stringToFraction } from "./utils.js";
+import { Matrix } from "./matrix.js";
 
 export class Table {
-    constructor() {
+    constructor(id) {
+        this.id = id;
         this.tableElement = document.createElement("table");
+        this.tableElement.id = id;
         this.tableBody = document.createElement("tbody");
         this.tableBody.id = "tableRows";
         this.tableElement.appendChild(this.tableBody);
@@ -42,7 +45,9 @@ export class Table {
         input.value = "";
         input.size = designConfig.inputFieldSize;
         input.width = designConfig.inputFieldSize;
-        input.id = `${rowId}-${columnId}`;
+        input.id = `${this.id}-${rowId}-${columnId}`;
+        // center cell input
+        input.style.textAlign = "center";
         cell.appendChild(input);
         return cell;
     }
@@ -97,11 +102,11 @@ export class Table {
                 let val = input.value;
                 val = stringToFraction(val);
                 row.push(val);
-                console.log(val)
             }
             data.push(row);
         }
+        data = new Matrix(data);
         console.log(data)
-        // return data;
+        return data;
     }
 }

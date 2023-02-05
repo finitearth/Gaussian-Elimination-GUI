@@ -7,6 +7,18 @@ export class Matrix{
         this.nColumns = array[0].length;
     }
 
+    stringify() {
+        let string = "";
+        for (let i = 0; i < this.nRows; i++) {
+            for (let j = 0; j < this.nColumns; j++) {
+                string += this.array[i][j].stringify();
+                string += " ";
+            }
+            string += "<br>";
+        }
+        return string;
+    }
+
     add(otherMatrix) {
         let newArray = [];
         for (let i = 0; i < this.nRows; i++) {
@@ -30,6 +42,12 @@ export class Matrix{
     // }
 
     matrixProduct(other) {
+        if (this.nColumns != other.nRows) {
+            throw new Error("Matrix dimensions do not match");
+        }
+        if (this.nRows != other.nColumns) {
+            throw new Error("Matrix dimensions do not match");
+        }
         let newArray = [];
         for (let i = 0; i < this.nRows; i++) {
             newArray[i] = [];
@@ -78,7 +96,7 @@ export class Matrix{
                 newArray[i][j] = this.array[i][j].multiply(scalar);
             }
         }
-
+        console.log(newArray)
         return new Matrix(newArray);
     }
 }

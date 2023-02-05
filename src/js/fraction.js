@@ -8,7 +8,14 @@ export class Fraction {
         this.numerator = numerator;
         this.denominator = denominator;
     }
-   
+
+    stringify() {
+        if (this.denominator == 1) {
+            return this.numerator.toString();
+        } else {
+            return this.numerator.toString() + "/" + this.denominator.toString();
+        }
+    }
     inverse() {
         return new Fraction(this.denominator, this.numerator);
     }
