@@ -1,3 +1,5 @@
+import { Matrix } from "./matrix.js";
+
 export class Fraction {
     /**
      * Class for fractions, defined as numerator/denominator.
@@ -28,7 +30,11 @@ export class Fraction {
         return newFraction;
     }
 
-    multiply(other) {
+    mul(other) {
+        // if other type matrix
+        if (other instanceof Matrix) {
+            return other.mul(this);
+        }
         let numerator = this.numerator * other.numerator;
         let denominator = this.denominator * other.denominator;
 

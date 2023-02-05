@@ -1,7 +1,8 @@
 // import { designConfig } from "./config.js";
 import { Table } from "./table.js";
 import { Fraction } from "./fraction.js";
-// function for adding a table
+
+
 function addTable() {
     if (tables.length > 25) {return;}
 
@@ -14,24 +15,131 @@ function addTable() {
     document.getElementById("table").appendChild(tables[tables.length - 1].tableContainer);
 }
 
-// function for calculating the result of an equation
 function calculate(equationString) {
-    if (equationString.length != 3) {
-        return 0;
+    var stack = [];
+    var operatorStack = [];
+
+    var context = function (varName) {
+        // check type; Number (0 to 9) or Character (A-Z)?
+        if (varName.charCodeAt(0) >= 48 && varName.charCodeAt(0) <= 57) {
+            return new Fraction(parseInt(varName), 1);
+        } else{
+        var table = tables[varName.charCodeAt(0) - 65];
+        return table.getData();
+        }
     }
 
-    let matrix1 = tables[equationString.charCodeAt(0) - 65].getData();
-    let matrix2 = tables[equationString.charCodeAt(2) - 65].getData();
+    var operator = {
+        "+": function (a, b) { return a.add(b); },
+        "-": function (a, b) { return a.add(b.mul(new Fraction(-1, 1))); },
+        "*": function (a, b) { return a.mul(b); },
+        "/": function (a, b) { return a.divide(b); }
+    };
 
-    if (equationString[1] == "+") {
-        return matrix1.add(matrix2);
-    } else if (equationString[1] == "-") {
-        console.log("Subtracting")
-        return matrix1.add(matrix2.multiplyMatrixByScalar(new Fraction(-1, 1)));
-    } else if (equationString[1] == "*") {
-        return matrix1.matrixProduct(matrix2);
+    equationString = orderOperations(equationString);
+
+    equationString.split("").forEach(token => {
+        switch (token) {
+        case "+":
+        case "-":
+        case "*":
+        case "/":
+            while (operatorStack.length && ["+", "-", "*", "/"].indexOf(operatorStack[operatorStack.length - 1]) >= 0) {
+                var op = operatorStack.pop();
+                var b = stack.pop();
+                var a = stack.pop();
+                stack.push(operator[op](a, b));
+            }
+            operatorStack.push(token);
+            break;
+        default:
+            stack.push(context(token));
+        }
+    });
+
+    while (operatorStack.length) {
+        var op = operatorStack.pop();
+        var b = stack.pop();
+        var a = stack.pop();
+        stack.push(operator[op](a, b));
     }
+
+    return stack.pop();
 }
+
+function orderOperations(equationString) {
+    const output = [];
+    const operatorStack = [];
+    // const operators = ["+", "-", "*", "/"];
+  
+    equationString.split("").forEach(token => {
+      switch (token) {
+        case "(":
+          operatorStack.push(token);
+          break;
+        case ")":
+          while (operatorStack[operatorStack.length - 1] !== "(") {
+            output.push(operatorStack.pop());
+          }
+          operatorStack.pop();
+          break;
+        case "+":
+        case "-":
+          while (
+            operatorStack.length &&
+            ["*", "/"].indexOf(operatorStack[operatorStack.length - 1]) >= 0
+          ) {
+            output.push(operatorStack.pop());
+          }
+          operatorStack.push(token);
+          break;
+        case "*":
+        case "/":
+          while (
+            operatorStack.length &&
+            ["*", "/"].indexOf(operatorStack[operatorStack.length - 1]) >= 0
+          ) {
+            output.push(operatorStack.pop());
+          }
+          operatorStack.push(token);
+          break;
+        default:
+          if (!isNaN(token) || /[A-Z]/.test(token)) {
+            output.push(token);
+          } else {
+            const subEquation = extractSubEquation(equationString, token);
+            output.push(orderOperations(subEquation));
+          }
+      }
+    });
+  
+    while (operatorStack.length) {
+      output.push(operatorStack.pop());
+    }
+  
+    return output.join("");
+  }
+
+function extractSubEquation(equationString, startIndex) {
+    let openParenCount = 0;
+    let endIndex = startIndex;
+  
+    while (endIndex < equationString.length) {
+      const char = equationString[endIndex];
+      if (char === "(") {
+        openParenCount++;
+      } else if (char === ")") {
+        openParenCount--;
+        if (openParenCount === 0) {
+          break;
+        }
+      }
+      endIndex++;
+    }
+  
+    return equationString.slice(startIndex + 1, endIndex);
+  }
+
 
 console.log("Starting webpage!")
 // button for adding a table

@@ -30,18 +30,21 @@ export class Matrix{
         return new Matrix(newArray);
     }
 
-    // scalarProduct(other) {
-    //     let c = new Fraction(0, 1);
-    //     for (let i = 0; i <= this.columns; i++) {
-    //         c = c.add(
-    //                 this.getRow(i).array
-    //                 .multiply(other.array[i])
-    //         );
-    //     }
-    //     return c;
-    // }
+    mul(other) {
+        // check for type of other; if fraction -> multiply by scalar; if Matrix -> matrixProduct
+        if (other instanceof Fraction) {
+            return this.multiplyByScalar(other);
+        } else if (other instanceof Matrix) {
+            return this.multiplyByMatrix(other);
+        } else if (typeof other == "number") {
+            return this.multiplyByScalar(new Fraction(other, 1));
+        } else {
+            throw new Error("Invalid type");
+        }
+    }
 
-    matrixProduct(other) {
+
+    multiplyByMatrix(other) {
         if (this.nColumns != other.nRows) {
             throw new Error("Matrix dimensions do not match");
         }
@@ -55,7 +58,7 @@ export class Matrix{
                 let c = new Fraction(0, 1);
                 for (let k = 0; k < this.nColumns; k++) {
                     c = c.add(
-                        this.array[i][k].multiply(other.array[k][j])
+                        this.array[i][k].mul(other.array[k][j])
                     );
                 }
                 newArray[i][j] = c;
@@ -88,12 +91,12 @@ export class Matrix{
         return this;
     }
 
-    multiplyMatrixByScalar(scalar) {
+    multiplyByScalar(scalar) {
         let newArray = [];
         for (let i = 0; i < this.nRows; i++) {
             newArray[i] = [];
             for (let j = 0; j < this.nColumns; j++) {
-                newArray[i][j] = this.array[i][j].multiply(scalar);
+                newArray[i][j] = this.array[i][j].mul(scalar);
             }
         }
         console.log(newArray)
