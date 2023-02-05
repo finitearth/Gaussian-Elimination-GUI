@@ -2,6 +2,7 @@
 
 ## Offene Fragen:
 - Impressum nötig? (eigenes oder Link auf Impressum von Kirchbergnet)
+- Wie groß darf eine vom User eingegebene Matrix maximal bzw. minimal sein?
 
 ## 31.01.2023 (Besprechung Mockup und Prios)
 ### Fragen an Kunde:
