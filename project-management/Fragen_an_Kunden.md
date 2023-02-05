@@ -5,6 +5,7 @@
 - Wie groß darf eine vom User eingegebene Matrix maximal bzw. minimal sein?
 - Sollen Use-Cases für das Pflichtenheft (funktionale Anforderungen) erstellt werden?
 - Ist es in Ordnung, dass die Anwendung nur getestet werden kann wenn der Browser mit der entsprechenden Flag gestartet wurde oder auf einem entsprechenden Webserver     läuft? (CORS-Richtlinien)
+- Testing: Wie viel Code-Coverage? Fixe Ziele? 
 
 ## 31.01.2023 (Besprechung Mockup und Prios)
 ### Fragen an Kunde:
