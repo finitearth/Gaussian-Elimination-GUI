@@ -19,11 +19,10 @@ export class Table {
         buttonsContainer.id = "buttons";
 
         const buttons = [
-            { name: "Add Row",       id: "RowAdder",      function: this.addRow },
-            { name: "Add Column",    id: "ColumnAdder",   function: this.addColumn },
-            { name: "Remove Row",    id: "RowRemover",    function: this.removeRow },
-            { name: "Remove Column", id: "ColumnRemover", function: this.removeColumn },
-            { name: "Save",          id: "Saver",         function: this.getData }
+            { name: "+ R",       id: "RowAdder",      function: this.addRow },
+            { name: "+ C",    id: "ColumnAdder",   function: this.addColumn },
+            { name: "- R",       id: "RowRemover",    function: this.removeRow },
+            { name: "- C",    id: "ColumnRemover", function: this.removeColumn }
         ];
 
         buttons.forEach(button => {

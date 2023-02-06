@@ -34,3 +34,8 @@ a{
 img{
     float: right;
 }
+
+.vertical {
+    border-left: 3px solid rgb(0, 0, 0);
+    height: 100px;
+}
