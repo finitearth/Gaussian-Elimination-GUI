@@ -40,3 +40,32 @@ img{
     border-left: 3px solid rgb(154, 157, 160);
     height: 100px;
 }
+
+
+.page_divider {
+    border: 1px solid rgb(154, 157, 160);
+    border-radius: 25px;
+    align-items: center; 
+    justify-content: center;
+    display: flex;
+    padding: 20px;
+}
+
+
+.button_container {
+    padding: 20px;
+    align-items: center; 
+    justify-content: center;
+    display: flex;   
+}
+
+
+.operations_button {
+    background-color: rgb(0, 133 ,252);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    width: 75px;
+    margin: 10px;
+}
