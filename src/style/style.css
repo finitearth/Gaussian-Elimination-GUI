@@ -6,15 +6,11 @@ main{
     padding-left: 1.5%;
 }
 
-.blue_line{
-    border-left: 6px solid rgb(0, 133 ,252);
-    margin-right: 10px;
-    height: 500px;
-}
-
 h1{
     font-size: xx-large;
     font-weight: normal;
+    border-left: 6px solid rgb(0, 133 ,252);
+    padding-left: 10px;
 }
 
 
