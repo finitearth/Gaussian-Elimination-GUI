@@ -1,106 +1,44 @@
-let style_link = 'style="color: rgb(154, 157, 160); text-decoration: none;"'
-let style_active_link = 'style="color: rgb(255, 255, 255); text-decoration: none;"'
-
-
 window.onload = function(){
-    let page = location.pathname.split("/").slice(-1)
-    document.getElementById('navbar').innerHTML = createHTMLForNavbar(page)
-    
-};
-
-
-function createHTMLForNavbar(page){
-    let html = '<div class="nav" style="position: fixed; \
-                                        box-sizing: border-box; \
-                                        top: 0;  \
-                                        left: 0;  \
-                                        width: 100%;  \
-                                        text-align: justify;  \
-                                        background-color: rgb(52, 58, 64); \
-                                        font-family: Georgia, Times, serif; \
-                                        font-size: larger;"> \
-                    <nav style="padding: 1%;"> \
-                        <ul class="nav_links" style="list-style-type:none; margin: 0; padding: 0; width: 100%; text-align: center; justify-content: space-between;">  \
-                            <li style="display: inline; padding-inline-end: 12%;">'
-    
+    let page = location.pathname.split("/").slice(-1);
+    document.getElementById('navbar').innerHTML = createHTMLForNavbar(page);
     if(page == 'index.html'){
-        html = html + '<a id="startseite" href="index.html"' + style_active_link + ' >Startseite</a> \
-                    </li> \
-                    <li style="display: inline; padding-inline-end: 12%;">\
-                        <a id="matirzenrechnung" href="pages/matrizenrechnung.html"' + style_link + '>Matrizenberechnung</a> \
-                    </li> \
-                    <li style="display: inline; padding-inline-end: 12%;"> \
-                        <a id="matrixoperationen" href="pages/matrixoperationen.html"' + style_link + '>Matrixoperationen</a> \
-                    </li> \
-                    <li style="display: inline; padding-inline-end: 12%;"> \
-                        <a id="gleichungssystem" href="pages/gleichungssystem.html"' + style_link + '>GL-System</a> \
-                    </li> \
-                    <li style="display: inline;"> \
-                        <a id="matrixinversion" href="pages/matrixinversion.html"' + style_link + '>Inversenberechnung</a>'
+        let page = document.getElementById('startseite')
+        page.style.color = 'white';
     } else if(page == 'matrizenrechnung.html') {
-        html = html + '<a id="startseite" href="../index.html"' + style_link + ' >Startseite</a> \
-                    </li> \
-                    <li style="display: inline; padding-inline-end: 12%;">\
-                        <a id="matirzenrechnung" href="matrizenrechnung.html"' + style_active_link + '>Matrizenberechnung</a> \
-                    </li> \
-                    <li style="display: inline; padding-inline-end: 12%;"> \
-                        <a id="matrixoperationen" href="matrixoperationen.html"' + style_link + '>Matrixoperationen</a> \
-                    </li> \
-                    <li style="display: inline; padding-inline-end: 12%;"> \
-                        <a id="gleichungssystem" href="gleichungssystem.html"' + style_link + '>GL-System</a> \
-                    </li> \
-                    <li style="display: inline;"> \
-                        <a id="matrixinversion" href="matrixinversion.html"' + style_link + '>Inversenberechnung</a>'
+        let page = document.getElementById('matrizenrechnung')
+        page.style.color = 'white';
     } else if(page == 'matrixoperationen.html'){
-        html = html + '<a id="startseite" href="../index.html"' + style_link + ' >Startseite</a> \
-                    </li> \
-                    <li style="display: inline; padding-inline-end: 12%;">\
-                        <a id="matirzenrechnung" href="matrizenrechnung.html"' + style_link + '>Matrizenberechnung</a> \
-                    </li> \
-                    <li style="display: inline; padding-inline-end: 12%;"> \
-                        <a id="matrixoperationen" href="matrixoperationen.html"' + style_active_link + '>Matrixoperationen</a> \
-                    </li> \
-                    <li style="display: inline; padding-inline-end: 12%;"> \
-                        <a id="gleichungssystem" href="gleichungssystem.html"' + style_link + '>GL-System</a> \
-                    </li> \
-                    <li style="display: inline;"> \
-                        <a id="matrixinversion" href="matrixinversion.html"' + style_link + '>Inversenberechnung</a>'
+        let page = document.getElementById('matrixoperationen')
+        page.style.color = 'white';
     } else if(page == 'gleichungssystem.html'){
-        html = html + '<a id="startseite" href="../index.html"' + style_link + ' >Startseite</a> \
-                    </li> \
-                    <li style="display: inline; padding-inline-end: 12%;">\
-                        <a id="matirzenrechnung" href="matrizenrechnung.html"' + style_link + '>Matrizenberechnung</a> \
-                    </li> \
-                    <li style="display: inline; padding-inline-end: 12%;"> \
-                        <a id="matrixoperationen" href="matrixoperationen.html"' + style_link + '>Matrixoperationen</a> \
-                    </li> \
-                    <li style="display: inline; padding-inline-end: 12%;"> \
-                        <a id="gleichungssystem" href="gleichungssystem.html"' + style_active_link + '>GL-System</a> \
-                    </li> \
-                    <li style="display: inline;"> \
-                        <a id="matrixinversion" href="matrixinversion.html"' + style_link + '>Inversenberechnung</a>'
+        let page = document.getElementById('gleichungssystem')
+        page.style.color = 'white';
     } else if(page == 'matrixinversion.html'){
-        html = html + '<a id="startseite" href="../index.html"' + style_link + ' >Startseite</a> \
-                    </li> \
-                    <li style="display: inline; padding-inline-end: 12%;">\
-                        <a id="matirzenrechnung" href="matrizenrechnung.html"' + style_link + '>Matrizenberechnung</a> \
-                    </li> \
-                    <li style="display: inline; padding-inline-end: 12%;"> \
-                        <a id="matrixoperationen" href="matrixoperationen.html"' + style_link + '>Matrixoperationen</a> \
-                    </li> \
-                    <li style="display: inline; padding-inline-end: 12%;"> \
-                        <a id="gleichungssystem" href="gleichungssystem.html"' + style_link + '>GL-System</a> \
-                    </li> \
-                    <li style="display: inline;"> \
-                        <a id="matrixinversion" href="matrixinversion.html"' + style_active_link + '>Inversenberechnung</a>'
+        let page = document.getElementById('matrixinversion')
+        page.style.color = 'white';
+    }
+};
+    
+function createHTMLForNavbar(page){
+    var index_prefix;
+    var page_prefix;
+    if(page == 'index.html'){
+        index_prefix = '';
+        page_prefix = 'pages/';
+    } else {
+        index_prefix = '../';
+        page_prefix = '';
     }
 
-    html = html + '</li> \
-                </ul> \
-            </nav> \
-        </div>'
+    let html = `<div class="nav">\
+                 <ul class="nav-list"> \
+                  <li class="nav-element"><a class="nav-link" id="startseite" href="${index_prefix}index.html">Startseite</a></li> \
+                  <li class="nav-element"><a class="nav-link" id="matrizenrechnung" href="${page_prefix}matrizenrechnung.html">Matrizenberechnung</a></li> \
+                  <li class="nav-element"><a class="nav-link" id="matrixoperationen" href="${page_prefix}matrixoperationen.html">Matrixoperationen</a></li> \
+                  <li class="nav-element"><a class="nav-link" id="gleichungssystem" href="${page_prefix}gleichungssystem.html">GL-System</a></li> \
+                  <li class="nav-element"><a class="nav-link" id="matrixinversion" href="${page_prefix}matrixinversion.html">Inversenberechnung</a></li> \
+                 </ul> \
+                </div>`;
 
     return html
 }
-
-
