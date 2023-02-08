@@ -1,6 +1,7 @@
 window.onload = function(){
     let page = location.pathname.split("/").slice(-1);
     document.getElementById('navbar').innerHTML = createHTMLForNavbar(page);
+    
     if(page == 'index.html'){
         let page = document.getElementById('startseite')
         page.style.color = 'white';
