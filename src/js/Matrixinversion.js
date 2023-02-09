@@ -1,6 +1,7 @@
 // import { designConfig } from "./config.js";
-import { Table } from "./table.js";
-import { Fraction } from "./fraction.js";
+import { Table }        from "./table.js";
+import { Fraction }     from "./fraction.js";
+import { RowOperation } from "./rowoperation.js";
 
 
  const table_row = document.createElement ("tr");
@@ -32,6 +33,16 @@ import { Fraction } from "./fraction.js";
      document.getElementById("table_element_"+tables.length).appendChild(tables[tables.length - 1].tableContainer);
  }
 
+ function addCombobox(id) {
+    const element = new RowOperation(id);
+
+    const table_element = document.createElement ("th");
+    table_element.id = "Operation";
+
+    document.getElementById("table_row").appendChild(table_element);
+    document.getElementById("Operation").appendChild(element.comboBoxElement);
+ }
+
 console.log("Starting webpage!") 
 
 
@@ -46,6 +57,11 @@ for (let i = 0; i < 2; i++) {
 
 addVerticalLine("table_element_"+tables.length+2);
 addVerticalLine("table_element_"+tables.length+3);
+
+// creating comboboxes
+for (let i = 0; i < 3; i++) {
+    addCombobox("combobox_"+i);
+}
 
 document.addEventListener("keydown", function(e) {
     let activeCellId = document.activeElement.id;
