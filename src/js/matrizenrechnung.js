@@ -15,6 +15,14 @@ function addTable() {
     document.getElementById("table").appendChild(tables[tables.length - 1].tableContainer);
 }
 
+function removeTable() {
+    if (tables.length <= 2) {return;}
+
+    tables.pop();
+    document.getElementById("table").removeChild(document.getElementById("table").lastChild);
+    document.getElementById("table").removeChild(document.getElementById("table").lastChild);
+}
+
 function calculate(equationString) {
     var stack = [];
     var operatorStack = [];
@@ -146,6 +154,17 @@ console.log("Starting webpage!")
 let addTableButton = document.createElement("button");
 addTableButton.innerHTML = "Add Table";
 document.getElementById("table").appendChild(addTableButton);
+addTableButton.addEventListener("click", function() {
+  addTable();
+});
+
+// remove table
+let removeTableButton = document.createElement("button");
+removeTableButton.innerHTML = "Remove Table";
+document.getElementById("table").appendChild(removeTableButton);
+removeTableButton.addEventListener("click", function() {
+  removeTable();
+});
 
 
 let tables = [];
@@ -153,9 +172,7 @@ for (let i = 0; i < 2; i++) {
     addTable();
 }
 
-addTableButton.addEventListener("click", function() {
-    addTable();
-});
+
 
 // text field for input of equation + button for "calculate!"
 let equationInput = document.createElement("input");
@@ -176,38 +193,4 @@ calculateButton.addEventListener("click", function() {
 });
 document.getElementById("equation").appendChild(calculateButton);
 
-document.addEventListener("keydown", function(e) {
-    let activeCellId = document.activeElement.id;
-    console.log(activeCellId);
-    let row;
-    let column;
-    let tableId;
 
-    if (activeCellId == "") {
-        tableId = 0;
-        row = 0;
-        column = 0;    
-    } else {
-        tableId = Number(activeCellId.split("-")[0]);
-        row = Number(activeCellId.split("-")[1]);
-        column = Number(activeCellId.split("-")[2]);
-    }
-
-    if (e.code == "ArrowUp" && row > 0) {
-        row -= 1;
-    } else if (e.code == "ArrowUp" && tableId > 0) {
-        tableId -= 1;
-        row = tables[tableId].rows.length - 1;
-    } else if (e.code == "ArrowDown" && row < tables[0].rows.length - 1) {
-        row += 1;
-    } else if (e.code == "ArrowDown" && tableId < tables.length - 1) {
-        tableId += 1;
-        row = 0;
-    } else if (e.code == "ArrowLeft" && column > 0) {
-        column -= 1;
-    } else if (e.code == "ArrowRight" && column < tables[0].nColumns - 1) {
-        column += 1;
-    }
-
-    document.getElementById(`${tableId}-${row}-${column}`).focus();
-});
