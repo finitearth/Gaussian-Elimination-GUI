@@ -1,28 +1,19 @@
 window.onload = function(){
-    let page = location.pathname.split("/").slice(-1);
-    document.getElementById('navbar').innerHTML = createHTMLForNavbar(page);
+    let currentPage = location.pathname.split("/").slice(-1);
+    // document.getElementById('navbar').innerHTML = 
+    createHTMLForNavbar(currentPage);
     
-    if(page == 'index.html'){
-        let page = document.getElementById('startseite')
-        page.style.color = 'white';
-    } else if(page == 'matrizenrechnung.html') {
-        let page = document.getElementById('matrizenrechnung')
-        page.style.color = 'white';
-    } else if(page == 'matrixoperationen.html'){
-        let page = document.getElementById('matrixoperationen')
-        page.style.color = 'white';
-    } else if(page == 'gleichungssystem.html'){
-        let page = document.getElementById('gleichungssystem')
-        page.style.color = 'white';
-    } else if(page == 'matrixinversion.html'){
-        let page = document.getElementById('matrixinversion')
-        page.style.color = 'white';
+    if(currentPage == 'index.html'){
+        currentPage = document.getElementById('startseite');
+    } else {
+        currentPage = currentPage[0].replace('.html', '');
+        currentPage = document.getElementById(currentPage);
     }
+
+    currentPage.style.color = 'white';
 };
     
 function createHTMLForNavbar(page){
-    var index_prefix;
-    var page_prefix;
     if(page == 'index.html'){
         index_prefix = '';
         page_prefix = 'pages/';
@@ -31,15 +22,29 @@ function createHTMLForNavbar(page){
         page_prefix = '';
     }
 
-    let html = `<div class="nav">\
-                 <ul class="nav-list"> \
-                  <li class="nav-element"><a class="nav-link" id="startseite" href="${index_prefix}index.html">Startseite</a></li> \
-                  <li class="nav-element"><a class="nav-link" id="matrizenrechnung" href="${page_prefix}matrizenrechnung.html">Matrizenberechnung</a></li> \
-                  <li class="nav-element"><a class="nav-link" id="matrixoperationen" href="${page_prefix}matrixoperationen.html">Matrixoperationen</a></li> \
-                  <li class="nav-element"><a class="nav-link" id="gleichungssystem" href="${page_prefix}gleichungssystem.html">GL-System</a></li> \
-                  <li class="nav-element"><a class="nav-link" id="matrixinversion" href="${page_prefix}matrixinversion.html">Inversenberechnung</a></li> \
-                 </ul> \
-                </div>`;
-
-    return html
+    let navbar = document.getElementById('navbar');
+    // let navbarInner = document.createElement('div');
+    navbar.classList.add('nav');
+    let navbarList = document.createElement('ul');
+    navbarList.classList.add('nav-list');
+    let navbarElements = [
+        {id: 'startseite',          href: `${index_prefix}index.html`, text: 'Startseite'},
+        {id: 'matrizenrechnung',    href: `${page_prefix}matrizenrechnung.html`, text: 'Matrizenberechnung'},
+        {id: 'matrixoperationen',   href: `${page_prefix}matrixoperationen.html`, text: 'Matrixoperationen'},
+        {id: 'gleichungssystem',    href: `${page_prefix}gleichungssystem.html`, text: 'GL-System'},
+        {id: 'matrixinversion',     href: `${page_prefix}matrixinversion.html`, text: 'Inversenberechnung'}
+    ];
+    navbarElements.map(element => {
+        let navbarElement = document.createElement('li');
+        navbarElement.classList.add('nav-element');
+        let navbarLink = document.createElement('a');
+        navbarLink.classList.add('nav-link');
+        navbarLink.id = element.id;
+        navbarLink.href = element.href;
+        navbarLink.innerHTML = element.text;
+        navbarElement.appendChild(navbarLink);
+        navbarList.appendChild(navbarElement);
+    });
+    // navbarInner.appendChild(navbarList);
+    navbar.appendChild(navbarList);
 }
