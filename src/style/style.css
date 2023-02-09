@@ -37,6 +37,7 @@ img{
 }
 
 .vertical {
-    border-left: 3px solid rgb(154, 157, 160);
-    height: 100px;
+    border-left: 2px solid rgb(154, 157, 160);
+    height: 70px;
+    border-radius: 1px;
 }

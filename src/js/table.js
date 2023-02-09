@@ -3,7 +3,8 @@ import { stringToFraction } from "./utils.js";
 import { Matrix } from "./matrix.js";
 
 export class Table {
-    constructor(id) {
+    constructor(id, showButtons = true) {
+        
         this.id = id;
         this.tableElement = document.createElement("table");
         this.tableElement.id = id;
@@ -31,6 +32,9 @@ export class Table {
             buttonElement.id = button.id;
             buttonElement.addEventListener("click", button.function.bind(this));
             buttonsContainer.appendChild(buttonElement);
+            if (!showButtons) {
+                buttonElement.style.display = "none";
+            }
         });
     
         this.tableContainer = document.createElement("div");
