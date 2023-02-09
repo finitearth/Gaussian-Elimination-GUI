@@ -67,7 +67,8 @@ document.addEventListener("keydown", function(e) {
 document.getElementById("button_transpose").onclick = function() {
     console.log("Test")
     let input_matrix = tables[0].getData();
-    console.log(input_matrix)
-    let matrix = new Matrix(input_matrix);
-    let outputMatrix = matrix.transpose()
+    let output_matrix = input_matrix.transpose()
+    console.log(output_matrix)
+    //let matrix = new Matrix(input_matrix);
+    //let outputMatrix = matrix.transpose()
 };

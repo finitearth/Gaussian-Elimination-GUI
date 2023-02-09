@@ -69,14 +69,15 @@ export class Matrix{
 
     transpose(){
         let newArray = [];
+        newArray.nRows = this.array.nColumns;
+        newArray.nColumns = this.array.nRows;
         for (let i = 0; i < this.nColumns; i++) {
-            newArray[i] = [];
             for (let j = 0; j < this.nRows; j++) {
                 newArray[j][i] = this.array[i][j];
                 console.log(newArray[j][i])
             }
         }
-        console.log(newArray)
+        console.log("new Array transposed" + newArray)
         return new Matrix(newArray);
     }
 
