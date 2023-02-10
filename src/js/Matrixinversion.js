@@ -3,47 +3,6 @@ import { Table }        from "./table.js";
 import { Fraction }     from "./fraction.js";
 import { RowOperation } from "./rowoperation.js";
 
-
- const table_row = document.createElement ("tr");
- table_row.id = "table_row"
-
- const matrixBox = document.createElement("div");
- matrixBox.id = "matrixBox";
-
- const dimensionButtonBox = document.createElement("div");
- dimensionButtonBox.id    = "dimensionButtonBox";
-
- const dimensionTable = document.createElement("table");
- dimensionTable.id = "dimensionTable";
-
- const dimensionRow = document.createElement("tr");
- dimensionRow.id = "dimensionRow";
- dimensionRow.innerHTML = `<th id = "firstField"></th> <th id = "secondField"></th>`;
- 
- const dimensionButton = document.createElement("input");
- dimensionButton.id    = "dimensionButton";
- dimensionButton.type  = "number";
- dimensionButton.size  = 1;
- dimensionButton.defaultValue = 3;
- dimensionButton.min = 2;
- dimensionButton.max = 9;
-
- const dimensionText     = document.createElement("p");
- dimensionText.id        = "dimensionText";
- dimensionText.innerText = "Dimension: ";
-
- document.getElementById("mainContainer").appendChild(dimensionButtonBox);
-
- document.getElementById("dimensionButtonBox").appendChild(dimensionTable);
- document.getElementById("dimensionTable").appendChild(dimensionRow);
-
- document.getElementById("firstField").appendChild(dimensionText);
- document.getElementById("secondField").appendChild(dimensionButton);
- 
- document.getElementById("mainContainer").appendChild(matrixBox);
- document.getElementById("matrixBox").appendChild(document.getElementById("table"));
- document.getElementById("table").appendChild(table_row);
-
  var dimension = 3; 
 
  document.getElementById("dimensionButton").addEventListener("input", modifyDimension );
@@ -141,16 +100,15 @@ for (let i = 0; i < 3; i++) {
     addCombobox("combobox_"+i);
 }
 
-// calculation buttons
-const mainButtonContainer = document.createElement("div");
-mainButtonContainer.id = "mainButtonContainer";
+// Result Container
+const resultContainer = document.createElement("div");
+resultContainer.id = "resultContainer";
+resultContainer.className = "page_divider";
 
-const calculateButton = document.createElement("button");
-calculateButton.id = "calculateButton";
-calculateButton.textContent = "Berechnen";
+document.getElementById("mainContainer").appendChild(resultContainer);
 
-document.getElementById("mainContainer").appendChild(mainButtonContainer);
-document.getElementById("mainButtonContainer").appendChild(calculateButton);
+tables.push(new Table(tables.length, false));
+document.getElementById("resultContainer").appendChild(tables[tables.length - 1].tableContainer);
 
 document.addEventListener("keydown", function(e) {
     let activeCellId = document.activeElement.id;
