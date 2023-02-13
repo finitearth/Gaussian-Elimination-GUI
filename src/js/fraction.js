@@ -3,8 +3,8 @@ import { Matrix } from "./matrix.js";
 export class Fraction {
     /**
      * Class for fractions, defined as numerator/denominator.
-     * @param {int8} numerator 
-     * @param {uint8} denominator 
+     * @param {int8} numerator
+     * @param {uint8} denominator
      */
     constructor(numerator, denominator) {
         this.numerator = numerator;
@@ -15,7 +15,9 @@ export class Fraction {
         if (this.denominator == 1) {
             return this.numerator.toString();
         } else {
-            return this.numerator.toString() + "/" + this.denominator.toString();
+            return (
+                this.numerator.toString() + "/" + this.denominator.toString()
+            );
         }
     }
     inverse() {
@@ -23,7 +25,9 @@ export class Fraction {
     }
 
     add(other) {
-        let numerator = this.numerator * other.denominator + other.numerator * this.denominator;
+        let numerator =
+            this.numerator * other.denominator +
+            other.numerator * this.denominator;
         let denominator = this.denominator * other.denominator;
         let newFraction = new Fraction(numerator, denominator);
         newFraction = newFraction.reduce();
@@ -44,27 +48,26 @@ export class Fraction {
     }
     // make the above function public
 
-    
     divide(other) {
         return this.multiply(other.inverse());
     }
 
     gcd() {
-            let a = this.numerator;
-            let b = this.denominator;
-            while (b != 0) {
-                let temp = b;
-                b = a % b;
-                a = temp;
-            }
-            return a;
+        let a = this.numerator;
+        let b = this.denominator;
+        while (b != 0) {
+            let temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
     }
-    
+
     reduce() {
         let gcd = this.gcd();
         this.numerator /= gcd;
         this.denominator /= gcd;
-        
+
         return this;
     }
 

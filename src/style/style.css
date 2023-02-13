@@ -1,36 +1,32 @@
-main{
+main {
     padding-left: 1.5%;
     margin-top: 5%;
 }
 
-h1{
+h1 {
     font-size: xx-large;
     font-weight: normal;
-    border-left: 6px solid rgb(0, 133 ,252);
+    border-left: 6px solid rgb(0, 133, 252);
     padding-left: 10px;
 }
 
-
-.main_text{
+.main_text {
     padding-top: 0.5%;
     padding-left: 0.5%;
     font-size: x-large;
     line-height: 1.5;
 }
 
-
-a{
+a {
     text-decoration: none;
-    color: rgb(0, 133 ,252);
+    color: rgb(0, 133, 252);
 }
 
-
-.logo-img{
+.logo-img {
     float: right;
 }
 
-
-.nav{
+.nav {
     position: fixed;
     box-sizing: border-box;
     top: 0;
@@ -43,32 +39,27 @@ a{
     padding: 18px;
 }
 
-
-.nav-list{
-    list-style-type: none; 
-    margin: 0; 
-    padding: 0; 
-    width: 100%; 
-    text-align: center; 
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
     justify-content: space-between;
 }
 
-
-.nav-element{
-    display: inline; 
+.nav-element {
+    display: inline;
     padding-inline-end: 8%;
 }
 
-
-.nav-link{
-    color: rgb(154, 157, 160); 
+.nav-link {
+    color: rgb(154, 157, 160);
 }
 
-
-.nav-link.active{
+.nav-link.active {
     color: rgb(255, 255, 255);
 }
-
 
 .vertical {
     border-left: 2px solid rgb(154, 157, 160);
@@ -76,26 +67,24 @@ a{
     border-radius: 1px;
 }
 
-
 .page_divider {
     border: 1px solid rgb(154, 157, 160);
     border-radius: 25px;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
     display: flex;
     padding: 20px;
 }
 
-
 .button_container {
     padding: 20px;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
-    display: flex;   
+    display: flex;
 }
 
 .operations_button {
-    background-color: rgb(0, 133 ,252);
+    background-color: rgb(0, 133, 252);
     color: rgb(255, 255, 255);
     border: none;
     border-radius: 5px;
@@ -117,21 +106,19 @@ a{
 .page_divider {
     border: 1px solid rgb(154, 157, 160);
     border-radius: 25px;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
     display: flex;
     padding: 20px;
-    margin:  20px;
+    margin: 20px;
 }
-
 
 .button_container {
     padding: 20px;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
-    display: flex;   
+    display: flex;
 }
-
 
 .operations_button {
     background-color: rgb(0, 133, 252);
@@ -146,20 +133,17 @@ a{
 .operations_button:hover {
     cursor: pointer;
     background-color: rgb(0, 100, 252);
-    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.24), 0 4px 4px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 4px 4px 0 rgba(0, 0, 0, 0.19);
 }
-
 
 .operations_button:active {
     background-color: rgb(0, 80, 252);
     transform: translateY(1px);
-  }
-
+}
 
 td {
     padding: 5px;
 }
-
 
 input {
     border: 1px solid rgb(154, 157, 160);
