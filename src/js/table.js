@@ -29,7 +29,7 @@ export class Table {
             { name: "- C", id: "ColumnRemover", function: this.removeColumn },
         ];
 
-        buttons.forEach((button) => {
+        buttons.forEach(button => {
             const buttonElement = document.createElement("button");
             // add css class
             buttonElement.classList.add("table_button");

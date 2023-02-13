@@ -1,103 +1,109 @@
 // import { designConfig } from "./config.js";
-import { Table }        from "./table.js";
-import { Fraction }     from "./fraction.js";
+import { Table } from "./table.js";
+import { Fraction } from "./fraction.js";
 import { RowOperation } from "./rowoperation.js";
 
- var dimension = 3; 
+var dimension = 3;
 
- document.getElementById("dimensionButton").addEventListener("input", modifyDimension );
+document
+    .getElementById("dimensionButton")
+    .addEventListener("input", modifyDimension);
 
- function modifyDimension(e) {
+function modifyDimension(e) {
     if (e.target.value < dimension) {
-            console.log("a");
+        console.log("a");
 
-            tables[0].removeRow(); 
-            tables[0].removeColumn();  
-            tables[1].removeRow();     
-            tables[1].removeColumn(); 
+        tables[0].removeRow();
+        tables[0].removeColumn();
+        tables[1].removeRow();
+        tables[1].removeColumn();
 
-            removeCombobox(dimension);
-            updateComboboxes();
+        removeCombobox(dimension);
+        updateComboboxes();
+    } else if (e.target.value > dimension) {
+        console.log("b");
+
+        tables[0].addRow();
+        tables[0].addColumn();
+        tables[1].addRow();
+        tables[1].addColumn();
+
+        addCombobox("combobox_" + (e.target.value - 1));
+        updateComboboxes();
     }
-    else if (e.target.value > dimension){
-            console.log("b");
-
-            tables[0].addRow(); 
-            tables[0].addColumn(); 
-            tables[1].addRow(); 
-            tables[1].addColumn(); 
-
-            addCombobox("combobox_"+(e.target.value-1));
-            updateComboboxes();
-    };
 
     dimension = e.target.value;
- };
+}
 
- function addVerticalLine(table_element_id) {
-
-    const table_element          = document.createElement ("th");
-    table_element.id             = table_element_id;
-    const table_element_line     = document.createElement ("div");
+function addVerticalLine(table_element_id) {
+    const table_element = document.createElement("th");
+    table_element.id = table_element_id;
+    const table_element_line = document.createElement("div");
     table_element_line.className = "vertical";
 
     document.getElementById("table_row").appendChild(table_element);
     document.getElementById(table_element_id).appendChild(table_element_line);
- }
- 
- function addTable() {
-     if (tables.length > 25) {return;}
+}
 
-     tables.push(new Table(tables.length, false));
+function addTable() {
+    if (tables.length > 25) {
+        return;
+    }
 
-     const table_element = document.createElement ("th");
-     table_element.id    = "table_element_"+tables.length;
+    tables.push(new Table(tables.length, false));
 
-     document.getElementById("table_row").appendChild(table_element);
-     document.getElementById("table_element_"+tables.length).appendChild(tables[tables.length - 1].tableContainer);
- }
-
- function addCombobox(id) {
-    RowOperations.push(new RowOperation(id, tables[0]));
-
-    const table_element = document.createElement ("th");
-    table_element.id    = "Operation";
+    const table_element = document.createElement("th");
+    table_element.id = "table_element_" + tables.length;
 
     document.getElementById("table_row").appendChild(table_element);
-    document.getElementById("Operation").appendChild(RowOperations[RowOperations.length - 1].comboBoxElement);
- }
+    document
+        .getElementById("table_element_" + tables.length)
+        .appendChild(tables[tables.length - 1].tableContainer);
+}
 
- function removeCombobox(id) {
+function addCombobox(id) {
+    RowOperations.push(new RowOperation(id, tables[0]));
+
+    const table_element = document.createElement("th");
+    table_element.id = "Operation";
+
+    document.getElementById("table_row").appendChild(table_element);
+    document
+        .getElementById("Operation")
+        .appendChild(RowOperations[RowOperations.length - 1].comboBoxElement);
+}
+
+function removeCombobox(id) {
     console.log(dimension);
-    document.getElementById("combobox_"+(id-1)).remove();
- }
+    document.getElementById("combobox_" + (id - 1)).remove();
+}
 
- function updateComboboxes() {
-    for (let i = 0; i < RowOperations.length; i++ ) {
+function updateComboboxes() {
+    for (let i = 0; i < RowOperations.length; i++) {
         RowOperations[i] = new RowOperation(tables[0]);
     }
 
-    console.log(RowOperations.length+" Operation Number");
- }
+    console.log(RowOperations.length + " Operation Number");
+}
 
 console.log("Starting webpage!");
 
 let tables = [];
 for (let i = 0; i < 2; i++) {
     if (i == 1) {
-         addVerticalLine("table_element_"+tables.length+1);
+        addVerticalLine("table_element_" + tables.length + 1);
     }
 
     addTable();
 }
 
-addVerticalLine("table_element_"+tables.length+2);
-addVerticalLine("table_element_"+tables.length+3);
+addVerticalLine("table_element_" + tables.length + 2);
+addVerticalLine("table_element_" + tables.length + 3);
 
-let RowOperations = []; 
+let RowOperations = [];
 // creating comboboxes
 for (let i = 0; i < 3; i++) {
-    addCombobox("combobox_"+i);
+    addCombobox("combobox_" + i);
 }
 
 // Result Container
@@ -108,9 +114,11 @@ resultContainer.className = "page_divider";
 document.getElementById("mainContainer").appendChild(resultContainer);
 
 tables.push(new Table(tables.length, false));
-document.getElementById("resultContainer").appendChild(tables[tables.length - 1].tableContainer);
+document
+    .getElementById("resultContainer")
+    .appendChild(tables[tables.length - 1].tableContainer);
 
-document.addEventListener("keydown", function(e) {
+document.addEventListener("keydown", function (e) {
     let activeCellId = document.activeElement.id;
     console.log(activeCellId);
     let row;
@@ -120,7 +128,7 @@ document.addEventListener("keydown", function(e) {
     if (activeCellId == "") {
         tableId = 0;
         row = 0;
-        column = 0;    
+        column = 0;
     } else {
         tableId = Number(activeCellId.split("-")[0]);
         row = Number(activeCellId.split("-")[1]);
