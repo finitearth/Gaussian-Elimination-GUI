@@ -1,11 +1,16 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    background-color: #fefefe;
+}
+
 main {
     padding-left: 1.5%;
     margin-top: 5%;
 }
 
 h1 {
-    font-size: xx-large;
-    font-weight: normal;
+    font-size: 26pt;
+    font-weight: 750;
     border-left: 6px solid rgb(0, 133, 252);
     padding-left: 10px;
 }
@@ -37,6 +42,7 @@ a {
     /* font-family: Georgia, Times, serif; */
     font-size: larger;
     padding: 18px;
+    margin-bottom: 10px;
 }
 
 .nav-list {
@@ -65,15 +71,6 @@ a {
     border-left: 2px solid rgb(154, 157, 160);
     height: 70px;
     border-radius: 1px;
-}
-
-.page_divider {
-    border: 1px solid rgb(154, 157, 160);
-    border-radius: 25px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    padding: 20px;
 }
 
 .button_container {
@@ -105,12 +102,15 @@ a {
 
 .page_divider {
     border: 1px solid rgb(154, 157, 160);
-    border-radius: 25px;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 20px 20px 0px;
+}
+
+.align-center {
     align-items: center;
     justify-content: center;
     display: flex;
-    padding: 20px;
-    margin: 20px;
 }
 
 .button_container {
