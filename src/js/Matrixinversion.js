@@ -109,7 +109,7 @@ for (let i = 0; i < 3; i++) {
 // Result Container
 const resultContainer = document.createElement("div");
 resultContainer.id = "resultContainer";
-resultContainer.className = "page_divider";
+resultContainer.className = "page_divider align-center";
 
 document.getElementById("mainContainer").appendChild(resultContainer);
 
