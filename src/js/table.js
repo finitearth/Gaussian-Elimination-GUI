@@ -3,8 +3,7 @@ import { stringToFraction } from "./utils.js";
 import { Matrix } from "./matrix.js";
 
 export class Table {
-    constructor(id, showButtons = true) {
-        
+    constructor(id) {
         this.id = id;
         this.tableElement = document.createElement("table");
         this.tableElement.id = id;
@@ -18,6 +17,8 @@ export class Table {
     
         const buttonsContainer = document.createElement("div");
         buttonsContainer.id = "buttons";
+        // add css class button_container
+        // buttonsContainer.classList.add("button_container");
 
         const buttons = [
             { name: "+ R",       id: "RowAdder",      function: this.addRow },
@@ -28,13 +29,12 @@ export class Table {
 
         buttons.forEach(button => {
             const buttonElement = document.createElement("button");
+            // add css class
+            buttonElement.classList.add("table_button");
             buttonElement.textContent = button.name;
             buttonElement.id = button.id;
             buttonElement.addEventListener("click", button.function.bind(this));
             buttonsContainer.appendChild(buttonElement);
-            if (!showButtons) {
-                buttonElement.style.display = "none";
-            }
         });
     
         this.tableContainer = document.createElement("div");

@@ -1,4 +1,3 @@
-// import { designConfig } from "./config.js";
 import { Table } from "./table.js";
 import { Fraction } from "./fraction.js";
 
@@ -78,7 +77,6 @@ function calculate(equationString) {
 function orderOperations(equationString) {
     const output = [];
     const operatorStack = [];
-    // const operators = ["+", "-", "*", "/"];
   
     equationString.split("").forEach(token => {
       switch (token) {
@@ -150,7 +148,6 @@ function extractSubEquation(equationString, startIndex) {
 
 
 console.log("Starting webpage!")
-// button for adding a table
 let addTableButton = document.createElement("button");
 addTableButton.innerHTML = "Add Table";
 document.getElementById("table").appendChild(addTableButton);
@@ -177,7 +174,6 @@ for (let i = 0; i < 2; i++) {
 // text field for input of equation + button for "calculate!"
 let equationInput = document.createElement("input");
 equationInput.id = "equationInput";
-// equationInput.size = designConfig.inputFieldSize;
 document.getElementById("equation").appendChild(equationInput);
 
 let calculateButton = document.createElement("button");
