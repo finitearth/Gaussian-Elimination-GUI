@@ -3,7 +3,7 @@ import { stringToFraction } from "./utils.js";
 import { Matrix } from "./matrix.js";
 
 export class Table {
-    constructor(id) {
+    constructor(id, ) {
         this.id = id;
         this.tableElement = document.createElement("table");
         this.tableElement.id = id;
@@ -19,8 +19,6 @@ export class Table {
 
         const buttonsContainer = document.createElement("div");
         buttonsContainer.id = "buttons";
-        // add css class button_container
-        // buttonsContainer.classList.add("button_container");
 
         const buttons = [
             { name: "+ R", id: "RowAdder", function: this.addRow },
@@ -42,48 +40,6 @@ export class Table {
         this.tableContainer = document.createElement("div");
         this.tableContainer.appendChild(this.tableElement);
         this.tableContainer.appendChild(buttonsContainer);
-
-        document.addEventListener("keydown", function (e) {
-            let activeCellId = document.activeElement.id;
-            console.log(activeCellId);
-            let row;
-            let column;
-            let tableId;
-
-            if (activeCellId == "") {
-                tableId = 0;
-                row = 0;
-                column = 0;
-            } else {
-                tableId = Number(activeCellId.split("-")[0]);
-                row = Number(activeCellId.split("-")[1]);
-                column = Number(activeCellId.split("-")[2]);
-            }
-
-            if (e.code == "ArrowUp" && row > 0) {
-                row -= 1;
-            } else if (e.code == "ArrowUp" && tableId > 0) {
-                tableId -= 1;
-                row = tables[tableId].rows.length - 1;
-            } else if (
-                e.code == "ArrowDown" &&
-                row < tables[0].rows.length - 1
-            ) {
-                row += 1;
-            } else if (e.code == "ArrowDown" && tableId < tables.length - 1) {
-                tableId += 1;
-                row = 0;
-            } else if (e.code == "ArrowLeft" && column > 0) {
-                column -= 1;
-            } else if (
-                e.code == "ArrowRight" &&
-                column < tables[0].nColumns - 1
-            ) {
-                column += 1;
-            }
-
-            document.getElementById(`${tableId}-${row}-${column}`).focus();
-        });
     }
 
     addCell(rowId, columnId) {
