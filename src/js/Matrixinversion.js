@@ -33,27 +33,9 @@ import { RowOperation } from "./rowoperation.js";
 
     dimension = e.target.value;
  };
-
- function addVerticalLine(table_element_id) {
-
-    const table_element          = document.createElement ("th");
-    table_element.id             = table_element_id;
-    const table_element_line     = document.createElement ("div");
-    table_element_line.className = "vertical";
-
-    document.getElementById("table_row").appendChild(table_element);
-    document.getElementById(table_element_id).appendChild(table_element_line);
- }
  
  function addTable() {
-     if (tables.length > 25) {return;}
-
      tables.push(new Table(tables.length, false));
-
-     const table_element = document.createElement ("th");
-     table_element.id    = "table_element_"+tables.length;
-
-     document.getElementById("table_row").appendChild(table_element);
      document.getElementById("table_element_"+tables.length).appendChild(tables[tables.length - 1].tableContainer);
  }
 
@@ -68,7 +50,6 @@ import { RowOperation } from "./rowoperation.js";
  }
 
  function removeCombobox(id) {
-    console.log(dimension);
     document.getElementById("combobox_"+(id-1)).remove();
  }
 
@@ -76,36 +57,20 @@ import { RowOperation } from "./rowoperation.js";
     for (let i = 0; i < RowOperations.length; i++ ) {
         RowOperations[i] = new RowOperation(tables[0]);
     }
-
-    console.log(RowOperations.length+" Operation Number");
  }
 
 console.log("Starting webpage!");
 
 let tables = [];
 for (let i = 0; i < 2; i++) {
-    if (i == 1) {
-         addVerticalLine("table_element_"+tables.length+1);
-    }
-
     addTable();
 }
-
-addVerticalLine("table_element_"+tables.length+2);
-addVerticalLine("table_element_"+tables.length+3);
 
 let RowOperations = []; 
 // creating comboboxes
 for (let i = 0; i < 3; i++) {
     addCombobox("combobox_"+i);
 }
-
-// Result Container
-const resultContainer = document.createElement("div");
-resultContainer.id = "resultContainer";
-resultContainer.className = "page_divider";
-
-document.getElementById("mainContainer").appendChild(resultContainer);
 
 tables.push(new Table(tables.length, false));
 document.getElementById("resultContainer").appendChild(tables[tables.length - 1].tableContainer);

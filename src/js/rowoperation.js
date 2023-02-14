@@ -5,16 +5,7 @@ export class RowOperation {
     constructor(id, table) {
         this.id = id;
         this.comboBoxElement            = document.createElement("tr");
-        this.comboBoxElement.id         = this.id;
         this.table                      = table;
-
-        this.comboboxButton             = document.createElement("button");
-        this.comboboxButton.textContent = "Aloha";
-        this.comboboxButton.id          = this.id+"_displayCombobox";
-
-        this.comboboxButton.addEventListener("click", this.handleComboboxButtons.bind(this));
-        this.comboBoxElement.appendChild(this.comboboxButton);
-
         this.tables;
         this.firstOperatorDropdownID    = "firstOperator"+this.id; 
         this.firstTextFieldID           = "firstText"+this.id;
@@ -22,7 +13,15 @@ export class RowOperation {
         this.rowDropdownID              = "rowDropdown"+this.id;
         this.thirdOperatorDropdownID    = "thirdOperator"+this.id;
         this.secondTextField            = "secondText"+this.id;
-    }
+
+        this.comboBoxElement.id         = this.id;
+        this.comboboxButton             = document.createElement("button");
+        this.comboboxButton.textContent = "Aloha";
+        this.comboboxButton.id          = this.id+"_displayCombobox";
+
+        this.comboboxButton.addEventListener("click", this.handleComboboxButtons.bind(this));
+        this.comboBoxElement.appendChild(this.comboboxButton);
+    }       
 
     createSelectOption(id, option, selectID) {
         const optionElement     = document.createElement("option");
@@ -35,12 +34,12 @@ export class RowOperation {
     handleComboboxButtons() {
 
         const elements = [
-            { name: "_", id: this.firstOperatorDropdownID,  function: this.chooseFirstOperation, element_name: "select", size: 1, option_1: "*", option_2: "/"  },
-            { name: "_", id: this.firstTextFieldID,         function: this.readFirstText,        element_name: "input",  size: 1  },
-            { name: "_", id: this.secondOperatorDropdownID, function: this.chooseSecondOperator, element_name: "select", size: 1, option_1: "+", option_2: "-" },
-            { name: "_", id: this.secondTextField,          function: this.readSecondText,       element_name: "input",  size: 1  },
-            { name: "_", id: this.thirdOperatorDropdownID,  function: this.chooseThirdOperator,  element_name: "select", size: 1, option_1: "*", option_2: "/" },
-            { name: "_", id: this.rowDropdownID,            function: this.chooseRow,            element_name: "select", size: 1  }
+            { name: "_", id: this.firstOperatorDropdownID,  element_name: "select", size: 1, option_1: "*", option_2: "/"  },
+            { name: "_", id: this.firstTextFieldID,         element_name: "input",  size: 1  },
+            { name: "_", id: this.secondOperatorDropdownID, element_name: "select", size: 1, option_1: "+", option_2: "-" },
+            { name: "_", id: this.secondTextField,          element_name: "input",  size: 1  },
+            { name: "_", id: this.thirdOperatorDropdownID,  element_name: "select", size: 1, option_1: "*", option_2: "/" },
+            { name: "_", id: this.rowDropdownID,            element_name: "select", size: 1  }
         ];
 
         elements.forEach(elem => {
@@ -49,7 +48,6 @@ export class RowOperation {
                 Element.textContent = elem.name;
                 Element.id          = elem.id;
                 Element.size        = elem.size;
-                Element.addEventListener("click", elem.function.bind(this));
                 document.getElementById(this.id).insertBefore(Element, document.getElementById(this.id+"_displayCombobox"));
 
                 if (elem.element_name == "select" && elem.id != this.rowDropdownID) {
@@ -73,33 +71,7 @@ export class RowOperation {
         });
     }
 
-    updateTable(table) {
-        this.table = table;
+    calculate() {
+        
     }
-
-    chooseFirstOperation() {
-
-    }
-
-    readFirstText() {
-
-
-    }
-
-    chooseSecondOperator() {
-
-    }
-
-    chooseRow() {
-
-    }
-
-    chooseThirdOperator() {
-
-    }
-
-    readSecondText() {
-
-    }
-
 }
