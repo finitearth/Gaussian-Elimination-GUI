@@ -80,6 +80,10 @@ export class Matrix {
         return new Matrix(column);
     }
 
+    getElement(iRow, iColumn) {
+        return this.array[iRow][iColumn];
+    }
+
     addRow(iRow, otherRow) {
         this.array[iRow] = this.array[iRow].add(otherRow);
 

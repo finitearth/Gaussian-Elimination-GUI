@@ -34,6 +34,10 @@ export class Fraction {
         return newFraction;
     }
 
+    subtract(other) {
+        return this.add(other.mul(new Fraction(-1,1)));
+    }
+
     mul(other) {
         // if other type matrix
         if (other instanceof Matrix) {
@@ -48,8 +52,8 @@ export class Fraction {
     }
     // make the above function public
 
-    divide(other) {
-        return this.multiply(other.inverse());
+    div(other) {
+        return this.mul(other.inverse());
     }
 
     gcd() {
