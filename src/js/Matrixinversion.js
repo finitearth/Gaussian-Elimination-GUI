@@ -1,35 +1,36 @@
 // import { designConfig } from "./config.js";
-import { Table }        from "./table.js";
-import { Fraction }     from "./fraction.js";
+import { Table } from "./table.js";
+import { Fraction } from "./fraction.js";
 import { RowOperation } from "./rowoperation.js";
 
- var dimension = 3; 
+var dimension = 3;
 
- document.getElementById("dimensionButton").addEventListener("input", modifyDimension );
+document
+    .getElementById("dimensionButton")
+    .addEventListener("input", modifyDimension);
 
- function modifyDimension(e) {
+function modifyDimension(e) {
     if (e.target.value < dimension) {
-            console.log("a");
+        console.log("a");
 
-            tables[0].removeRow(); 
-            tables[0].removeColumn();  
-            tables[1].removeRow();     
-            tables[1].removeColumn(); 
+        tables[0].removeRow();
+        tables[0].removeColumn();
+        tables[1].removeRow();
+        tables[1].removeColumn();
 
-            removeCombobox(dimension);
-            updateComboboxes();
+        removeCombobox(dimension);
+        updateComboboxes();
+    } else if (e.target.value > dimension) {
+        console.log("b");
+
+        tables[0].addRow();
+        tables[0].addColumn();
+        tables[1].addRow();
+        tables[1].addColumn();
+
+        addCombobox("combobox_" + (e.target.value - 1));
+        updateComboboxes();
     }
-    else if (e.target.value > dimension){
-            console.log("b");
-
-            tables[0].addRow(); 
-            tables[0].addColumn(); 
-            tables[1].addRow(); 
-            tables[1].addColumn(); 
-
-            addCombobox("combobox_"+(e.target.value-1));
-            updateComboboxes();
-    };
 
     dimension = e.target.value;
  };
@@ -39,22 +40,24 @@ import { RowOperation } from "./rowoperation.js";
      document.getElementById("table_element_"+tables.length).appendChild(tables[tables.length - 1].tableContainer);
  }
 
- function addCombobox(id) {
+function addCombobox(id) {
     RowOperations.push(new RowOperation(id, tables[0]));
 
-    const table_element = document.createElement ("th");
-    table_element.id    = "Operation";
+    const table_element = document.createElement("th");
+    table_element.id = "Operation";
 
     document.getElementById("table_row").appendChild(table_element);
-    document.getElementById("Operation").appendChild(RowOperations[RowOperations.length - 1].comboBoxElement);
- }
+    document
+        .getElementById("Operation")
+        .appendChild(RowOperations[RowOperations.length - 1].comboBoxElement);
+}
 
  function removeCombobox(id) {
     document.getElementById("combobox_"+(id-1)).remove();
  }
 
- function updateComboboxes() {
-    for (let i = 0; i < RowOperations.length; i++ ) {
+function updateComboboxes() {
+    for (let i = 0; i < RowOperations.length; i++) {
         RowOperations[i] = new RowOperation(tables[0]);
     }
  }
@@ -66,16 +69,18 @@ for (let i = 0; i < 2; i++) {
     addTable();
 }
 
-let RowOperations = []; 
+let RowOperations = [];
 // creating comboboxes
 for (let i = 0; i < 3; i++) {
-    addCombobox("combobox_"+i);
+    addCombobox("combobox_" + i);
 }
 
 tables.push(new Table(tables.length, false));
-document.getElementById("resultContainer").appendChild(tables[tables.length - 1].tableContainer);
+document
+    .getElementById("resultContainer")
+    .appendChild(tables[tables.length - 1].tableContainer);
 
-document.addEventListener("keydown", function(e) {
+document.addEventListener("keydown", function (e) {
     let activeCellId = document.activeElement.id;
     console.log(activeCellId);
     let row;
@@ -85,7 +90,7 @@ document.addEventListener("keydown", function(e) {
     if (activeCellId == "") {
         tableId = 0;
         row = 0;
-        column = 0;    
+        column = 0;
     } else {
         tableId = Number(activeCellId.split("-")[0]);
         row = Number(activeCellId.split("-")[1]);

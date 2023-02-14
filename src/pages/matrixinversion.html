@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="de">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Matrixinversion</title>
-        <link rel="stylesheet" href="../style/style.css" type="text/css">
-        <link rel="icon" href="../images/icon_logo.png">
+        <link rel="stylesheet" href="../style/style.css" type="text/css" />
+        <link rel="icon" href="../images/icon_logo.png" />
         <script src="../js/navbar.js"></script>
     </head>
 
@@ -23,17 +23,24 @@
                     <table id="dimensionTable">
                         <tbody>
                             <tr id="dimensionRow">
-                                <th id = "firstField">
-                                    <p id="dimensionText">Dimension: </p>
-                                </th> 
-                                <th id = "secondField">
-                                    <input id="dimensionButton" type = "number" min="2" max="9" defaultValue="3" size="1">
+                                <th id="firstField">
+                                    <p id="dimensionText">Dimension:</p>
+                                </th>
+                                <th id="secondField">
+                                    <input
+                                        id="dimensionButton"
+                                        type="number"
+                                        min="2"
+                                        max="9"
+                                        defaultValue="3"
+                                        size="1"
+                                    />
                                 </th>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div id="matrixBox" class="page_divider">
+                <div id="matrixBox" class="page_divider align-center">
                     <table id="table">
                         <tr id="table_row">
                             <th id="table_element_1"></th>
@@ -48,24 +55,34 @@
                                 <div class="vertical"></div>
                             </th>
                         </tr>
+                        <tr id="table_row"></tr>
                     </table>
                 </div>
                 <div id="mainButtonContainer" class="button_container">
-                    <button id="calculateButton" class="operations_button">Berechnen</button>
-                    <button id="calculateSolutionButton" class="operations_button">Lösen</button>
-                    <button id="adaptResult" class="operations_button">Hoch</button>
+                    <button id="calculateButton" class="operations_button">
+                        Berechnen
+                    </button>
+                    <button
+                        id="calculateSolutionButton"
+                        class="operations_button"
+                    >
+                        Lösen
+                    </button>
+                    <button id="adaptResult" class="operations_button">
+                        Hoch
+                    </button>
                 </div>
             </div>
             <div id="resultContainer" class="page_divider">
 
             </div>
         
-            <!-- <div class="after_header">
+
+    <!-- <div class="after_header">
                 <h1><span class="blue_line">Ergebnis</span></h1>
             </div> -->
             <div id="equation"></div>
             <div id="result"></div>
-            
         </main>
     </body>
     <script src="../js/Matrixinversion.js" type="module"></script>
