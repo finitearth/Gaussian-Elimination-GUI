@@ -8,11 +8,12 @@ function gaussElimination(matrix) {
         matrix = matrix.multiplyRowByScalar(i, pivotElement.inverse());
 
         // Eliminate the variables above and below the pivot
-        for (let j = 0; j < n; j++) {
-            if (i !== j) {
-                let factor = matrix.array[j][i].mul(-1);
-                matrix = matrix.addRow(j, matrix.getRow(i).mul(factor));
+        for (let j = 0; j < matrix.nRows; j++) {
+            if (i === j) {
+                continue;
             }
+            let factor = matrix.array[j][i].mul(-1);
+            matrix = matrix.addRow(j, matrix.getRow(i).mul(factor));
         }
     }
 
