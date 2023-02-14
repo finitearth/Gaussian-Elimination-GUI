@@ -130,13 +130,13 @@ a {
     margin: 10px;
 }
 
-.operations_button:hover {
+button:hover {
     cursor: pointer;
     background-color: rgb(0, 100, 252);
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 4px 4px 0 rgba(0, 0, 0, 0.19);
 }
 
-.operations_button:active {
+button:active {
     background-color: rgb(0, 80, 252);
     transform: translateY(1px);
 }

@@ -4,6 +4,6 @@ export const designConfig = {
     nInitColumns: 3,
     minRows: 2,
     minColumns: 2,
-    maxRows: 10,
-    maxColumns: 10,
+    maxRows: 9,
+    maxColumns: 9,
 };
