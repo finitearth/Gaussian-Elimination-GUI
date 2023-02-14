@@ -38,7 +38,18 @@ export class Fraction {
         return this.add(other.mul(new Fraction(-1,1)));
     }
 
+    abs() {
+        return new Fraction(
+            Math.abs(this.numerator),
+            Math.abs(this.denominator)
+        );
+    }
+
     mul(other) {
+        // if number
+        if (typeof other == "number") {
+            return this.mul(new Fraction(other, 1));
+        }
         // if other type matrix
         if (other instanceof Matrix) {
             return other.mul(this);
@@ -54,6 +65,18 @@ export class Fraction {
 
     div(other) {
         return this.mul(other.inverse());
+    }
+
+    eqauls(other) {
+        // check for 0 in numerator
+        if (this.numerator == 0 && other.numerator == 0) {
+            return true;
+        }
+        return (
+            this.numerator == other.numerator &&
+            this.denominator == other.denominator
+        );
+
     }
 
     gcd() {

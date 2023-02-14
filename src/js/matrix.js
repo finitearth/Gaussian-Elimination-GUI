@@ -27,8 +27,44 @@ export class Matrix {
         } else if (typeof other == "number") {
             return this.multiplyByScalar(new Fraction(other, 1));
         } else {
-            throw new Error("Invalid type");
+            throw new Error("Invalid type " + other);
         }
+    }
+
+    getPivot(i) {
+        // check if array[i][i] exists
+        if (i >= this.nRows || i >= this.nColumns) {
+            throw new Error("haha Singular Matrix");
+        }
+
+        if (typeof this.array[i][i] == "undefined") {
+            throw new Error("Singular matrix");
+        }
+
+        // Find the pivot element (largest element in column)
+
+        let pivot = this.array[i][i].abs();
+        let pivotIndex = i;
+        for (let j = i + 1; j < this.nRows; j++) {
+            if (this.array[j][i].abs() > pivot) {
+                element = this.array[j][i];
+                if (
+                    typeof element !== "undefined" &&
+                    element.abs() > pivotElement.abs()
+                ) {
+                    pivot = element;
+                    pivotIndex = i;
+                }
+                // pivot = this.array[j][i].abs();
+                // pivotIndex = j;
+            }
+        }
+
+        // if (this.array[i][i].abs().equals(new Fraction(0, 1))) {
+        //     throw new Error('Singular matrix');
+        // }
+
+        return [pivotIndex, pivot];
     }
 
     multiplyByMatrix(other) {
@@ -54,17 +90,22 @@ export class Matrix {
 
     transpose() {
         let newArray = [];
-        // newArray.nRows = this.nColumns;
-        // newArray.nColumns = this.nRows;
+        
         for (let i = 0; i < this.nColumns; i++) {
             newArray.push([]);
             for (let j = 0; j < this.nRows; j++) {
                 newArray[i].push(this.array[j][i]);
-                // console.log(newArray[j][i])
             }
         }
-        console.log("new Array transposed" + newArray);
+        
         return new Matrix(newArray);
+    }
+
+    swapRows(iRow1, iRow2) {
+        let temp = this.array[iRow1];
+        this.array[iRow1] = this.array[iRow2];
+        this.array[iRow2] = temp;
+        return this;
     }
 
     getRow(iRow) {
@@ -85,13 +126,18 @@ export class Matrix {
     }
 
     addRow(iRow, otherRow) {
-        this.array[iRow] = this.array[iRow].add(otherRow);
+        for (let i = 0; i < this.nColumns; i++) {
+            this.array[iRow][i] = this.array[iRow][i].add(otherRow.array[0][i]);
+        }
+
 
         return this;
     }
 
     multiplyRowByScalar(iRow, scalar) {
-        this.array[iRow] = this.array[iRow].mul(scalar).reduce();
+        for (let i = 0; i < this.nColumns; i++) {
+            this.array[iRow][i] = this.array[iRow][i].mul(scalar);
+        }
         return this;
     }
 
@@ -103,7 +149,6 @@ export class Matrix {
                 newArray[i][j] = this.array[i][j].mul(scalar).reduce();
             }
         }
-        console.log(newArray);
         return new Matrix(newArray);
     }
 
