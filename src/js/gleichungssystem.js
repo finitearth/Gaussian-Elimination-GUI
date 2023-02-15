@@ -2,14 +2,14 @@ import { Table } from "./table.js";
 import { gaussElimination } from "./gaussalgorithm.js";
 
 var tables = [];
+var numberEquations = 3;
+var numberVariables = 3;
+var numberResultVectors = 3;
+
 function addTable() {
     tables.push(new Table(tables.length, false));
     document.getElementById("table_element_"+tables.length).appendChild(tables[tables.length - 1].tableContainer);
 }
-
-var numberEquations = 3;
-var numberVariables = 3;
-var numberResultVectors = 3;
 
 function calculateSolution() {
     let coefMatrix = tables[0].getData();
@@ -23,10 +23,12 @@ function addEquation(e) {
     if (numberEquations < e.target.value) {
         tables[0].addRow();
         tables[1].addRow();
+        tables[2].addRow();
     }
     else if (numberEquations > e.target.value) {
         tables[0].removeRow();
         tables[1].removeRow();
+        tables[2].removeRow();
     }
     numberEquations = e.target.value;
 }
