@@ -7,6 +7,10 @@ function addTable() {
     document.getElementById("table_element_"+tables.length).appendChild(tables[tables.length - 1].tableContainer);
 }
 
+var numberEquations = 3;
+var numberVariables = 3;
+var numberResultVectors = 3;
+
 function calculateSolution() {
     let coefMatrix = tables[0].getData();
     let solMatrix = tables[1].getData();
@@ -14,6 +18,44 @@ function calculateSolution() {
     solMatrix = gaussElimination(coefMatrix, solMatrix);
     tables[2].setData(solMatrix.array);
 }
+
+function addEquation(e) {
+    if (numberEquations < e.target.value) {
+        tables[0].addRow();
+        tables[1].addRow();
+    }
+    else if (numberEquations > e.target.value) {
+        tables[0].removeRow();
+        tables[1].removeRow();
+    }
+    numberEquations = e.target.value;
+}
+
+function addVariable(e) {
+    if (numberVariables < e.target.value) {
+        tables[0].addColumn();
+    }
+    else if (numberVariables > e.target.value) {
+        tables[0].removeColumn();
+    }
+    numberVariables = e.target.value;
+}
+
+function addResultVector(e) {
+    if (numberResultVectors < e.target.value) {
+        tables[1].addColumn();
+        tables[2].addColumn();
+    }
+    else if (numberResultVectors > e.target.value) {
+        tables[1].removeColumn();
+        tables[2].removeColumn();
+    }
+    numberResultVectors = e.target.value;
+}
+
+document.getElementById("nr-eq").addEventListener("input", addEquation);
+document.getElementById("nr-var").addEventListener("input", addVariable);
+document.getElementById("nr-b").addEventListener("input", addResultVector);
 
 for (let i = 0; i < 3; i++) {
     addTable();
