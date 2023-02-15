@@ -102,6 +102,12 @@ export class Fraction {
         this.numerator /= gcd;
         this.denominator /= gcd;
 
+        // if denominator is negative, move it to numerator
+        if (this.denominator < 0) {
+            this.numerator *= -1;
+            this.denominator *= -1;
+        }
+
         return this;
     }
 

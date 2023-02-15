@@ -32,11 +32,11 @@ export class Matrix {
     }
 
     getPivot(colIndex) {
-        let pivot = this.array[colIndex][colIndex].abs();
+        let pivot = this.array[colIndex][colIndex];
         let pivotIndex = colIndex;
         for (let j=colIndex+1; j < this.nRows; j++) {
-            let element = this.array[j][colIndex].abs();
-            if (element.greater(pivot)) {
+            let element = this.array[j][colIndex];
+            if (element.abs().greater(pivot.abs())) {
                     pivot = element;
                     pivotIndex = j;
             }
