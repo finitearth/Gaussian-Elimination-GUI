@@ -129,4 +129,23 @@ export class Table {
         console.log(data);
         return data;
     }
+
+    disableInput() {
+        for (let i = 0; i < this.rows.length; i++) {
+            for (let j = 0; j < this.nColumns; j++) {
+                let input = this.rows[i].childNodes[j].childNodes[0];
+                input.disabled = true;
+            }
+        }
+    }
+
+    enableInput() {
+        for (let i = 0; i < this.rows.length; i++) {
+            for (let j = 0; j < this.nColumns; j++) {
+                let input = this.rows[i].childNodes[j].childNodes[0];
+                input.disabled = false;
+            }
+        }
+    }
+    
 }
