@@ -120,6 +120,21 @@ a {
     display: flex;
 }
 
+.container-combobox {
+    margin: 20px;
+    display: flex;
+}
+
+.button-combobox {
+    background-color: rgb(0, 133, 252);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    height: 20px;
+    width: 35px;
+    margin-top: 6px;
+}
+
 .operations_button {
     background-color: rgb(0, 133, 252);
     color: rgb(255, 255, 255);
