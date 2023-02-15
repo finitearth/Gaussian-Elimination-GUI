@@ -6,20 +6,22 @@ function addTable() {
         return;
     }
     let table = new Table(tables.length);
-    table.setData([
-        [new Fraction(0, 1), new Fraction(1, 47), new Fraction(0, 1)],
-        [new Fraction(0, 1), new Fraction(0, 1), new Fraction(0, 1)],
-        [new Fraction(0, 1), new Fraction(-1, 1), new Fraction(0, 1)],
-    ]);
+    // table.disableInput();
     tables.push(table);
-
+    
     let header = document.createElement("h2");
     let ithLetter = String.fromCharCode(64 + tables.length);
     header.innerHTML = `${ithLetter} =`;
     document.getElementById("table").appendChild(header);
     document
-        .getElementById("table")
-        .appendChild(tables[tables.length - 1].tableContainer);
+    .getElementById("table")
+    .appendChild(tables[tables.length - 1].tableContainer);
+    
+    table.setData([
+        [new Fraction(0, 1), new Fraction(1, 1231237), new Fraction(0, 1)],
+        [new Fraction(0, 1), new Fraction(0, 1), new Fraction(0, 1)],
+        [new Fraction(0, 1), new Fraction(-1, 1), new Fraction(0, 1)],
+    ]);
 }
 
 function removeTable() {

@@ -21,6 +21,9 @@ export class Fraction {
         }
     }
     inverse() {
+        if (this.numerator == 0) {
+            throw new Error("Cannot divide by zero");
+        }
         return new Fraction(this.denominator, this.numerator);
     }
 
@@ -36,6 +39,10 @@ export class Fraction {
 
     subtract(other) {
         return this.add(other.mul(new Fraction(-1,1)));
+    }
+
+    greater(other) {
+        return this.numerator * other.denominator > other.numerator * this.denominator;
     }
 
     abs() {

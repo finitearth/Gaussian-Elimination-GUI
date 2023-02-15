@@ -94,7 +94,11 @@ document
     .appendChild(tables[tables.length - 1].tableContainer);
 
 function calculateSolution() {
-    let solMatrix = gaussElimination(tables[0].getData(), tables[1].getData());
+    let coefMatrix = tables[0].getData();
+    console.log(coefMatrix.stringify());
+    let solMatrix = tables[1].getData();
+    console.log(solMatrix.stringify());
+    solMatrix = gaussElimination(coefMatrix, solMatrix);
     console.log(solMatrix.stringify());
     tables[2].setData(solMatrix.array);
     
