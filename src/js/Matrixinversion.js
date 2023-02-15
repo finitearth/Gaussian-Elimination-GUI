@@ -77,12 +77,16 @@ for (let i = 0; i < 3; i++) {
 }
 
 tables.push(new Table(tables.length, false));
+
 document
     .getElementById("resultContainer")
     .appendChild(tables[tables.length - 1].tableContainer);
 
 function calculateSolution() {
-
+    let solMatrix = gaussElimination(tables[0].getData(), tables[1].getData());
+    console.log(solMatrix.stringify());
+    tables[2].setData(solMatrix.array);
+    
 }
 
 document.getElementById("calculateSolutionButton").addEventListener("click", calculateSolution);
