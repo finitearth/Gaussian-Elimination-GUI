@@ -15,7 +15,6 @@ function calculateSolution() {
     solMatrix = gaussElimination(coefMatrix, solMatrix);
     console.log(solMatrix.stringify());
     tables[2].setData(solMatrix.array);
-    
 }
 
 for (let i = 0; i < 3; i++) {
@@ -25,4 +24,4 @@ for (let i = 0; i < 3; i++) {
 tables[tables.length-1].disableInput();
 
 // add eventlistener to berechnen button
-document.getElementById("berechnen").addEventListener("click", calculateSolution);
+document.getElementById("calculate").addEventListener("click", calculateSolution);
