@@ -33,6 +33,7 @@ function modifyDimension(e) {
         updateComboboxes();
     }
 
+    updateVerticals(e.target.value);
     dimension = e.target.value;
  };
  
@@ -40,6 +41,12 @@ function modifyDimension(e) {
      tables.push(new Table(tables.length, false));
      document.getElementById("table_element_"+tables.length).appendChild(tables[tables.length - 1].tableContainer);
  }
+
+function updateVerticals(dimensions) {
+    for (let i = 0; i < 3; i++) {
+        document.getElementById("table_vertical_"+(i+1)).querySelector('.vertical').style.height=""+(40*dimensions)+"px";
+    }
+}
 
 function addCombobox(id) {
     RowOperations.push(new RowOperation(id, tables[0]));
@@ -89,7 +96,12 @@ function calculateSolution() {
     
 }
 
+function useResult() {
+    tables[0].setData(tables[2].getData().array);
+}
+
 document.getElementById("calculateSolutionButton").addEventListener("click", calculateSolution);
+document.getElementById("adaptResult").addEventListener("click", useResult);
 
 document.addEventListener("keydown", function (e) {
     let activeCellId = document.activeElement.id;
