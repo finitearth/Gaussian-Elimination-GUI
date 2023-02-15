@@ -31,38 +31,20 @@ export class Matrix {
         }
     }
 
-    getPivot(i) {
-        // check if array[i][i] exists
-        if (i >= this.nRows || i >= this.nColumns) {
-            throw new Error("haha Singular Matrix");
-        }
-
-        if (typeof this.array[i][i] == "undefined") {
-            throw new Error("Singular matrix");
-        }
-
-        // Find the pivot element (largest element in column)
-
-        let pivot = this.array[i][i].abs();
-        let pivotIndex = i;
-        for (let j = i + 1; j < this.nRows; j++) {
-            if (this.array[j][i].abs() > pivot) {
-                element = this.array[j][i];
-                if (
-                    typeof element !== "undefined" &&
-                    element.abs() > pivotElement.abs()
-                ) {
+    getPivot(colIndex) {
+        let pivot = this.array[colIndex][colIndex].abs();
+        let pivotIndex = colIndex;
+        for (let j=colIndex+1; j < this.nRows; j++) {
+            let element = this.array[j][colIndex].abs();
+            if (element.greater(pivot)) {
                     pivot = element;
-                    pivotIndex = i;
-                }
-                // pivot = this.array[j][i].abs();
-                // pivotIndex = j;
+                    pivotIndex = j;
             }
         }
 
-        // if (this.array[i][i].abs().equals(new Fraction(0, 1))) {
-        //     throw new Error('Singular matrix');
-        // }
+        if (pivot == 0) {
+            return [pivotIndex, 1];
+        }
 
         return [pivotIndex, pivot];
     }
@@ -90,14 +72,14 @@ export class Matrix {
 
     transpose() {
         let newArray = [];
-        
+
         for (let i = 0; i < this.nColumns; i++) {
             newArray.push([]);
             for (let j = 0; j < this.nRows; j++) {
                 newArray[i].push(this.array[j][i]);
             }
         }
-        
+
         return new Matrix(newArray);
     }
 
@@ -130,7 +112,6 @@ export class Matrix {
             this.array[iRow][i] = this.array[iRow][i].add(otherRow.array[0][i]);
         }
 
-
         return this;
     }
 
@@ -152,7 +133,7 @@ export class Matrix {
         return new Matrix(newArray);
     }
 
-    stringify(decimal=false) {
+    stringify(decimal = false) {
         let string = "";
         for (let i = 0; i < this.nRows; i++) {
             for (let j = 0; j < this.nColumns; j++) {
