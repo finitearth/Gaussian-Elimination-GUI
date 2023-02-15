@@ -85,6 +85,10 @@ for (let i = 0; i < 3; i++) {
 
 tables.push(new Table(tables.length, false));
 
+let default_matrix = [[new Fraction(1, 1), new Fraction(0, 1), new Fraction(0, 1)],[new Fraction(0, 1), new Fraction(1, 1), new Fraction(0, 1)],[new Fraction(0, 1), new Fraction(0, 1), new Fraction(1, 1)]];
+
+tables[1].setData(default_matrix);
+
 document
     .getElementById("resultContainer")
     .appendChild(tables[tables.length - 1].tableContainer);
