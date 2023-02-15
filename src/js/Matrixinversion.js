@@ -1,7 +1,8 @@
 // import { designConfig } from "./config.js";
-import { Table } from "./table.js";
-import { Fraction } from "./fraction.js";
-import { RowOperation } from "./rowoperation.js";
+import { Table }            from "./table.js";
+import { Fraction }         from "./fraction.js";
+import { RowOperation }     from "./rowoperation.js";
+import { gaussElimination } from "./gaussalgorithm.js";
 
 var dimension = 3;
 
@@ -79,6 +80,12 @@ tables.push(new Table(tables.length, false));
 document
     .getElementById("resultContainer")
     .appendChild(tables[tables.length - 1].tableContainer);
+
+function calculateSolution() {
+
+}
+
+document.getElementById("calculateSolutionButton").addEventListener("click", calculateSolution);
 
 document.addEventListener("keydown", function (e) {
     let activeCellId = document.activeElement.id;
