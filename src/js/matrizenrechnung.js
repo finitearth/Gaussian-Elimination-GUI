@@ -5,8 +5,13 @@ function addTable() {
     if (tables.length > 25) {
         return;
     }
-
-    tables.push(new Table(tables.length));
+    let table = new Table(tables.length);
+    table.setData([
+        [new Fraction(0, 1), new Fraction(1, 47), new Fraction(0, 1)],
+        [new Fraction(0, 1), new Fraction(0, 1), new Fraction(0, 1)],
+        [new Fraction(0, 1), new Fraction(-1, 1), new Fraction(0, 1)],
+    ]);
+    tables.push(table);
 
     let header = document.createElement("h2");
     let ithLetter = String.fromCharCode(64 + tables.length);

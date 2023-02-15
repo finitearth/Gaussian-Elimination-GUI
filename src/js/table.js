@@ -103,6 +103,15 @@ export class Table {
         }
     }
 
+    setData(data) {
+        for (let i = 0; i < data.length; i++) {
+            for (let j = 0; j < data[0].length; j++) {
+                let input = this.rows[i].childNodes[j].childNodes[0];
+                input.value = data[i][j].stringify();
+            }
+        }
+    }
+
     getData() {
         console.log("Getting data");
         let data = [];
