@@ -152,11 +152,15 @@ export class Matrix {
         return new Matrix(newArray);
     }
 
-    stringify() {
+    stringify(decimal=false) {
         let string = "";
         for (let i = 0; i < this.nRows; i++) {
             for (let j = 0; j < this.nColumns; j++) {
-                string += this.array[i][j].stringify();
+                if (decimal) {
+                    string += this.array[i][j].toDecimal();
+                } else {
+                    string += this.array[i][j].stringify();
+                }
                 string += " ";
             }
             string += "<br>";

@@ -98,7 +98,7 @@ export class Fraction {
         return this;
     }
 
-    convertToDecimal() {
+    toDecimal() {
         return this.numerator / this.denominator;
     }
 }
