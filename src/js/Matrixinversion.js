@@ -18,6 +18,8 @@ function modifyDimension(e) {
         tables[0].removeColumn();
         tables[1].removeRow();
         tables[1].removeColumn();
+        tables[2].removeRow();
+        tables[2].removeColumn();
 
         removeCombobox(dimension);
         updateComboboxes();
@@ -28,6 +30,8 @@ function modifyDimension(e) {
         tables[0].addColumn();
         tables[1].addRow();
         tables[1].addColumn();
+        tables[2].addRow();
+        tables[2].addColumn();
 
         addCombobox("combobox_" + (e.target.value - 1));
         updateComboboxes();
