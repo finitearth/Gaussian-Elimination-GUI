@@ -88,6 +88,7 @@ tables.push(new Table(tables.length, false));
 let default_matrix = [[new Fraction(1, 1), new Fraction(0, 1), new Fraction(0, 1)],[new Fraction(0, 1), new Fraction(1, 1), new Fraction(0, 1)],[new Fraction(0, 1), new Fraction(0, 1), new Fraction(1, 1)]];
 
 tables[1].setData(default_matrix);
+tables[2].disableInput();
 
 document
     .getElementById("resultContainer")

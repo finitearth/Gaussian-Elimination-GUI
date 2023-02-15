@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="../style/style.css" type="text/css" />
         <link rel="icon" href="../images/icon_logo.png" />
         <script src="../js/navbar.js"></script>
+        <script src="../js/gleichungssystem.js" type="module"></script>
     </head>
 
     <body>
@@ -27,7 +28,24 @@
             </form>
 
             <div class="page_divider">
-                <!-- GL-Sytem Zeilenoperationen -->
+                <div id="matrixBox" class="page_divider align-center">
+                    <table id="table">
+                        <tr id="table_row">
+                            <th id="table_element_1"></th>
+                            <th id="table_vertical_1">
+                                <div class="vertical"></div>
+                            </th>
+                            <th id="table_element_2"></th>
+                            <th id="table_vertical_2">
+                                <div class="vertical"></div>
+                            </th>
+                            <th id="table_vertical_3">
+                                <div class="vertical"></div>
+                            </th>
+                        </tr>
+                        <tr id="table_row"></tr>
+                    </table>
+                </div>
             </div>
 
             <div>
@@ -36,7 +54,7 @@
             </div>
 
             <div class="page_divider">
-                <!-- Ergebnis -->
+                <div id="table_element_3"></div>
             </div>
         </main>
     </body>

@@ -23,24 +23,3 @@ export function gaussElimination(coefMatrix, solMatrix) {
 
     return solMatrix;
 }
-// better naming than matrixA and matrixB would be
-// // matrixCoefficients and matrixConstants, but are those constants?
-// //
-
-// let matrix = [
-//     [new Fraction(2, 1), new Fraction(1, 1), new Fraction(-1, 1)],
-//     [new Fraction(-1, 1), new Fraction(2, 1), new Fraction(-11, 1)],
-//     [new Fraction(-2, 1), new Fraction(1, 1), new Fraction(2, 1)],
-// ];
-// let matrixB = [
-//     [new Fraction(8, 1)],
-//     [new Fraction(-11, 1)],
-//     [new Fraction(-3, 1)],
-// ];
-// matrix = new Matrix(matrix);
-// matrixB = new Matrix(matrixB);
-
-// let solution = gaussElimination(matrix, matrixB);
-// console.log(solution.stringify(false)); // [2, 3, -1]
-
-// // console.log(solve([[new Fraction(1,1),new Fraction(2,1),new Fraction(3,1)], [new Fraction(4,1),new Fraction(5,1),new Fraction(6,1)], [new Fraction(7,1),new Fraction(8,1),new Fraction(9,1)]], 0));
