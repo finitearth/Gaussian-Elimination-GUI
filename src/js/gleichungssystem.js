@@ -19,7 +19,6 @@ function calculateSolution() {
     solMatrix = gaussElimination(coefMatrix, solMatrix);
     console.log(solMatrix.stringify());
     tables[2].setData(solMatrix.array);
-    
 }
 
 function addEquation(e) {
