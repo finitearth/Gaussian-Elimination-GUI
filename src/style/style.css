@@ -20,6 +20,7 @@ h1 {
     padding-left: 0.5%;
     font-size: x-large;
     line-height: 1.5;
+    margin-bottom: 15%;
 }
 
 a {
@@ -176,4 +177,15 @@ input {
     border-radius: 5px;
     height: 30px;
     width: 50px;
+}
+
+
+.impressum {
+    bottom: 0;   
+    right: 0;
+}
+
+.impressum-text {
+    float: right;
+    margin: 2%;
 }
