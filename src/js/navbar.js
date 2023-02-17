@@ -53,6 +53,11 @@ function createHTMLForNavbar(page) {
             href: `${page_prefix}matrixinversion.html`,
             text: "Inversenberechnung",
         },
+        {
+            id: "hilfe",
+            href: `${page_prefix}hilfe.html`,
+            text: "Hilfe",
+        },
     ];
     navbarElements.map(element => {
         let navbarElement = document.createElement("li");
