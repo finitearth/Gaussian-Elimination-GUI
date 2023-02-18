@@ -146,7 +146,8 @@ button:active {
 
 .logo-img {
     float: right;
-    margin: 3em;
+    margin: 3%;
+    margin-top: max(2em, 3%);
     width: 40%;
     height: auto;
     width: auto\9; /* ie8 */
