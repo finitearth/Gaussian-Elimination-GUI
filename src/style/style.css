@@ -1,3 +1,5 @@
+/* Base */
+
 body{
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     background-color: #fefefe;
@@ -15,14 +17,6 @@ h1 {
     padding-left: 10px;
 }
 
-.main_text {
-    padding-top: 0.5%;
-    padding-left: 0.5%;
-    font-size: x-large;
-    line-height: 1.5;
-    margin-bottom: 15%;
-}
-
 a {
     text-decoration: none;
     color: rgb(0, 133, 252);
@@ -30,11 +24,35 @@ a {
 
 p {
     margin-top: 0;
+    font-size: x-large;
 }
 
-.logo-img {
-    float: right;
+.page-divider {
+    border: 1px solid rgb(154, 157, 160);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 20px 20px 0px;
 }
+
+.align-center {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+td {
+    padding: 5px;
+}
+
+input {
+    border: 1px solid rgb(154, 157, 160);
+    border-radius: 5px;
+    height: 30px;
+    width: 50px;
+}
+
+
+/* Layout */
 
 .nav {
     position: fixed;
@@ -44,7 +62,6 @@ p {
     width: 100%;
     text-align: justify;
     background-color: rgb(52, 58, 64);
-    /* font-family: Georgia, Times, serif; */
     font-size: larger;
     padding: 18px;
     margin-bottom: 10px;
@@ -72,20 +89,48 @@ p {
     color: rgb(255, 255, 255);
 }
 
-.vertical {
-    border-left: 2px solid rgb(154, 157, 160);
-    height: 120px;
-    border-radius: 1px;
+.impressum {
+    bottom: 0;   
+    right: 0;
 }
 
-.button_container {
+.impressum-text {
+    float: right;
+    margin: 2%;
+}
+
+/* Theme */
+
+button:hover {
+    cursor: pointer;
+    background-color: rgb(0, 120, 252);
+}
+
+button:active {
+    background-color: rgb(0, 100, 252);
+    transform: translateY(1px);
+}
+
+.main-text {
+    padding-top: 0.5%;
+    padding-left: 0.5%;
+    font-size: x-large;
+    line-height: 1.5;
+    margin-bottom: 15%;
+}
+
+.logo-img {
+    float: right;
+}
+
+.container-button {
     padding: 20px;
     align-items: center;
     justify-content: center;
     display: flex;
 }
 
-.operations_button {
+.button-operations {
     background-color: rgb(0, 133, 252);
     color: rgb(255, 255, 255);
     border: none;
@@ -95,7 +140,7 @@ p {
     margin: 10px;
 }
 
-.table_button {
+.table-button {
     background-color: rgb(101, 163, 217);
     color: rgb(255, 255, 255);
     border: none;
@@ -105,29 +150,17 @@ p {
     margin: 5px;
 }
 
-.page_divider {
-    border: 1px solid rgb(154, 157, 160);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px 20px 20px 0px;
-}
-
-.align-center {
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
-
-.button_container {
-    padding: 20px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+.vertical {
+    border-left: 2px solid rgb(154, 157, 160);
+    height: 120px;
+    border-radius: 1px;
 }
 
 .container-combobox {
     margin: 20px;
     display: flex;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .button-combobox {
@@ -151,46 +184,7 @@ p {
     margin-left: 765px;
 }
 
-.operations_button {
-    background-color: rgb(0, 133, 252);
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 5px;
-    height: 40px;
-    width: 75px;
-    margin: 10px;
+.result {
+    left: 0;
+    float: left;
 }
-
-button:hover {
-    cursor: pointer;
-    background-color: rgb(0, 100, 252);
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 4px 4px 0 rgba(0, 0, 0, 0.19);
-}
-
-button:active {
-    background-color: rgb(0, 80, 252);
-    transform: translateY(1px);
-}
-
-td {
-    padding: 5px;
-}
-
-input {
-    border: 1px solid rgb(154, 157, 160);
-    border-radius: 5px;
-    height: 30px;
-    width: 50px;
-}
-
-
-.impressum {
-    bottom: 0;   
-    right: 0;
-}
-
-.impressum-text {
-    float: right;
-    margin: 2%;
-}
-

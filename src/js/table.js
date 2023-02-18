@@ -29,7 +29,7 @@ export class Table {
         buttons.forEach(button => {
             const buttonElement = document.createElement("button");
             // add css class
-            buttonElement.classList.add("table_button");
+            buttonElement.classList.add("table-button");
             buttonElement.textContent = button.name;
             buttonElement.id = button.id;
             buttonElement.addEventListener("click", button.function.bind(this));
