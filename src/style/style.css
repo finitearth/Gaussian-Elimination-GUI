@@ -1,13 +1,32 @@
 /* Base */
 
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
 body{
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-    background-color: #fefefe;
+    background-color: #FEFEFE; /*#F5F5F5;*/
+    position: relative;
+    margin: 0;
+    min-height: 100%;
+    box-sizing: inherit;
+    padding: 1em;
 }
 
 main {
     padding-left: 1.5%;
-    margin-top: 5%;
+    margin-top: 3.5em;
+    padding-bottom: 1em;
+}
+
+footer {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 1em 2em;
 }
 
 h1 {
@@ -15,6 +34,7 @@ h1 {
     font-weight: 750;
     border-left: 6px solid rgb(0, 133, 252);
     padding-left: 10px;
+    display: inline-block;
 }
 
 a {
@@ -89,17 +109,22 @@ input {
     color: rgb(255, 255, 255);
 }
 
-.impressum {
-    bottom: 0;   
-    right: 0;
-}
-
 .impressum-text {
     float: right;
-    margin: 2%;
+    padding-top: 1em;
 }
 
 /* Theme */
+
+button {
+    background-color: rgb(0, 133, 252);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    width: 75px;
+    margin: 10px;
+}
 
 button:hover {
     cursor: pointer;
@@ -121,6 +146,10 @@ button:active {
 
 .logo-img {
     float: right;
+    margin: 3em;
+    width: 40%;
+    height: auto;
+    width: auto\9; /* ie8 */
 }
 
 .container-button {
@@ -163,24 +192,31 @@ button:active {
 }
 
 .button-combobox {
-    background-color: rgb(0, 133, 252);
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 5px;
     height: 20px;
     width: 35px;
-    margin-top: 6px;
+    margin: 6px 0 0 0;
 }
 
 .button-help {
-    background-color: rgb(0, 133, 252);
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 5px;
-    height: 40px;
-    width: 75px;
-    margin: 10px;
-    margin-left: 765px;
+    float: right;
+    margin-right: 20px;
+    margin-top: 2em;
+    background-color: #FEFEFE;
+    color: rgb(0, 133, 252);
+    border: 1px solid rgb(0, 133, 252);
+}
+
+.button-help:hover {
+    background-color: #FEFEFE;
+    color: rgb(0, 133, 252);
+    border: 2px solid rgb(0, 133, 252);
+}
+
+.button-help:active {
+    background-color: #FEFEFE;
+    color: rgb(0, 133, 252);
+    border: 2px solid rgb(0, 133, 252);
+    transform: translateY(1px);
 }
 
 .result {
