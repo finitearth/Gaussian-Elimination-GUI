@@ -62,11 +62,18 @@ document.getElementById("nr-b").addEventListener("input", addResultVector);
 for (let i = 0; i < 3; i++) {
     addTable();
 }
-
+tables[1].removeColumn();
+tables[1].removeColumn();
 tables[tables.length-1].disableInput();
 
 // add eventlistener to berechnen button
 document.getElementById("calculateSolutionButton").addEventListener("click", calculateSolution);
+
+// add eventlistener to convertToDecimal
+document.getElementById("convertToDecimal").addEventListener("click", function () {
+    tables[2].toDecimal();
+});
+
 
 document.addEventListener("keydown", function (e) {
     let activeCellId = document.activeElement.id;

@@ -14,8 +14,8 @@ function addTable() {
     header.innerHTML = `${ithLetter} =`;
     document.getElementById("table").appendChild(header);
     document
-    .getElementById("table")
-    .appendChild(tables[tables.length - 1].tableContainer);
+        .getElementById("table")
+        .appendChild(tables[tables.length - 1].tableContainer);
     
     table.setData([
         [new Fraction(0, 1), new Fraction(1, 1231237), new Fraction(0, 1)],
@@ -205,7 +205,6 @@ for (let i = 0; i < 2; i++) {
 
 document.addEventListener("keydown", function (e) {
     let activeCellId = document.activeElement.id;
-    console.log(activeCellId);
     let row;
     let column;
     let tableId;
@@ -239,7 +238,6 @@ document.addEventListener("keydown", function (e) {
     document.getElementById(`${tableId}-${row}-${column}`).focus();
 });
 
-// text field for input of equation + button for "calculate!"
 let equationInput = document.createElement("input");
 equationInput.id = "equationInput";
 document.getElementById("equation").appendChild(equationInput);
