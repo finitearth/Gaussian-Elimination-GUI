@@ -6,7 +6,6 @@ function addTable() {
         return;
     }
     let table = new Table(tables.length);
-    // table.disableInput();
     tables.push(table);
     
     let header = document.createElement("h2");
@@ -14,13 +13,9 @@ function addTable() {
     header.innerHTML = `${ithLetter} =`;
 
     document.getElementById("table").appendChild(header);
-
     document
         .getElementById("table")
         .appendChild(tables[tables.length - 1].tableContainer);
-
-
-
 }
 
 function removeTable() {
@@ -181,7 +176,6 @@ function extractSubEquation(equationString, startIndex) {
     return equationString.slice(startIndex + 1, endIndex);
 }
 
-console.log("Starting webpage!");
 let addTableButton = document.createElement("button");
 addTableButton.innerHTML = "Add Table";
 document.getElementById("table").appendChild(addTableButton);
@@ -199,9 +193,23 @@ removeTableButton.addEventListener("click", function () {
 
 let tables = [];
 for (let i = 0; i < 2; i++) {
-    console.log("Adding table " + i + "")
     addTable();
 }
+
+
+let equationInput = document.createElement("input");
+equationInput.id = "equationInput";
+document.getElementById("equation").appendChild(equationInput);
+
+let calculateButton = document.createElement("button");
+calculateButton.innerHTML = "Calculate!";
+calculateButton.addEventListener("click", function () {
+    let equation = document.getElementById("equationInput").value;
+    let result = calculate(equation);
+    result = result.stringify();
+    document.getElementById("result").innerHTML = result;
+});
+document.getElementById("equation").appendChild(calculateButton);
 
 document.addEventListener("keydown", function (e) {
     let activeCellId = document.activeElement.id;
@@ -237,20 +245,3 @@ document.addEventListener("keydown", function (e) {
 
     document.getElementById(`${tableId}-${row}-${column}`).focus();
 });
-
-let equationInput = document.createElement("input");
-equationInput.id = "equationInput";
-document.getElementById("equation").appendChild(equationInput);
-
-let calculateButton = document.createElement("button");
-calculateButton.innerHTML = "Calculate!";
-calculateButton.addEventListener("click", function () {
-    let equation = document.getElementById("equationInput").value;
-    let result = calculate(equation);
-    console.log("Result: ");
-    console.log(result);
-    // stringify result
-    result = result.stringify();
-    document.getElementById("result").innerHTML = result;
-});
-document.getElementById("equation").appendChild(calculateButton);
