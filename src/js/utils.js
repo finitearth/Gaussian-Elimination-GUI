@@ -14,14 +14,25 @@ export function stringToFraction(string) {
         [numerator, denominator] = string.split("/");
         numerator = Number(numerator);
         denominator = Number(denominator);
+    } else if (string.includes(",") || string.includes(".")){
+        // comma or dot; convert to whole numbered fraction
+        let decimal = Number(string);
+        
+        // get number of digits after comma/dot
+        let digits = string.split(".")[1].length;
+        denominator = 10 ** digits;
+        numerator = decimal * denominator;
+        
+
     } else {
-        // if no slash is contained, the string is a whole number
+        // if no slash or comma/dot is contained, the string is a whole number
         numerator = Number(string);
         denominator = 1;
     }
-    console.log(numerator, denominator);
 
-    return new Fraction(numerator, denominator);
+    let fraction = new Fraction(numerator, denominator);
+    fraction = fraction.reduce();
+    return fraction;
 }
 
 

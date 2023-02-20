@@ -159,5 +159,16 @@ export class Table {
             }
         }
     }
+
+    toFraction() {
+        for (let i = 0; i < this.rows.length; i++) {
+            for (let j = 0; j < this.nColumns; j++) {
+                let input = this.rows[i].childNodes[j].childNodes[0];
+                let val = input.value;
+                val = stringToFraction(val);
+                input.value = val.stringify();
+            }
+        }
+    }
     
 }
