@@ -16,7 +16,7 @@ function calculateSolution() {
     let solMatrix = tables[1].getData();
 
     solMatrix = gaussElimination(coefMatrix, solMatrix);
-    tables[2].setData(solMatrix.array);
+    tables[2].setData(solMatrix);
 }
 
 function addEquation(e) {
@@ -77,7 +77,6 @@ document.getElementById("convertToDecimal").addEventListener("click", function (
 
 document.addEventListener("keydown", function (e) {
     let activeCellId = document.activeElement.id;
-    console.log(activeCellId);
     let row;
     let column;
     let tableId;

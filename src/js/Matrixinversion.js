@@ -1,9 +1,8 @@
-// import { designConfig } from "./config.js";
 import { Table }            from "./table.js";
 import { Fraction }         from "./fraction.js";
 import { RowOperation }     from "./rowoperation.js";
 import { gaussElimination } from "./gaussalgorithm.js";
-
+import { getUnitMatrix }    from "./utils.js";
 var dimension = 3;
 
 document
@@ -89,9 +88,7 @@ for (let i = 0; i < 3; i++) {
 
 tables.push(new Table(tables.length, false));
 
-let default_matrix = [[new Fraction(1, 1), new Fraction(0, 1), new Fraction(0, 1)],[new Fraction(0, 1), new Fraction(1, 1), new Fraction(0, 1)],[new Fraction(0, 1), new Fraction(0, 1), new Fraction(1, 1)]];
-
-tables[1].setData(default_matrix);
+tables[1].setData(getUnitMatrix(dimension));
 tables[2].disableInput();
 
 document
@@ -105,12 +102,12 @@ function calculateSolution() {
     console.log(solMatrix.stringify());
     solMatrix = gaussElimination(coefMatrix, solMatrix);
     console.log(solMatrix.stringify());
-    tables[2].setData(solMatrix.array);
+    tables[2].setData(solMatrix);
     
 }
 
 function useResult() {
-    tables[0].setData(tables[2].getData().array);
+    tables[0].setData(tables[2].getData());
 }
 
 document.getElementById("calculateSolutionButton").addEventListener("click", calculateSolution);

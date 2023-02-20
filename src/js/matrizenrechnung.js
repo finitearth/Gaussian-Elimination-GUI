@@ -12,16 +12,15 @@ function addTable() {
     let header = document.createElement("h2");
     let ithLetter = String.fromCharCode(64 + tables.length);
     header.innerHTML = `${ithLetter} =`;
+
     document.getElementById("table").appendChild(header);
+
     document
         .getElementById("table")
         .appendChild(tables[tables.length - 1].tableContainer);
-    
-    table.setData([
-        [new Fraction(0, 1), new Fraction(1, 1231237), new Fraction(0, 1)],
-        [new Fraction(0, 1), new Fraction(0, 1), new Fraction(0, 1)],
-        [new Fraction(0, 1), new Fraction(-1, 1), new Fraction(0, 1)],
-    ]);
+
+
+
 }
 
 function removeTable() {
@@ -200,6 +199,7 @@ removeTableButton.addEventListener("click", function () {
 
 let tables = [];
 for (let i = 0; i < 2; i++) {
+    console.log("Adding table " + i + "")
     addTable();
 }
 
