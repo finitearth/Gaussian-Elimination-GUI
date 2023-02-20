@@ -15,20 +15,12 @@
         </header>
 
         <main>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>
-                            <h1>Matrixinversion - Matrizengleichung</h1>
-                        </th>
-                        <th>
-                            <Button class="button-help">Hilfe</Button>
-                        </th>
-                    </tr>
-                </tbody>
-            </table>
+            <h1>Matrixinversion - Matrizengleichung</h1>
+
+            <button class="button-help">Hilfe</button>
+
             <div id="mainContainer">
-                <div id="dimensionButtonBox" class="page_divider">
+                <div id="dimensionButtonBox" class="page-divider">
                     <table id="dimensionTable">
                         <tbody>
                             <tr id="dimensionRow">
@@ -49,43 +41,45 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="matrixBox" class="page_divider align-center">
+                <div id="matrixBox" class="page-divider align-center">
                     <table id="table">
                         <tr id="table_row">
                             <th id="table_element_1"></th>
-                            <th id="table_vertical_1">
-                                <div class="vertical"></div>
-                            </th>
+                            <th id="table_vertical_1" class="vertical"></th>
                             <th id="table_element_2"></th>
-                            <th id="table_vertical_2">
-                                <div class="vertical"></div>
-                            </th>
-                            <th id="table_vertical_3">
-                                <div class="vertical"></div>
-                            </th>
+                            <th id="table_vertical_2" class="vertical"></th>
+                            <th id="table_vertical_3" class="vertical"></th>
                         </tr>
                         <tr id="table_row"></tr>
                     </table>
                 </div>
-                <div id="mainButtonContainer" class="button_container">
-                    <button id="calculateButton" class="operations_button">
+                <div id="mainButtonContainer" class="container-button">
+                    <button id="calculateButton" class="button-operations">
                         Berechnen
                     </button>
                     <button
                         id="calculateSolutionButton"
-                        class="operations_button"
+                        class="button-operations"
                     >
                         Lösen
                     </button>
-                    <button id="adaptResult" class="operations_button">
+                    <button id="adaptResult" class="button-operations">
                         Hoch
                     </button>
                 </div>
             </div>
-            <div id="resultContainer" class="page_divider">
-
-            </div>
+            <div id="resultContainer" class="page-divider"></div>
         </main>
+        <footer>
+            <div class="impressum">
+                <a
+                    class="impressum-text"
+                    ,
+                    href="http://www.kirchbergnet.de/impressum.php"
+                    >Impressum</a
+                >
+            </div>
+        </footer>
     </body>
     <script src="../js/Matrixinversion.js" type="module"></script>
 </html>

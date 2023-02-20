@@ -17,8 +17,9 @@
 
         <main>
             <h1>Gleichungssystem lösen</h1>
+            <button class="button-help">Hilfe</button>
 
-            <form class="gl-setup page_divider">
+            <form class="gl-setup page-divider">
                 <label for="nr-eq">Anzahl Gleichungen:</label>
                 <input type="number" id="nr-eq" min="2" name="nr-eq" />
                 <label for="nr-var">Anzahl Variablen:</label>
@@ -27,38 +28,45 @@
                 <input type="number" id="nr-b" min="2" name="nr-b" />
             </form>
 
-            <div class="page_divider">
-                <div id="matrixBox" class="page_divider align-center">
-                    <table id="table">
-                        <tr id="table_row">
-                            <th id="table_element_1"></th>
-                            <th id="table_vertical_1">
-                                <div class="vertical"></div>
-                            </th>
-                            <th id="table_element_2"></th>
-                            <th id="table_vertical_2">
-                                <div class="vertical"></div>
-                            </th>
-                            <th id="table_vertical_3">
-                                <div class="vertical"></div>
-                            </th>
-                        </tr>
-                        <tr id="table_row"></tr>
-                    </table>
-                </div>
+            <div id="matrixBox" class="page-divider align-center">
+                <table id="table">
+                    <tr id="table_row">
+                        <th id="table_element_1"></th>
+                        <th id="table_vertical_1" class="vertical"></th>
+                        <th id="table_element_2"></th>
+                        <th id="table_vertical_2" class="vertical"></th>
+                        <th id="table_vertical_3" class="vertical"></th>
+                    </tr>
+                    <tr id="table_row"></tr>
+                </table>
             </div>
 
-            <div>
-                <button class="operations_button" id="calculate">Berechnen</button>
-                <button class="operations_button">Hoch</button>
-                <button class="operations_button" id="calculateSolutionButton">Lösen</button>
+            <div class="container-button">
+                <button class="button-operations" id="calculate">
+                    Berechnen
+                </button>
+                <button class="button-operations">Hoch</button>
+                <button class="button-operations" id="calculateSolutionButton">
+                    Lösen
+                </button>
             </div>
 
-            <div class="page_divider">
+            <div class="page-divider align-center">
                 <div id="table_element_3"></div>
                 <!-- button for conversion to decimal -->
                 <button class="operations_button" id="convertToDecimal">Dezimal</button>
             </div>
         </main>
+
+        <footer>
+            <div class="impressum">
+                <a
+                    class="impressum-text"
+                    ,
+                    href="http://www.kirchbergnet.de/impressum.php"
+                    >Impressum</a
+                >
+            </div>
+        </footer>
     </body>
 </html>

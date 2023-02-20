@@ -1,11 +1,32 @@
+/* Base */
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
 body{
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-    background-color: #fefefe;
+    background-color: #FEFEFE; /*#F5F5F5;*/
+    position: relative;
+    margin: 0;
+    min-height: 100%;
+    box-sizing: inherit;
+    padding: 1em;
 }
 
 main {
     padding-left: 1.5%;
-    margin-top: 5%;
+    margin-top: 3.5em;
+    padding-bottom: 1em;
+}
+
+footer {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 1em 2em;
 }
 
 h1 {
@@ -13,13 +34,7 @@ h1 {
     font-weight: 750;
     border-left: 6px solid rgb(0, 133, 252);
     padding-left: 10px;
-}
-
-.main_text {
-    padding-top: 0.5%;
-    padding-left: 0.5%;
-    font-size: x-large;
-    line-height: 1.5;
+    display: inline-block;
 }
 
 a {
@@ -27,9 +42,37 @@ a {
     color: rgb(0, 133, 252);
 }
 
-.logo-img {
-    float: right;
+p {
+    margin-top: 0;
+    font-size: x-large;
 }
+
+.page-divider {
+    border: 1px solid rgb(154, 157, 160);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 20px 20px 0px;
+}
+
+.align-center {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+td {
+    padding: 5px;
+}
+
+input {
+    border: 1px solid rgb(154, 157, 160);
+    border-radius: 5px;
+    height: 30px;
+    width: 50px;
+}
+
+
+/* Layout */
 
 .nav {
     position: fixed;
@@ -39,7 +82,6 @@ a {
     width: 100%;
     text-align: justify;
     background-color: rgb(52, 58, 64);
-    /* font-family: Georgia, Times, serif; */
     font-size: larger;
     padding: 18px;
     margin-bottom: 10px;
@@ -67,86 +109,14 @@ a {
     color: rgb(255, 255, 255);
 }
 
-.vertical {
-    border-left: 2px solid rgb(154, 157, 160);
-    height: 120px;
-    border-radius: 1px;
+.impressum-text {
+    float: right;
+    padding-top: 1em;
 }
 
-.button_container {
-    padding: 20px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
+/* Theme */
 
-.operations_button {
-    background-color: rgb(0, 133, 252);
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 5px;
-    height: 40px;
-    width: 75px;
-    margin: 10px;
-}
-
-.table_button {
-    background-color: rgb(101, 163, 217);
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 5px;
-    height: 20px;
-    width: 40px;
-    margin: 5px;
-}
-
-.page_divider {
-    border: 1px solid rgb(154, 157, 160);
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px 20px 20px 0px;
-}
-
-.align-center {
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
-
-.button_container {
-    padding: 20px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
-
-.container-combobox {
-    margin: 20px;
-    display: flex;
-}
-
-.button-combobox {
-    background-color: rgb(0, 133, 252);
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 5px;
-    height: 20px;
-    width: 35px;
-    margin-top: 6px;
-}
-
-.button-help {
-    background-color: rgb(0, 133, 252);
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 5px;
-    height: 40px;
-    width: 75px;
-    margin: 10px;
-    margin-left: 765px;
-}
-
-.operations_button {
+button {
     background-color: rgb(0, 133, 252);
     color: rgb(255, 255, 255);
     border: none;
@@ -158,22 +128,99 @@ a {
 
 button:hover {
     cursor: pointer;
-    background-color: rgb(0, 100, 252);
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 4px 4px 0 rgba(0, 0, 0, 0.19);
+    background-color: rgb(0, 120, 252);
 }
 
 button:active {
-    background-color: rgb(0, 80, 252);
+    background-color: rgb(0, 100, 252);
     transform: translateY(1px);
 }
 
-td {
-    padding: 5px;
+.main-text {
+    padding-top: 0.5%;
+    padding-left: 0.5%;
+    font-size: x-large;
+    line-height: 1.5;
+    margin-bottom: 15%;
 }
 
-input {
-    border: 1px solid rgb(154, 157, 160);
+.logo-img {
+    float: right;
+    margin: 3%;
+    margin-top: max(2em, 3%);
+    width: 40%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+
+.container-button {
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.button-operations {
+    background-color: rgb(0, 133, 252);
+    color: rgb(255, 255, 255);
+    border: none;
     border-radius: 5px;
-    height: 30px;
-    width: 50px;
+    height: 40px;
+    width: 75px;
+    margin: 10px;
+}
+
+.table-button {
+    background-color: rgb(101, 163, 217);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    height: 20px;
+    width: 40px;
+    margin: 5px;
+}
+
+.vertical {
+    border-left: 2px solid rgb(154, 157, 160);
+    border-radius: 1px;
+}
+
+.container-combobox {
+    margin: 20px;
+    display: flex;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.button-combobox {
+    height: 20px;
+    width: 35px;
+    margin: 6px 0 0 0;
+}
+
+.button-help {
+    float: right;
+    margin-right: 20px;
+    margin-top: 2em;
+    background-color: #FEFEFE;
+    color: rgb(0, 133, 252);
+    border: 1px solid rgb(0, 133, 252);
+}
+
+.button-help:hover {
+    background-color: #FEFEFE;
+    color: rgb(0, 133, 252);
+    border: 2px solid rgb(0, 133, 252);
+}
+
+.button-help:active {
+    background-color: #FEFEFE;
+    color: rgb(0, 133, 252);
+    border: 2px solid rgb(0, 133, 252);
+    transform: translateY(1px);
+}
+
+.result {
+    left: 0;
+    float: left;
 }

@@ -17,22 +17,28 @@
         <main>
             <h1>Matrixoperationen</h1>
 
-            <div class="page_divider">
-                <p class="main_text"></p>
+            <button class="button-help">Hilfe</button>
+
+            <div class="page-divider align-center">
                 <div id="input_matrix"></div>
             </div>
-            <div class="button_container">
-                <button id="button_inverse" class="operations_button">M⁻¹</button>
-                <button id="button_determinant" class="operations_button">|M|</button>
-                <button id="button_transpose" class="operations_button">
+            <div class="container-button">
+                <button id="button_inverse" class="button-operations">M⁻¹</button>
+                <button id="button_determinant" class="button-operations">|M|</button>
+                <button id="button_transpose" class="button-operations">
                     Mᵀ
                 </button>
             </div>
-            <div class="page_divider">
-                <p class="main_text"></p>
-                <table id="output_matrix"></table>
+            <div class="page-divider">
+                <p class="result">Ergebnis</p>
+                <table id="output_matrix" class="align-center"></table>
             </div>
         </main>
+        <footer>
+            <div class="impressum">
+                <a class="impressum-text", href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
+            </div>
+        </footer>
     </body>
     <script src="../js/matrixoperationen.js" type="module"></script>
 </html>
