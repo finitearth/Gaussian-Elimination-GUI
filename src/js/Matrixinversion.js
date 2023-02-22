@@ -11,7 +11,9 @@ document
 
 function modifyDimension(e) {
     if (e.target.value < dimension) {
-        console.log("a");
+        console.log("a_"+e.target.value);
+        console.log("d_"+dimension);
+        console.log("");
 
         tables[0].removeRow();
         tables[0].removeColumn();
@@ -23,7 +25,9 @@ function modifyDimension(e) {
         removeCombobox(dimension);
         updateComboboxes();
     } else if (e.target.value > dimension) {
-        console.log("b");
+        console.log("b_"+e.target.value);
+        console.log("d_"+dimension);
+        console.log("");
 
         tables[0].addRow();
         tables[0].addColumn();
@@ -36,7 +40,6 @@ function modifyDimension(e) {
         updateComboboxes();
     }
 
-    updateVerticals(e.target.value);
     dimension = e.target.value;
  };
  
@@ -44,12 +47,6 @@ function modifyDimension(e) {
      tables.push(new Table(tables.length, false));
      document.getElementById("table_element_"+tables.length).appendChild(tables[tables.length - 1].tableContainer);
  }
-
-function updateVerticals(dimensions) {
-    for (let i = 0; i < 3; i++) {
-        document.getElementById("table_vertical_"+(i+1)).querySelector('.vertical').style.height=""+(40*dimensions)+"px";
-    }
-}
 
 function addCombobox(id) {
     RowOperations.push(new RowOperation(id, tables[0]));
@@ -65,6 +62,7 @@ function addCombobox(id) {
 
  function removeCombobox(id) {
     document.getElementById("combobox_"+(id-1)).remove();
+    RowOperations.pop();
  }
 
 function updateComboboxes() {
@@ -112,6 +110,14 @@ function useResult() {
 
 document.getElementById("calculateSolutionButton").addEventListener("click", calculateSolution);
 document.getElementById("adaptResult").addEventListener("click", useResult);
+document.getElementById("calculateButton").addEventListener("click", calculate);
+
+function calculate() {
+    for (let i = 0; i < RowOperations.length; i++) {
+        let matrix  = RowOperations[i].performRowOperation();
+        tables[2].setData(matrix);
+    }
+}
 
 document.addEventListener("keydown", function (e) {
     let activeCellId = document.activeElement.id;

@@ -126,6 +126,13 @@ export class Matrix {
         return this;
     }
 
+    addRowToRow(iRow, rowArray) {
+        for (let i = 0; i < this.nColumns; i++) {
+            this.array[iRow][i] = this.array[iRow][i].add(rowArray.getElement(0, i));
+        }
+        return this;
+    }
+
     multiplyByScalar(scalar) {
         let newArray = [];
         for (let i = 0; i < this.nRows; i++) {

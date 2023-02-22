@@ -1,4 +1,5 @@
 import { Table } from "./table.js";
+import { stringToFraction } from "./utils.js";
 
 export class RowOperation {
     constructor(id, table) {
@@ -8,10 +9,13 @@ export class RowOperation {
         this.tables;
         this.firstOperatorDropdownID    = "firstOperator"+this.id; 
         this.firstTextFieldID           = "firstText"+this.id;
+        this.firstTextFieldValue        = "0";
         this.secondOperatorDropdownID   = "secondOperator"+this.id;
         this.rowDropdownID              = "rowDropdown"+this.id;
         this.thirdOperatorDropdownID    = "thirdOperator"+this.id;
         this.secondTextField            = "secondText"+this.id;
+        this.secondTextFieldValue       = "0";
+        this.enabled                    = false;
 
         this.comboBoxElement.id         = this.id;
         this.comboboxButton             = document.createElement("button");
@@ -20,14 +24,25 @@ export class RowOperation {
         this.comboboxButton.className   = "button-combobox";
         this.comboBoxElement.className  = "container-combobox";
 
+        
+
         this.comboboxButton.addEventListener("click", this.handleComboboxButtons.bind(this));
         this.comboBoxElement.appendChild(this.comboboxButton);
-    }       
+    }      
+    
+    setFirstTextField(e) {
+        this.firstTextFieldValue = e.target.value; 
+    }
+
+    setSecondTextField(e) {
+        this.secondTextFieldValue = e.target.value; 
+    }
 
     createSelectOption(id, option, selectID) {
         const optionElement = document.createElement("option");
         optionElement.id = id;
         optionElement.innerText = option;
+        optionElement.value     = option;
 
         document.getElementById(selectID).appendChild(optionElement);
     }
@@ -51,6 +66,8 @@ export class RowOperation {
                 Element.id          = elem.id;
                 Element.size        = elem.size;
                 document.getElementById(this.id).insertBefore(Element, document.getElementById(this.id+"_displayCombobox"));
+
+                this.enabled = true;
 
                 if (
                     elem.element_name == "select" &&
@@ -82,13 +99,62 @@ export class RowOperation {
                 
                 if (document.getElementById(elem.id).style.display == "none") {
                     document.getElementById(elem.id).style.display = "inline";
+                    this.enabled                                   = true;
                     document.getElementById(this.id+"_displayCombobox").innerHTML = "&#8678;";
                 } else {
                     document.getElementById(elem.id).style.display = "none";
+                    this.enabled                                   = false;
                     document.getElementById(this.id+"_displayCombobox").innerHTML = "&#8680;";
                 }
             }
         });
+        document.getElementById(this.firstTextFieldID).addEventListener("input", this.setFirstTextField.bind(this));
+        document.getElementById(this.secondTextField).addEventListener("input", this.setSecondTextField.bind(this));
+    }
+
+    
+
+    performRowOperation() {
+        var matrix = this.table.getData();
+        var secondRow = [];
+        if (this.enabled) {
+            if (document.getElementById(this.firstOperatorDropdownID).value === "*") {
+                matrix = matrix.multiplyRowByScalar(this.id.substr(9), stringToFraction(this.firstTextFieldValue));
+            }
+            else {
+                matrix = matrix.multiplyRowByScalar(this.id.substr(9), stringToFraction(this.firstTextFieldValue).inverse());
+            }
+    
+            if (document.getElementById(this.thirdOperatorDropdownID).value === "*") {
+                matrix    = matrix.multiplyRowByScalar((document.getElementById(this.rowDropdownID).value - 1), stringToFraction(this.secondTextFieldValue));
+                secondRow = matrix.getRow(document.getElementById(this.rowDropdownID).value-1);
+    
+                if (document.getElementById(this.secondOperatorDropdownID).value === "+") {
+                    matrix = matrix.addRowToRow(this.id.substr(9), secondRow);
+                }
+                else {
+                   
+                }
+    
+                matrix    = matrix.multiplyRowByScalar((document.getElementById(this.rowDropdownID).value - 1), stringToFraction(this.secondTextFieldValue).inverse());
+            }
+            else {
+                matrix    = matrix.multiplyRowByScalar(document.getElementById(this.rowDropdownID).value-1, stringToFraction(this.secondTextFieldValue).inverse());
+                secondRow = matrix.getRow(document.getElementById(this.rowDropdownID).value-1);
+               
+                if (document.getElementById(this.secondOperatorDropdownID).value === "+") {
+                    matrix = matrix.addRowToRow(this.id.substr(9), secondRow);
+                }
+                else {
+                   
+                }
+    
+                matrix    = matrix.multiplyRowByScalar(document.getElementById(this.rowDropdownID).value-1, stringToFraction(this.secondTextFieldValue));
+            }
+    
+            return matrix;
+        }
+        
     }
 
     calculate() {
