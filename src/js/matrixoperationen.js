@@ -1,4 +1,6 @@
 import { Table } from "./table.js";
+import { gaussElimination } from "./gaussalgorithm.js";
+import { getUnitMatrix } from "./utils.js";
 import { Fraction } from "./fraction.js";
 import { Matrix } from "./matrix.js";
 
@@ -22,6 +24,7 @@ console.log("Starting webpage!");
 let tables = [];
 addTable("input_matrix");
 addTable("output_matrix");
+tables[1].disableInput();
 
 document.addEventListener("keydown", function (e) {
     let activeCellId = document.activeElement.id;
@@ -67,3 +70,37 @@ document.getElementById("button_transpose").onclick = function () {
     //let matrix = new Matrix(input_matrix);
     //let outputMatrix = matrix.transpose()
 };
+
+document.getElementById("button_inverse").onclick = function () {
+    let inputMatrix = tables[0].getData();
+    let solMatrix = gaussElimination(inputMatrix, getUnitMatrix(inputMatrix.nRows));
+
+    tables[1].setData(solMatrix.array);
+    console.log(output_matrix);
+}
+
+document.getElementById("button_determinant").onclick = function () {
+    let inputMatrix = tables[0].getData();
+    let solMatrix = gaussElimination(inputMatrix, getUnitMatrix(inputMatrix.nRows));
+
+    let determinant = new Fraction(1, 1);
+    for (let i = 0; i < solMatrix.nRows; i++) {
+        determinant = determinant.mul(solMatrix.array[i][i]);
+    }
+
+    // in shape of matrix
+    let determinantArray = [];
+    for (let i = 0; i < inputMatrix.nRows; i++) {
+        determinantArray.push([]);
+        for (let j = 0; j < inputMatrix.nColumns; j++) {
+            if (i == j) {
+                determinantArray[i].push(determinant);
+            } else {
+                determinantArray[i].push(new Fraction(0, 1));
+            }            
+        }
+    }
+
+    tables[1].setData(determinantArray);
+    console.log(determinant);
+}

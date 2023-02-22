@@ -7,6 +7,10 @@ export class Matrix {
         this.nColumns = array[0].length;
     }
 
+    getCell(rowIndex, colIndex) {
+        return this.array[rowIndex][colIndex];
+    }
+
     add(otherMatrix) {
         let newArray = [];
         for (let i = 0; i < this.nRows; i++) {
@@ -32,19 +36,19 @@ export class Matrix {
     }
 
     getPivot(colIndex) {
-        let pivot = this.array[colIndex][colIndex];
+        let pivot = this.getCell(colIndex, colIndex);
         let pivotIndex = colIndex;
         for (let j = colIndex + 1; j < this.nRows; j++) {
-            let element = this.array[j][colIndex];
+            let element = this.getCell(j, colIndex);
             if (element.abs().greater(pivot.abs())) {
                 pivot = element;
                 pivotIndex = j;
             }
         }
 
-        if (pivot == 0) {
-            return [pivotIndex, 1];
-        }
+        // if (pivot == 0) {
+        //     return [pivotIndex, 1];
+        // }
 
         return [pivotIndex, pivot];
     }
@@ -118,6 +122,13 @@ export class Matrix {
     multiplyRowByScalar(iRow, scalar) {
         for (let i = 0; i < this.nColumns; i++) {
             this.array[iRow][i] = this.array[iRow][i].mul(scalar);
+        }
+        return this;
+    }
+
+    addRowToRow(iRow, rowArray) {
+        for (let i = 0; i < this.nColumns; i++) {
+            this.array[iRow][i] = this.array[iRow][i].add(rowArray.getElement(0, i));
         }
         return this;
     }

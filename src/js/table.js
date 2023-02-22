@@ -44,6 +44,24 @@ export class Table {
         this.tableContainer.appendChild(buttonsContainer);
     }
 
+    setNRows(nRows) {
+        while (this.rows.length < nRows) {
+            this.addRow();
+        }
+        while (this.rows.length > nRows) {
+            this.removeRow();
+        }
+    }
+
+    setNColumns(nColumns) {
+        while (this.nColumns < nColumns) {
+            this.addColumn();
+        }
+        while (this.nColumns > nColumns) {
+            this.removeColumn();
+        }
+    }
+
     addCell(rowId, columnId) {
         const cell = document.createElement("td");
         const input = document.createElement("input");
@@ -103,7 +121,8 @@ export class Table {
         }
     }
 
-    setData(data) {
+    setData(matrix) {
+        let data = matrix.array;
         for (let i = 0; i < data.length; i++) {
             for (let j = 0; j < data[0].length; j++) {
                 let input = this.rows[i].childNodes[j].childNodes[0];
@@ -144,6 +163,29 @@ export class Table {
             for (let j = 0; j < this.nColumns; j++) {
                 let input = this.rows[i].childNodes[j].childNodes[0];
                 input.disabled = false;
+            }
+        }
+    }
+
+    toDecimal() {
+        console.log("Converting to decimal")
+        for (let i = 0; i < this.rows.length; i++) {
+            for (let j = 0; j < this.nColumns; j++) {
+                let input = this.rows[i].childNodes[j].childNodes[0];
+                let val = input.value;
+                val = stringToFraction(val);
+                input.value = val.toDecimal();
+            }
+        }
+    }
+
+    toFraction() {
+        for (let i = 0; i < this.rows.length; i++) {
+            for (let j = 0; j < this.nColumns; j++) {
+                let input = this.rows[i].childNodes[j].childNodes[0];
+                let val = input.value;
+                val = stringToFraction(val);
+                input.value = val.stringify();
             }
         }
     }

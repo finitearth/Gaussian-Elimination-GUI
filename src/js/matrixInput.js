@@ -1,5 +1,5 @@
 import {Matrix} from "./matrix.js";
-
+// na ob das noch was wird? :)
 export class MatrixInput{
     constructor(id){
         this.id = id;

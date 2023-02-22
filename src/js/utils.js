@@ -1,4 +1,5 @@
 import { Fraction } from "./fraction.js";
+import { Matrix } from "./matrix.js";
 
 export function stringToFraction(string) {
     let numerator;
@@ -13,12 +14,39 @@ export function stringToFraction(string) {
         [numerator, denominator] = string.split("/");
         numerator = Number(numerator);
         denominator = Number(denominator);
+    } else if (string.includes(",") || string.includes(".")){
+        // comma or dot; convert to whole numbered fraction
+        let decimal = Number(string);
+        
+        // get number of digits after comma/dot
+        let digits = string.split(".")[1].length;
+        denominator = 10 ** digits;
+        numerator = decimal * denominator;
+        
+
     } else {
-        // if no slash is contained, the string is a whole number
+        // if no slash or comma/dot is contained, the string is a whole number
         numerator = Number(string);
         denominator = 1;
     }
-    console.log(numerator, denominator);
 
-    return new Fraction(numerator, denominator);
+    let fraction = new Fraction(numerator, denominator);
+    fraction = fraction.reduce();
+    return fraction;
+}
+
+
+export function getUnitMatrix(n) {
+    let matrix = [];
+    for (let i = 0; i < n; i++) {
+        matrix.push([]);
+        for (let j = 0; j < n; j++) {
+            if (i == j) {
+                matrix[i].push(new Fraction(1, 1));
+            } else {
+                matrix[i].push(new Fraction(0, 1));
+            }
+        }
+    }
+    return new Matrix(matrix);
 }

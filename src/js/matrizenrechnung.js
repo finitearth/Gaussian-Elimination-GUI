@@ -6,22 +6,16 @@ function addTable() {
         return;
     }
     let table = new Table(tables.length);
-    // table.disableInput();
     tables.push(table);
     
     let header = document.createElement("h2");
     let ithLetter = String.fromCharCode(64 + tables.length);
     header.innerHTML = `${ithLetter} =`;
+
     document.getElementById("table").appendChild(header);
     document
-    .getElementById("table")
-    .appendChild(tables[tables.length - 1].tableContainer);
-    
-    table.setData([
-        [new Fraction(0, 1), new Fraction(1, 1231237), new Fraction(0, 1)],
-        [new Fraction(0, 1), new Fraction(0, 1), new Fraction(0, 1)],
-        [new Fraction(0, 1), new Fraction(-1, 1), new Fraction(0, 1)],
-    ]);
+        .getElementById("table")
+        .appendChild(tables[tables.length - 1].tableContainer);
 }
 
 function removeTable() {
@@ -182,7 +176,6 @@ function extractSubEquation(equationString, startIndex) {
     return equationString.slice(startIndex + 1, endIndex);
 }
 
-console.log("Starting webpage!");
 let addTableButton = document.createElement("button");
 addTableButton.innerHTML = "Add Table";
 document.getElementById("table").appendChild(addTableButton);
@@ -203,9 +196,23 @@ for (let i = 0; i < 2; i++) {
     addTable();
 }
 
+
+let equationInput = document.createElement("input");
+equationInput.id = "equationInput";
+document.getElementById("equation").appendChild(equationInput);
+
+let calculateButton = document.createElement("button");
+calculateButton.innerHTML = "Calculate!";
+calculateButton.addEventListener("click", function () {
+    let equation = document.getElementById("equationInput").value;
+    let result = calculate(equation);
+    result = result.stringify();
+    document.getElementById("result").innerHTML = result;
+});
+document.getElementById("equation").appendChild(calculateButton);
+
 document.addEventListener("keydown", function (e) {
     let activeCellId = document.activeElement.id;
-    console.log(activeCellId);
     let row;
     let column;
     let tableId;
@@ -238,21 +245,3 @@ document.addEventListener("keydown", function (e) {
 
     document.getElementById(`${tableId}-${row}-${column}`).focus();
 });
-
-// text field for input of equation + button for "calculate!"
-let equationInput = document.createElement("input");
-equationInput.id = "equationInput";
-document.getElementById("equation").appendChild(equationInput);
-
-let calculateButton = document.createElement("button");
-calculateButton.innerHTML = "Calculate!";
-calculateButton.addEventListener("click", function () {
-    let equation = document.getElementById("equationInput").value;
-    let result = calculate(equation);
-    console.log("Result: ");
-    console.log(result);
-    // stringify result
-    result = result.stringify();
-    document.getElementById("result").innerHTML = result;
-});
-document.getElementById("equation").appendChild(calculateButton);
