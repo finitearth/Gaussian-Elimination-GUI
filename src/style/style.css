@@ -3,6 +3,7 @@
 html {
     height: 100%;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body{
@@ -37,6 +38,10 @@ h1 {
     display: inline-block;
 }
 
+h2 {
+    margin-top: 0;
+}
+
 a {
     text-decoration: none;
     color: rgb(0, 133, 252);
@@ -44,7 +49,23 @@ a {
 
 p {
     margin-top: 0;
-    font-size: x-large;
+    font-size: medium;
+}
+
+td {
+    padding: 5px;
+}
+
+input {
+    border: 1px solid rgb(154, 157, 160);
+    border-radius: 5px;
+    height: 30px;
+    width: 50px;
+}
+
+ol {
+    list-style-type: none;
+    font-size: larger;
 }
 
 .page-divider {
@@ -59,18 +80,6 @@ p {
     justify-content: center;
     display: flex;
 }
-
-td {
-    padding: 5px;
-}
-
-input {
-    border: 1px solid rgb(154, 157, 160);
-    border-radius: 5px;
-    height: 30px;
-    width: 50px;
-}
-
 
 /* Layout */
 
