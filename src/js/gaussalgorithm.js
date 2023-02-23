@@ -18,7 +18,7 @@ export function gaussElimination(coefMatrix, solMatrix) {
             }
             let factor = coefMatrix.getCell(j, i).mul(-1);
             coefMatrix = coefMatrix.addRow(j, coefMatrix.getRow(i).mul(factor));
-            solMatrix  = solMatrix.addRow(j, solMatrix.getRow(i).mul(factor));
+            solMatrix = solMatrix.addRow(j, solMatrix.getRow(i).mul(factor));
         }
     }
 
