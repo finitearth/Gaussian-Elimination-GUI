@@ -1,28 +1,28 @@
-export class DivByZeroException extends Exception {
+export class DivByZeroException extends Error {
     constructor() {
         super("Divide by zero");
     }
 }
 
-export class UnsolvableMatrixException extends Exception {
+export class UnsolvableMatrixException extends Error {
     constructor() {
         super("Matrix is unsolvable");
     }
 }
 
-export class LinearDependentMatrixException extends Exception {
+export class LinearDependentMatrixException extends Error {
     constructor() {
         super("Matrix is linear dependent");
     }
 }
 
-export class InvalidInputException extends Exception {
+export class InvalidInputException extends Error {
     constructor() {
         super("Invalid input");
     }
 }
 
-export class InvalidRowOperationException extends Exception {
+export class InvalidRowOperationException extends Error {
     constructor() {
         super("Invalid row operation");
     }

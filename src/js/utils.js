@@ -16,6 +16,10 @@ export function stringToFraction(string) {
         numerator = Number(numerator);
         denominator = Number(denominator);
 
+        if (denominator === 0) {
+            throw new InvalidInputException();
+        }
+
     } else if (string.includes(",") || string.includes(".")){
         // comma or dot; convert to whole numbered fraction
         let decimal = Number(string);
@@ -26,7 +30,7 @@ export function stringToFraction(string) {
         numerator = decimal * denominator;
         
 
-    } else if (string.match(/^[0-9]+$/)) {
+    } else if (string.match(/^-?[0-9]+$/)) {
         // string consists of only numerals
         numerator = Number(string);
         denominator = 1;

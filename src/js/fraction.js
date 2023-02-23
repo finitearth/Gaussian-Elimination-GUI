@@ -39,11 +39,25 @@ export class Fraction {
     }
 
     subtract(other) {
-        return this.add(other.mul(new Fraction(-1,1)));
+        return this.add(other.mul(new Fraction(-1, 1)));
     }
 
     greater(other) {
-        return this.numerator * other.denominator > other.numerator * this.denominator;
+        return (
+            this.numerator * other.denominator >
+            other.numerator * this.denominator
+        );
+    }
+
+    eqauls(other) {
+        // check for 0 in numerator
+        if (this.numerator === 0 && other.numerator === 0) {
+            return true;
+        }
+        return (
+            this.numerator === other.numerator &&
+            this.denominator === other.denominator
+        );
     }
 
     abs() {
@@ -73,18 +87,6 @@ export class Fraction {
 
     div(other) {
         return this.mul(other.inverse());
-    }
-
-    eqauls(other) {
-        // check for 0 in numerator
-        if (this.numerator == 0 && other.numerator == 0) {
-            return true;
-        }
-        return (
-            this.numerator == other.numerator &&
-            this.denominator == other.denominator
-        );
-
     }
 
     gcd() {
