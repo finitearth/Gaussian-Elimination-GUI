@@ -1,4 +1,5 @@
 import { Matrix } from "./matrix.js";
+import { DivByZeroException } from "./exceptions.js";
 
 export class Fraction {
     /**
@@ -22,7 +23,7 @@ export class Fraction {
     }
     inverse() {
         if (this.numerator == 0) {
-            throw new Error("Cannot divide by zero");
+            throw new DivByZeroException();
         }
         return new Fraction(this.denominator, this.numerator);
     }

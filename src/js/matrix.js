@@ -107,10 +107,6 @@ export class Matrix {
         return new Matrix(column);
     }
 
-    getElement(iRow, iColumn) {
-        return this.array[iRow][iColumn];
-    }
-
     addRow(iRow, otherRow) {
         for (let i = 0; i < this.nColumns; i++) {
             this.array[iRow][i] = this.array[iRow][i].add(otherRow.array[0][i]);
