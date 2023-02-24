@@ -13,11 +13,10 @@ body{
     margin: 0;
     min-height: 100%;
     box-sizing: inherit;
-    padding: 1em;
 }
 
 main {
-    padding-left: 1.5%;
+    padding: 0 2em;
     margin-top: 3.5em;
     padding-bottom: 1em;
 }
@@ -73,7 +72,7 @@ ol {
     box-shadow: 0 4px 8px rgba(19,41,104,.1);
     border-radius: 8px;
     margin-bottom: 24px;
-    padding: 1em 1em 2em 1em;
+    padding: 2em;
 }
 
 /* Start Page */
@@ -145,6 +144,15 @@ ol {
 
 /* Layout */
 
+header{
+    left: 0;
+    top: 5em;
+    position: relative;
+
+    padding: 0 0 2em 2em;
+    z-index: -1;
+} 
+
 .align-center {
     align-items: center;
     justify-content: center;
@@ -159,17 +167,17 @@ ol {
     width: 100%;
     text-align: justify;
     background-color: rgb(52, 58, 64);
-    font-size: larger;
-    padding: 18px;
+    box-shadow: 0px -24px 20px 26px rgba(19,41,104,.4);
+    font-size: 16pt;
+    padding: 0.5em 0;
     margin-bottom: 10px;
 }
 
 .nav-list {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 0.5em;
     width: 100%;
-    text-align: center;
     justify-content: space-between;
 }
 
@@ -184,6 +192,13 @@ ol {
 
 .nav-link.active {
     color: rgb(255, 255, 255);
+}
+
+.nav-logo {
+    width: 2.5em;
+    height: 2.5em;
+    margin: 0 2em 0 2em;
+    float: left;
 }
 
 .impressum-text {
@@ -278,7 +293,7 @@ button:active {
 
 .button-help {
     float: right;
-    margin-right: 20px;
+    margin-right: 2em;
     margin-top: 2em;
     background-color: #FEFEFE;
     color: rgb(0, 133, 252);
@@ -301,4 +316,17 @@ button:active {
 .result {
     left: 0;
     float: left;
+}
+
+.overflow {
+    height: 27.5em;
+    overflow: auto;
+    border: 1px solid #EEE;
+    border-radius: 5px;
+    padding: 0.5em;
+}
+
+.help-container {
+    height: 40em;
+    overflow: auto;
 }
