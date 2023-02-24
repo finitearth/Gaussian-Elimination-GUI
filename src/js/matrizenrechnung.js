@@ -7,7 +7,7 @@ function addTable() {
     }
     let table = new Table(tables.length);
     tables.push(table);
-    
+
     let header = document.createElement("h2");
     let ithLetter = String.fromCharCode(64 + tables.length);
     header.innerHTML = `${ithLetter} =`;
@@ -196,7 +196,6 @@ for (let i = 0; i < 2; i++) {
     addTable();
 }
 
-
 let equationInput = document.createElement("input");
 equationInput.id = "equationInput";
 document.getElementById("equation").appendChild(equationInput);
@@ -213,15 +212,11 @@ document.getElementById("equation").appendChild(calculateButton);
 
 document.addEventListener("keydown", function (e) {
     let activeCellId = document.activeElement.id;
-    let row;
-    let column;
-    let tableId;
+    let row = 0;
+    let column = 0;
+    let tableId = 0;
 
-    if (activeCellId == "") {
-        tableId = 0;
-        row = 0;
-        column = 0;
-    } else {
+    if (activeCellId !== "") {
         tableId = Number(activeCellId.split("-")[0]);
         row = Number(activeCellId.split("-")[1]);
         column = Number(activeCellId.split("-")[2]);
@@ -241,6 +236,8 @@ document.addEventListener("keydown", function (e) {
         column -= 1;
     } else if (e.code == "ArrowRight" && column < tables[0].nColumns - 1) {
         column += 1;
+    } else {
+        return;
     }
 
     document.getElementById(`${tableId}-${row}-${column}`).focus();

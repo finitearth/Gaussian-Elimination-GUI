@@ -1,6 +1,7 @@
 import { designConfig } from "./config.js";
 import { stringToFraction } from "./utils.js";
 import { Matrix } from "./matrix.js";
+import { Fraction } from "./fraction.js";
 
 export class Table {
     constructor(id, showButtons = true) {
@@ -44,21 +45,21 @@ export class Table {
         this.tableContainer.appendChild(buttonsContainer);
     }
 
-    setNRows(nRows) {
+    setNRows(nRows, force=false) {
         while (this.rows.length < nRows) {
-            this.addRow();
+            this.addRow(force);
         }
         while (this.rows.length > nRows) {
-            this.removeRow();
+            this.removeRow(force);
         }
     }
 
-    setNColumns(nColumns) {
+    setNColumns(nColumns, force=false) {
         while (this.nColumns < nColumns) {
-            this.addColumn();
+            this.addColumn(force);
         }
         while (this.nColumns > nColumns) {
-            this.removeColumn();
+            this.removeColumn(force);
         }
     }
 
@@ -75,8 +76,8 @@ export class Table {
         return cell;
     }
 
-    addRow() {
-        if (this.rows.length > designConfig.maxRows) {
+    addRow(force=false) {
+        if ((this.rows.length > designConfig.maxRows) && (!force)) {
             return;
         }
         const rowId = this.rows.length;
@@ -92,8 +93,8 @@ export class Table {
         this.tableBody.appendChild(row);
     }
 
-    addColumn() {
-        if (this.nColumns > designConfig.maxColumns) {
+    addColumn(force=false) {
+        if ((this.nColumns > designConfig.maxColumns) && (!force)) {
             return;
         }
         this.nColumns += 1;
@@ -103,16 +104,16 @@ export class Table {
         }
     }
 
-    removeRow() {
-        if (this.rows.length <= designConfig.minRows) {
+    removeRow(force=false) {
+        if ((this.rows.length <= designConfig.minRows) && (!force)) {
             return;
         }
         this.rows.pop();
         this.tableBody.removeChild(this.tableBody.lastChild);
     }
 
-    removeColumn() {
-        if (this.nColumns <= designConfig.minColumns) {
+    removeColumn(force=false) {
+        if ((this.nColumns <= designConfig.minColumns) && (!force)) {
             return;
         }
         this.nColumns -= 1;
@@ -122,6 +123,15 @@ export class Table {
     }
 
     setData(matrix) {
+        // if matrix is fraction, convert it to a matrix
+        if (matrix instanceof Fraction) {
+            matrix = new Matrix([[matrix]]);
+        }
+
+        // resize according to matrix size
+        this.setNRows(matrix.nRows, true);
+        this.setNColumns(matrix.nColumns, true);
+
         let data = matrix.array;
         for (let i = 0; i < data.length; i++) {
             for (let j = 0; j < data[0].length; j++) {

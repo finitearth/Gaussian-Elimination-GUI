@@ -35,6 +35,7 @@ export class Matrix {
         }
     }
 
+
     getPivot(colIndex) {
         let pivot = this.getCell(colIndex, colIndex);
         let pivotIndex = colIndex;
@@ -107,10 +108,6 @@ export class Matrix {
         return new Matrix(column);
     }
 
-    getElement(iRow, iColumn) {
-        return this.array[iRow][iColumn];
-    }
-
     addRow(iRow, otherRow) {
         for (let i = 0; i < this.nColumns; i++) {
             this.array[iRow][i] = this.array[iRow][i].add(otherRow.getCell(0, i));
@@ -140,6 +137,47 @@ export class Matrix {
             newArray[i] = [];
             for (let j = 0; j < this.nColumns; j++) {
                 newArray[i][j] = this.array[i][j].mul(scalar).reduce();
+            }
+        }
+        return new Matrix(newArray);
+    }
+
+    getDeterminant() {
+        // Laplace expansion
+        
+        if (this.nRows === 1 && this.nColumns === 1) {
+            return this.getCell(0, 0);
+        }
+
+        let determinant = new Fraction(0, 1);
+        let i = 0;
+        for (let j = 0; j < this.nColumns; j++) {
+            let sign = (i + j) % 2 == 0 ? 1 : -1;
+            let subMatrix = this.getSubMatrix(i, j);
+            let subDeterminant = subMatrix.getDeterminant();
+            let coefficient = this.getCell(i, j);
+            determinant = determinant.add(coefficient.mul(subDeterminant).mul(sign));
+        }
+
+        console.log(determinant);
+        console.log(this.stringify())
+
+        return determinant;
+    }
+
+    getSubMatrix(excludedRow, excludedColumn) {
+        let newArray = [];
+        for (let i = 0; i < this.nRows; i++) {
+            if (i === excludedRow) {
+                continue;
+            }
+            newArray.push([]);
+            for (let j = 0; j < this.nColumns; j++) {
+                if (j === excludedColumn) {
+                    continue;
+                }   
+                newArray[newArray.length - 1].push(this.getCell(i, j));
+
             }
         }
         return new Matrix(newArray);

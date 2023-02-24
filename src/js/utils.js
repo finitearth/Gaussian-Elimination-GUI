@@ -1,5 +1,6 @@
 import { Fraction } from "./fraction.js";
 import { Matrix } from "./matrix.js";
+import { InvalidInputException } from "./exceptions.js";
 
 export function stringToFraction(string) {
     let numerator;
@@ -14,6 +15,11 @@ export function stringToFraction(string) {
         [numerator, denominator] = string.split("/");
         numerator = Number(numerator);
         denominator = Number(denominator);
+
+        if (denominator === 0) {
+            throw new InvalidInputException();
+        }
+
     } else if (string.includes(",") || string.includes(".")){
         // comma or dot; convert to whole numbered fraction
         let decimal = Number(string);
@@ -24,10 +30,13 @@ export function stringToFraction(string) {
         numerator = decimal * denominator;
         
 
-    } else {
-        // if no slash or comma/dot is contained, the string is a whole number
+    } else if (string.match(/^-?[0-9]+$/)) {
+        // string consists of only numerals
         numerator = Number(string);
         denominator = 1;
+        
+    } else {
+        throw new InvalidInputException();
     }
 
     let fraction = new Fraction(numerator, denominator);

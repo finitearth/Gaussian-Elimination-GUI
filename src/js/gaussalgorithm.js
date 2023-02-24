@@ -1,4 +1,13 @@
+import { UnsolvableMatrixException, DivByZeroException } from "./exceptions.js";
+
 export function gaussElimination(coefMatrix, solMatrix) {
+    if (
+        coefMatrix.nRows !== coefMatrix.nCols ||
+        coefMatrix.getDeterminant() === 0
+    ) {
+        throw new UnsolvableMatrixException();
+    }
+
     for (let i = 0; i < coefMatrix.nRows; i++) {
         let [pivotIndex, pivotElement] = coefMatrix.getPivot(i);
 
@@ -12,13 +21,13 @@ export function gaussElimination(coefMatrix, solMatrix) {
         solMatrix = solMatrix.multiplyRowByScalar(i, invPivot);
 
         // Use the pivot element to eliminate the variables above and below it
-        for (let j = 0; j < coefMatrix.nRows; j++) {
+        for (let j = 0; j < coefMatrix.nCols; j++) {
             if (i === j) {
                 continue; // skip
             }
             let factor = coefMatrix.getCell(j, i).mul(-1);
             coefMatrix = coefMatrix.addRow(j, coefMatrix.getRow(i).mul(factor));
-            solMatrix  = solMatrix.addRow(j, solMatrix.getRow(i).mul(factor));
+            solMatrix = solMatrix.addRow(j, solMatrix.getRow(i).mul(factor));
         }
     }
 
