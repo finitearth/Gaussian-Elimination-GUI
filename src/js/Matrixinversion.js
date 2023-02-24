@@ -21,6 +21,8 @@ function modifyDimension(e) {
         tables[1].removeColumn();
         tables[2].removeRow();
         tables[2].removeColumn();
+        tables[3].removeRow();
+        tables[3].removeColumn();
 
         removeCombobox(dimension);
         updateComboboxes();
@@ -35,6 +37,8 @@ function modifyDimension(e) {
         tables[1].addColumn();
         tables[2].addRow();
         tables[2].addColumn();
+        tables[3].addRow();
+        tables[3].addColumn();
 
         addCombobox("combobox_" + (e.target.value - 1));
         updateComboboxes();
@@ -85,13 +89,27 @@ for (let i = 0; i < 3; i++) {
 }
 
 tables.push(new Table(tables.length, false));
+tables.push(new Table(tables.length, false));
 
 tables[1].setData(getUnitMatrix(dimension));
 tables[2].disableInput();
+tables[3].disableInput();
 
 document
-    .getElementById("resultContainer")
-    .appendChild(tables[tables.length - 1].tableContainer);
+    .getElementById("resultContainerTableRowCol1")
+    .appendChild(tables[2].tableContainer);
+
+// let verticalElement = document.createElement("div");
+// verticalElement.className = "vertical";
+
+// document
+//     .getElementById("resultContainer")
+//     .appendChild(verticalElement);
+
+document
+    .getElementById("resultContainerTableRowCol2")
+    .appendChild(tables[3].tableContainer);
+
 
 function calculateSolution() {
     let coefMatrix = tables[0].getData();
@@ -101,6 +119,7 @@ function calculateSolution() {
     solMatrix = gaussElimination(coefMatrix, solMatrix);
     console.log(solMatrix.stringify());
     tables[2].setData(solMatrix);
+    tables[3].setData(getUnitMatrix(dimension));
     
 }
 

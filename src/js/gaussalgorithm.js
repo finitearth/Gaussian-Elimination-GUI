@@ -1,9 +1,11 @@
 import { UnsolvableMatrixException, DivByZeroException } from "./exceptions.js";
 
 export function gaussElimination(coefMatrix, solMatrix) {
+    let nRows = coefMatrix.nRows;
+    let nCols = coefMatrix.nColumns;
     if (
-        coefMatrix.nRows !== coefMatrix.nCols ||
-        coefMatrix.getDeterminant() === 0
+        (nRows !== nCols) ||
+        (coefMatrix.getDeterminant().equals(0))
     ) {
         throw new UnsolvableMatrixException();
     }
