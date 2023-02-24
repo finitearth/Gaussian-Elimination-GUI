@@ -1,11 +1,39 @@
-import { Fraction } from "./fraction.js";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: matrix.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: matrix.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Fraction } from "./fraction.js";
 
 export class Matrix {
     /**
      * Class for a matrix consisting of a 2-dimensional array of Fraction objects.
      * @class
-     * @param {Array<Array<Fraction>>} array - A 2-dimensional array of Fraction objects representing the matrix.
-     * @property {Array<Array<Fraction>>} array - The 2-dimensional array representing the matrix.
+     * @param {Array&lt;Array&lt;Fraction>>} array - A 2-dimensional array of Fraction objects representing the matrix.
+     * @property {Array&lt;Array&lt;Fraction>>} array - The 2-dimensional array representing the matrix.
      * @property {number} nRows - The number of rows in the matrix.
      * @property {number} nColumns - The number of columns in the matrix.
      */
@@ -33,9 +61,9 @@ export class Matrix {
      */
     add(otherMatrix) {
         let newArray = [];
-        for (let i = 0; i < this.nRows; i++) {
+        for (let i = 0; i &lt; this.nRows; i++) {
             newArray[i] = [];
-            for (let j = 0; j < this.nColumns; j++) {
+            for (let j = 0; j &lt; this.nColumns; j++) {
                 newArray[i][j] = this.array[i][j].add(otherMatrix.array[i][j]);
             }
         }
@@ -74,7 +102,7 @@ export class Matrix {
     getPivot(colIndex) {
         let pivot = this.getCell(colIndex, colIndex);
         let pivotIndex = colIndex;
-        for (let j = colIndex + 1; j < this.nRows; j++) {
+        for (let j = colIndex + 1; j &lt; this.nRows; j++) {
             let element = this.getCell(j, colIndex);
             if (element.abs().greater(pivot.abs())) {
                 pivot = element;
@@ -102,11 +130,11 @@ export class Matrix {
             throw new Error("Matrix dimensions do not match");
         }
         let newArray = [];
-        for (let i = 0; i < this.nRows; i++) {
+        for (let i = 0; i &lt; this.nRows; i++) {
             newArray[i] = [];
-            for (let j = 0; j < other.nColumns; j++) {
+            for (let j = 0; j &lt; other.nColumns; j++) {
                 let c = new Fraction(0, 1);
-                for (let k = 0; k < this.nColumns; k++) {
+                for (let k = 0; k &lt; this.nColumns; k++) {
                     c = c.add(this.array[i][k].mul(other.array[k][j]));
                 }
                 newArray[i][j] = c;
@@ -123,9 +151,9 @@ export class Matrix {
     transpose() {
         let newArray = [];
 
-        for (let i = 0; i < this.nColumns; i++) {
+        for (let i = 0; i &lt; this.nColumns; i++) {
             newArray.push([]);
-            for (let j = 0; j < this.nRows; j++) {
+            for (let j = 0; j &lt; this.nRows; j++) {
                 newArray[i].push(this.array[j][i]);
             }
         }
@@ -165,7 +193,7 @@ export class Matrix {
      */
     getColumn(iColumn) {
         let column = [];
-        for (let i = 0; i < this.nRows; i++) {
+        for (let i = 0; i &lt; this.nRows; i++) {
             column[i] = this.array[i][iColumn];
         }
         return new Matrix(column);
@@ -179,7 +207,7 @@ export class Matrix {
      * @returns {Matrix} - The matrix with the modified row.
      */
     addRow(iRow, otherRow) {
-        for (let i = 0; i < this.nColumns; i++) {
+        for (let i = 0; i &lt; this.nColumns; i++) {
             this.array[iRow][i] = this.array[iRow][i].add(
                 otherRow.getCell(0, i)
             );
@@ -197,7 +225,7 @@ export class Matrix {
      * @throws {Error} - If the number of columns in the input matrix does not match the number of columns in this matrix.
      */
     substractRow(iRow, otherRow) {
-        for (let i = 0; i < this.nColumns; i++) {
+        for (let i = 0; i &lt; this.nColumns; i++) {
             this.array[iRow][i] = this.array[iRow][i].add(
                 otherRow.getCell(0, i).mul(-1)
             );
@@ -213,7 +241,7 @@ export class Matrix {
      * @returns {Matrix} - The matrix with the row multiplied by the scalar.
      */
     multiplyRowByScalar(iRow, scalar) {
-        for (let i = 0; i < this.nColumns; i++) {
+        for (let i = 0; i &lt; this.nColumns; i++) {
             this.array[iRow][i] = this.array[iRow][i].mul(scalar);
         }
         return this;
@@ -227,9 +255,9 @@ export class Matrix {
      */
     multiplyByScalar(scalar) {
         let newArray = [];
-        for (let i = 0; i < this.nRows; i++) {
+        for (let i = 0; i &lt; this.nRows; i++) {
             newArray[i] = [];
-            for (let j = 0; j < this.nColumns; j++) {
+            for (let j = 0; j &lt; this.nColumns; j++) {
                 newArray[i][j] = this.array[i][j].mul(scalar).reduce();
             }
         }
@@ -245,13 +273,13 @@ export class Matrix {
      @throws {Error} If the matrix is not square.
      */
     getDeterminant() {
-        if (this.nRows === 1 && this.nColumns === 1) {
+        if (this.nRows === 1 &amp;&amp; this.nColumns === 1) {
             return this.getCell(0, 0);
         }
 
         let determinant = new Fraction(0, 1);
         let i = 0;
-        for (let j = 0; j < this.nColumns; j++) {
+        for (let j = 0; j &lt; this.nColumns; j++) {
             let sign = (i + j) % 2 == 0 ? 1 : -1;
             let subMatrix = this.getSubMatrix(i, j);
             let subDeterminant = subMatrix.getDeterminant();
@@ -274,12 +302,12 @@ export class Matrix {
      */
     getSubMatrix(excludedRow, excludedColumn) {
         let newArray = [];
-        for (let i = 0; i < this.nRows; i++) {
+        for (let i = 0; i &lt; this.nRows; i++) {
             if (i === excludedRow) {
                 continue;
             }
             newArray.push([]);
-            for (let j = 0; j < this.nColumns; j++) {
+            for (let j = 0; j &lt; this.nColumns; j++) {
                 if (j === excludedColumn) {
                     continue;
                 }
@@ -296,8 +324,8 @@ export class Matrix {
      */
     stringify(decimal = false) {
         let string = "";
-        for (let i = 0; i < this.nRows; i++) {
-            for (let j = 0; j < this.nColumns; j++) {
+        for (let i = 0; i &lt; this.nRows; i++) {
+            for (let j = 0; j &lt; this.nColumns; j++) {
                 if (decimal) {
                     string += this.array[i][j].toDecimal();
                 } else {
@@ -305,8 +333,31 @@ export class Matrix {
                 }
                 string += " ";
             }
-            string += "<br>";
+            string += "&lt;br>";
         }
         return string;
     }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Fraction_Fraction.html">Fraction</a></li><li><a href="Matrix_Matrix.html">Matrix</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Fri Feb 24 2023 19:02:42 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
