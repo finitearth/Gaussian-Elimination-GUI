@@ -8,7 +8,7 @@ html {
 
 body{
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-    background-color: #FEFEFE; /*#F5F5F5;*/
+    background-color: #FEFEFE; /*#F5F5F5;*/ /*#F5F6F9*/
     position: relative;
     margin: 0;
     min-height: 100%;
@@ -69,7 +69,7 @@ ol {
 }
 
 .page-divider {
-    border: 1px solid rgb(154, 157, 160);
+    border: 1px solid rgb(154, 157, 160); /*https://de.omio.com/* for design idee*/
     border-radius: 10px;
     padding: 20px;
     margin: 20px 20px 20px 0px;
