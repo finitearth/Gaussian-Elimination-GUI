@@ -177,7 +177,7 @@ function extractSubEquation(equationString, startIndex) {
 }
 
 let addTableButton = document.createElement("button");
-addTableButton.innerHTML = "Add Table";
+addTableButton.innerHTML = "Neue Matrix";
 document.getElementById("table").appendChild(addTableButton);
 addTableButton.addEventListener("click", function () {
     addTable();
@@ -185,7 +185,7 @@ addTableButton.addEventListener("click", function () {
 
 // remove table
 let removeTableButton = document.createElement("button");
-removeTableButton.innerHTML = "Remove Table";
+removeTableButton.innerHTML = "Matrix entfernen";
 document.getElementById("table").appendChild(removeTableButton);
 removeTableButton.addEventListener("click", function () {
     removeTable();
@@ -201,7 +201,7 @@ equationInput.id = "equationInput";
 document.getElementById("equation").appendChild(equationInput);
 
 let calculateButton = document.createElement("button");
-calculateButton.innerHTML = "Calculate!";
+calculateButton.innerHTML = "Berechne";
 calculateButton.addEventListener("click", function () {
     let equation = document.getElementById("equationInput").value;
     let result = calculate(equation);
