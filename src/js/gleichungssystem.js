@@ -12,21 +12,19 @@ for (let i = 0; i < 3; i++) {
 tables[2].disableInput();
 
 // number of rows
-document.getElementById("nr-eq").addEventListener("input", function () {
+document.getElementById("nr-eq").addEventListener("input", function (e) {
     let numberEquations = e.target.value;
-    for (let i = 0; i < tables.length; i++) {
-        tables[i].setNRows(numberEquations);
-    }
+    tables.forEach((table) => {table.setNRows(numberEquations)});
 });
 
 // number of cols in coeff matrix
-document.getElementById("nr-var").addEventListener("input", function () {
+document.getElementById("nr-var").addEventListener("input", function (e) {
     let numberVariables = e.target.value;
     tables[0].setNColumns(numberVariables);
 });
 
 // number of cols solution matrix
-document.getElementById("nr-b").addEventListener("input", function () {
+document.getElementById("nr-b").addEventListener("input", function (e) {
     let numberResultVectors = e.target.value;
     tables[1].setNColumns(numberResultVectors);
     tables[2].setNColumns(numberResultVectors);

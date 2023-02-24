@@ -7,7 +7,7 @@ function addTable() {
     }
     let table = new Table(tables.length);
     tables.push(table);
-    
+
     let header = document.createElement("h2");
     let ithLetter = String.fromCharCode(64 + tables.length);
     header.innerHTML = `${ithLetter} =`;
@@ -195,7 +195,6 @@ let tables = [];
 for (let i = 0; i < 2; i++) {
     addTable();
 }
-
 
 let equationInput = document.createElement("input");
 equationInput.id = "equationInput";
