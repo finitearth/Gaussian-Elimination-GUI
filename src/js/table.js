@@ -131,6 +131,13 @@ export class Table {
         }
     }
 
+    setRow(iRow, matrix) {
+        for (let i = 0; i < matrix.array[0].length; i++) {
+            let input = this.rows[iRow].childNodes[i].childNodes[0];
+            input.value = matrix.array[iRow][i].stringify();
+        }
+    }
+
     getData() {
         console.log("Getting data");
         let data = [];

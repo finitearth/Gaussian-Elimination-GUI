@@ -113,7 +113,15 @@ export class Matrix {
 
     addRow(iRow, otherRow) {
         for (let i = 0; i < this.nColumns; i++) {
-            this.array[iRow][i] = this.array[iRow][i].add(otherRow.array[0][i]);
+            this.array[iRow][i] = this.array[iRow][i].add(otherRow.getCell(0, i));
+        }
+
+        return this;
+    }
+
+    substractRow(iRow, otherRow) {
+        for (let i = 0; i < this.nColumns; i++) {
+            this.array[iRow][i] = this.array[iRow][i].add(otherRow.getCell(0, i).mul(-1));
         }
 
         return this;
@@ -122,13 +130,6 @@ export class Matrix {
     multiplyRowByScalar(iRow, scalar) {
         for (let i = 0; i < this.nColumns; i++) {
             this.array[iRow][i] = this.array[iRow][i].mul(scalar);
-        }
-        return this;
-    }
-
-    addRowToRow(iRow, rowArray) {
-        for (let i = 0; i < this.nColumns; i++) {
-            this.array[iRow][i] = this.array[iRow][i].add(rowArray.getElement(0, i));
         }
         return this;
     }
