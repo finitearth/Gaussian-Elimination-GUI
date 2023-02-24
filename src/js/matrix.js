@@ -142,8 +142,6 @@ export class Matrix {
     }
 
     getDeterminant() {
-        // Laplace expansion
-        
         if (this.nRows === 1 && this.nColumns === 1) {
             return this.getCell(0, 0);
         }
