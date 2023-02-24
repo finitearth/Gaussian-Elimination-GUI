@@ -113,9 +113,18 @@ document.getElementById("adaptResult").addEventListener("click", useResult);
 document.getElementById("calculateButton").addEventListener("click", calculate);
 
 function calculate() {
+   
+
     for (let i = 0; i < RowOperations.length; i++) {
-        let matrix  = RowOperations[i].performRowOperation();
-        tables[2].setData(matrix);
+        let matrix = tables[0].getData();
+
+        if (RowOperations[i].isEnabled()) {
+            let new_matrix  = RowOperations[i].performRowOperation(matrix);
+            tables[2].setRow(i, new_matrix);
+        }
+        else {
+            tables[2].setRow(i, matrix);
+        }
     }
 }
 

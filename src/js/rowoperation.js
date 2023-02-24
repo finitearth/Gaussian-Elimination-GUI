@@ -6,7 +6,6 @@ export class RowOperation {
         this.id = id;
         this.comboBoxElement            = document.createElement("tr");
         this.table                      = table;
-        this.tables;
         this.firstOperatorDropdownID    = "firstOperator"+this.id; 
         this.firstTextFieldID           = "firstText"+this.id;
         this.firstTextFieldValue        = "0";
@@ -25,7 +24,6 @@ export class RowOperation {
         this.comboBoxElement.className  = "container-combobox";
 
         
-
         this.comboboxButton.addEventListener("click", this.handleComboboxButtons.bind(this));
         this.comboBoxElement.appendChild(this.comboboxButton);
     }      
@@ -112,10 +110,11 @@ export class RowOperation {
         document.getElementById(this.secondTextField).addEventListener("input", this.setSecondTextField.bind(this));
     }
 
-    
+    isEnabled() {
+        return this.enabled;
+    }
 
-    performRowOperation() {
-        var matrix = this.table.getData();
+    performRowOperation(matrix) {
         var secondRow = [];
         if (this.enabled) {
             if (document.getElementById(this.firstOperatorDropdownID).value === "*") {
@@ -130,10 +129,10 @@ export class RowOperation {
                 secondRow = matrix.getRow(document.getElementById(this.rowDropdownID).value-1);
     
                 if (document.getElementById(this.secondOperatorDropdownID).value === "+") {
-                    matrix = matrix.addRowToRow(this.id.substr(9), secondRow);
+                    matrix = matrix.addRow(this.id.substr(9), secondRow);
                 }
                 else {
-                   
+                    matrix = matrix.substractRow(this.id.substr(9), secondRow);
                 }
     
                 matrix    = matrix.multiplyRowByScalar((document.getElementById(this.rowDropdownID).value - 1), stringToFraction(this.secondTextFieldValue).inverse());
@@ -143,10 +142,10 @@ export class RowOperation {
                 secondRow = matrix.getRow(document.getElementById(this.rowDropdownID).value-1);
                
                 if (document.getElementById(this.secondOperatorDropdownID).value === "+") {
-                    matrix = matrix.addRowToRow(this.id.substr(9), secondRow);
+                    matrix = matrix.addRow(this.id.substr(9), secondRow);
                 }
                 else {
-                   
+                    matrix = matrix.substractRow(this.id.substr(9), secondRow);
                 }
     
                 matrix    = matrix.multiplyRowByScalar(document.getElementById(this.rowDropdownID).value-1, stringToFraction(this.secondTextFieldValue));
