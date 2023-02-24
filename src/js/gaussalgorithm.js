@@ -1,4 +1,11 @@
+import { UnsolvableMatrixException, DivByZeroException } from "./exceptions.js";
+
 export function gaussElimination(coefMatrix, solMatrix) {
+    // check for rows = cols in coefmatrix
+    if (coefMatrix.nRows !== coefMatrix.nCols) {
+        throw new UnsolvableMatrixException();
+    }
+    let invPivot;
     for (let i = 0; i < coefMatrix.nRows; i++) {
         let [pivotIndex, pivotElement] = coefMatrix.getPivot(i);
 
@@ -6,8 +13,17 @@ export function gaussElimination(coefMatrix, solMatrix) {
         coefMatrix = coefMatrix.swapRows(i, pivotIndex);
         solMatrix = solMatrix.swapRows(i, pivotIndex);
 
-        // Scale the row so that the pivot element is 1
-        let invPivot = pivotElement.inverse();
+        try {
+            // Scale the row so that the pivot element is 1
+            invPivot = pivotElement.inverse();
+        } catch (e) {
+            if (e instanceof DivByZeroException) {
+                // Matrix is singular
+                throw new UnsolvableMatrixException();
+            } else {
+                throw e;
+            }
+        }
         coefMatrix = coefMatrix.multiplyRowByScalar(i, invPivot);
         solMatrix = solMatrix.multiplyRowByScalar(i, invPivot);
 
@@ -18,7 +34,7 @@ export function gaussElimination(coefMatrix, solMatrix) {
             }
             let factor = coefMatrix.getCell(j, i).mul(-1);
             coefMatrix = coefMatrix.addRow(j, coefMatrix.getRow(i).mul(factor));
-            solMatrix  = solMatrix.addRow(j, solMatrix.getRow(i).mul(factor));
+            solMatrix = solMatrix.addRow(j, solMatrix.getRow(i).mul(factor));
         }
     }
 
