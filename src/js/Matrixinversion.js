@@ -1,8 +1,8 @@
-import { Table }            from "./table.js";
-import { Fraction }         from "./fraction.js";
-import { RowOperation }     from "./rowoperation.js";
+import { Table } from "./table.js";
+import { Fraction } from "./fraction.js";
+import { RowOperation } from "./rowoperation.js";
 import { gaussElimination } from "./gaussalgorithm.js";
-import { getUnitMatrix }    from "./utils.js";
+import { getUnitMatrix } from "./utils.js";
 import { addKeyDownListener } from "./utils.js";
 var dimension = 3;
 
@@ -12,8 +12,8 @@ document
 
 function modifyDimension(e) {
     if (e.target.value < dimension) {
-        console.log("a_"+e.target.value);
-        console.log("d_"+dimension);
+        console.log("a_" + e.target.value);
+        console.log("d_" + dimension);
         console.log("");
 
         tables[0].removeRow();
@@ -28,8 +28,8 @@ function modifyDimension(e) {
         removeCombobox(dimension);
         updateComboboxes();
     } else if (e.target.value > dimension) {
-        console.log("b_"+e.target.value);
-        console.log("d_"+dimension);
+        console.log("b_" + e.target.value);
+        console.log("d_" + dimension);
         console.log("");
 
         tables[0].addRow();
@@ -46,12 +46,14 @@ function modifyDimension(e) {
     }
 
     dimension = e.target.value;
- };
- 
- function addTable() {
-     tables.push(new Table(tables.length, false));
-     document.getElementById("table_element_"+tables.length).appendChild(tables[tables.length - 1].tableContainer);
- }
+}
+
+function addTable() {
+    tables.push(new Table(tables.length, false));
+    document
+        .getElementById("table_element_" + tables.length)
+        .appendChild(tables[tables.length - 1].tableContainer);
+}
 
 function addCombobox(id) {
     RowOperations.push(new RowOperation(id, tables[0]));
@@ -65,16 +67,16 @@ function addCombobox(id) {
         .appendChild(RowOperations[RowOperations.length - 1].comboBoxElement);
 }
 
- function removeCombobox(id) {
-    document.getElementById("combobox_"+(id-1)).remove();
+function removeCombobox(id) {
+    document.getElementById("combobox_" + (id - 1)).remove();
     RowOperations.pop();
- }
+}
 
 function updateComboboxes() {
     for (let i = 0; i < RowOperations.length; i++) {
         RowOperations[i] = new RowOperation(tables[0]);
     }
- }
+}
 
 console.log("Starting webpage!");
 
@@ -111,38 +113,36 @@ document
     .getElementById("resultContainerTableRowCol2")
     .appendChild(tables[3].tableContainer);
 
-
 function calculateSolution() {
-    let coefMatrix = tables[0].getData();
-    console.log(coefMatrix.stringify());
-    let solMatrix = tables[1].getData();
-    console.log(solMatrix.stringify());
-    solMatrix = gaussElimination(coefMatrix, solMatrix);
-    console.log(solMatrix.stringify());
-    tables[2].setData(solMatrix);
-    tables[3].setData(getUnitMatrix(dimension));
-    
+    try {
+        let coefMatrix = tables[0].getData();
+        let solMatrix = tables[1].getData();
+        solMatrix = gaussElimination(coefMatrix, solMatrix);
+        tables[2].setData(solMatrix);
+        tables[3].setData(getUnitMatrix(dimension));
+    } catch (e) {
+        alert("satz mit x das war wohl nix");
+    }
 }
 
 function useResult() {
     tables[0].setData(tables[2].getData());
 }
 
-document.getElementById("calculateSolutionButton").addEventListener("click", calculateSolution);
+document
+    .getElementById("calculateSolutionButton")
+    .addEventListener("click", calculateSolution);
 document.getElementById("adaptResult").addEventListener("click", useResult);
 document.getElementById("calculateButton").addEventListener("click", calculate);
 
 function calculate() {
-   
-
     for (let i = 0; i < RowOperations.length; i++) {
         let matrix = tables[0].getData();
 
         if (RowOperations[i].isEnabled()) {
-            let new_matrix  = RowOperations[i].performRowOperation(matrix);
+            let new_matrix = RowOperations[i].performRowOperation(matrix);
             tables[2].setRow(i, new_matrix);
-        }
-        else {
+        } else {
             tables[2].setRow(i, matrix);
         }
     }

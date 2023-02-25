@@ -15,7 +15,9 @@ tables[2].disableInput();
 // number of rows
 document.getElementById("nr-eq").addEventListener("input", function (e) {
     let numberEquations = e.target.value;
-    tables.forEach((table) => {table.setNRows(numberEquations)});
+    tables.forEach(table => {
+        table.setNRows(numberEquations);
+    });
 });
 
 // number of cols in coeff matrix
@@ -35,11 +37,14 @@ document.getElementById("nr-b").addEventListener("input", function (e) {
 document
     .getElementById("calculateSolutionButton")
     .addEventListener("click", function () {
-        let coefMatrix = tables[0].getData();
-        let solMatrix = tables[1].getData();
-
-        solMatrix = gaussElimination(coefMatrix, solMatrix);
-        tables[2].setData(solMatrix);
+        try {
+            let coefMatrix = tables[0].getData();
+            let solMatrix = tables[1].getData();
+            solMatrix = gaussElimination(coefMatrix, solMatrix);
+            tables[2].setData(solMatrix);
+        } catch (error) {
+            alert(error);
+        }
     });
 
 // decimal conversion
@@ -50,3 +55,4 @@ document
     });
 
 addKeyDownListener(tables, true);
+alert("Ti zu dem Mo, du machst mich frou, yo!");
