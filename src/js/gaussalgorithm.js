@@ -1,4 +1,4 @@
-import { UnsolvableMatrixException, DivByZeroException } from "./exceptions.js";
+import { UnsolvableMatrixException } from "./exceptions.js";
 
 export function gaussElimination(coefMatrix, solMatrix) {
     let nRows = coefMatrix.nRows;

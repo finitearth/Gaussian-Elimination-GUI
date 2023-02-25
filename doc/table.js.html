@@ -1,4 +1,32 @@
-import { designConfig } from "./config.js";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: table.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: table.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { designConfig } from "./config.js";
 import { stringToFraction } from "./utils.js";
 import { Matrix } from "./matrix.js";
 import { Fraction } from "./fraction.js";
@@ -27,7 +55,7 @@ export class Table {
 
         this.nColumns = designConfig.nInitColumns;
         this.rows = [];
-        for (let i = 0; i < designConfig.nInitRows; i++) {
+        for (let i = 0; i &lt; designConfig.nInitRows; i++) {
             this.addRow();
         }
 
@@ -67,7 +95,7 @@ export class Table {
     @param {boolean} [force=false] - Optional parameter to force adding/removing rows even if the current number of rows is greater or less than the desired number of rows.
     */
     setNRows(nRows, force = false) {
-        while (this.rows.length < nRows) {
+        while (this.rows.length &lt; nRows) {
             this.addRow(force);
         }
         while (this.rows.length > nRows) {
@@ -83,7 +111,7 @@ export class Table {
     @param {boolean} [force=false] - Optional parameter to force adding/removing columns even if the current number of columns is greater or less than the desired number of columns.
     */
     setNColumns(nColumns, force = false) {
-        while (this.nColumns < nColumns) {
+        while (this.nColumns &lt; nColumns) {
             this.addColumn(force);
         }
         while (this.nColumns > nColumns) {
@@ -118,14 +146,14 @@ export class Table {
     @param {boolean} [force=false] - Optional parameter to force adding a row even if the current number of rows is equal to the maximum number of rows allowed in the design config.
     */
     addRow(force = false) {
-        if (this.rows.length > designConfig.maxRows && !force) {
+        if (this.rows.length > designConfig.maxRows &amp;&amp; !force) {
             return;
         }
         const rowId = this.rows.length;
         const row = document.createElement("tr");
         row.id = rowId;
 
-        for (let i = 0; i < this.nColumns; i++) {
+        for (let i = 0; i &lt; this.nColumns; i++) {
             const cell = this.addCell(rowId, i);
             row.appendChild(cell);
         }
@@ -141,11 +169,11 @@ export class Table {
     @param {boolean} [force=false] - Optional parameter to force adding a column even if the current number of columns is equal to the maximum number of columns allowed in the design config.
     */
     addColumn(force = false) {
-        if (this.nColumns > designConfig.maxColumns && !force) {
+        if (this.nColumns > designConfig.maxColumns &amp;&amp; !force) {
             return;
         }
         this.nColumns += 1;
-        for (let i = 0; i < this.rows.length; i++) {
+        for (let i = 0; i &lt; this.rows.length; i++) {
             const cell = this.addCell(i, this.nColumns - 1);
             this.rows[i].appendChild(cell);
         }
@@ -158,7 +186,7 @@ export class Table {
     @param {boolean} [force=false] - Optional parameter to force removing a row even if the current number of rows is equal to the minimum number of rows allowed in the design config.
     */
     removeRow(force = false) {
-        if (this.rows.length <= designConfig.minRows && !force) {
+        if (this.rows.length &lt;= designConfig.minRows &amp;&amp; !force) {
             return;
         }
         this.rows.pop();
@@ -172,11 +200,11 @@ export class Table {
     @param {boolean} [force=false] - Optional parameter to force removing a column even if the current number of columns is equal to the minimum number of columns allowed in the design config.
     */
     removeColumn(force = false) {
-        if (this.nColumns <= designConfig.minColumns && !force) {
+        if (this.nColumns &lt;= designConfig.minColumns &amp;&amp; !force) {
             return;
         }
         this.nColumns -= 1;
-        for (let i = 0; i < this.rows.length; i++) {
+        for (let i = 0; i &lt; this.rows.length; i++) {
             this.rows[i].removeChild(this.rows[i].lastChild);
         }
     }
@@ -198,8 +226,8 @@ export class Table {
         this.setNColumns(matrix.nColumns, true);
 
         let data = matrix.array;
-        for (let i = 0; i < data.length; i++) {
-            for (let j = 0; j < data[0].length; j++) {
+        for (let i = 0; i &lt; data.length; i++) {
+            for (let j = 0; j &lt; data[0].length; j++) {
                 let input = this.rows[i].childNodes[j].childNodes[0];
                 input.value = data[i][j].stringify();
             }
@@ -212,7 +240,7 @@ export class Table {
      * @param {Matrix} matrix - The matrix containing the new values for the row.
      */
     setRow(iRow, matrix) {
-        for (let i = 0; i < matrix.array[0].length; i++) {
+        for (let i = 0; i &lt; matrix.array[0].length; i++) {
             let input = this.rows[iRow].childNodes[i].childNodes[0];
             input.value = matrix.array[iRow][i].stringify();
         }
@@ -226,9 +254,9 @@ export class Table {
     getData() {
         console.log("Getting data");
         let data = [];
-        for (let i = 0; i < this.rows.length; i++) {
+        for (let i = 0; i &lt; this.rows.length; i++) {
             let row = [];
-            for (let j = 0; j < this.nColumns; j++) {
+            for (let j = 0; j &lt; this.nColumns; j++) {
                 let input = this.rows[i].childNodes[j].childNodes[0];
                 let val = input.value;
                 val = stringToFraction(val);
@@ -246,8 +274,8 @@ export class Table {
      */
 
     disableInput() {
-        for (let i = 0; i < this.rows.length; i++) {
-            for (let j = 0; j < this.nColumns; j++) {
+        for (let i = 0; i &lt; this.rows.length; i++) {
+            for (let j = 0; j &lt; this.nColumns; j++) {
                 let input = this.rows[i].childNodes[j].childNodes[0];
                 input.disabled = true;
             }
@@ -259,8 +287,8 @@ export class Table {
  */
 
     enableInput() {
-        for (let i = 0; i < this.rows.length; i++) {
-            for (let j = 0; j < this.nColumns; j++) {
+        for (let i = 0; i &lt; this.rows.length; i++) {
+            for (let j = 0; j &lt; this.nColumns; j++) {
                 let input = this.rows[i].childNodes[j].childNodes[0];
                 input.disabled = false;
             }
@@ -272,8 +300,8 @@ export class Table {
     */
     toDecimal() {
         console.log("Converting to decimal");
-        for (let i = 0; i < this.rows.length; i++) {
-            for (let j = 0; j < this.nColumns; j++) {
+        for (let i = 0; i &lt; this.rows.length; i++) {
+            for (let j = 0; j &lt; this.nColumns; j++) {
                 let input = this.rows[i].childNodes[j].childNodes[0];
                 let val = input.value;
                 val = stringToFraction(val);
@@ -287,8 +315,8 @@ export class Table {
      */
 
     toFraction() {
-        for (let i = 0; i < this.rows.length; i++) {
-            for (let j = 0; j < this.nColumns; j++) {
+        for (let i = 0; i &lt; this.rows.length; i++) {
+            for (let j = 0; j &lt; this.nColumns; j++) {
                 let input = this.rows[i].childNodes[j].childNodes[0];
                 let val = input.value;
                 val = stringToFraction(val);
@@ -297,3 +325,26 @@ export class Table {
         }
     }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Fraction.html">Fraction</a></li><li><a href="Matrix.html">Matrix</a></li><li><a href="Table.html">Table</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Feb 25 2023 23:43:59 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

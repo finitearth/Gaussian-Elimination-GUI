@@ -34,13 +34,23 @@ function removeTable() {
         .removeChild(document.getElementById("table").lastChild);
 }
 
-let operators = {
+const operators = {
     "+": (a, b) => a.add(b),
     "-": (a, b) => a.sub(b),
     "*": (a, b) => a.mul(b),
 };
 
 function calculate(equationString) {
+    // check that only allowed characters are used (a-z and +, -, *), also check no operands and operators come twice after each other.
+    if (
+        !equationString.match(/^[a-z\+\-\*]+$/i) ||
+        equationString.match(/[a-z]{2,}/i) ||
+        equationString.match(/[\+\-\*]{2,}/i)
+    ) {
+        throw new InvalidInputException();
+    }
+
+
     // Remove all spaces
     equationString = equationString.replace(/\s/g, "");
 
@@ -55,6 +65,10 @@ function calculate(equationString) {
         if (equation[i].length == 1 && equation[i].match(/[A-Z]/i)) {
             let index = equation[i].charCodeAt(0) - 65;
             equation[i] = tables[index].getData();
+        }
+        // if number
+        else if (equation[i].match(/[0-9]/i)) {
+            equation[i] = new Fraction(Number(equation[i]), 1);
         }
     }
 
@@ -106,19 +120,28 @@ function calculate(equationString) {
     return evaluate(equation);
 }
 
-
 let tables = [];
 for (let i = 0; i < 2; i++) {
     addTable();
 }
 
+let resultTable = new Table("resultTable", false);
+resultTable.disableInput();
+document.getElementById("resultTable").appendChild(resultTable.tableContainer);
+
 document
     .getElementById("calculateButton")
     .addEventListener("click", function () {
         let equation = document.getElementById("equationInput").value;
-        let result = calculate(equation);
-        result = result.stringify();
-        document.getElementById("result").innerHTML = result;
+        try {
+            let result = calculate(equation);
+            // result = result.stringify();
+            // document.getElementById("result").innerHTML = result;
+            resultTable.setData(result);
+        } catch (e) {
+            // throw e
+            alert(e);
+        }
     });
 
 document.getElementById("addTableButton").addEventListener("click", addTable);

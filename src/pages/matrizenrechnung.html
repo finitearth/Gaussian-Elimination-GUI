@@ -7,14 +7,14 @@
         <link rel="stylesheet" href="../style/style.css" type="text/css" />
         <link rel="icon" href="../images/icon_logo.png" />
     </head>
-    
+
     <body>
         <nav id="navbar"></nav>
         <header>
             <h1>Matrizenrechnungen</h1>
+            <button id="help" class="button-help">Hilfe</button>
         </header>
-        <button id="help" class="button-help">Hilfe</button>
-        
+
         <main>
             <div class="page-divider size-50">
                 <div class="overflow">
@@ -29,6 +29,7 @@
                 <div id="equation">
                     <input id="equationInput" type="text" />
                     <button id="calculateButton">Berechnen</button>
+                    <div id="resultTable"></div>
                 </div>
                 <div id="result"></div>
             </div>
@@ -36,15 +37,14 @@
         <footer>
             <div class="impressum">
                 <a
-                class="impressum-text"
-                ,
-                href="http://www.kirchbergnet.de/impressum.php"
-                >Impressum</a
+                    class="impressum-text"
+                    ,
+                    href="http://www.kirchbergnet.de/impressum.php"
+                    >Impressum</a
                 >
             </div>
         </footer>
     </body>
     <script src="../js/navbar.js"></script>
     <script src="../js/matrizenrechnung.js" type="module"></script>
-    </html>
-    
+</html>
