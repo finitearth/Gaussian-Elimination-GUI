@@ -327,3 +327,10 @@ button:active {
     height: 27.5em;
     overflow: auto;
 }
+
+.wrapper{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    place-items: center;
+    width: 100%;
+}
