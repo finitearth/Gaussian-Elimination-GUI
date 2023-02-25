@@ -1,15 +1,13 @@
 window.onload = function () {
-    let currentPage = location.pathname.split("/").slice(-1);
-    // document.getElementById('navbar').innerHTML =
-    createHTMLForNavbar(currentPage);
+    let currentPage = location.pathname.split("/").slice(-1)[0].replace(".html", "");
+    createHTMLForNavbar();
 
-    currentPage = currentPage[0].replace(".html", "");
+    // currentPage = ;
     currentPage = document.getElementById(currentPage);
     currentPage.style.color = "white";
 };
 
-function createHTMLForNavbar(page) {
-
+function createHTMLForNavbar() {
     let navbar = document.getElementById("navbar");
     // let navbarInner = document.createElement('div');
     navbar.classList.add("nav");

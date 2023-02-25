@@ -1,15 +1,18 @@
 import { Fraction } from "./fraction.js";
 
+/**
+ * Class for a matrix consisting of a 2-dimensional array of Fraction objects.
+ * @class
+ * @param {Array<Array<Fraction>>} array - A 2-dimensional array of Fraction objects representing the matrix.
+ * @property {Array<Array<Fraction>>} array - The 2-dimensional array representing the matrix.
+ * @property {number} nRows - The number of rows in the matrix.
+ * @property {number} nColumns - The number of columns in the matrix.
+ */
 export class Matrix {
     /**
-     * Class for a matrix consisting of a 2-dimensional array of Fraction objects.
-     * @class
-     * @param {Array<Array<Fraction>>} array - A 2-dimensional array of Fraction objects representing the matrix.
-     * @property {Array<Array<Fraction>>} array - The 2-dimensional array representing the matrix.
-     * @property {number} nRows - The number of rows in the matrix.
-     * @property {number} nColumns - The number of columns in the matrix.
+     * Constructs a matrix
+     * @param {Array<Array<Fraction>>} array 2-d array of fraction objects representing the matrix.
      */
-
     constructor(array) {
         this.array = array;
         this.nRows = array.length;
@@ -18,6 +21,8 @@ export class Matrix {
 
     /**
      * Returns the Fraction object at the specified row and column indices in the matrix.
+     * @memberof Matrix
+     * @method getCell
      * @param {number} rowIndex - The index of the row containing the desired Fraction object.
      * @param {number} colIndex - The index of the column containing the desired Fraction object.
      * @returns {Fraction} The Fraction object at the specified row and column indices in the matrix.
@@ -310,3 +315,7 @@ export class Matrix {
         return string;
     }
 }
+
+// module.exports = {
+//     Matrix
+// };
