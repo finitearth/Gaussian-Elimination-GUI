@@ -59,3 +59,49 @@ export function getUnitMatrix(n) {
     }
     return new Matrix(matrix);
 }
+
+export function addKeyDownListener(tables, nextTableToTheRight=false) {
+    let tableIds = tables.map(table => String(table.id));
+
+    document.addEventListener("keydown", function (e) {
+        let activeCellId = document.activeElement.id;
+        let row = 0;
+        let column = 0;
+        let tableId = 0;
+        let tableIdx = 0;
+        
+        if (activeCellId !== "") {
+            tableId = activeCellId.split("-")[0];
+            tableIdx = tableIds.indexOf(tableId);
+            row = Number(activeCellId.split("-")[1]);
+            column = Number(activeCellId.split("-")[2]);
+        }
+    
+        if        (e.code == "ArrowUp" && row > 0) {
+            row -= 1;
+        } else if (e.code == "ArrowDown" && row < tables[0].rows.length - 1) {
+            row += 1;
+        } else if (e.code == "ArrowLeft" && column > 0) {
+            column -= 1;
+        } else if (e.code == "ArrowRight" && column < tables[0].nColumns - 1) {
+            column += 1;
+
+        } else if (e.code == "ArrowUp" && tableIdx > 0 && !nextTableToTheRight) {
+            tableId -= 1;
+            row = tables[tableIdx].rows.length - 1;
+        } else if (e.code == "ArrowDown" && tableIdx < tables.length - 1 && !nextTableToTheRight) {
+            tableIdx += 1;
+            row = 0;
+        } else if (e.code == "ArrowLeft" && tableIdx > 0 && nextTableToTheRight) {
+            tableIdx -= 1;
+            column = tables[tableId].nColumns - 1;
+        } else if (e.code == "ArrowRight" && tableIdx < tables.length - 1 && nextTableToTheRight) {
+            tableIdx += 1;
+            column = 0;
+        } else {
+            return;
+        }
+        tableId = tableIds[tableIdx];
+        document.getElementById(`${tableId}-${row}-${column}`).focus();
+    });
+}

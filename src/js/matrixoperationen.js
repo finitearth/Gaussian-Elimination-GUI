@@ -1,6 +1,7 @@
 import { Table } from "./table.js";
 import { gaussElimination } from "./gaussalgorithm.js";
 import { getUnitMatrix } from "./utils.js";
+import { addKeyDownListener } from "./utils.js";
 
 var nRows = 3;
 var nCols = 3;
@@ -73,35 +74,36 @@ inputTable.tableContainer.children[1].children[3].onclick = function () {
     document.getElementById("nr-cols").value = String(inputTable.nColumns);
 }
 
+addKeyDownListener([inputTable], true);
 
-document.addEventListener("keydown", function (e) {
-    let activeCellId = document.activeElement.id;
-    console.log(activeCellId);
-    let row;
-    let column;
-    let tableId;
+// document.addEventListener("keydown", function (e) {
+//     let activeCellId = document.activeElement.id;
+//     console.log(activeCellId);
+//     let row;
+//     let column;
+//     let tableId;
 
-    if (activeCellId == "") {
-        tableId = inputTable.id;
-        row = 0;
-        column = 0;
-    } else {
-        tableId = Number(activeCellId.split("-")[0]);
-        row = Number(activeCellId.split("-")[1]);
-        column = Number(activeCellId.split("-")[2]);
-    }
+//     if (activeCellId == "") {
+//         tableId = inputTable.id;
+//         row = 0;
+//         column = 0;
+//     } else {
+//         tableId = Number(activeCellId.split("-")[0]);
+//         row = Number(activeCellId.split("-")[1]);
+//         column = Number(activeCellId.split("-")[2]);
+//     }
 
-    if (e.code == "ArrowUp" && row > 0) {
-        row -= 1;
-    } else if (e.code == "ArrowDown" && row < inputTable.nRows - 1) {
-        row += 1;
-    } else if (e.code == "ArrowLeft" && column > 0) {
-        column -= 1;
-    } else if (e.code == "ArrowRight" && column < inputTable.nColumns - 1) {
-        column += 1;
-    }
+//     if (e.code == "ArrowUp" && row > 0) {
+//         row -= 1;
+//     } else if (e.code == "ArrowDown" && row < inputTable.nRows - 1) {
+//         row += 1;
+//     } else if (e.code == "ArrowLeft" && column > 0) {
+//         column -= 1;
+//     } else if (e.code == "ArrowRight" && column < inputTable.nColumns - 1) {
+//         column += 1;
+//     }
 
-    document.getElementById(`${tableId}-${row}-${column}`).focus();
-});
+//     document.getElementById(`${tableId}-${row}-${column}`).focus();
+// });
 
 

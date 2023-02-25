@@ -1,5 +1,6 @@
 import { Table } from "./table.js";
 import { Fraction } from "./fraction.js";
+import { addKeyDownListener } from "./utils.js";
 
 function addTable() {
     if (tables.length > 25) {
@@ -195,6 +196,7 @@ let tables = [];
 for (let i = 0; i < 2; i++) {
     addTable();
 }
+addKeyDownListener(tables);
 
 let equationInput = document.createElement("input");
 equationInput.id = "equationInput";
@@ -210,35 +212,3 @@ calculateButton.addEventListener("click", function () {
 });
 document.getElementById("equation").appendChild(calculateButton);
 
-document.addEventListener("keydown", function (e) {
-    let activeCellId = document.activeElement.id;
-    let row = 0;
-    let column = 0;
-    let tableId = 0;
-
-    if (activeCellId !== "") {
-        tableId = Number(activeCellId.split("-")[0]);
-        row = Number(activeCellId.split("-")[1]);
-        column = Number(activeCellId.split("-")[2]);
-    }
-
-    if (e.code == "ArrowUp" && row > 0) {
-        row -= 1;
-    } else if (e.code == "ArrowUp" && tableId > 0) {
-        tableId -= 1;
-        row = tables[tableId].rows.length - 1;
-    } else if (e.code == "ArrowDown" && row < tables[0].rows.length - 1) {
-        row += 1;
-    } else if (e.code == "ArrowDown" && tableId < tables.length - 1) {
-        tableId += 1;
-        row = 0;
-    } else if (e.code == "ArrowLeft" && column > 0) {
-        column -= 1;
-    } else if (e.code == "ArrowRight" && column < tables[0].nColumns - 1) {
-        column += 1;
-    } else {
-        return;
-    }
-
-    document.getElementById(`${tableId}-${row}-${column}`).focus();
-});
