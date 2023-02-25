@@ -1,6 +1,7 @@
 import { Table } from "./table.js";
 import { Fraction } from "./fraction.js";
 import { addKeyDownListener } from "./utils.js";
+import { InvalidInputException } from "./exceptions.js";
 
 function addTable() {
     if (tables.length > 25) {
@@ -33,182 +34,95 @@ function removeTable() {
         .removeChild(document.getElementById("table").lastChild);
 }
 
+let operators = {
+    "+": (a, b) => a.add(b),
+    "-": (a, b) => a.sub(b),
+    "*": (a, b) => a.mul(b),
+};
+
 function calculate(equationString) {
-    var stack = [];
-    var operatorStack = [];
+    // Remove all spaces
+    equationString = equationString.replace(/\s/g, "");
 
-    var context = function (varName) {
-        // check type; Number (0 to 9) or Character (A-Z)?
-        if (varName.charCodeAt(0) >= 48 && varName.charCodeAt(0) <= 57) {
-            return new Fraction(parseInt(varName), 1);
-        } else {
-            var table = tables[varName.charCodeAt(0) - 65];
-            return table.getData();
+    // Split equationString into array of strings
+    let equation = equationString.split(/([A-Z])/);
+
+    // Remove empty strings
+    equation = equation.filter(element => element != "");
+
+    // Replace letters with matrices
+    for (let i = 0; i < equation.length; i++) {
+        if (equation[i].length == 1 && equation[i].match(/[A-Z]/i)) {
+            let index = equation[i].charCodeAt(0) - 65;
+            equation[i] = tables[index].getData();
         }
-    };
-
-    var operator = {
-        "+": function (a, b) {
-            return a.add(b);
-        },
-        "-": function (a, b) {
-            return a.add(b.mul(new Fraction(-1, 1)));
-        },
-        "*": function (a, b) {
-            return a.mul(b);
-        },
-        "/": function (a, b) {
-            return a.divide(b);
-        },
-    };
-
-    equationString = orderOperations(equationString);
-
-    equationString.split("").forEach(token => {
-        switch (token) {
-            case "+":
-            case "-":
-            case "*":
-            case "/":
-                while (
-                    operatorStack.length &&
-                    ["+", "-", "*", "/"].indexOf(
-                        operatorStack[operatorStack.length - 1]
-                    ) >= 0
-                ) {
-                    var op = operatorStack.pop();
-                    var b = stack.pop();
-                    var a = stack.pop();
-                    stack.push(operator[op](a, b));
-                }
-                operatorStack.push(token);
-                break;
-            default:
-                stack.push(context(token));
-        }
-    });
-
-    while (operatorStack.length) {
-        var op = operatorStack.pop();
-        var b = stack.pop();
-        var a = stack.pop();
-        stack.push(operator[op](a, b));
     }
 
-    return stack.pop();
-}
-
-function orderOperations(equationString) {
-    const output = [];
-    const operatorStack = [];
-
-    equationString.split("").forEach(token => {
-        switch (token) {
-            case "(":
-                operatorStack.push(token);
-                break;
-            case ")":
-                while (operatorStack[operatorStack.length - 1] !== "(") {
-                    output.push(operatorStack.pop());
-                }
-                operatorStack.pop();
-                break;
-            case "+":
-            case "-":
-                while (
-                    operatorStack.length &&
-                    ["*", "/"].indexOf(
-                        operatorStack[operatorStack.length - 1]
-                    ) >= 0
-                ) {
-                    output.push(operatorStack.pop());
-                }
-                operatorStack.push(token);
-                break;
-            case "*":
-            case "/":
-                while (
-                    operatorStack.length &&
-                    ["*", "/"].indexOf(
-                        operatorStack[operatorStack.length - 1]
-                    ) >= 0
-                ) {
-                    output.push(operatorStack.pop());
-                }
-                operatorStack.push(token);
-                break;
-            default:
-                if (!isNaN(token) || /[A-Z]/.test(token)) {
-                    output.push(token);
-                } else {
-                    const subEquation = extractSubEquation(
-                        equationString,
-                        token
-                    );
-                    output.push(orderOperations(subEquation));
-                }
+    // Evaluate the equation using operator precedence and grouping
+    function evaluate(equation) {
+        // Handle grouping: find innermost parentheses and evaluate them first
+        let openParenIndex = equation.lastIndexOf("(");
+        if (openParenIndex != -1) {
+            let closeParenIndex = equation.indexOf(")", openParenIndex);
+            let groupResult = evaluate(
+                equation.slice(openParenIndex + 1, closeParenIndex)
+            );
+            equation.splice(
+                openParenIndex,
+                closeParenIndex - openParenIndex + 1,
+                groupResult
+            );
         }
-    });
 
-    while (operatorStack.length) {
-        output.push(operatorStack.pop());
-    }
-
-    return output.join("");
-}
-
-function extractSubEquation(equationString, startIndex) {
-    let openParenCount = 0;
-    let endIndex = startIndex;
-
-    while (endIndex < equationString.length) {
-        const char = equationString[endIndex];
-        if (char === "(") {
-            openParenCount++;
-        } else if (char === ")") {
-            openParenCount--;
-            if (openParenCount === 0) {
-                break;
+        // Handle operator precedence: evaluate multiplication and division first
+        for (let i = 1; i < equation.length - 1; i += 2) {
+            if (equation[i] == "*" || equation[i] == "/") {
+                let opResult = operators[equation[i]](
+                    equation[i - 1],
+                    equation[i + 1]
+                );
+                equation.splice(i - 1, 3, opResult);
+                i -= 2;
             }
         }
-        endIndex++;
+
+        // Handle operator precedence: evaluate addition and subtraction last
+        for (let i = 1; i < equation.length - 1; i += 2) {
+            if (equation[i] == "+" || equation[i] == "-") {
+                let opResult = operators[equation[i]](
+                    equation[i - 1],
+                    equation[i + 1]
+                );
+                equation.splice(i - 1, 3, opResult);
+                i -= 2;
+            }
+        }
+
+        // Return the final result
+        return equation[0];
     }
 
-    return equationString.slice(startIndex + 1, endIndex);
+    // Evaluate the equation and return the result
+    return evaluate(equation);
 }
 
-let addTableButton = document.createElement("button");
-addTableButton.innerHTML = "Neue Matrix";
-document.getElementById("table").appendChild(addTableButton);
-addTableButton.addEventListener("click", function () {
-    addTable();
-});
-
-// remove table
-let removeTableButton = document.createElement("button");
-removeTableButton.innerHTML = "Matrix entfernen";
-document.getElementById("table").appendChild(removeTableButton);
-removeTableButton.addEventListener("click", function () {
-    removeTable();
-});
 
 let tables = [];
 for (let i = 0; i < 2; i++) {
     addTable();
 }
+
+document
+    .getElementById("calculateButton")
+    .addEventListener("click", function () {
+        let equation = document.getElementById("equationInput").value;
+        let result = calculate(equation);
+        result = result.stringify();
+        document.getElementById("result").innerHTML = result;
+    });
+
+document.getElementById("addTableButton").addEventListener("click", addTable);
+document
+    .getElementById("removeTableButton")
+    .addEventListener("click", removeTable);
 addKeyDownListener(tables);
-
-let equationInput = document.createElement("input");
-equationInput.id = "equationInput";
-document.getElementById("equation").appendChild(equationInput);
-
-let calculateButton = document.createElement("button");
-calculateButton.innerHTML = "Berechne";
-calculateButton.addEventListener("click", function () {
-    let equation = document.getElementById("equationInput").value;
-    let result = calculate(equation);
-    result = result.stringify();
-    document.getElementById("result").innerHTML = result;
-});
-document.getElementById("equation").appendChild(calculateButton);
-

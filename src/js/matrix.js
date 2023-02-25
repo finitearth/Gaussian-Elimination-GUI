@@ -48,6 +48,14 @@ export class Matrix {
     }
 
     /**
+     * Subs the value
+     */
+    sub(otherMatrix) {
+        otherMatrix = otherMatrix.mul(new Fraction(-1, 1));
+        return this.add(otherMatrix);
+    }
+
+    /**
      * Multiplies this matrix by the input value, which can be either a scalar value represented as a Fraction or a Matrix object.
      * If the input is a scalar value, the function returns a new Matrix object where each cell is multiplied by the scalar value.
      * If the input is a Matrix object, the function returns a new Matrix object that is the product of the two matrices.
