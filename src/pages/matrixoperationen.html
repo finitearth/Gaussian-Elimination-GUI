@@ -17,8 +17,22 @@
         </header>
 
         <main>
-            <div class="page-divider align-center">
-                <div id="input_matrix"></div>
+            <div class="page-divider">
+                <div class ="wrapper">
+                    <div class="left">
+                        <table>
+                            <tr>
+                                <td><label for="nr-rows">Anzahl Zeilen:</label></td>
+                                <td><input type="number" id="nr-rows" min="2" max="9" value="3"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="nr-cols">Anzahl Spalten:</label></td>
+                                <td><input type="number" id="nr-cols" min="2" max="9" value="3"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="input_matrix" class="input-matrix"></div>
+                </div>
             </div>
             <div class="container-button">
                 <button id="button_inverse" class="button-operations">M⁻¹</button>

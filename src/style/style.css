@@ -16,9 +16,8 @@ body{
 }
 
 main {
-    padding: 0 2em;
-    margin-top: 3.5em;
-    padding-bottom: 1em;
+    padding: 3.5em 2em 1em 2em;
+    
 }
 
 footer {
@@ -71,8 +70,12 @@ ol {
     background: #fff;
     box-shadow: 0 4px 8px rgba(19,41,104,.1);
     border-radius: 8px;
-    margin-bottom: 24px;
+    margin-bottom: 2em;
     padding: 2em;
+}
+
+.size-50{
+    height: 50%;
 }
 
 /* Start Page */
@@ -81,9 +84,8 @@ ol {
     width: 40%;
     min-width: 17.5em;
     top: 25%;
-    height: 50%;
-    min-height: 30em;
-    position: absolute;
+    min-height: 20em;
+    position: relative;
     margin-left: 3em;
     padding: 2em;
     z-index: 1;
@@ -96,23 +98,23 @@ ol {
 
 .header-start {
     position: fixed;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     top: 0;
     left: 0;
     width: 100%;
     height: 50%;
     background-color: rgb(52, 58, 64);
     box-shadow: 0px -24px 20px 26px rgba(19,41,104,.4);
-    margin-bottom: 10px;
     z-index: -1;
 }
 
 .page-links {
     list-style-type: none;
+    padding: 0;
 }
 
 .page-link {
-    margin: 1em;
+    margin: 1em 0;
 }
 
 .page-link-element {
@@ -121,7 +123,6 @@ ol {
     font-size: 14pt;
     border: none;
     border-radius: 5px;
-    margin: 1em;
     padding: 0.5em;
     width: 10.5em;
     display: block;
@@ -142,13 +143,22 @@ ol {
     text-align: right;
 }
 
+.logo-img {
+    float: right;
+    margin: 3%;
+    margin-top: max(2em, 3%);
+    width: 35%;
+    height: auto;
+    position: relative;
+    z-index: 99;
+}
+
 /* Layout */
 
 header{
     left: 0;
     top: 5em;
     position: relative;
-
     padding: 0 0 2em 2em;
     z-index: -1;
 } 
@@ -236,15 +246,6 @@ button:active {
     margin-bottom: 15%;
 }
 
-.logo-img {
-    float: right;
-    margin: 3%;
-    margin-top: max(2em, 3%);
-    width: 40%;
-    height: auto;
-    width: auto\9; /* ie8 */
-    z-index: 3;
-}
 
 .container-button {
     padding: 20px;
@@ -264,10 +265,6 @@ button:active {
 }
 
 .table-button {
-    background-color: rgb(101, 163, 217);
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 5px;
     height: 20px;
     width: 40px;
     margin: 5px;
@@ -319,7 +316,7 @@ button:active {
 }
 
 .overflow {
-    height: 27.5em;
+    height: 25em;
     overflow: auto;
     border: 1px solid #EEE;
     border-radius: 5px;
@@ -327,6 +324,13 @@ button:active {
 }
 
 .help-container {
-    height: 40em;
+    height: 27.5em;
     overflow: auto;
+}
+
+.wrapper{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    place-items: center;
+    width: 100%;
 }
