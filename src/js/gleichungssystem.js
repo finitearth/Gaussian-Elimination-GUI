@@ -55,4 +55,3 @@ document
     });
 
 addKeyDownListener(tables, true);
-alert("Ti zu dem Mo, du machst mich frou, yo!");

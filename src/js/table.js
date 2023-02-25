@@ -4,18 +4,12 @@ import { Matrix } from "./matrix.js";
 import { Fraction } from "./fraction.js";
 
 /**
-
-    Represents a table object with functionality to add, remove rows and columns dynamically.
-
-    @class
-
-    @constructor
-
-    @param {string} id - The id of the table to be created.
-
-    @param {boolean} [showButtons=true] - Optional parameter to determine whether to display buttons to add/remove rows and columns.
-    */
-
+ *  Represents a table object with functionality to add, remove rows and columns dynamically.
+ * @class
+ * @constructor
+ * @param {string} id - The id of the table to be created.
+ * @param {boolean} [showButtons=true] - Optional parameter to determine whether to display buttons to add/remove rows and columns.
+ */
 export class Table {
     constructor(id, showButtons = true) {
         this.id = id;
@@ -242,7 +236,7 @@ export class Table {
     }
 
     /**
-    * Disables all input fields in the matrix table.
+     * Disables all input fields in the matrix table.
      */
 
     disableInput() {
@@ -255,8 +249,8 @@ export class Table {
     }
 
     /**
- * Enables all input fields in the matrix table.
- */
+     * Enables all input fields in the matrix table.
+     */
 
     enableInput() {
         for (let i = 0; i < this.rows.length; i++) {
@@ -269,7 +263,7 @@ export class Table {
 
     /**
      * Converts all the input values in the table to their decimal representation and updates the input fields with the new values.
-    */
+     */
     toDecimal() {
         console.log("Converting to decimal");
         for (let i = 0; i < this.rows.length; i++) {
@@ -285,7 +279,6 @@ export class Table {
     /**
      * Convert all values in the table to fractions and update the input fields.
      */
-
     toFraction() {
         for (let i = 0; i < this.rows.length; i++) {
             for (let j = 0; j < this.nColumns; j++) {

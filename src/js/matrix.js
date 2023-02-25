@@ -21,8 +21,6 @@ export class Matrix {
 
     /**
      * Returns the Fraction object at the specified row and column indices in the matrix.
-     * @memberof Matrix
-     * @method getCell
      * @param {number} rowIndex - The index of the row containing the desired Fraction object.
      * @param {number} colIndex - The index of the column containing the desired Fraction object.
      * @returns {Fraction} The Fraction object at the specified row and column indices in the matrix.
@@ -255,7 +253,6 @@ export class Matrix {
      Otherwise, the determinant is calculated as the sum of the products of the elements of the first row by the determinants of their corresponding submatrices.
      The sign of each product alternates depending on the sum of the indices of the row and column of the element.
      @returns {Fraction} The determinant of the matrix.
-     @throws {Error} If the matrix is not square.
      */
     getDeterminant() {
         if (this.nRows === 1 && this.nColumns === 1) {
