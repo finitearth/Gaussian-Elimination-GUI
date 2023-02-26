@@ -2,18 +2,35 @@ import { Table } from "./table.js";
 import { gaussElimination } from "./gaussalgorithm.js";
 import { addKeyDownListener } from "./utils.js";
 
-var tables = [];
-for (let i = 0; i < 3; i++) {
-    tables.push(new Table(tables.length, false));
-    document
-        .getElementById("table_element_" + tables.length)
-        .appendChild(tables[tables.length - 1].tableContainer);
+function createTable(id) {
+    let table = new Table(id, false);
+    document.getElementById(id).appendChild(table.tableContainer);
+    return table;
 }
 
-tables[2].disableInput();
+// create Tables
+let coefTable = createTable("coefTable");
+let solTable = createTable("solTable");
+let resultTable = createTable("resultTable");
+resultTable.disableInput();
+let tables = [coefTable, solTable, resultTable];
 
+// calc button
+document
+    .getElementById("calculateSolutionButton")
+    .addEventListener("click", function () {
+        try {
+            let coefMatrix = coefTable.getData();
+            let solMatrix = solTable.getData();
+            solMatrix = gaussElimination(coefMatrix, solMatrix);
+            resultTable.setData(solMatrix);
+        } catch (error) {
+            alert(error);
+        }
+    });
+    
 // number of rows
-document.getElementById("nr-eq").addEventListener("input", function (e) {
+document.getElementById("nr-eq").addEventListener("input", (e) => {
     let numberEquations = e.target.value;
     tables.forEach(table => {
         table.setNRows(numberEquations);
@@ -21,37 +38,24 @@ document.getElementById("nr-eq").addEventListener("input", function (e) {
 });
 
 // number of cols in coeff matrix
-document.getElementById("nr-var").addEventListener("input", function (e) {
+document.getElementById("nr-var").addEventListener("input", (e) => {
     let numberVariables = e.target.value;
-    tables[0].setNColumns(numberVariables);
+    coefTable.setNColumns(numberVariables);
 });
 
 // number of cols solution matrix
-document.getElementById("nr-b").addEventListener("input", function (e) {
+document.getElementById("nr-b").addEventListener("input", (e) => {
     let numberResultVectors = e.target.value;
-    tables[1].setNColumns(numberResultVectors);
-    tables[2].setNColumns(numberResultVectors);
+    solTable.setNColumns(numberResultVectors);
+    resultTable.setNColumns(numberResultVectors);
 });
 
-// calc button
-document
-    .getElementById("calculateSolutionButton")
-    .addEventListener("click", function () {
-        try {
-            let coefMatrix = tables[0].getData();
-            let solMatrix = tables[1].getData();
-            solMatrix = gaussElimination(coefMatrix, solMatrix);
-            tables[2].setData(solMatrix);
-        } catch (error) {
-            alert(error);
-        }
-    });
 
 // decimal conversion
 document
     .getElementById("convertToDecimal")
     .addEventListener("click", function () {
-        tables[2].toDecimal();
+        resultTable.toDecimal();
     });
 
 addKeyDownListener(tables, true);

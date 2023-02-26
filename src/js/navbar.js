@@ -1,15 +1,13 @@
 window.onload = function () {
-    let currentPage = location.pathname.split("/").slice(-1)[0].replace(".html", "");
+    let currentPage = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
     createHTMLForNavbar();
 
-    // currentPage = ;
     currentPage = document.getElementById(currentPage);
     currentPage.style.color = "white";
 };
 
 function createHTMLForNavbar() {
     let navbar = document.getElementById("navbar");
-    // let navbarInner = document.createElement('div');
     navbar.classList.add("nav");
     let navbarLogo = document.createElement("a");
     navbarLogo.href = "../index.html";
@@ -22,28 +20,23 @@ function createHTMLForNavbar() {
     navbarList.classList.add("nav-list");
     let navbarElements = [
         {
-            id: "matrizenrechnung",
-            href: `matrizenrechnung.html`,
+            ref: `matrizenrechnung.html`,
             text: "Matrizenrechnung",
         },
         {
-            id: "matrixoperationen",
-            href: `matrixoperationen.html`,
+            ref: `matrixoperationen.html`,
             text: "Matrixoperationen",
         },
         {
-            id: "gleichungssystem",
-            href: `gleichungssystem.html`,
+            ref: `gleichungssystem.html`,
             text: "GL-System",
         },
         {
-            id: "matrixinversion",
-            href: `matrixinversion.html`,
+            ref: `matrixinversion.html`,
             text: "Inversenberechnung",
         },
         {
-            id: "hilfe",
-            href: `hilfe.html`,
+            ref: `hilfe.html`,
             text: "Hilfe",
         },
     ];
@@ -53,8 +46,8 @@ function createHTMLForNavbar() {
         navbarElement.classList.add("nav-element");
         let navbarLink = document.createElement("a");
         navbarLink.classList.add("nav-link");
-        navbarLink.id = element.id;
-        navbarLink.href = element.href;
+        navbarLink.id = element.ref;
+        navbarLink.href = element.ref;
         navbarLink.innerHTML = element.text;
         navbarElement.appendChild(navbarLink);
         navbarList.appendChild(navbarElement);

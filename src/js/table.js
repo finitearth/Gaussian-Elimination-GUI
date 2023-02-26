@@ -218,7 +218,6 @@ export class Table {
      * @returns {Matrix} A Matrix object representing the data in the table.
      */
     getData() {
-        console.log("Getting data");
         let data = [];
         for (let i = 0; i < this.rows.length; i++) {
             let row = [];
@@ -231,7 +230,6 @@ export class Table {
             data.push(row);
         }
         data = new Matrix(data);
-        console.log(data);
         return data;
     }
 
@@ -265,7 +263,6 @@ export class Table {
      * Converts all the input values in the table to their decimal representation and updates the input fields with the new values.
      */
     toDecimal() {
-        console.log("Converting to decimal");
         for (let i = 0; i < this.rows.length; i++) {
             for (let j = 0; j < this.nColumns; j++) {
                 let input = this.rows[i].childNodes[j].childNodes[0];

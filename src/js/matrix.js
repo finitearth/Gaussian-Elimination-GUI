@@ -1,4 +1,5 @@
 import { Fraction } from "./fraction.js";
+import { NEGONE, ZERO } from "./utils.js";
 
 /**
  * Class for a matrix consisting of a 2-dimensional array of Fraction objects.
@@ -49,7 +50,7 @@ export class Matrix {
      * Subs the value
      */
     sub(otherMatrix) {
-        otherMatrix = otherMatrix.mul(new Fraction(-1, 1));
+        otherMatrix = otherMatrix.mul(NEGONE);
         return this.add(otherMatrix);
     }
 
@@ -116,7 +117,7 @@ export class Matrix {
         for (let i = 0; i < this.nRows; i++) {
             newArray[i] = [];
             for (let j = 0; j < other.nColumns; j++) {
-                let c = new Fraction(0, 1);
+                let c = ZERO;
                 for (let k = 0; k < this.nColumns; k++) {
                     c = c.add(this.array[i][k].mul(other.array[k][j]));
                 }
@@ -250,8 +251,8 @@ export class Matrix {
     /**
      Computes the determinant of the matrix recursively.
      If the matrix has dimensions 1x1, then the determinant is simply the only element of the matrix.
-     Otherwise, the determinant is calculated as the sum of the products of the elements of the first row by the determinants of their corresponding submatrices.
-     The sign of each product alternates depending on the sum of the indices of the row and column of the element.
+     Otherwise, the determinant is calculated as the sum of the products of the elements of the first row by the determinants
+      of their corresponding submatrices. The sign of each product alternates depending on the sum of the indices of the row and column of the element.
      @returns {Fraction} The determinant of the matrix.
      */
     getDeterminant() {
@@ -259,7 +260,7 @@ export class Matrix {
             return this.getCell(0, 0);
         }
 
-        let determinant = new Fraction(0, 1);
+        let determinant = ZERO;
         let i = 0;
         for (let j = 0; j < this.nColumns; j++) {
             let sign = (i + j) % 2 == 0 ? 1 : -1;
@@ -320,7 +321,3 @@ export class Matrix {
         return string;
     }
 }
-
-// module.exports = {
-//     Matrix
-// };

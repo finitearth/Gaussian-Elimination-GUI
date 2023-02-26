@@ -149,3 +149,5 @@ function calculate() {
 }
 
 addKeyDownListener(tables, true);
+
+alert("Eyo Nicky, ich hab mal in deinem Code rumgepfuscht, ich hoffe das geht soweit klar:* (Späßle häßle hahahah)")

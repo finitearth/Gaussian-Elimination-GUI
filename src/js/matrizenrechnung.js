@@ -3,37 +3,6 @@ import { Fraction } from "./fraction.js";
 import { addKeyDownListener } from "./utils.js";
 import { InvalidInputException } from "./exceptions.js";
 
-function addTable() {
-    if (tables.length > 25) {
-        return;
-    }
-    let table = new Table(tables.length);
-    tables.push(table);
-
-    let header = document.createElement("h2");
-    let ithLetter = String.fromCharCode(64 + tables.length);
-    header.innerHTML = `${ithLetter} =`;
-
-    document.getElementById("table").appendChild(header);
-    document
-        .getElementById("table")
-        .appendChild(tables[tables.length - 1].tableContainer);
-}
-
-function removeTable() {
-    if (tables.length <= 2) {
-        return;
-    }
-
-    tables.pop();
-    document
-        .getElementById("table")
-        .removeChild(document.getElementById("table").lastChild);
-    document
-        .getElementById("table")
-        .removeChild(document.getElementById("table").lastChild);
-}
-
 const operators = {
     "+": (a, b) => a.add(b),
     "-": (a, b) => a.sub(b),
@@ -47,9 +16,9 @@ const operators = {
     @returns {Fraction|Matrix} The result of the evaluation as a Fraction or a Matrix.
     */
 function calculate(equationString) {
-    // check that only allowed characters are used (a-z and +, -, *), also check no operands and operators come twice after each other.
+    // check that only allowed characters are used (a-z, 0-9 and +, -, *), also check no operands and operators come twice after each other.
     if (
-        !equationString.match(/^[a-z\+\-\*]+$/i) ||
+        !equationString.match(/^[a-z0-9\+\-\*\(\)\s]*$/i) ||
         equationString.match(/[a-z]{2,}/i) ||
         equationString.match(/[\+\-\*]{2,}/i)
     ) {
@@ -65,7 +34,7 @@ function calculate(equationString) {
     // Remove empty strings
     equation = equation.filter(element => element != "");
 
-    // Replace letters with matrices
+    // Replace letters with matrices, but if numeral, convert to fraction
     for (let i = 0; i < equation.length; i++) {
         if (equation[i].length == 1 && equation[i].match(/[A-Z]/i)) {
             let index = equation[i].charCodeAt(0) - 65;
@@ -117,13 +86,43 @@ function calculate(equationString) {
             }
         }
 
-        // Return the final result
         return equation[0];
     }
 
-    // Evaluate the equation and return the result
     return evaluate(equation);
 }
+
+function addTable() {
+    if (tables.length > 25) {
+        return;
+    }
+    let table = new Table(tables.length);
+    tables.push(table);
+
+    let header = document.createElement("h2");
+    let ithLetter = String.fromCharCode(64 + tables.length);
+    header.innerHTML = `${ithLetter} =`;
+
+    document.getElementById("table").appendChild(header);
+    document
+        .getElementById("table")
+        .appendChild(tables[tables.length - 1].tableContainer);
+}
+
+function removeTable() {
+    if (tables.length <= 2) {
+        return;
+    }
+
+    tables.pop();
+    document
+        .getElementById("table")
+        .removeChild(document.getElementById("table").lastChild);
+    document
+        .getElementById("table")
+        .removeChild(document.getElementById("table").lastChild);
+}
+
 
 let tables = [];
 for (let i = 0; i < 2; i++) {
@@ -140,8 +139,6 @@ document
         let equation = document.getElementById("equationInput").value;
         try {
             let result = calculate(equation);
-            // result = result.stringify();
-            // document.getElementById("result").innerHTML = result;
             resultTable.setData(result);
         } catch (e) {
             // throw e

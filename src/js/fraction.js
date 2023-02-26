@@ -198,7 +198,3 @@ export class Fraction {
         return this.numerator / this.denominator;
     }
 }
-
-// module.exports = {
-//     Fraction
-// };
