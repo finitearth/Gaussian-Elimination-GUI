@@ -128,7 +128,7 @@ export class RowOperation {
             }
 
             let matrixCopy = matrix.clone();
-            const firstRow = matrixCopy.getRow(document.getElementById(this.rowDropdownID).value-1);
+            const firstRow = matrixCopy.getRow(this.id.substr(9));
     
             if (document.getElementById(this.thirdOperatorDropdownID).value === "*") {
                 matrix = matrix.multiplyRowByScalar((document.getElementById(this.rowDropdownID).value - 1), stringToFraction(this.secondTextFieldValue));

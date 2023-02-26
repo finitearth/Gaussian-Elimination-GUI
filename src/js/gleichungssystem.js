@@ -1,8 +1,10 @@
 import { Table } from "./table.js";
 import { gaussElimination } from "./gaussalgorithm.js";
 import { addKeyDownListener } from "./utils.js";
-import { generateMatrix } from "./generateExercise.js";
+import { generateMatrix } from "./generateExercise.js"; 
 import { getUnitMatrix } from "./utils.js";
+import { addCombobox } from "./utils.js";
+import { adaptComboboxes } from "./utils.js";
 
 function createTable(id) {
     let table = new Table(id, false);
@@ -24,6 +26,13 @@ resSolTable.setNColumns(1, true);
 resSolTable.disableInput();
 
 let tables = [coefTable, solTable, resCoefTable, resSolTable];
+
+let rowOperations = []; 
+
+// creating initial comboboxes
+for ( let i = 0; i < coefTable.rows.length; i++ ){
+    rowOperations = addCombobox(("combobox_"+i), rowOperations, coefTable);
+}
 
 // calc button
 document
@@ -47,6 +56,7 @@ document.getElementById("nr-eq").addEventListener("input", e => {
     let numberEquations = e.target.value;
     tables.forEach(table => {
         table.setNRows(numberEquations);
+        rowOperations = adaptComboboxes(rowOperations, coefTable, numberEquations);
     });
 });
 

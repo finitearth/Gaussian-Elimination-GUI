@@ -4,6 +4,9 @@ import { RowOperation } from "./rowoperation.js";
 import { gaussElimination } from "./gaussalgorithm.js";
 import { getUnitMatrix } from "./utils.js";
 import { addKeyDownListener } from "./utils.js";
+import { addCombobox } from "./utils.js";
+import { removeCombobox } from "./utils.js";
+
 var dimension = 3;
 
 document
@@ -17,18 +20,19 @@ function modifyDimension(e) {
             tables[i].removeColumn();
         }
         
-        removeCombobox(dimension);
+        RowOperations = removeCombobox(dimension, RowOperations);
     } else if (e.target.value > dimension) {
         for (let i = 0; i < tables.length; i++) {
             tables[i].addRow();
             tables[i].addColumn();
         }
 
-        addCombobox("combobox_" + (e.target.value - 1));
+        RowOperations = addCombobox(("combobox_" + (e.target.value - 1)), RowOperations, tables[0]);
     }
 
     dimension = e.target.value;
     tables[1].setData(getUnitMatrix(dimension));
+    // tables[3].setData(getUnitMatrix(dimension));
 }
 
 function updateRowOperations() {
@@ -42,22 +46,7 @@ function addTable() {
         .appendChild(tables[tables.length - 1].tableContainer);
 }
 
-function addCombobox(id) {
-    RowOperations.push(new RowOperation(id, tables[0]));
 
-    const table_element = document.createElement("th");
-    table_element.id = "Operation";
-
-    document.getElementById("table_row").appendChild(table_element);
-    document
-        .getElementById("Operation")
-        .appendChild(RowOperations[RowOperations.length - 1].comboBoxElement);
-}
-
-function removeCombobox(id) {
-    document.getElementById("combobox_" + (id - 1)).remove();
-    RowOperations.pop();
-}
 
 let tables = [];
 for (let i = 0; i < 2; i++) {
@@ -66,7 +55,7 @@ for (let i = 0; i < 2; i++) {
 
 let RowOperations = [];
 for (let i = 0; i < 3; i++) {
-    addCombobox("combobox_" + i);
+    RowOperations = addCombobox(("combobox_" + i), RowOperations, tables[0]);
 }
 
 tables.push(new Table(tables.length, false));
