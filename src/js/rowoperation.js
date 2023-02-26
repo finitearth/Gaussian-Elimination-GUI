@@ -135,8 +135,6 @@ export class RowOperation {
                 else {
                     matrix = matrix.substractRow(this.id.substr(9), secondRow);
                 }
-    
-                // matrix    = matrix.multiplyRowByScalar((document.getElementById(this.rowDropdownID).value - 1), stringToFraction(this.secondTextFieldValue).inverse());
             }
             else {
                 matrix    = matrix.multiplyRowByScalar(document.getElementById(this.rowDropdownID).value-1, stringToFraction(this.secondTextFieldValue).inverse());
@@ -148,8 +146,6 @@ export class RowOperation {
                 else {
                     matrix = matrix.substractRow(this.id.substr(9), secondRow);
                 }
-    
-                // matrix    = matrix.multiplyRowByScalar(document.getElementById(this.rowDropdownID).value-1, stringToFraction(this.secondTextFieldValue));
             }
     
             return matrix;
