@@ -162,7 +162,6 @@ export function addKeyDownListener(tables, nextTableToTheRight = false) {
         }
         tableId = tableIds[tableIdx];
         let cell = document.getElementById(`${tableId}-${row}-${column}`);
-        cell.focus();
-        cell.setSelectionRange(0, 1);
+        cell.select();
     });
 }
