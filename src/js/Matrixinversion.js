@@ -118,13 +118,17 @@ function calculate() {
     }
 }
 
+// decimal conversion
 document
     .getElementById("convertToDecimal")
     .addEventListener("click", function () {
-        tables[2].toDecimal();
-        tables[3].toDecimal();
+        tables.forEach(table => {
+            if (this.checked) {
+                table.toDecimal();
+            } else {
+                table.toFraction();
+            }
+        });
     });
 
 addKeyDownListener(tables, true);
-
-// alert("Eyo Nicky, ich hab mal in deinem Code rumgepfuscht, ich hoffe das geht soweit klar:* (Späßle häßle hahahah)")

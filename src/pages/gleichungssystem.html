@@ -45,16 +45,28 @@
                 <button class="button-operations" id="calculate">
                     Berechnen
                 </button>
-                <button class="button-operations">Hoch</button>
+                <button class="button-operations" id="up">Hoch</button>
                 <button class="button-operations" id="calculateSolutionButton">
                     Lösen
                 </button>
             </div>
 
             <div class="page-divider align-center">
-                <div id="resultTable"></div>
-                <!-- button for conversion to decimal -->
-                <button class="operations_button" id="convertToDecimal">Dezimal</button>
+                <table>
+                    <tr id="table_row">
+                        <th id="resCoefTable"></th>
+                        <th id="table_vertical_4" class="vertical"></th>
+                        <th id="resSolTable"></th>
+                        <!-- button for conversion to decimal -->
+                        <th>
+                            <!-- Rounded switch -->
+                            <label class="switch">
+                                <input type="checkbox" id="convertToDecimal" />
+                                <span class="slider round"></span>
+                            </label>
+                        </th>
+                    </tr>
+                </table>
             </div>
         </main>
 

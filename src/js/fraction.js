@@ -20,11 +20,18 @@ export class Fraction {
         this.denominator = denominator;
     }
 
+    /**
+     * Creates and returns a new `Fraction` object with the same numerator and denominator
+     * as the current object.
+     *
+     * @returns {Fraction} A new `Fraction` object with the same numerator and denominator
+     *                     as the current object.
+     */
 
     clone() {
         return new Fraction(this.numerator, this.denominator);
     }
-    
+
     /**
      * Returns a string representation of the fraction, in the form of "numerator/denominator" if the denominator is not equal to 1,
      * otherwise, it returns the numerator as a string.
@@ -81,10 +88,10 @@ export class Fraction {
     }
 
     /**
-    * Returns true if the current fraction is greater than another fraction object, and false otherwise.
-    * The method compares the fractions by cross-multiplying, i.e., by checking if this.numerator * other.denominator is greater than other.numerator * this.denominator.
-    * @param {Fraction} other - The other fraction object to compare to the current fraction.
-    * @returns {boolean} True if the current fraction is greater than the other fraction, and false otherwise.
+     * Returns true if the current fraction is greater than another fraction object, and false otherwise.
+     * The method compares the fractions by cross-multiplying, i.e., by checking if this.numerator * other.denominator is greater than other.numerator * this.denominator.
+     * @param {Fraction} other - The other fraction object to compare to the current fraction.
+     * @returns {boolean} True if the current fraction is greater than the other fraction, and false otherwise.
      */
     greater(other) {
         return (
@@ -199,7 +206,7 @@ export class Fraction {
      * The method divides the numerator by the denominator and returns the result as a number.
      * @returns {number} The decimal equivalent of the current fraction as a number.
      */
-    toDecimal() {
-        return this.numerator / this.denominator;
+    toDecimal(nDecimals = 2) {
+        return Math.round(this.numerator / this.denominator * 10 ** nDecimals) / 10 ** nDecimals;
     }
 }

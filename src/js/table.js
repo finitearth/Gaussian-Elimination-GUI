@@ -13,6 +13,8 @@ import { Fraction } from "./fraction.js";
 export class Table {
     constructor(id, showButtons = true) {
         this.id = id;
+        this.enabled = true;
+        this.fractionArray = null;
         this.tableElement = document.createElement("table");
         this.tableElement.id = id;
         this.tableBody = document.createElement("tbody");
@@ -101,6 +103,7 @@ export class Table {
         input.id = `${this.id}-${rowId}-${columnId}`;
         // center cell input
         input.style.textAlign = "center";
+        input.disabled = !this.enabled;
         cell.appendChild(input);
         return cell;
     }
@@ -218,6 +221,9 @@ export class Table {
      * @returns {Matrix} A Matrix object representing the data in the table.
      */
     getData() {
+        if (this.fractionArray) {
+            return this.fractionArray;
+        }
         let data = [];
         for (let i = 0; i < this.rows.length; i++) {
             let row = [];
@@ -238,6 +244,7 @@ export class Table {
      */
 
     disableInput() {
+        this.enabled = false;
         for (let i = 0; i < this.rows.length; i++) {
             for (let j = 0; j < this.nColumns; j++) {
                 let input = this.rows[i].childNodes[j].childNodes[0];
@@ -251,6 +258,7 @@ export class Table {
      */
 
     enableInput() {
+        this.enabled = true;
         for (let i = 0; i < this.rows.length; i++) {
             for (let j = 0; j < this.nColumns; j++) {
                 let input = this.rows[i].childNodes[j].childNodes[0];
@@ -263,6 +271,7 @@ export class Table {
      * Converts all the input values in the table to their decimal representation and updates the input fields with the new values.
      */
     toDecimal() {
+        this.fractionArray = this.getData();
         for (let i = 0; i < this.rows.length; i++) {
             for (let j = 0; j < this.nColumns; j++) {
                 let input = this.rows[i].childNodes[j].childNodes[0];
@@ -277,6 +286,10 @@ export class Table {
      * Convert all values in the table to fractions and update the input fields.
      */
     toFraction() {
+        if (this.fractionArray) {
+            this.setData(this.fractionArray);
+            return;
+        }
         for (let i = 0; i < this.rows.length; i++) {
             for (let j = 0; j < this.nColumns; j++) {
                 let input = this.rows[i].childNodes[j].childNodes[0];
