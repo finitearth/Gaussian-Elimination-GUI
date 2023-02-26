@@ -20,6 +20,11 @@ export class Fraction {
         this.denominator = denominator;
     }
 
+
+    clone() {
+        return new Fraction(this.numerator, this.denominator);
+    }
+    
     /**
      * Returns a string representation of the fraction, in the form of "numerator/denominator" if the denominator is not equal to 1,
      * otherwise, it returns the numerator as a string.

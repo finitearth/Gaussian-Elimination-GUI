@@ -1,6 +1,7 @@
 import { Table } from "./table.js";
 import { gaussElimination } from "./gaussalgorithm.js";
 import { addKeyDownListener } from "./utils.js";
+import { generateMatrix } from "./generateExercise.js"; 
 
 function createTable(id) {
     let table = new Table(id, false);
@@ -57,5 +58,14 @@ document
     .addEventListener("click", function () {
         resultTable.toDecimal();
     });
+
+// generate excercise
+document.getElementById("generateExercise").addEventListener("click", function () {
+    let coefMatrix = generateMatrix(1);
+    let solMatrix = generateMatrix(1);
+
+    coefTable.setData(coefMatrix);
+    solTable.setData(solMatrix);
+});
 
 addKeyDownListener(tables, true);

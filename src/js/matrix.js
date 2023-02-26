@@ -20,6 +20,17 @@ export class Matrix {
         this.nColumns = array[0].length;
     }
 
+    clone()     {
+        let newArray = [];
+        for (let i = 0; i < this.nRows; i++) {
+            newArray[i] = [];
+            for (let j = 0; j < this.nColumns; j++) {
+                newArray[i][j] = this.array[i][j].clone();
+            }
+        }
+        return new Matrix(newArray);
+    }
+
     /**
      * Returns the Fraction object at the specified row and column indices in the matrix.
      * @param {number} rowIndex - The index of the row containing the desired Fraction object.
@@ -192,7 +203,7 @@ export class Matrix {
      */
     addRow(iRow, otherRow) {
         for (let i = 0; i < this.nColumns; i++) {
-            this.array[iRow][i] = this.array[iRow][i].add(
+            this.array[iRow][i] = this.getCell(iRow, i).add(
                 otherRow.getCell(0, i)
             );
         }
@@ -242,7 +253,7 @@ export class Matrix {
         for (let i = 0; i < this.nRows; i++) {
             newArray[i] = [];
             for (let j = 0; j < this.nColumns; j++) {
-                newArray[i][j] = this.array[i][j].mul(scalar).reduce();
+                newArray[i][j] = this.getCell(i, j).mul(scalar).reduce();
             }
         }
         return new Matrix(newArray);
