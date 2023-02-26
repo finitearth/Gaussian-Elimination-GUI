@@ -127,6 +127,7 @@ function calculateSolution() {
 
 function useResult() {
     tables[0].setData(tables[2].getData());
+    tables[1].setData(tables[3].getData());
 }
 
 document
