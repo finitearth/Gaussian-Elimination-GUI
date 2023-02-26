@@ -64,6 +64,7 @@ document.getElementById("nr-eq").addEventListener("input", e => {
 document.getElementById("nr-var").addEventListener("input", e => {
     let numberVariables = e.target.value;
     coefTable.setNColumns(numberVariables);
+    resCoefTable.setNColumns(numberVariables);
 });
 
 // number of cols solution matrix
