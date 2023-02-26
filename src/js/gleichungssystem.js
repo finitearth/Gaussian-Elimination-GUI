@@ -26,7 +26,6 @@ resSolTable.setNColumns(1, true);
 resSolTable.disableInput();
 
 let tables = [coefTable, solTable, resCoefTable, resSolTable];
-
 let rowOperations = []; 
 
 // creating initial comboboxes
@@ -104,6 +103,24 @@ document
                 table.toFraction();
             }
         });
+    });
+
+// "Berechne" Button 
+document
+    .getElementById("calculate")
+    .addEventListener("click", function () {
+        for (let i = 0; i < rowOperations.length; i++) {
+            if (rowOperations[i].isEnabled()) {
+                let newCoefMatrix = rowOperations[i].performRowOperation(coefTable.getData());
+                let newSolMatrix  = rowOperations[i].performRowOperation(solTable.getData());
+
+                resCoefTable.setRow(i, newCoefMatrix);
+                resSolTable.setRow(i, newSolMatrix);
+            } else {
+                resCoefTable.setRow(i, coefTable.getData());
+                resSolTable.setRow(i, solTable.getData());
+            }
+        }
     });
 
 addKeyDownListener(tables, true);

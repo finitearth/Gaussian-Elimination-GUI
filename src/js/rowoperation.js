@@ -121,6 +121,9 @@ export class RowOperation {
 
         if (this.enabled) {
             if (document.getElementById(this.firstOperatorDropdownID).value === "*") {
+                console.log("Hiernach kommt der Fehler:");
+                console.log(this.id.substr(9));
+                console.log(this.firstTextFieldValue);
                 matrix = matrix.multiplyRowByScalar(this.id.substr(9), stringToFraction(this.firstTextFieldValue));
             }
             else {
