@@ -138,12 +138,17 @@ document.getElementById("calculateButton").addEventListener("click", calculate);
 function calculate() {
     for (let i = 0; i < RowOperations.length; i++) {
         let matrix = tables[0].getData();
+        let secondMatrix = tables[1].getData();
 
         if (RowOperations[i].isEnabled()) {
-            let new_matrix = RowOperations[i].performRowOperation(matrix);
-            tables[2].setRow(i, new_matrix);
+            let newMatrix = RowOperations[i].performRowOperation(matrix);
+            let newSecondMatrix = RowOperations[i].performRowOperation(secondMatrix);
+
+            tables[2].setRow(i, newMatrix);
+            tables[3].setRow(i, newSecondMatrix);
         } else {
             tables[2].setRow(i, matrix);
+            tables[3].setRow(i, secondMatrix);
         }
     }
 }
