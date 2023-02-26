@@ -1,8 +1,9 @@
 import { Table } from "./table.js";
 import { gaussElimination } from "./gaussalgorithm.js";
 import { addKeyDownListener } from "./utils.js";
-import { generateMatrix } from "./generateExercise.js"; 
+import { generateMatrix } from "./generateExercise.js";
 import { getUnitMatrix } from "./utils.js";
+
 function createTable(id) {
     let table = new Table(id, false);
     document.getElementById(id).appendChild(table.tableContainer);
@@ -11,14 +12,19 @@ function createTable(id) {
 
 // create Tables
 let coefTable = createTable("coefTable");
+
 let solTable = createTable("solTable");
 solTable.setNColumns(1, true);
+
 let resCoefTable = createTable("resCoefTable");
 resCoefTable.disableInput();
+
 let resSolTable = createTable("resSolTable");
 resSolTable.setNColumns(1, true);
 resSolTable.disableInput();
+
 let tables = [coefTable, solTable, resCoefTable, resSolTable];
+
 
 // calc button
 document
@@ -27,16 +33,18 @@ document
         try {
             let coefMatrix = coefTable.getData();
             let solMatrix = solTable.getData();
+
             solMatrix = gaussElimination(coefMatrix, solMatrix);
+
             resSolTable.setData(solMatrix);
             resCoefTable.setData(getUnitMatrix(coefMatrix.nRows));
         } catch (error) {
             alert(error);
         }
     });
-    
+
 // number of rows
-document.getElementById("nr-eq").addEventListener("input", (e) => {
+document.getElementById("nr-eq").addEventListener("input", e => {
     let numberEquations = e.target.value;
     tables.forEach(table => {
         table.setNRows(numberEquations);
@@ -44,36 +52,31 @@ document.getElementById("nr-eq").addEventListener("input", (e) => {
 });
 
 // number of cols in coeff matrix
-document.getElementById("nr-var").addEventListener("input", (e) => {
+document.getElementById("nr-var").addEventListener("input", e => {
     let numberVariables = e.target.value;
     coefTable.setNColumns(numberVariables);
 });
 
 // number of cols solution matrix
-document.getElementById("nr-b").addEventListener("input", (e) => {
+document.getElementById("nr-b").addEventListener("input", e => {
     let numberResultVectors = e.target.value;
-    solTable.setNColumns(numberResultVectors);
-    resSolTable.setNColumns(numberResultVectors);
+    solTable.setNColumns(numberResultVectors, true);
+    resSolTable.setNColumns(numberResultVectors, true);
 });
 
 
-// decimal conversion
-document
-    .getElementById("convertToDecimal")
-    .addEventListener("click", function () {
-        tables.forEach(table => {
-            table.toDecimal();
-        });
-    });
+
 
 // generate excercise
-document.getElementById("generateExercise").addEventListener("click", function () {
-    let coefMatrix = generateMatrix(1);
-    let solMatrix = generateMatrix(1);
+document
+    .getElementById("generateExercise")
+    .addEventListener("click", function () {
+        let coefMatrix = generateMatrix(1);
+        let solMatrix = generateMatrix(1);
 
-    coefTable.setData(coefMatrix);
-    solTable.setData(solMatrix);
-});
+        coefTable.setData(coefMatrix);
+        solTable.setData(solMatrix);
+    });
 
 // up button
 document.getElementById("up").addEventListener("click", function () {
@@ -82,8 +85,5 @@ document.getElementById("up").addEventListener("click", function () {
     coefTable.setData(coefMatrix);
     solTable.setData(solMatrix);
 });
-
-    
-
 
 addKeyDownListener(tables, true);

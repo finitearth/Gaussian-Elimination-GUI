@@ -207,6 +207,6 @@ export class Fraction {
      * @returns {number} The decimal equivalent of the current fraction as a number.
      */
     toDecimal(nDecimals = 2) {
-        return Number(this.numerator / this.denominator).toFixed(nDecimals);
+        return Math.round(this.numerator / this.denominator * 10 ** nDecimals) / 10 ** nDecimals;
     }
 }
