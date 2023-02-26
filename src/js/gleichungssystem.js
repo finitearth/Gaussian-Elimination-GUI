@@ -25,7 +25,6 @@ resSolTable.disableInput();
 
 let tables = [coefTable, solTable, resCoefTable, resSolTable];
 
-
 // calc button
 document
     .getElementById("calculateSolutionButton")
@@ -64,15 +63,12 @@ document.getElementById("nr-b").addEventListener("input", e => {
     resSolTable.setNColumns(numberResultVectors, true);
 });
 
-
-
-
 // generate excercise
 document
     .getElementById("generateExercise")
     .addEventListener("click", function () {
-        let coefMatrix = generateMatrix(1);
-        let solMatrix = generateMatrix(1);
+        let coefMatrix = generateMatrix(3, 3);
+        let solMatrix = generateMatrix(3, 1);
 
         coefTable.setData(coefMatrix);
         solTable.setData(solMatrix);
@@ -85,5 +81,18 @@ document.getElementById("up").addEventListener("click", function () {
     coefTable.setData(coefMatrix);
     solTable.setData(solMatrix);
 });
+
+// decimal conversion
+document
+    .getElementById("convertToDecimal")
+    .addEventListener("click", function () {
+        tables.forEach(table => {
+            if (this.checked) {
+                table.toDecimal();
+            } else {
+                table.toFraction();
+            }
+        });
+    });
 
 addKeyDownListener(tables, true);
