@@ -12,40 +12,27 @@ document
 
 function modifyDimension(e) {
     if (e.target.value < dimension) {
-        console.log("a_" + e.target.value);
-        console.log("d_" + dimension);
-        console.log("");
-
-        tables[0].removeRow();
-        tables[0].removeColumn();
-        tables[1].removeRow();
-        tables[1].removeColumn();
-        tables[2].removeRow();
-        tables[2].removeColumn();
-        tables[3].removeRow();
-        tables[3].removeColumn();
-
+        for (let i = 0; i < tables.length; i++) {
+            tables[i].removeRow();
+            tables[i].removeColumn();
+        }
+        
         removeCombobox(dimension);
-        updateComboboxes();
     } else if (e.target.value > dimension) {
-        console.log("b_" + e.target.value);
-        console.log("d_" + dimension);
-        console.log("");
-
-        tables[0].addRow();
-        tables[0].addColumn();
-        tables[1].addRow();
-        tables[1].addColumn();
-        tables[2].addRow();
-        tables[2].addColumn();
-        tables[3].addRow();
-        tables[3].addColumn();
+        for (let i = 0; i < tables.length; i++) {
+            tables[i].addRow();
+            tables[i].addColumn();
+        }
 
         addCombobox("combobox_" + (e.target.value - 1));
-        updateComboboxes();
     }
 
     dimension = e.target.value;
+    tables[1].setData(getUnitMatrix(dimension));
+}
+
+function updateRowOperations() {
+
 }
 
 function addTable() {
@@ -72,21 +59,12 @@ function removeCombobox(id) {
     RowOperations.pop();
 }
 
-function updateComboboxes() {
-    for (let i = 0; i < RowOperations.length; i++) {
-        RowOperations[i] = new RowOperation(tables[0]);
-    }
-}
-
-console.log("Starting webpage!");
-
 let tables = [];
 for (let i = 0; i < 2; i++) {
     addTable();
 }
 
 let RowOperations = [];
-// creating comboboxes
 for (let i = 0; i < 3; i++) {
     addCombobox("combobox_" + i);
 }
@@ -102,13 +80,6 @@ document
     .getElementById("resultContainerTableRowCol1")
     .appendChild(tables[2].tableContainer);
 
-// let verticalElement = document.createElement("div");
-// verticalElement.className = "vertical";
-
-// document
-//     .getElementById("resultContainer")
-//     .appendChild(verticalElement);
-
 document
     .getElementById("resultContainerTableRowCol2")
     .appendChild(tables[3].tableContainer);
@@ -121,7 +92,7 @@ function calculateSolution() {
         tables[2].setData(solMatrix);
         tables[3].setData(getUnitMatrix(dimension));
     } catch (e) {
-        alert("satz mit x das war wohl nix");
+        alert("Inversenberechnung nicht mglich");
     }
 }
 
@@ -133,8 +104,12 @@ function useResult() {
 document
     .getElementById("calculateSolutionButton")
     .addEventListener("click", calculateSolution);
-document.getElementById("adaptResult").addEventListener("click", useResult);
-document.getElementById("calculateButton").addEventListener("click", calculate);
+document
+    .getElementById("adaptResult")
+    .addEventListener("click", useResult);
+document
+    .getElementById("calculateButton")
+    .addEventListener("click", calculate);
 
 function calculate() {
     for (let i = 0; i < RowOperations.length; i++) {
@@ -154,6 +129,13 @@ function calculate() {
     }
 }
 
+document
+    .getElementById("convertToDecimal")
+    .addEventListener("click", function () {
+        tables[2].toDecimal();
+        tables[3].toDecimal();
+    });
+
 addKeyDownListener(tables, true);
 
-alert("Eyo Nicky, ich hab mal in deinem Code rumgepfuscht, ich hoffe das geht soweit klar:* (Späßle häßle hahahah)")
+// alert("Eyo Nicky, ich hab mal in deinem Code rumgepfuscht, ich hoffe das geht soweit klar:* (Späßle häßle hahahah)")
