@@ -206,7 +206,7 @@ export class Fraction {
      * The method divides the numerator by the denominator and returns the result as a number.
      * @returns {number} The decimal equivalent of the current fraction as a number.
      */
-    toDecimal() {
-        return this.numerator / this.denominator;
+    toDecimal(nDecimals = 2) {
+        return Number(this.numerator / this.denominator).toFixed(nDecimals);
     }
 }
