@@ -4,8 +4,9 @@ import { stringToFraction } from "./utils.js";
 export class RowOperation {
     constructor(id, table) {
         this.id = id;
+        this.table = table;
+
         this.comboBoxElement            = document.createElement("tr");
-        this.table                      = table;
         this.firstOperatorDropdownID    = "firstOperator"+this.id; 
         this.firstTextFieldID           = "firstText"+this.id;
         this.firstTextFieldValue        = "0";
@@ -135,7 +136,7 @@ export class RowOperation {
                     matrix = matrix.substractRow(this.id.substr(9), secondRow);
                 }
     
-                matrix    = matrix.multiplyRowByScalar((document.getElementById(this.rowDropdownID).value - 1), stringToFraction(this.secondTextFieldValue).inverse());
+                // matrix    = matrix.multiplyRowByScalar((document.getElementById(this.rowDropdownID).value - 1), stringToFraction(this.secondTextFieldValue).inverse());
             }
             else {
                 matrix    = matrix.multiplyRowByScalar(document.getElementById(this.rowDropdownID).value-1, stringToFraction(this.secondTextFieldValue).inverse());
@@ -148,7 +149,7 @@ export class RowOperation {
                     matrix = matrix.substractRow(this.id.substr(9), secondRow);
                 }
     
-                matrix    = matrix.multiplyRowByScalar(document.getElementById(this.rowDropdownID).value-1, stringToFraction(this.secondTextFieldValue));
+                // matrix    = matrix.multiplyRowByScalar(document.getElementById(this.rowDropdownID).value-1, stringToFraction(this.secondTextFieldValue));
             }
     
             return matrix;
@@ -156,7 +157,5 @@ export class RowOperation {
         
     }
 
-    calculate() {
-        
-    }
+    
 }
