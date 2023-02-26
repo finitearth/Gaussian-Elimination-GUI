@@ -20,7 +20,12 @@ export class Matrix {
         this.nColumns = array[0].length;
     }
 
-    clone()     {
+    /**
+
+    Returns a new Matrix object that is a clone of the current matrix object.
+    @returns {Matrix} A new Matrix object that is a clone of the current matrix object.
+    */
+    clone() {
         let newArray = [];
         for (let i = 0; i < this.nRows; i++) {
             newArray[i] = [];
