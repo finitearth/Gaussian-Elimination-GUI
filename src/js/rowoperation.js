@@ -1,5 +1,6 @@
 import { Table } from "./table.js";
 import { stringToFraction } from "./utils.js";
+import { Matrix } from "./matrix.js";
 
 export class RowOperation {
     constructor(id, table) {
@@ -117,6 +118,7 @@ export class RowOperation {
 
     performRowOperation(matrix) {
         var secondRow = [];
+
         if (this.enabled) {
             if (document.getElementById(this.firstOperatorDropdownID).value === "*") {
                 matrix = matrix.multiplyRowByScalar(this.id.substr(9), stringToFraction(this.firstTextFieldValue));
@@ -124,16 +126,19 @@ export class RowOperation {
             else {
                 matrix = matrix.multiplyRowByScalar(this.id.substr(9), stringToFraction(this.firstTextFieldValue).inverse());
             }
+
+            let matrixCopy = matrix.clone();
+            const firstRow = matrixCopy.getRow(document.getElementById(this.rowDropdownID).value-1);
     
             if (document.getElementById(this.thirdOperatorDropdownID).value === "*") {
-                matrix    = matrix.multiplyRowByScalar((document.getElementById(this.rowDropdownID).value - 1), stringToFraction(this.secondTextFieldValue));
+                matrix = matrix.multiplyRowByScalar((document.getElementById(this.rowDropdownID).value - 1), stringToFraction(this.secondTextFieldValue));
                 secondRow = matrix.getRow(document.getElementById(this.rowDropdownID).value-1);
     
                 if (document.getElementById(this.secondOperatorDropdownID).value === "+") {
-                    matrix = matrix.addRow(this.id.substr(9), secondRow);
+                    matrix = firstRow.addRow(this.id.substr(9), secondRow);
                 }
                 else {
-                    matrix = matrix.substractRow(this.id.substr(9), secondRow);
+                    matrix = firstRow.substractRow(this.id.substr(9), secondRow);
                 }
             }
             else {
@@ -141,10 +146,10 @@ export class RowOperation {
                 secondRow = matrix.getRow(document.getElementById(this.rowDropdownID).value-1);
                
                 if (document.getElementById(this.secondOperatorDropdownID).value === "+") {
-                    matrix = matrix.addRow(this.id.substr(9), secondRow);
+                    matrix = firstRow.addRow(this.id.substr(9), secondRow);
                 }
                 else {
-                    matrix = matrix.substractRow(this.id.substr(9), secondRow);
+                    matrix = firstRow.substractRow(this.id.substr(9), secondRow);
                 }
             }
     
