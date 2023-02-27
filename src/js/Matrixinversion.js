@@ -7,6 +7,7 @@ import { addKeyDownListener } from "./utils.js";
 import { addCombobox } from "./utils.js";
 import { removeCombobox } from "./utils.js";
 import { updateRowOperations } from "./utils.js";
+import { generateMatrix } from "./generateExercise.js";
 
 var dimension = 3;
 
@@ -130,4 +131,14 @@ document
         });
     });
 
+    // generate excercise
+document
+.getElementById("generateExercise")
+.addEventListener("click", function () {
+    let dim = document.getElementById("dimensionButton").value;
+    let matrix = generateMatrix(dim, dim);
+    tables[0].setData(matrix);
+});
+
 addKeyDownListener(tables, true);
+
