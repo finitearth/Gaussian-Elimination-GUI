@@ -136,9 +136,6 @@ export class RowOperation {
 
         if (this.enabled) {
             if (document.getElementById(this.firstOperatorDropdownID).value === "*") {
-                console.log("Hiernach kommt der Fehler:");
-                console.log(this.id.substr(9));
-                console.log(this.firstTextFieldValue);
                 matrix = matrix.multiplyRowByScalar(this.id.substr(9), stringToFraction(this.firstTextFieldValue));
             }
             else {
@@ -146,17 +143,16 @@ export class RowOperation {
             }
 
             let matrixCopy = matrix.clone();
-            const firstRow = matrixCopy.getRow(this.id.substr(9));
     
             if (document.getElementById(this.thirdOperatorDropdownID).value === "*") {
                 matrix = matrix.multiplyRowByScalar((document.getElementById(this.rowDropdownID).value - 1), stringToFraction(this.secondTextFieldValue));
                 secondRow = matrix.getRow(document.getElementById(this.rowDropdownID).value-1);
     
                 if (document.getElementById(this.secondOperatorDropdownID).value === "+") {
-                    matrix = firstRow.addRow(this.id.substr(9), secondRow);
+                    matrix = matrixCopy.addRow(this.id.substr(9), secondRow);
                 }
                 else {
-                    matrix = firstRow.substractRow(this.id.substr(9), secondRow);
+                    matrix = matrixCopy.substractRow(this.id.substr(9), secondRow);
                 }
             }
             else {
@@ -164,10 +160,10 @@ export class RowOperation {
                 secondRow = matrix.getRow(document.getElementById(this.rowDropdownID).value-1);
                
                 if (document.getElementById(this.secondOperatorDropdownID).value === "+") {
-                    matrix = firstRow.addRow(this.id.substr(9), secondRow);
+                    matrix = matrixCopy.addRow(this.id.substr(9), secondRow);
                 }
                 else {
-                    matrix = firstRow.substractRow(this.id.substr(9), secondRow);
+                    matrix = matrixCopy.substractRow(this.id.substr(9), secondRow);
                 }
             }
     
