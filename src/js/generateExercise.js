@@ -16,12 +16,12 @@ import { Fraction } from "./fraction.js";
 //         nOperations: 8,
 //     },
 // ];
-
+let matrix; 
 export function generateMatrix(rows, cols) {
-    // let dimension = levelSettings[difficultyLevel].dimension;
-    let matrix = getRandomMatrix(rows, cols);
-    while (!matrix.getDeterminant().equals(ZERO)) {
+    let linearDependent = true;
+    while (linearDependent) {
         matrix = getRandomMatrix(rows, cols);
+        linearDependent = matrix.hasLinearDependencies();
     }
     return matrix;
 }
@@ -31,7 +31,9 @@ function getRandomMatrix(rows, cols) {
     for (let i = 0; i < rows; i++) {
         matrix.push([]);
         for (let j = 0; j < cols; j++) {
-            matrix[i].push(new Fraction(Math.floor(Math.random() * 10), 4).reduce());
+            matrix[i].push(
+                new Fraction(Math.floor(Math.random() * 10), 4).reduce()
+            );
         }
     }
     return new Matrix(matrix);

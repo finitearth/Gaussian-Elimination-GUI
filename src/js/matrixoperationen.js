@@ -21,8 +21,6 @@ function resizeMatrixCols(e) {
     inputTable.setNColumns(e.target.value);
 }
 
-console.log("Starting webpage!");
-
 let inputTable = addTable("input_matrix");
 let outputTable = addTable("output_matrix");
 outputTable.disableInput();
@@ -31,7 +29,7 @@ outputTable.tableContainer.children[1].replaceChildren();
 document.getElementById("button_transpose").onclick = function () {
     let input_matrix = inputTable.getData();
     let output_matrix = input_matrix.transpose();
-    outputTable.setData(output_matrix.array);
+    outputTable.setData(output_matrix);
 };
 
 document.getElementById("button_inverse").onclick = function () {

@@ -20,8 +20,15 @@ export class Matrix {
         this.nColumns = array[0].length;
     }
 
-    /**
+    hasLinearDependencies() {
+        return this.isSquare() && this.getDeterminant().equals(ZERO);
+    }
 
+    isSquare() {
+        return this.nRows == this.nColumns;
+    }
+
+    /**
     Returns a new Matrix object that is a clone of the current matrix object.
     @returns {Matrix} A new Matrix object that is a clone of the current matrix object.
     */
