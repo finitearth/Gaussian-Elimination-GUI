@@ -1,5 +1,6 @@
 import { Table } from "./table.js";
 import { Fraction } from "./fraction.js";
+import { Matrix } from "./matrix.js";
 import { addKeyDownListener } from "./utils.js";
 import { InvalidInputException } from "./exceptions.js";
 
@@ -8,6 +9,19 @@ const operators = {
     "-": (a, b) => a.sub(b),
     "*": (a, b) => a.mul(b),
 };
+
+function checkForScalar(matrixOrScalar) {
+    if (
+        matrixOrScalar instanceof Matrix ||
+        matrixOrScalar instanceof Fraction
+    ) {
+        return matrixOrScalar;
+    } else if (typeof matrixOrScalar === "number") {
+        return new Fraction(matrixOrScalar, 1);
+    } else {
+        throw new InvalidInputException();
+    }
+}
 
 /**
     Parses and evaluates a given equation string.
@@ -66,8 +80,8 @@ function calculate(equationString) {
         for (let i = 1; i < equation.length - 1; i += 2) {
             if (equation[i] == "*" || equation[i] == "/") {
                 let opResult = operators[equation[i]](
-                    equation[i - 1],
-                    equation[i + 1]
+                    checkForScalar(equation[i - 1]),
+                    checkForScalar(equation[i + 1])
                 );
                 equation.splice(i - 1, 3, opResult);
                 i -= 2;
@@ -78,8 +92,8 @@ function calculate(equationString) {
         for (let i = 1; i < equation.length - 1; i += 2) {
             if (equation[i] == "+" || equation[i] == "-") {
                 let opResult = operators[equation[i]](
-                    equation[i - 1],
-                    equation[i + 1]
+                    checkForScalar(equation[i - 1]),
+                    checkForScalar(equation[i + 1])
                 );
                 equation.splice(i - 1, 3, opResult);
                 i -= 2;
@@ -122,7 +136,6 @@ function removeTable() {
         .getElementById("table")
         .removeChild(document.getElementById("table").lastChild);
 }
-
 
 let tables = [];
 for (let i = 0; i < 2; i++) {

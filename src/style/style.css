@@ -61,6 +61,13 @@ input {
     width: 50px;
 }
 
+.equation-input {
+    border: 1px solid rgb(154, 157, 160);
+    border-radius: 5px;
+    height: 30px;
+    width: 200px;
+}
+
 ol {
     list-style-type: none;
     font-size: larger;
