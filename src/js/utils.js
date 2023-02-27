@@ -198,3 +198,12 @@ export function adaptComboboxes(rowOperations, table, n) {
 
     return rowOperations;
 }
+
+export function updateRowOperations(rowOperations, dimension, n) {
+    for (let i = 0; i < rowOperations.length; i++) {
+        if (rowOperations[i].isEnabled()) {
+            rowOperations[i].setNRowDropdownSelectOptions(dimension, n);
+        }
+    }
+    
+}

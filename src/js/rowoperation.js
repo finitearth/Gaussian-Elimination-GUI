@@ -112,6 +112,21 @@ export class RowOperation {
         document.getElementById(this.secondTextField).addEventListener("input", this.setSecondTextField.bind(this));
     }
 
+    removeRowDropdownSelectOption(id) {
+        document.getElementById("Option_"+id+"combobox_"+this.id.substr(9)+"rowDropdowncombobox_"+this.id.substr(9)).remove();
+    }
+
+    setNRowDropdownSelectOptions(dimension, n) {
+        while (dimension < n) {
+           dimension++;
+           this.createSelectOption(("Option_"+(dimension-1) + this.id + this.rowDropdownID), dimension, this.rowDropdownID);
+        }
+        while (dimension > n) { 
+            dimension--;
+            this.removeRowDropdownSelectOption(dimension);
+        }
+    }
+
     isEnabled() {
         return this.enabled;
     }

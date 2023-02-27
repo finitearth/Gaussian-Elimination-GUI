@@ -6,6 +6,7 @@ import { getUnitMatrix } from "./utils.js";
 import { addKeyDownListener } from "./utils.js";
 import { addCombobox } from "./utils.js";
 import { removeCombobox } from "./utils.js";
+import { updateRowOperations } from "./utils.js";
 
 var dimension = 3;
 
@@ -30,13 +31,11 @@ function modifyDimension(e) {
         RowOperations = addCombobox(("combobox_" + (e.target.value - 1)), RowOperations, tables[0]);
     }
 
+    tables[1].setData(getUnitMatrix(e.target.value));
+    
+    updateRowOperations(RowOperations, dimension, e.target.value);
     dimension = e.target.value;
-    tables[1].setData(getUnitMatrix(dimension));
-    // tables[3].setData(getUnitMatrix(dimension));
-}
-
-function updateRowOperations() {
-
+    
 }
 
 function addTable() {
