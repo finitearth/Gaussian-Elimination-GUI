@@ -222,12 +222,6 @@ select {
     font-size: 16pt;
 }
 
-.combobox-dropdown {
-
-}
-
-.combobox-input-field {}
-
 .button-matrixrechnung {
     float: right;
 }
@@ -470,7 +464,13 @@ input:checked + .slider:before {
 /* GL-System / Inversenberechnung */
 
 .combobox-dropdown, .combobox-input-field {
-    margin: 0 0.5em;
+    margin: 0 0.25em;
+    width: 2.5em;
+    height: 1.75em;
+    -ms-box-sizing:content-box;
+-moz-box-sizing:content-box;
+-webkit-box-sizing:content-box; 
+box-sizing:content-box;
 }
 
 
