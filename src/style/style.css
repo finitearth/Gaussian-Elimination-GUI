@@ -92,7 +92,6 @@ select {
     border-radius: 3.5px;
     height: 2em;
     width: 2.5em;
-    margin: 0.25em;
     padding: 0;
     text-align: center; 
 }
@@ -461,6 +460,13 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+/* GL-System / Inversenberechnung */
+
+.combobox-dropdown, .combobox-input-field {
+    margin: 0 0.5em;
+}
+
 
 /* Guide-Page */
 
