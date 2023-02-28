@@ -63,7 +63,7 @@ export class Table {
     @param {boolean} [force=false] - Optional parameter to force adding/removing rows even if the current number of rows is greater or less than the desired number of rows.
     */
     setNRows(nRows, force = false) {
-        if (nRows < designConfig.minRows || nRows > designConfig.maxRows) {
+        if ((nRows < designConfig.minRows || nRows > designConfig.maxRows) && !force) {
             return;
         }
         while (this.rows.length < nRows) {
@@ -82,7 +82,7 @@ export class Table {
     @param {boolean} [force=false] - Optional parameter to force adding/removing columns even if the current number of columns is greater or less than the desired number of columns.
     */
     setNColumns(nColumns, force = false) {
-        if (nColumns < designConfig.minColumns || nColumns > designConfig.maxColumns) {
+        if ((nColumns < designConfig.minColumns || nColumns > designConfig.maxColumns)&& !force) {
             return;
         }
         while (this.nColumns < nColumns) {
