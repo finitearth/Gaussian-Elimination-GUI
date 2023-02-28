@@ -10,19 +10,6 @@ const operators = {
     "*": (a, b) => a.mul(b),
 };
 
-function checkForScalar(matrixOrScalar) {
-    if (
-        matrixOrScalar instanceof Matrix ||
-        matrixOrScalar instanceof Fraction
-    ) {
-        return matrixOrScalar;
-    } else if (typeof matrixOrScalar === "number") {
-        return new Fraction(matrixOrScalar, 1);
-    } else {
-        throw new InvalidInputException();
-    }
-}
-
 /**
     Parses and evaluates a given equation string.
     @param {string} equationString - The equation string to be evaluated.
@@ -30,9 +17,9 @@ function checkForScalar(matrixOrScalar) {
     @returns {Fraction|Matrix} The result of the evaluation as a Fraction or a Matrix.
     */
 function calculate(equationString) {
-    // check that only allowed characters are used (a-z, 0-9 and +, -, *), also check no operands and operators come twice after each other.
+    // check that only allowed characters are used (a-z, 0-9 and +, -, *, /), also check no operands and operators come twice after each other.
     if (
-        !equationString.match(/^[a-z0-9\+\-\*\(\)\s]*$/i) ||
+        !equationString.match(/^[a-z0-9\+\-\*\(\)\s\/]+$/i) ||
         equationString.match(/[a-z]{2,}/i) ||
         equationString.match(/[\+\-\*]{2,}/i)
     ) {
@@ -42,20 +29,26 @@ function calculate(equationString) {
     // Remove all spaces
     equationString = equationString.replace(/\s/g, "");
 
-    // Split equationString into array of strings
-    let equation = equationString.split(/([A-Z])/);
+    // Split equationString into array of strings,
+    // split by letter or number or paranthasis or /
+    // do not split if number followed by number
+    let equation = equationString.split(/([a-z]|[0-9]+\/[0-9]+|[0-9]+|\(|\))/i);
 
     // Remove empty strings
     equation = equation.filter(element => element != "");
-
     // Replace letters with matrices, but if numeral, convert to fraction
     for (let i = 0; i < equation.length; i++) {
         if (equation[i].length == 1 && equation[i].match(/[A-Z]/i)) {
             let index = equation[i].charCodeAt(0) - 65;
             equation[i] = tables[index].getData();
         }
-        // if number
-        else if (equation[i].match(/[0-9]/i)) {
+        // if number followed by slash followed by number
+        else if (equation[i].match(/[0-9]+\/[0-9]+/i)) {
+            // let nom = equation[i].split("/")[0];
+            // let den = equation[i].split("/")[1];
+            let [nom, den] = equation[i].split("/");
+            equation[i] = new Fraction(Number(nom), Number(den)).reduce();
+        } else if (equation[i].match(/[0-9]/i)) {
             equation[i] = new Fraction(Number(equation[i]), 1);
         }
     }
@@ -78,10 +71,11 @@ function calculate(equationString) {
 
         // Handle operator precedence: evaluate multiplication and division first
         for (let i = 1; i < equation.length - 1; i += 2) {
-            if (equation[i] == "*" || equation[i] == "/") {
+            if (equation[i] == "*") {
+                //|| equation[i] == "/") {
                 let opResult = operators[equation[i]](
-                    checkForScalar(equation[i - 1]),
-                    checkForScalar(equation[i + 1])
+                    equation[i - 1],
+                    equation[i + 1]
                 );
                 equation.splice(i - 1, 3, opResult);
                 i -= 2;
@@ -92,8 +86,8 @@ function calculate(equationString) {
         for (let i = 1; i < equation.length - 1; i += 2) {
             if (equation[i] == "+" || equation[i] == "-") {
                 let opResult = operators[equation[i]](
-                    checkForScalar(equation[i - 1]),
-                    checkForScalar(equation[i + 1])
+                    equation[i - 1],
+                    equation[i + 1]
                 );
                 equation.splice(i - 1, 3, opResult);
                 i -= 2;
@@ -102,8 +96,9 @@ function calculate(equationString) {
 
         return equation[0];
     }
-
-    return evaluate(equation);
+    let res = evaluate(equation);
+    console.log(res);
+    return res;
 }
 
 function addTable() {
@@ -168,4 +163,15 @@ document.getElementById("addTableButton").addEventListener("click", addTable);
 document
     .getElementById("removeTableButton")
     .addEventListener("click", removeTable);
+
 addKeyDownListener(tables);
+
+document
+    .getElementById("convertToDecimal")
+    .addEventListener("click", function () {
+        if (this.checked) {
+            resultTable.toDecimal();
+        } else {
+            resultTable.toFraction();
+        }
+    });

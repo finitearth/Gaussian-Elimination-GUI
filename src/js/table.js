@@ -11,7 +11,7 @@ import { Fraction } from "./fraction.js";
  * @param {boolean} [showButtons=true] - Optional parameter to determine whether to display buttons to add/remove rows and columns.
  */
 export class Table {
-    constructor(id, showButtons = true) {
+    constructor(id, showButtons = true, initCols) {
         this.id = id;
         this.enabled = true;
         this.fractionArray = null;
@@ -21,7 +21,7 @@ export class Table {
         this.tableBody.id = "tableRows";
         this.tableElement.appendChild(this.tableBody);
 
-        this.nColumns = designConfig.nInitColumns;
+        this.nColumns = initCols || designConfig.nInitColumns;
         this.rows = [];
         for (let i = 0; i < designConfig.nInitRows; i++) {
             this.addRow();

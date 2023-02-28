@@ -1,6 +1,7 @@
 # Fragen an Kunden
 
 ## Offene Fragen:
+- Button zum Leeren der Matrix
 - Impressum nötig? (eigenes oder Link auf Impressum von Kirchbergnet)
 - Wie groß darf eine vom User eingegebene Matrix maximal bzw. minimal sein?
 - Sollen Use-Cases für das Pflichtenheft (funktionale Anforderungen) erstellt werden?
