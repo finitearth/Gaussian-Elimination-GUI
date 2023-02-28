@@ -15,6 +15,14 @@ body{
     box-sizing: inherit;
 }
 
+header{
+    left: 0;
+    top: 5em;
+    position: relative;
+    padding: 0 0 2em 2em;
+    z-index: 1;
+} 
+
 main {
     padding: 3.5em 2em 1em 2em;
     
@@ -162,14 +170,6 @@ ol {
 
 /* Layout */
 
-header{
-    left: 0;
-    top: 5em;
-    position: relative;
-    padding: 0 0 2em 2em;
-    /* z-index: -1; */
-} 
-
 .align-center {
     align-items: center;
     justify-content: center;
@@ -188,6 +188,7 @@ header{
     font-size: 16pt;
     padding: 0.5em 0;
     margin-bottom: 10px;
+    z-index: 3;
 }
 
 .nav-list {
