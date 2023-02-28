@@ -17,7 +17,7 @@ body{
 
 header{
     left: 0;
-    top: 5em;
+    top: 5.5em;
     position: relative;
     padding: 0 0 2em 2em;
     z-index: 1;
@@ -45,7 +45,7 @@ h1 {
 }
 
 h2 {
-    margin-top: 0;
+    margin: 0.25em 0;
 }
 
 a {
@@ -76,10 +76,7 @@ input {
     width: 200px;
 }
 
-ol {
-    list-style-type: none;
-    font-size: larger;
-}
+
 
 .page-divider {
     background: #fff;
@@ -331,11 +328,6 @@ button:active {
     padding: 0.5em;
 }
 
-.help-container {
-    height: 27.5em;
-    overflow: auto;
-}
-
 .wrapper{
     display: grid;
     grid-template-columns: auto 1fr;
@@ -403,4 +395,36 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+/* Guide-Page */
+
+.guide-container {
+    height: 27.5em;
+    overflow: auto;
+}
+
+.guide-container p {
+    font-size: 12pt;
+}
+
+.guide-outline {
+    padding: 0 0 0.25em 0.5em;
+    margin-bottom: 2em;
+    border: 1px solid #EEE;
+    border-radius: 5px;
+    width: 20em;
+}
+
+.guide-outline-list {
+    list-style-type: none;
+    font-size: 14pt;
+    margin-top: 0;
+}
+
+.guide-outline-list>li:before{
+    content: "❱";
+    padding-right: 0.25em;
+    text-align: right;
+    color: rgb(0, 133, 252);
 }
