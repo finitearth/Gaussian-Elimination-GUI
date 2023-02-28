@@ -14,10 +14,22 @@ function addTable(element) {
 }
 
 function resizeMatrixRows(e) {
+    if(e.target.value > 9) {
+        document.getElementById("nr-rows").value = 9
+    }
+    if(e.target.value < 2) {
+        document.getElementById("nr-rows").value = 2
+    }
     inputTable.setNRows(e.target.value);
 }
 
 function resizeMatrixCols(e) {
+    if(e.target.value > 9) {
+        document.getElementById("nr-cols").value = 9
+    }
+    if(e.target.value < 2) {
+        document.getElementById("nr-cols").value = 2
+    }
     inputTable.setNColumns(e.target.value);
 }
 
