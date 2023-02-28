@@ -14,10 +14,22 @@ function addTable(element) {
 }
 
 function resizeMatrixRows(e) {
+    if(e.target.value > 9) {
+        document.getElementById("nr-rows").value = 9
+    }
+    if(e.target.value < 2) {
+        document.getElementById("nr-rows").value = 2
+    }
     inputTable.setNRows(e.target.value);
 }
 
 function resizeMatrixCols(e) {
+    if(e.target.value > 9) {
+        document.getElementById("nr-cols").value = 9
+    }
+    if(e.target.value < 2) {
+        document.getElementById("nr-cols").value = 2
+    }
     inputTable.setNColumns(e.target.value);
 }
 
@@ -35,9 +47,10 @@ document.getElementById("button_transpose").onclick = function () {
 document.getElementById("button_inverse").onclick = function () {
     try {
         let inputMatrix = inputTable.getData();
-        let solMatrix = gaussElimination(
+        let [coefMatrix, solMatrix] = gaussElimination(
             inputMatrix,
-            getUnitMatrix(inputMatrix.nRows)
+            getUnitMatrix(inputMatrix.nRows),
+            true
         );
         outputTable.setData(solMatrix);
     } catch (error) {

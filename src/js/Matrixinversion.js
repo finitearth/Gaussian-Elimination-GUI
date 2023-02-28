@@ -77,9 +77,9 @@ function calculateSolution() {
     try {
         let coefMatrix = tables[0].getData();
         let solMatrix = tables[1].getData();
-        solMatrix = gaussElimination(coefMatrix, solMatrix);
+        [coefMatrix, solMatrix] = gaussElimination(coefMatrix, solMatrix, true);
         tables[2].setData(solMatrix);
-        tables[3].setData(getUnitMatrix(dimension));
+        tables[3].setData(coefMatrix);
     } catch (e) {
         alert("Inversenberechnung nicht mglich");
     }
