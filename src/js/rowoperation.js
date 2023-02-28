@@ -20,7 +20,7 @@ export class RowOperation {
 
         this.comboBoxElement.id         = this.id;
         this.comboboxButton             = document.createElement("button");
-        this.comboboxButton.innerHTML   = "&#8680;";
+        this.comboboxButton.innerHTML   = "❱";
         this.comboboxButton.id          = this.id+"_displayCombobox";
         this.comboboxButton.className   = "button-combobox";
         this.comboBoxElement.className  = "container-combobox";
@@ -59,7 +59,7 @@ export class RowOperation {
 
         elements.forEach(elem => {
             if (document.getElementById(this.id).childElementCount < 7) {
-                document.getElementById(this.id+"_displayCombobox").innerHTML = "&#8678;";
+                document.getElementById(this.id+"_displayCombobox").innerHTML = "❰";
 
                 const Element = document.createElement(elem.element_name);
                 Element.textContent = elem.name;
@@ -101,11 +101,11 @@ export class RowOperation {
                 if (document.getElementById(elem.id).style.display == "none") {
                     document.getElementById(elem.id).style.display = "inline";
                     this.enabled                                   = true;
-                    document.getElementById(this.id+"_displayCombobox").innerHTML = "&#8678;";
+                    document.getElementById(this.id+"_displayCombobox").innerHTML = "❰";
                 } else {
                     document.getElementById(elem.id).style.display = "none";
                     this.enabled                                   = false;
-                    document.getElementById(this.id+"_displayCombobox").innerHTML = "&#8680;";
+                    document.getElementById(this.id+"_displayCombobox").innerHTML = "❱";
                 }
             }
         });

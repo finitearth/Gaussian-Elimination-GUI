@@ -19,7 +19,8 @@ header {
     left: 0;
     top: 5.5em;
     position: relative;
-    padding: 0 0 2em 2em;
+    padding-left: 2em;
+    margin-bottom: 2em;
     z-index: 1;
 }
 
@@ -64,9 +65,36 @@ td {
 
 input {
     border: 1px solid rgb(154, 157, 160);
-    border-radius: 5px;
-    height: 30px;
-    width: 50px;
+    border-radius: 3.5px;
+    height: min(1.75em, 3.5vmin);
+    width: min(2.5em, 5vmin);
+    min-width: 2em;
+    min-height: 1.25em;
+    margin: 0;
+    padding: 0;
+    text-align: center; 
+}
+
+input[type=number] {
+    width: 3em;
+    height: 1.75em;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
+   width: 14px;
+   height: 30px;
+}
+
+select {
+    border: 1px solid rgb(154, 157, 160);
+    border-radius: 3.5px;
+    height: 2em;
+    width: 2.5em;
+    margin: 0.25em;
+    padding: 0;
+    text-align: center; 
 }
 
 .page-divider {
@@ -74,7 +102,7 @@ input {
     box-shadow: 0 4px 8px rgba(19, 41, 104, 0.1);
     border-radius: 8px;
     margin-bottom: 2em;
-    padding: 2em;
+    padding: 1em;
     overflow: hidden;
 }
 
@@ -180,8 +208,9 @@ input {
 .equation-input {
     border: 1px solid rgb(154, 157, 160);
     border-radius: 5px;
-    height: 30px;
-    width: 200px;
+    height: 1.75em;
+    width: 12.5em;
+    text-align: left;
 }
 
 .matrix-box {
