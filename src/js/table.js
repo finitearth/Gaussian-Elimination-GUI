@@ -31,10 +31,10 @@ export class Table {
         buttonsContainer.id = "buttons";
 
         const buttons = [
-            { name: "+ R", id: "RowAdder", function: this.addRow },
-            { name: "+ C", id: "ColumnAdder", function: this.addColumn },
-            { name: "- R", id: "RowRemover", function: this.removeRow },
-            { name: "- C", id: "ColumnRemover", function: this.removeColumn },
+            { name: "+ R", id: "RowAdder", function: (e) => this.addRow(false) },
+            { name: "+ C", id: "ColumnAdder", function: (e) => this.addColumn(false) },
+            { name: "- R", id: "RowRemover", function: (e) => this.removeRow(false) },
+            { name: "- C", id: "ColumnRemover", function: (e) => this.removeColumn(false) },
         ];
 
         buttons.forEach(button => {
@@ -63,6 +63,9 @@ export class Table {
     @param {boolean} [force=false] - Optional parameter to force adding/removing rows even if the current number of rows is greater or less than the desired number of rows.
     */
     setNRows(nRows, force = false) {
+        if (nRows < designConfig.minRows || nRows > designConfig.maxRows) {
+            return;
+        }
         while (this.rows.length < nRows) {
             this.addRow(force);
         }
@@ -79,6 +82,9 @@ export class Table {
     @param {boolean} [force=false] - Optional parameter to force adding/removing columns even if the current number of columns is greater or less than the desired number of columns.
     */
     setNColumns(nColumns, force = false) {
+        if (nColumns < designConfig.minColumns || nColumns > designConfig.maxColumns) {
+            return;
+        }
         while (this.nColumns < nColumns) {
             this.addColumn(force);
         }
@@ -118,6 +124,9 @@ export class Table {
         if (this.rows.length > designConfig.maxRows && !force) {
             return;
         }
+        console.log("rows: " + this.rows.length)
+        console.log("maxrows: " + designConfig.maxRows)
+        console.log("force" + force)
         const rowId = this.rows.length;
         const row = document.createElement("tr");
         row.id = rowId;
