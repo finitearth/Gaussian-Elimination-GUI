@@ -7,7 +7,7 @@ import { UnsolvableMatrixException } from "./exceptions.js";
  * @param {Matrix} solMatrix - The matrix representing the solutions of the system of linear equations.
  * @returns {Matrix} - The matrix representing the solutions to the system of linear equations after elimination.
  */
-export function gaussElimination(coefMatrix, solMatrix) {
+export function gaussElimination(coefMatrix, solMatrix, returnCoefMatrix = false) {
     if (coefMatrix.hasLinearDependencies()) {
         throw new UnsolvableMatrixException();
     }
@@ -35,5 +35,8 @@ export function gaussElimination(coefMatrix, solMatrix) {
         }
     }
 
+    if (returnCoefMatrix) {
+        return [coefMatrix, solMatrix];
+    }
     return solMatrix;
 }

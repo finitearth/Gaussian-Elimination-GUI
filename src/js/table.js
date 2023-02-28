@@ -124,9 +124,6 @@ export class Table {
         if (this.rows.length > designConfig.maxRows && !force) {
             return;
         }
-        console.log("rows: " + this.rows.length)
-        console.log("maxrows: " + designConfig.maxRows)
-        console.log("force" + force)
         const rowId = this.rows.length;
         const row = document.createElement("tr");
         row.id = rowId;

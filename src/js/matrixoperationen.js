@@ -35,9 +35,10 @@ document.getElementById("button_transpose").onclick = function () {
 document.getElementById("button_inverse").onclick = function () {
     try {
         let inputMatrix = inputTable.getData();
-        let solMatrix = gaussElimination(
+        let [coefMatrix, solMatrix] = gaussElimination(
             inputMatrix,
-            getUnitMatrix(inputMatrix.nRows)
+            getUnitMatrix(inputMatrix.nRows),
+            true
         );
         outputTable.setData(solMatrix);
     } catch (error) {
