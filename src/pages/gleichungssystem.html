@@ -26,7 +26,6 @@
                 <label for="nr-b">Anzahl rechte Seiten:</label>
                 <input type="number" id="nr-b" min="2" name="nr-b" />
             </form>
-            <button id="generateExercise">Aufgabe erstellen</button>
 
             <div id="matrixBox" class="page-divider align-center">
                 <table id="table">
@@ -38,17 +37,16 @@
                         <th id="table_vertical_3" class="vertical"></th>
                     </tr>
                     <tr id="table_row"></tr>
+                    <button id="generateExercise">Aufgabe erstellen</button>
                 </table>
+                <button id="calculateSolutionButton">Lösen</button>
             </div>
 
             <div class="container-button">
-                <button class="button-operations" id="calculate">
+                <button class="button-gl-inv button-berechnen-down" id="calculate">
                     Berechnen
                 </button>
-                <button class="button-operations" id="up">Hoch</button>
-                <button class="button-operations" id="calculateSolutionButton">
-                    Lösen
-                </button>
+                <button class="button-gl-inv button-hoch-up" id="up">Hoch</button>
             </div>
 
             <div class="page-divider align-center">

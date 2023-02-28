@@ -78,6 +78,7 @@ input {
 input[type=number] {
     width: 3em;
     height: 1.75em;
+    margin: 0.25em 1.75em 0.25em 0.25em;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -100,7 +101,7 @@ select {
     background: #fff;
     box-shadow: 0 4px 8px rgba(19, 41, 104, 0.1);
     border-radius: 8px;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     padding: 1em;
     overflow: hidden;
 }
@@ -186,7 +187,7 @@ select {
 
 /* Matrizenrechnung */
 .matrix-overflow-box {
-    height: 20em;
+    height: 15em;
     width: 66%;
     min-width: 20em;
     overflow: auto;
@@ -325,20 +326,10 @@ button:active {
 }
 
 .container-button {
-    padding: 20px;
+    margin-bottom: 1em;
     align-items: center;
     justify-content: center;
     display: flex;
-}
-
-.button-operations {
-    background-color: rgb(0, 133, 252);
-    color: rgb(255, 255, 255);
-    border: none;
-    border-radius: 5px;
-    height: 40px;
-    width: 75px;
-    margin: 10px;
 }
 
 .table-button {
@@ -360,9 +351,10 @@ button:active {
 }
 
 .button-combobox {
-    height: 20px;
-    width: 35px;
-    margin: 6px 0 0 0;
+    height: 2em;
+    width: 2em;
+    margin: 0;
+    /* margin: 6px 0 0 0; */
 }
 
 .button-help {
@@ -468,16 +460,34 @@ input:checked + .slider:before {
     width: 2.5em;
     height: 1.75em;
     -ms-box-sizing:content-box;
--moz-box-sizing:content-box;
--webkit-box-sizing:content-box; 
-box-sizing:content-box;
+    -moz-box-sizing:content-box;
+    -webkit-box-sizing:content-box; 
+    box-sizing:content-box;
 }
 
+.button-gl-inv{
+    width: 9em;
+    padding: 0;
+}
+
+.button-berechnen-down::before {
+    content: "⮋";
+    font-size: 20pt;
+    padding-right: 0.25em;
+    vertical-align: middle;
+}
+
+.button-hoch-up::before {
+    content: "⮉";
+    font-size: 20pt;
+    padding-right: 0.25em;
+    vertical-align: middle;
+}
 
 /* Guide-Page */
 
 .guide-container {
-    height: 27.5em;
+    height: 30em;
     overflow: auto;
 }
 
@@ -487,8 +497,8 @@ box-sizing:content-box;
 
 .guide-outline {
     padding: 0 0 0.25em 0.5em;
-    margin-bottom: 2em;
-    border: 1px solid #eee;
+    margin-bottom: 0.5em;
+    border: 1px solid #ddd;
     border-radius: 5px;
     width: 20em;
 }

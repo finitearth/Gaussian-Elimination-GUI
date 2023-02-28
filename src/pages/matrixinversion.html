@@ -18,31 +18,13 @@
         </header>
 
         <main>
-            <button id="generateExercise">Aufgabe erstellen</button>
-            <div id="mainContainer">
-                <div id="dimensionButtonBox" class="page-divider">
-                    <table id="dimensionTable">
-                        <tbody>
-                            <tr id="dimensionRow">
-                                <th id="firstField">
-                                    <p id="dimensionText">Dimension:</p>
-                                </th>
-                                <th id="secondField">
-                                    <input
-                                        id="dimensionButton"
-                                        type="number"
-                                        min="2"
-                                        max="9"
-                                        defaultValue="3"
-                                        value="3"
-                                        size="1"
-                                    />
-                                </th>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <form class="page-divider">
+                    <label for="dimensionButton">Dimensionen:</label>
+                    <input id="dimensionButton" type="number" min="2" max="9" defaultValue="3" value="3" size="1">
+                </form>
+                                    
                 <div id="matrixBox" class="page-divider align-center">
+                    <button id="generateExercise">Aufgabe erstellen</button>
                     <table id="table">
                         <tr id="table_row">
                             <th id="table_element_1"></th>
@@ -53,20 +35,11 @@
                         </tr>
                         <tr id="table_row"></tr>
                     </table>
+                    <button id="calculateSolutionButton">Lösen</button>
                 </div>
                 <div id="mainButtonContainer" class="container-button">
-                    <button id="calculateButton" class="button-operations">
-                        Berechnen
-                    </button>
-                    <button
-                        id="calculateSolutionButton"
-                        class="button-operations"
-                    >
-                        Lösen
-                    </button>
-                    <button id="adaptResult" class="button-operations">
-                        Hoch
-                    </button>
+                    <button id="calculateButton" class="button-operations button-berechnen-down">Berechnen</button>
+                    <button id="adaptResult" class="button-operations button-hoch-up">Hoch</button>
                 </div>
             </div>
             <div id="resultContainer" class="page-divider align-center">
