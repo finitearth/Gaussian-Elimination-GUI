@@ -140,9 +140,6 @@ function removeTable() {
     document
         .getElementById("table")
         .removeChild(document.getElementById("table").lastChild);
-    document
-        .getElementById("table")
-        .removeChild(document.getElementById("table").lastChild);
 }
 
 let tables = [];
