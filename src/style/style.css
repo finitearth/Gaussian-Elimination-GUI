@@ -222,6 +222,12 @@ select {
     font-size: 16pt;
 }
 
+.combobox-dropdown {
+
+}
+
+.combobox-input-field {}
+
 .button-matrixrechnung {
     float: right;
 }

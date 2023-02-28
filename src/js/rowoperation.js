@@ -49,12 +49,12 @@ export class RowOperation {
 
     handleComboboxButtons() {
         const elements = [
-            { name: "_", id: this.firstOperatorDropdownID,  element_name: "select", size: 1, option_1: "*", option_2: "/"  },
-            { name: "_", id: this.firstTextFieldID,         element_name: "input",  size: 1  },
-            { name: "_", id: this.secondOperatorDropdownID, element_name: "select", size: 1, option_1: "+", option_2: "-" },
-            { name: "_", id: this.secondTextField,          element_name: "input",  size: 1  },
-            { name: "_", id: this.thirdOperatorDropdownID,  element_name: "select", size: 1, option_1: "*", option_2: "/" },
-            { name: "_", id: this.rowDropdownID,            element_name: "select", size: 1  }
+            { name: "_", id: this.firstOperatorDropdownID,  element_name: "select", class: "combobox-dropdown",    size: 1, option_1: "*", option_2: "/"  },
+            { name: "_", id: this.firstTextFieldID,         element_name: "input",  class: "combobox-input-field", size: 1  },
+            { name: "_", id: this.secondOperatorDropdownID, element_name: "select", class: "combobox-dropdown",    size: 1, option_1: "+", option_2: "-" },
+            { name: "_", id: this.secondTextField,          element_name: "input",  class: "combobox-input-field", size: 1  },
+            { name: "_", id: this.thirdOperatorDropdownID,  element_name: "select", class: "combobox-dropdown",    size: 1, option_1: "*", option_2: "/" },
+            { name: "_", id: this.rowDropdownID,            element_name: "select", class: "combobox-dropdown",    size: 1  }
         ];
 
         elements.forEach(elem => {
@@ -65,6 +65,7 @@ export class RowOperation {
                 Element.textContent = elem.name;
                 Element.id          = elem.id;
                 Element.size        = elem.size;
+                Element.className   = elem.class;
                 document.getElementById(this.id).insertBefore(Element, document.getElementById(this.id+"_displayCombobox"));
 
                 this.enabled = true;
