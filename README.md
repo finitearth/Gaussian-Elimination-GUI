@@ -10,12 +10,18 @@ In der linearen Algebra wird Gauß-Algorithmus beispielsweise zur Lösung linear
 passende webbasierte Anwendung vereinfachen.
 
 ### Ziel des Projekts
-Implementierung einer webbasierten Oberfläche, in der der Gauß-Algorithmus Schritt für Schritt eine einzugebende Matrizenberechnung löst. Die durchzuführenden Zeilenoperationen sind hierbei in jedem Schritt vom Anwender selbst bestimmbar. Die Oberfläche ist so zu gestalten, dass beim Einsatz ein Verständnis des Algorithmus geschaffen wird. Dabei wird unter anderem die Inversion einer Matrize $A^{-1}$ ermöglicht.
+Implementierung einer webbasierten Oberfläche, in der der Gauß-Algorithmus Schritt für Schritt eine einzugebende Matrizenberechnung löst. Die durchzuführenden Zeilenoperationen sind hierbei in jedem Schritt vom Anwender selbst bestimmbar. Die Oberfläche ist so zu gestalten, dass beim Einsatz ein Verständnis des Algorithmus geschaffen wird.
 
 ### Rahmenbedingungen
 - Die Anwendung ist als Web-Anwendung umzusetzen
 - HTML und JavaScript ohne ergänzende Frameworks/Bibliotheken
 - Kanban im Projektmanagement
 
-
-$^{-1}$ Dies ist als Exponent und nicht als Fußnotoe zu verstehen!
+## Set-Up
+In order to run the webpage, you need to allow the imports inside of the js-files. To do this you can either
+- start chrome via 
+```
+cd C:\Program Files\Google\Chrome\Application
+chrome.exe --allow-file-access-from-files
+```
+- install module "http-server" via `npm install http-server`; than run `http-server --cors` and open the displayed localhost page.

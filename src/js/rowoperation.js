@@ -20,7 +20,7 @@ export class RowOperation {
 
         this.comboBoxElement.id         = this.id;
         this.comboboxButton             = document.createElement("button");
-        this.comboboxButton.innerHTML   = "&#8680;";
+        this.comboboxButton.innerHTML   = "❱";
         this.comboboxButton.id          = this.id+"_displayCombobox";
         this.comboboxButton.className   = "button-combobox";
         this.comboBoxElement.className  = "container-combobox";
@@ -49,22 +49,23 @@ export class RowOperation {
 
     handleComboboxButtons() {
         const elements = [
-            { name: "_", id: this.firstOperatorDropdownID,  element_name: "select", size: 1, option_1: "*", option_2: "/"  },
-            { name: "_", id: this.firstTextFieldID,         element_name: "input",  size: 1  },
-            { name: "_", id: this.secondOperatorDropdownID, element_name: "select", size: 1, option_1: "+", option_2: "-" },
-            { name: "_", id: this.secondTextField,          element_name: "input",  size: 1  },
-            { name: "_", id: this.thirdOperatorDropdownID,  element_name: "select", size: 1, option_1: "*", option_2: "/" },
-            { name: "_", id: this.rowDropdownID,            element_name: "select", size: 1  }
+            { name: "_", id: this.firstOperatorDropdownID,  element_name: "select", class: "combobox-dropdown",    size: 1, option_1: "*", option_2: "/"  },
+            { name: "_", id: this.firstTextFieldID,         element_name: "input",  class: "combobox-input-field", size: 1  },
+            { name: "_", id: this.secondOperatorDropdownID, element_name: "select", class: "combobox-dropdown",    size: 1, option_1: "+", option_2: "-" },
+            { name: "_", id: this.secondTextField,          element_name: "input",  class: "combobox-input-field", size: 1  },
+            { name: "_", id: this.thirdOperatorDropdownID,  element_name: "select", class: "combobox-dropdown",    size: 1, option_1: "*", option_2: "/" },
+            { name: "_", id: this.rowDropdownID,            element_name: "select", class: "combobox-dropdown",    size: 1  }
         ];
 
         elements.forEach(elem => {
             if (document.getElementById(this.id).childElementCount < 7) {
-                document.getElementById(this.id+"_displayCombobox").innerHTML = "&#8678;";
+                document.getElementById(this.id+"_displayCombobox").innerHTML = "❰";
 
                 const Element = document.createElement(elem.element_name);
                 Element.textContent = elem.name;
                 Element.id          = elem.id;
                 Element.size        = elem.size;
+                Element.className   = elem.class;
                 document.getElementById(this.id).insertBefore(Element, document.getElementById(this.id+"_displayCombobox"));
 
                 this.enabled = true;
@@ -100,11 +101,11 @@ export class RowOperation {
                 if (document.getElementById(elem.id).style.display == "none") {
                     document.getElementById(elem.id).style.display = "inline";
                     this.enabled                                   = true;
-                    document.getElementById(this.id+"_displayCombobox").innerHTML = "&#8678;";
+                    document.getElementById(this.id+"_displayCombobox").innerHTML = "❰";
                 } else {
                     document.getElementById(elem.id).style.display = "none";
                     this.enabled                                   = false;
-                    document.getElementById(this.id+"_displayCombobox").innerHTML = "&#8680;";
+                    document.getElementById(this.id+"_displayCombobox").innerHTML = "❱";
                 }
             }
         });

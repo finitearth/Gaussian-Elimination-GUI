@@ -113,14 +113,22 @@ function addTable() {
     let table = new Table(tables.length);
     tables.push(table);
 
-    let header = document.createElement("h2");
-    let ithLetter = String.fromCharCode(64 + tables.length);
-    header.innerHTML = `${ithLetter} =`;
+    let container = document.createElement("table");
+    // append new row to container
+    let row = document.createElement("tr");
 
-    document.getElementById("table").appendChild(header);
-    document
-        .getElementById("table")
-        .appendChild(tables[tables.length - 1].tableContainer);
+    let name = document.createElement("td");
+    name.className = "matrix-name";
+    let ithLetter = String.fromCharCode(64 + tables.length);
+    name.innerHTML = `${ithLetter} =`;
+
+    row.appendChild(name);
+    let content = document.createElement("td");
+    content.appendChild(tables[tables.length - 1].tableContainer);
+    row.appendChild(content);
+    container.appendChild(row);
+
+    document.getElementById("table").appendChild(container);
 }
 
 function removeTable() {
@@ -129,9 +137,6 @@ function removeTable() {
     }
 
     tables.pop();
-    document
-        .getElementById("table")
-        .removeChild(document.getElementById("table").lastChild);
     document
         .getElementById("table")
         .removeChild(document.getElementById("table").lastChild);

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Gleichungssystem Lösen</title>
+        <title>Anleitung</title>
         <link rel="stylesheet" href="../style/style.css" type="text/css" />
         <link rel="icon" href="../images/icon_logo.png" />
         <script src="../js/navbar.js"></script>
@@ -12,33 +12,35 @@
     <body>
         <nav id="navbar"></nav>
         <header>
-            <h1>Hilfe</h1>
+            <h1>Anleitung</h1>
         </header>
 
         <main>
             <div class="page-divider">
-                <div class="help-container">
-                    <h2>Inhalt</h3>
-                    <ol>
-                        <li>
-                            <a href="hilfe.html#allgemein">Allgemein</a>
-                        </li>
-                        <li>
-                            <a href="hilfe.html#matrizenberechnung">Matrizenberechnung</a>
-                        </li>
-                        <li>
-                            <a href="hilfe.html#matrixoperationen">Matrixoperationen</a>
-                        </li>
-                        <li>
-                            <a href="hilfe.html#gl-system">Gl-System</a>
-                        </li>
-                        <li>
-                            <a href="hilfe.html#inversenberechnung">Inversenberechnung</a>
-                        </li>
-                    </ol>
+                <div class="guide-container">
+                    <div class="guide-outline">
+                        <h2>Inhalt</h2>
+                        <ol class="guide-outline-list">
+                            <li>
+                                <a href="anleitung.html#allgemein">Allgemein</a>
+                            </li>
+                            <li>
+                                <a href="anleitung.html#matrizenberechnung">Matrizenberechnung</a>
+                            </li>
+                            <li>
+                                <a href="anleitung.html#matrixoperationen">Matrixoperationen</a>
+                            </li>
+                            <li>
+                                <a href="anleitung.html#gl-system">Gl-System</a>
+                            </li>
+                            <li>
+                                <a href="anleitung.html#inversenberechnung">Inversenberechnung</a>
+                            </li>
+                        </ol>
+                    </div>
 
                     <div id="allgemein">
-                        <h3>Allgemein</h3>
+                        <h2>Allgemein</h2>
                         <p>
                             Diese Seite dient der Beschreibung, wie die Website zu nutzen ist. Weitere Informationen wie mathematische Hintergründe und Tipps erhältst Du 
                             jeweils auf den Unterseiten passend zur jeweiligen Themenstellung.
@@ -62,11 +64,11 @@
                             dem Wert 0 belegt und erkannt.
                         </p>
                     </div>
-                    <div id="matrizenberechnung">
-                        <h3>Matrizenberechnung</h3>
+                    <div id="matrizenrechnung">
+                        <h2>Matrizenrechnung</h2>
                         <p>
                             Auf der Unterseite 
-                            <a href="matrizenrechnung.html">Matrizenberechnung</a> 
+                            <a href="matrizenrechnung.html">Matrizenrechnung</a> 
                             kannst Du bis zu 26 Matrizen erstellen und Berechnungen darauf ausführen. Mit dem Button '+ neue Matrix' fügst Du eine weitere Matrix hinzu. 
                             Weitere Spalten kannst Du bei jeder Matrix über die Buttons oben rechts hinzufügen oder löschen, Zeilen über die Buttons unten links. Unter 
                             dem Tab 'Rechnung' steht Dir ein Freitextfeld zur Verfügung, in welchen Du die Berechnung angeben kannst. Um die Berechnung durchführen zu 
@@ -84,9 +86,25 @@
                             Dir in der Matrix neben dem Freitextfeld angezeigt.
                         </p>
                     </div>
-                    
+                    <div id="matrixoperationen">
+                        <h2>Matrixoperationen</h2>
+                        <p>
+                            Die Unterseite 
+                            <a href="matrixoperationen.html">Matrixoperationen</a> 
+                            bietet Dir die Möglichkeit, die Inverse, die Determinante oder die transponierte Matrix einer Matrix ausgeben zu lassen. Neben den Buttons 
+                            direkt an der Matrix, mit denen Du die Anzahl an Zeilen und Spalten anpassen kannst, stehen Dir links neben der Matrix zwei Textboxen zur 
+                            Verfügung, über die Du die Anzahl ebenfalls ändern kannst. Hierzu schreibt Du die genaue Anzahl in das Feld oder inkrementierst bzw. dekrementierst 
+                            über die Pfeile rechts. Für die Operationen stehen Dir drei Buttons unterhalb der Eingabematrix zur Verfügung:
+                            <ul>
+                                <li>M⁻¹ zur Matrixinversion</li>
+                                <li>|M| zur Ausgabe der Determinante</li>
+                                <li>Mᵀ zum Transponieren der Matrix</li>
+                            </ul>
+                            Unter dem Tab Ergebnis wird Dir das Ergebnis der Operation ausgegeben.
+                        </p>
+                    </div>
                     <div id="gl-system">
-                        <h3>Gl-System</h3>
+                        <h2>Gl-System</h2>
                         <p>
                             Die Unterseite
                             <a href="gleichungssystem.html">Gl-System</a> 
@@ -104,7 +122,7 @@
                         </p>
                     </div>
                     <div id="inversenberechnung">
-                        <h3>Inversenberechnung</h3>
+                        <h2>Inversenberechnung</h2>
                         <p>
                             Die Unterseite 
                             <a href="matrixinversion.html">Inversenberechnung</a> 
@@ -119,23 +137,6 @@
                             wird Dir unter dem Tab 'Berechnen' angezeigt. Wenn Du mit dem Ergebnis zufrieden bist und damit weiterrechnen möchtest, kannst Du es über den 
                             Button 'Hoch' in die Eingabematrizen übertragen lassen. Im Tab 'Historie' kannst Du Dir den gesamten Verlauf der Zeilenoperationen schrittweise 
                             ansehen und ausdrucken lassen oder, falls notwendig, die Historie leeren.
-                        </p>
-                    </div>
-                    <div id="matrixoperationen">
-                        <h3>Matrixoperationen</h3>
-                        <p>
-                            Die Unterseite 
-                            <a href="matrixoperationen.html">Matrixoperationen</a> 
-                            bietet Dir die Möglichkeit, die Inverse, die Determinante oder die transponierte Matrix einer Matrix ausgeben zu lassen. Neben den Buttons 
-                            direkt an der Matrix, mit denen Du die Anzahl an Zeilen und Spalten anpassen kannst, stehen Dir links neben der Matrix zwei Textboxen zur 
-                            Verfügung, über die Du die Anzahl ebenfalls ändern kannst. Hierzu schreibt Du die genaue Anzahl in das Feld oder inkrementierst bzw. dekrementierst 
-                            über die Pfeile rechts. Für die Operationen stehen Dir drei Buttons unterhalb der Eingabematrix zur Verfügung:
-                            <ul>
-                                <li>M⁻¹ zur Matrixinversion</li>
-                                <li>|M| zur Ausgabe der Determinante</li>
-                                <li>Mᵀ zum Transponieren der Matrix</li>
-                            </ul>
-                            Unter dem Tab Ergebnis wird Dir das Ergebnis der Operation ausgegeben.
                         </p>
                     </div>
                 </div>
