@@ -22,13 +22,15 @@
                 </div>
                 <div class="button-box-add-remove-matrix">
                     <button id="addTableButton">Neue Matrix</button>
-                    <br>
+                    <br />
                     <button id="removeTableButton">Matrix entfernen</button>
                 </div>
             </div>
             <div class="page-divider">
                 <h2>Berechnung</h2>
-                <button id="calculateButton" class="button-matrixrechnung">Berechnen</button>
+                <button id="calculateButton" class="button-matrixrechnung">
+                    Berechnen
+                </button>
                 <table>
                     <tr>
                         <td>
@@ -38,13 +40,18 @@
                                 class="equation-input"
                             />
                         </td>
-                        <td>
-                            =
-                        </td>
+                        <td>=</td>
                         <td>
                             <div id="resultTable"></div>
                         </td>
-                    </tr>   
+                        <td>
+                            <!-- Rounded switch -->
+                            <label class="switch">
+                                <input type="checkbox" id="convertToDecimal" />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+                    </tr>
                 </table>
             </div>
         </main>

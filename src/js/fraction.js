@@ -87,6 +87,10 @@ export class Fraction {
         return this.add(other.mul(new Fraction(-1, 1)));
     }
 
+    sub(other) {
+        return this.subtract(other);
+    }
+
     /**
      * Returns true if the current fraction is greater than another fraction object, and false otherwise.
      * The method compares the fractions by cross-multiplying, i.e., by checking if this.numerator * other.denominator is greater than other.numerator * this.denominator.

@@ -6,30 +6,25 @@ import { getUnitMatrix } from "./utils.js";
 import { addCombobox } from "./utils.js";
 import { adaptComboboxes } from "./utils.js";
 
-function createTable(id) {
-    let table = new Table(id, false);
+function createTable(id, initCols, disableInput) {
+    let table = new Table(id, false, initCols);
+    if (disableInput) {
+        table.disableInput();
+    }
     document.getElementById(id).appendChild(table.tableContainer);
     return table;
 }
 
 // create Tables
 let coefTable = createTable("coefTable");
-
-let solTable = createTable("solTable");
-solTable.setNColumns(1, true);
-
-let resCoefTable = createTable("resCoefTable");
-resCoefTable.disableInput();
-
-let resSolTable = createTable("resSolTable");
-resSolTable.setNColumns(1, true);
-resSolTable.disableInput();
-
+let solTable = createTable("solTable", 1);
+let resCoefTable = createTable("resCoefTable", false, true);
+let resSolTable = createTable("resSolTable", 1, true);
 let tables = [coefTable, solTable, resCoefTable, resSolTable];
 let rowOperations = []; 
 
 // creating initial comboboxes
-for ( let i = 0; i < coefTable.rows.length; i++ ){
+for ( let i = 0; i < coefTable.nRows; i++ ){
     rowOperations = addCombobox(("combobox_"+i), rowOperations, coefTable);
 }
 
