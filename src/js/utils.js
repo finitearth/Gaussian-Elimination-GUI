@@ -124,18 +124,18 @@ export function addKeyDownListener(tables, nextTableToTheRight = false) {
 
         if (e.code == "ArrowUp" && row > 0) {
             row -= 1;
-        } else if (e.code == "ArrowDown" && row < tables[0].rows.length - 1) {
+        } else if (e.code == "ArrowDown" && row < tables[tableIdx].rows.length - 1) {
             row += 1;
         } else if (e.code == "ArrowLeft" && column > 0) {
             column -= 1;
-        } else if (e.code == "ArrowRight" && column < tables[0].nColumns - 1) {
+        } else if (e.code == "ArrowRight" && column < tables[tableIdx].nColumns - 1) {
             column += 1;
         } else if (
             e.code == "ArrowUp" &&
             tableIdx > 0 &&
             !nextTableToTheRight
         ) {
-            tableId -= 1;
+            tableIdx -= 1;
             row = tables[tableIdx].rows.length - 1;
         } else if (
             e.code == "ArrowDown" &&
@@ -150,7 +150,7 @@ export function addKeyDownListener(tables, nextTableToTheRight = false) {
             nextTableToTheRight
         ) {
             tableIdx -= 1;
-            column = tables[0].nColumns - 1;
+            column = tables[tableIdx].nColumns - 1;
         } else if (
             e.code == "ArrowRight" &&
             tableIdx < tables.length - 1 &&
