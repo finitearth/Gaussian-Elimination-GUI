@@ -17,21 +17,35 @@
 
         <main>
             <div class="page-divider size-50">
-                <div class="overflow">
-                    <div id="table">
-                        <button id="addTableButton">Neue Matrix</button>
-                        <button id="removeTableButton">Matrix entfernen</button>
-                    </div>
+                <div class="matrix-overflow-box">
+                    <div id="table" class="matrix-container"></div>
+                </div>
+                <div class="button-box-add-remove-matrix">
+                    <button id="addTableButton">Neue Matrix</button>
+                    <br>
+                    <button id="removeTableButton">Matrix entfernen</button>
                 </div>
             </div>
             <div class="page-divider">
                 <h2>Berechnung</h2>
-                <div id="equation">
-                    <input id="equationInput" type="text" class="equation-input" />
-                    <button id="calculateButton">Berechnen</button>
-                    <div id="resultTable"></div>
-                </div>
-                <div id="result"></div>
+                <button id="calculateButton" class="button-matrixrechnung">Berechnen</button>
+                <table>
+                    <tr>
+                        <td>
+                            <input
+                                id="equationInput"
+                                type="text"
+                                class="equation-input"
+                            />
+                        </td>
+                        <td>
+                            =
+                        </td>
+                        <td>
+                            <div id="resultTable"></div>
+                        </td>
+                    </tr>   
+                </table>
             </div>
         </main>
         <footer>
