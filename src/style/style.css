@@ -106,18 +106,16 @@ select {
     overflow: hidden;
 }
 
-.size-50 {
-    height: 50%;
-}
-
 /* Start Page */
 
 .start-divider {
     width: 40%;
     min-width: 17.5em;
-    top: 25%;
-    min-height: 20em;
-    position: relative;
+    /* top: 25%; */
+    min-height: 15em;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     margin-left: 3em;
     padding: 2em;
     z-index: 1;
@@ -187,7 +185,7 @@ select {
 
 /* Matrizenrechnung */
 .matrix-overflow-box {
-    height: 15em;
+    height: 33vh;
     width: 66%;
     min-width: 20em;
     overflow: auto;
@@ -501,7 +499,7 @@ input:checked + .slider:before {
 /* Guide-Page */
 
 .guide-container {
-    height: 30em;
+    height: 66vh;
     overflow: auto;
 }
 
