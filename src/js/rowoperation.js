@@ -55,7 +55,6 @@ export class RowOperation {
                 id: this.firstOperatorDropdownID,
                 element_name: "select",
                 class: "combobox-dropdown",
-                size: 1,
                 option_1: "*",
                 option_2: "/",
             },
@@ -63,13 +62,11 @@ export class RowOperation {
                 id: this.firstTextFieldID,
                 element_name: "input",
                 class: "combobox-input-field",
-                size: 1,
             },
             {
                 id: this.secondOperatorDropdownID,
                 element_name: "select",
                 class: "combobox-dropdown",
-                size: 1,
                 option_1: "+",
                 option_2: "-",
             },
@@ -77,13 +74,11 @@ export class RowOperation {
                 id: this.secondTextField,
                 element_name: "input",
                 class: "combobox-input-field",
-                size: 1,
             },
             {
                 id: this.thirdOperatorDropdownID,
                 element_name: "select",
                 class: "combobox-dropdown",
-                size: 1,
                 option_1: "*",
                 option_2: "/",
             },
@@ -91,7 +86,6 @@ export class RowOperation {
                 id: this.rowDropdownID,
                 element_name: "select",
                 class: "combobox-dropdown",
-                size: 1,
             },
         ];
 
@@ -104,7 +98,6 @@ export class RowOperation {
                 const Element = document.createElement(elem.element_name);
                 Element.textContent = elem.name;
                 Element.id = elem.id;
-                Element.size = elem.size;
                 Element.className = elem.class;
                 document
                     .getElementById(this.id)
@@ -193,16 +186,11 @@ export class RowOperation {
         }
     }
 
-    isEnabled() {
-        return this.enabled;
-    }
-
     performRowOperation(matrix) {
-        if (!this.enabled) {
-            return;
-        }
+        let matrixCopy = matrix.clone();
+
         // subj = Row to be modified, obj = row subj is modified with
-        let subj = Number(this.id.substr(9));
+        let subjIdx = Number(this.id.substr(9));
         let subjMultiplier = stringToFraction(this.firstTextFieldValue);
         let mulOrDivSubj = document.getElementById(
             this.firstOperatorDropdownID
@@ -215,7 +203,7 @@ export class RowOperation {
             this.secondOperatorDropdownID
         ).value;
 
-        let obj = Number(document.getElementById(this.rowDropdownID).value) - 1;
+        let objIdx = Number(document.getElementById(this.rowDropdownID).value) - 1;
         let objMultiplier = stringToFraction(this.secondTextFieldValue);
         let mulOrDivObj = document.getElementById(
             this.thirdOperatorDropdownID
@@ -228,13 +216,10 @@ export class RowOperation {
             objMultiplier = objMultiplier.mul(NEGONE);
         }
 
-        matrix = matrix.multiplyRowByScalar(subj, subjMultiplier);
-        matrix = matrix.multiplyRowByScalar(obj, objMultiplier);
+        matrix = matrix.multiplyRowByScalar(subjIdx, subjMultiplier);
+        matrixCopy = matrixCopy.multiplyRowByScalar(objIdx, objMultiplier);
 
-        // Second operation
-        let matrixCopy = matrix.clone();
-
-        matrix = matrixCopy.addRow(subj, matrix.getRow(obj));
+        matrix = matrix.addRow(subjIdx, matrixCopy.getRow(objIdx));
 
         return matrix;
     }

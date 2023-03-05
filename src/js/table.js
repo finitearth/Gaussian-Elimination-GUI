@@ -22,8 +22,9 @@ export class Table {
         this.tableElement.appendChild(this.tableBody);
 
         this.nColumns = initCols || designConfig.nInitColumns;
+        this.nRows = designConfig.nInitRows;
         this.rows = [];
-        for (let i = 0; i < designConfig.nInitRows; i++) {
+        for (let i = 0; i < this.nRows; i++) {
             this.addRow();
         }
 

@@ -201,7 +201,7 @@ export function adaptComboboxes(rowOperations, table, n) {
 
 export function updateRowOperations(rowOperations, dimension, n) {
     for (let i = 0; i < rowOperations.length; i++) {
-        if (rowOperations[i].isEnabled()) {
+        if (rowOperations[i].enabled) {
             rowOperations[i].setNRowDropdownSelectOptions(dimension, n);
         }
     }

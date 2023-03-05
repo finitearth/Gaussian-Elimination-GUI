@@ -3,9 +3,6 @@ import { gaussElimination } from "./gaussalgorithm.js";
 import { getUnitMatrix } from "./utils.js";
 import { addKeyDownListener } from "./utils.js";
 
-var nRows = 3;
-var nCols = 3;
-
 function addTable(element) {
     let table = new Table(element, true);
     document.getElementById(element).appendChild(table.tableContainer);

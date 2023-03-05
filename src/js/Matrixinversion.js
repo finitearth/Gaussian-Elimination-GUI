@@ -105,7 +105,7 @@ function calculate() {
         let matrix = tables[0].getData();
         let secondMatrix = tables[1].getData();
 
-        if (RowOperations[i].isEnabled()) {
+        if (RowOperations[i].enabled) {
             let newMatrix = RowOperations[i].performRowOperation(matrix);
             let newSecondMatrix = RowOperations[i].performRowOperation(secondMatrix);
 
