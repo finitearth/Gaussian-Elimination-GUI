@@ -105,7 +105,7 @@ document
 // "Berechne" Button
 document.getElementById("calculate").addEventListener("click", function () {
     for (let i = 0; i < rowOperations.length; i++) {
-        if (rowOperations[i].isEnabled()) {
+        if (rowOperations[i].enabled) {
             let newCoefMatrix = rowOperations[i].performRowOperation(
                 coefTable.getData()
             );

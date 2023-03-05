@@ -211,7 +211,10 @@ export class Fraction {
      * @returns {number} The decimal equivalent of the current fraction as a number.
      */
     toDecimal(nDecimals = 2) {
-        return Math.round(this.numerator / this.denominator * 10 ** nDecimals) / 10 ** nDecimals;
+        return (
+            Math.round((this.numerator / this.denominator) * 10 ** nDecimals) /
+            10 ** nDecimals
+        );
     }
 }
 
@@ -256,7 +259,7 @@ export function stringToFraction(string) {
     let numerator;
     let denominator;
     if (string == "") {
-        // if string is empty, return 0/1 (0
+        // if string is empty, return 0/1
         return ZERO;
     }
 
@@ -272,9 +275,10 @@ export function stringToFraction(string) {
     } else if (string.includes(",") || string.includes(".")) {
         // comma or dot; convert to whole numbered fraction
         let decimal = Number(string);
+        let decimalSeperator = string.includes(",") ? "," : ".";
+        // get number of digits after comma or dot
+        let digits = string.split(decimalSeperator)[1].length;
 
-        // get number of digits after comma/dot
-        let digits = string.split(".")[1].length;
         denominator = 10 ** digits;
         numerator = decimal * denominator;
     } else if (string.match(/^-?[0-9]+$/)) {
