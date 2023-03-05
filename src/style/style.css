@@ -72,20 +72,20 @@ input {
     min-height: 1.25em;
     margin: 0;
     padding: 0;
-    text-align: center; 
+    text-align: center;
 }
 
-input[type=number] {
+input[type="number"] {
     width: 3em;
     height: 1.75em;
     margin: 0.25em 1.75em 0.25em 0.25em;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button {  
-   opacity: 1;
-   width: 14px;
-   height: 30px;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1;
+    width: 14px;
+    height: 30px;
 }
 
 select {
@@ -94,7 +94,7 @@ select {
     height: 2em;
     width: 2.5em;
     padding: 0;
-    text-align: center; 
+    text-align: center;
 }
 
 .page-divider {
@@ -106,18 +106,16 @@ select {
     overflow: hidden;
 }
 
-.size-50 {
-    height: 50%;
-}
-
 /* Start Page */
 
 .start-divider {
     width: 40%;
     min-width: 17.5em;
-    top: 25%;
-    min-height: 20em;
-    position: relative;
+    /* top: 25%; */
+    min-height: 15em;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     margin-left: 3em;
     padding: 2em;
     z-index: 1;
@@ -187,7 +185,7 @@ select {
 
 /* Matrizenrechnung */
 .matrix-overflow-box {
-    height: 15em;
+    height: 33vh;
     width: 66%;
     min-width: 20em;
     overflow: auto;
@@ -227,7 +225,7 @@ select {
     float: right;
 }
 
-.equation  {
+.equation {
     overflow: hidden;
 }
 
@@ -350,6 +348,19 @@ button:active {
     margin-right: 5px;
 }
 
+button.secondary {
+    background-color: #6C757D;
+}
+
+button.secondary:hover {
+    background-color: #5A6268;
+}
+
+button.secondary:active {
+    background-color: #5A6268;
+    transform: translateY(1px);
+}
+
 .button-combobox {
     height: 2em;
     width: 2em;
@@ -455,17 +466,18 @@ input:checked + .slider:before {
 
 /* GL-System / Inversenberechnung */
 
-.combobox-dropdown, .combobox-input-field {
+.combobox-dropdown,
+.combobox-input-field {
     margin: 0 0.25em;
     width: 2.5em;
     height: 1.75em;
-    -ms-box-sizing:content-box;
-    -moz-box-sizing:content-box;
-    -webkit-box-sizing:content-box; 
-    box-sizing:content-box;
+    -ms-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
 }
 
-.button-gl-inv{
+.button-gl-inv {
     width: 9em;
     padding: 0;
 }
@@ -487,7 +499,7 @@ input:checked + .slider:before {
 /* Guide-Page */
 
 .guide-container {
-    height: 30em;
+    height: 66vh;
     overflow: auto;
 }
 
@@ -514,4 +526,61 @@ input:checked + .slider:before {
     padding-right: 0.25em;
     text-align: right;
     color: rgb(0, 133, 252);
+}
+
+/* Hilfe-Modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 99;
+    padding-top: 7.5em; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(19, 41, 104, 0.1);
+    height: 66%;
+    border-radius: 8px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: max(50%, 25em);
+}
+
+.subheading-help{
+    margin: 0;
+    padding: 0;
+    font-size: 13pt;
+    color: #666;
+    font-weight: lighter;
+}
+
+.help-content {
+    overflow: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 12pt;
+    padding: 0.5em;
+    margin-top: 2em;
+    height: 66%;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
