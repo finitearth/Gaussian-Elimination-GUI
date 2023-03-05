@@ -25,7 +25,7 @@ export function gaussElimination(coefMatrix, solMatrix, returnCoefMatrix = false
         solMatrix = solMatrix.multiplyRowByScalar(i, invPivot);
 
         // Use the pivot element to eliminate the variables above and below it
-        for (let j = 0; j < coefMatrix.nCols; j++) {
+        for (let j = 0; j < coefMatrix.nColumns; j++) {
             if (i === j) {
                 continue; // skip
             }

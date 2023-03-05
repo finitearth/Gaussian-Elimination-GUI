@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/20</span>
+                <span class='fraction'>20/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/18</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -115,37 +115,37 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { UnsolvableMatrixException } from "./exceptions.js";
 &nbsp;
@@ -174,20 +174,20 @@ export function gaussElimination(coefMatrix, solMatrix, returnCoefMatrix = false
         solMatrix = solMatrix.multiplyRowByScalar(i, invPivot);
 &nbsp;
         // Use the pivot element to eliminate the variables above and below it
-        for (let j = 0; j &lt; coefMatrix.nCols; j++) {
-<span class="cstat-no" title="statement not covered" >            if (i === j) {</span>
-<span class="cstat-no" title="statement not covered" >                continue; </span>// skip
+        for (let j = 0; j &lt; coefMatrix.nColumns; j++) {
+            if (i === j) {
+                continue; // skip
             }
-            let factor = <span class="cstat-no" title="statement not covered" >coefMatrix.getCell(j, i).mul(-1);</span>
-<span class="cstat-no" title="statement not covered" >            coefMatrix = coefMatrix.addRow(j, coefMatrix.getRow(i).mul(factor));</span>
-<span class="cstat-no" title="statement not covered" >            solMatrix = solMatrix.addRow(j, solMatrix.getRow(i).mul(factor));</span>
+            let factor = coefMatrix.getCell(j, i).mul(-1);
+            coefMatrix = coefMatrix.addRow(j, coefMatrix.getRow(i).mul(factor));
+            solMatrix = solMatrix.addRow(j, solMatrix.getRow(i).mul(factor));
         }
     }
 &nbsp;
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (returnCoefMatrix) {
+    if (returnCoefMatrix) {
         return [coefMatrix, solMatrix];
     }
-<span class="cstat-no" title="statement not covered" >    return solMatrix;</span>
+    return solMatrix;
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -196,7 +196,7 @@ export function gaussElimination(coefMatrix, solMatrix, returnCoefMatrix = false
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-05T23:22:37.275Z
+                at 2023-03-05T23:34:39.364Z
             </div>
         <script src="prettify.js"></script>
         <script>

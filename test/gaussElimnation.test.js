@@ -34,3 +34,41 @@ test("matrix with linearly dependent rows should throw error", () => {
         gaussElimination(coefMatrix, solMatrix);
     }).toThrow();
 });
+
+test("Coefmatrix should be unit matrix after gaussElimination", () => {
+    let coefMatrix = new Matrix([
+        [new Fraction(1, 4), new Fraction(3, 4), new Fraction(5, 4)],
+        [new Fraction(1, 1), new Fraction(9, 4), new Fraction(7, 4)],
+        [new Fraction(1, 4), new Fraction(0, 1), new Fraction(3, 4)],
+    ]);
+    let solMatrix = getUnitMatrix(3);
+    let [coefMatrix2, solMatrix2] = gaussElimination(
+        coefMatrix,
+        solMatrix,
+        true
+    );
+    expect(coefMatrix2).toEqual(getUnitMatrix(3));
+});
+
+test("GaussElimination should return correct solution", () => {
+    let coefMatrix = new Matrix([
+        [new Fraction(3, 1), new Fraction(6, 1), new Fraction(3, 1)],
+        [new Fraction(3, 1), new Fraction(6, 1), new Fraction(4, 1)],
+        [new Fraction(0, 1), new Fraction(2, 1), new Fraction(1, 1)],
+    ]);
+    let solMatrix = new Matrix([
+        [new Fraction(5, 1)],
+        [new Fraction(2, 1)],
+        [new Fraction(3, 1)],
+    ]);
+    solMatrix = gaussElimination(coefMatrix, solMatrix);
+    expect(
+        solMatrix.equals(
+            new Matrix([
+                [new Fraction(-4, 3)],
+                [new Fraction(3, 1)],
+                [new Fraction(-3, 1)],
+            ])
+        )
+    ).toBe(true);
+});
