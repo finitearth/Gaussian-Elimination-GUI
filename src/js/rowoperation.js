@@ -93,14 +93,14 @@ export class RowOperation {
                     this.id + "_displayCombobox"
                 ).innerHTML = "❰";
 
-                const Element = document.createElement(elem.element_name);
-                Element.textContent = elem.name;
-                Element.id = elem.id;
-                Element.className = elem.class;
+                const htmlElement = document.createElement(elem.element_name);
+                htmlElement.textContent = elem.name;
+                htmlElement.id = elem.id;
+                htmlElement.className = elem.class;
                 document
                     .getElementById(this.id)
                     .appendChild(
-                        Element,
+                        htmlElement,
                         document.getElementById(this.id + "_displayCombobox")
                     );
 
@@ -193,23 +193,24 @@ export class RowOperation {
         let mulOrDivSubj = document.getElementById(
             this.firstOperatorDropdownID
         ).value;
-        if (mulOrDivSubj === "/") {
-            subjMultiplier = subjMultiplier.inverse();
-        }
 
         let operation = document.getElementById(
             this.secondOperatorDropdownID
         ).value;
 
-        let objIdx = Number(document.getElementById(this.rowDropdownID).value) - 1;
+        let objIdx =
+            Number(document.getElementById(this.rowDropdownID).value) - 1;
         let objMultiplier = stringToFraction(this.secondTextFieldValue);
         let mulOrDivObj = document.getElementById(
             this.thirdOperatorDropdownID
         ).value;
+
+        if (mulOrDivSubj === "/") {
+            subjMultiplier = subjMultiplier.inverse();
+        }
         if (mulOrDivObj === "/") {
             objMultiplier = objMultiplier.inverse();
         }
-
         if (operation === "-") {
             objMultiplier = objMultiplier.mul(NEGONE);
         }

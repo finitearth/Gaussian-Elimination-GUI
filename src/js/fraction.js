@@ -273,12 +273,12 @@ export function stringToFraction(string) {
             throw new InvalidInputException();
         }
     } else if (string.includes(",") || string.includes(".")) {
-        // comma or dot; convert to whole numbered fraction
-        let decimal = Number(string);
-        let decimalSeperator = string.includes(",") ? "," : ".";
-        // get number of digits after comma or dot
-        let digits = string.split(decimalSeperator)[1].length;
+        // replace comma with .
+        string = string.replace(",", ".");
 
+        let digits = string.split(".")[1].length;
+        
+        let decimal = Number(string);
         denominator = 10 ** digits;
         numerator = decimal * denominator;
     } else if (string.match(/^-?[0-9]+$/)) {

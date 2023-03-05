@@ -63,8 +63,8 @@ test("Fraction equality", () => {
 });
 
 test("Fraction equality, denom=1", () => {
-    let a = new Fraction(1, 1);
-    let b = new Fraction(1, 1);
+    let a = new Fraction(2, 1);
+    let b = new Fraction(2, 1);
     expect(a).toEqual(b);
 });
 

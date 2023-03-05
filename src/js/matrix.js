@@ -27,6 +27,20 @@ export class Matrix {
         return this.nRows == this.nColumns;
     }
 
+    equals(otherMatrix) {
+        if (this.nRows != otherMatrix.nRows || this.nColumns != otherMatrix.nColumns) {
+            return false;
+        }
+        for (let i = 0; i < this.nRows; i++) {
+            for (let j = 0; j < this.nColumns; j++) {
+                if (!this.getCell(i, j).equals(otherMatrix.getCell(i, j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     /**
     Returns a new Matrix object that is a clone of the current matrix object.
     @returns {Matrix} A new Matrix object that is a clone of the current matrix object.
@@ -70,11 +84,11 @@ export class Matrix {
 
     /**
      * Subs the value
-     */
-    sub(otherMatrix) {
-        otherMatrix = otherMatrix.mul(NEGONE);
-        return this.add(otherMatrix);
-    }
+    //  */
+    // sub(otherMatrix) {
+    //     otherMatrix = otherMatrix.mul(NEGONE);
+    //     return this.add(otherMatrix);
+    // }
 
     /**
      * Multiplies this matrix by the input value, which can be either a scalar value represented as a Fraction or a Matrix object.
@@ -129,10 +143,7 @@ export class Matrix {
      * @throws {Error} If the number of rows in this matrix does not match the number of columns in the other matrix.
      */
     multiplyByMatrix(other) {
-        if (this.nColumns != other.nRows) {
-            throw new Error("Matrix dimensions do not match");
-        }
-        if (this.nRows != other.nColumns) {
+        if (this.nColumns != other.nRows || this.nRows != other.nColumns) {
             throw new Error("Matrix dimensions do not match");
         }
         let newArray = [];
@@ -198,9 +209,9 @@ export class Matrix {
      * @returns {Matrix} A new Matrix object representing the specified column of this matrix.
      */
     getColumn(iColumn) {
-        let column = [];
+        let column = [[]];
         for (let i = 0; i < this.nRows; i++) {
-            column[i] = this.array[i][iColumn];
+            column[0][i] = this.array[i][iColumn];
         }
         return new Matrix(column);
     }
@@ -230,15 +241,15 @@ export class Matrix {
      * @returns {Matrix} - The updated matrix.
      * @throws {Error} - If the number of columns in the input matrix does not match the number of columns in this matrix.
      */
-    substractRow(iRow, otherRow) {
-        for (let i = 0; i < this.nColumns; i++) {
-            this.array[iRow][i] = this.array[iRow][i].add(
-                otherRow.getCell(0, i).mul(-1)
-            );
-        }
+    // substractRow(iRow, otherRow) {
+    //     for (let i = 0; i < this.nColumns; i++) {
+    //         this.array[iRow][i] = this.array[iRow][i].add(
+    //             otherRow.getCell(0, i).mul(-1)
+    //         );
+    //     }
 
-        return this;
-    }
+    //     return this;
+    // }
 
     /**
      * Multiply a row by a scalar.
@@ -327,21 +338,21 @@ export class Matrix {
      * @param {boolean} decimal - Whether to display decimal values instead of fractions.
      * @returns {string} - The string representation of the matrix.
      */
-    stringify(decimal = false) {
-        let string = "";
-        for (let i = 0; i < this.nRows; i++) {
-            for (let j = 0; j < this.nColumns; j++) {
-                if (decimal) {
-                    string += this.array[i][j].toDecimal();
-                } else {
-                    string += this.array[i][j].stringify();
-                }
-                string += " ";
-            }
-            string += "<br>";
-        }
-        return string;
-    }
+//     stringify(decimal = false) {
+//         let string = "";
+//         for (let i = 0; i < this.nRows; i++) {
+//             for (let j = 0; j < this.nColumns; j++) {
+//                 if (decimal) {
+//                     string += this.array[i][j].toDecimal();
+//                 } else {
+//                     string += this.array[i][j].stringify();
+//                 }
+//                 string += " ";
+//             }
+//             string += "<br>";
+//         }
+//         return string;
+//     }
 }
 
 /**
@@ -350,7 +361,7 @@ export class Matrix {
     @param {number} n - The number of rows and columns of the matrix.
     @returns {Matrix} - The n x n unit matrix.
     */
-    export function getUnitMatrix(n) {
+export function getUnitMatrix(n) {
         let matrix = [];
         for (let i = 0; i < n; i++) {
             matrix.push([]);
