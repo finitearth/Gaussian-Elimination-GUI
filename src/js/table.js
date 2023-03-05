@@ -17,9 +17,6 @@ export class Table {
         this.fractionArray = null;
         this.tableElement = document.createElement("table");
         this.tableElement.id = id;
-        this.tableBody = document.createElement("tbody");
-        this.tableBody.id = "tableRows";
-        this.tableElement.appendChild(this.tableBody);
 
         this.nColumns = initCols || designConfig.nInitColumns;
         this.rows = [];
@@ -27,14 +24,16 @@ export class Table {
             this.addRow();
         }
 
-        const buttonsContainer = document.createElement("div");
-        buttonsContainer.id = "buttons";
+        this.tableContainer = document.createElement("div");
+        this.tableContainer.appendChild(this.tableElement);
+
+
 
         const buttons = [
-            { name: "+ R", id: "RowAdder", function: (e) => this.addRow(false) },
-            { name: "+ C", id: "ColumnAdder", function: (e) => this.addColumn(false) },
-            { name: "- R", id: "RowRemover", function: (e) => this.removeRow(false) },
-            { name: "- C", id: "ColumnRemover", function: (e) => this.removeColumn(false) },
+            { name: "+ R", class: "button-addrow", function: (e) => this.addRow(false) },
+            { name: "- R", class: "button-removerow", function: (e) => this.removeRow(false) },
+            { name: "+ C", class: "button-addcol", function: (e) => this.addColumn(false) },
+            { name: "- C", class: "button-removecol", function: (e) => this.removeColumn(false) },
         ];
 
         buttons.forEach(button => {
@@ -42,17 +41,13 @@ export class Table {
             // add css class
             buttonElement.classList.add("table-button");
             buttonElement.textContent = button.name;
-            buttonElement.id = button.id;
+            buttonElement.classList.add(button.class);
             buttonElement.addEventListener("click", button.function.bind(this));
-            buttonsContainer.appendChild(buttonElement);
             if (!showButtons) {
                 buttonElement.style.display = "none";
             }
+            this.tableContainer.appendChild(buttonElement);
         });
-
-        this.tableContainer = document.createElement("div");
-        this.tableContainer.appendChild(this.tableElement);
-        this.tableContainer.appendChild(buttonsContainer);
     }
 
     /**
@@ -121,7 +116,7 @@ export class Table {
     @param {boolean} [force=false] - Optional parameter to force adding a row even if the current number of rows is equal to the maximum number of rows allowed in the design config.
     */
     addRow(force = false) {
-        if (this.rows.length > designConfig.maxRows && !force) {
+        if (this.rows.length >= designConfig.maxRows && !force) {
             return;
         }
         const rowId = this.rows.length;
@@ -134,7 +129,7 @@ export class Table {
         }
 
         this.rows.push(row);
-        this.tableBody.appendChild(row);
+        this.tableElement.appendChild(row);
     }
 
     /**
@@ -144,7 +139,7 @@ export class Table {
     @param {boolean} [force=false] - Optional parameter to force adding a column even if the current number of columns is equal to the maximum number of columns allowed in the design config.
     */
     addColumn(force = false) {
-        if (this.nColumns > designConfig.maxColumns && !force) {
+        if (this.nColumns >= designConfig.maxColumns && !force) {
             return;
         }
         this.nColumns += 1;
@@ -165,7 +160,7 @@ export class Table {
             return;
         }
         this.rows.pop();
-        this.tableBody.removeChild(this.tableBody.lastChild);
+        this.tableElement.removeChild(this.tableElement.lastChild);
     }
 
     /**

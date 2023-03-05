@@ -6,13 +6,6 @@ import { addKeyDownListener } from "./utils.js";
 var nRows = 3;
 var nCols = 3;
 
-function addTable(element) {
-    let table = new Table(element, true);
-    document.getElementById(element).appendChild(table.tableContainer);
-
-    return table;
-}
-
 function resizeMatrixRows(e) {
     if(e.target.value > 9) {
         document.getElementById("nr-rows").value = 9
@@ -33,10 +26,12 @@ function resizeMatrixCols(e) {
     inputTable.setNColumns(e.target.value);
 }
 
-let inputTable = addTable("input_matrix");
-let outputTable = addTable("output_matrix");
+let inputTable = new Table("input_matrix", true);
+document.getElementById("input_matrix").appendChild(inputTable.tableContainer);
+
+let outputTable = new Table("output_matrix", false);
 outputTable.disableInput();
-outputTable.tableContainer.children[1].replaceChildren();
+document.getElementById("output_matrix").appendChild(outputTable.tableContainer);
 
 document.getElementById("button_transpose").onclick = function () {
     let input_matrix = inputTable.getData();

@@ -401,6 +401,10 @@ button.secondary:active {
     place-items: center;
     width: 100%;
 }
+
+.left {
+    min-width: 50%;
+}
 /* Vlt schmutz, gerne löschen, aber is für todecimal*/
 .switch {
     position: relative;
