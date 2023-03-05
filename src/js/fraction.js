@@ -214,3 +214,78 @@ export class Fraction {
         return Math.round(this.numerator / this.denominator * 10 ** nDecimals) / 10 ** nDecimals;
     }
 }
+
+/**
+ * An instance of the `Fraction` class representing the value 1.
+ *
+ * @type {Fraction}
+ */
+export const ONE = new Fraction(1, 1);
+
+/**
+ * An instance of the `Fraction` class representing the value 0.
+ *
+ * @type {Fraction}
+ */
+export const ZERO = new Fraction(0, 1);
+
+/**
+ * An instance of the `Fraction` class representing the value -1.
+ *
+ * @type {Fraction}
+ */
+export const NEGONE = new Fraction(-1, 1);
+
+/**
+ * Converts a string representing a fraction or decimal to a Fraction object.
+ *
+ * If the input string contains a forward slash (/), it is assumed to represent
+ * a fraction and is split into numerator and denominator. If the input string
+ * contains a comma (,) or a period (.), it is assumed to represent a decimal
+ * and is converted to a whole numbered fraction. If the input string consists
+ * of only numerals, it is treated as an integer and a denominator of 1 is used.
+ *
+ * If the input string is empty, a Fraction object representing 0/1 is returned.
+ *
+ * @param {string} string - The input string to convert.
+ * @throws {InvalidInputException} if the input string is not a valid representation
+ * of a fraction or decimal.
+ * @returns {Fraction} The Fraction object representing the input string.
+ */
+export function stringToFraction(string) {
+    let numerator;
+    let denominator;
+    if (string == "") {
+        // if string is empty, return 0/1 (0
+        return ZERO;
+    }
+
+    if (string.includes("/")) {
+        // split string into numerator and denominator
+        [numerator, denominator] = string.split("/");
+        numerator = Number(numerator);
+        denominator = Number(denominator);
+
+        if (denominator === 0) {
+            throw new InvalidInputException();
+        }
+    } else if (string.includes(",") || string.includes(".")) {
+        // comma or dot; convert to whole numbered fraction
+        let decimal = Number(string);
+
+        // get number of digits after comma/dot
+        let digits = string.split(".")[1].length;
+        denominator = 10 ** digits;
+        numerator = decimal * denominator;
+    } else if (string.match(/^-?[0-9]+$/)) {
+        // string consists of only numerals
+        numerator = Number(string);
+        denominator = 1;
+    } else {
+        throw new InvalidInputException();
+    }
+
+    let fraction = new Fraction(numerator, denominator);
+    fraction = fraction.reduce();
+    return fraction;
+}

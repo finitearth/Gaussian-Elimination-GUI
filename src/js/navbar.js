@@ -1,5 +1,7 @@
 window.onload = function () {
-    let currentPage = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
+    let currentPage = location.pathname.substring(
+        location.pathname.lastIndexOf("/") + 1
+    );
     createHTMLForNavbar();
 
     currentPage = document.getElementById(currentPage);

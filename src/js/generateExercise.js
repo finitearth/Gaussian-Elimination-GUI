@@ -1,4 +1,3 @@
-import { getUnitMatrix, ZERO } from "./utils.js";
 import { Matrix } from "./matrix.js";
 import { Fraction } from "./fraction.js";
 

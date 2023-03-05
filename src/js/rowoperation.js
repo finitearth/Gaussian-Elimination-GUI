@@ -1,6 +1,4 @@
-import { Table } from "./table.js";
-import { NEGONE, stringToFraction } from "./utils.js";
-import { Matrix } from "./matrix.js";
+import { NEGONE, stringToFraction } from "./fraction.js";
 
 export class RowOperation {
     constructor(id, table) {

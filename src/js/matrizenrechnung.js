@@ -1,6 +1,5 @@
-import { Table } from "./table.js";
+import { Table, addKeyDownListener } from "./table.js";
 import { Fraction } from "./fraction.js";
-import { addKeyDownListener } from "./utils.js";
 import { InvalidInputException } from "./exceptions.js";
 
 const operators = {
@@ -118,7 +117,7 @@ function addTable() {
     row.appendChild(content);
     container.appendChild(row);
 
-    document.getElementById("tables").appendChild(container);
+    document.getElementById("table").appendChild(container);
 }
 
 function removeTable() {

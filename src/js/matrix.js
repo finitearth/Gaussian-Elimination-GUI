@@ -1,5 +1,4 @@
-import { Fraction } from "./fraction.js";
-import { NEGONE, ZERO } from "./utils.js";
+import { Fraction, NEGONE, ZERO } from "./fraction.js";
 
 /**
  * Class for a matrix consisting of a 2-dimensional array of Fraction objects.
@@ -344,3 +343,24 @@ export class Matrix {
         return string;
     }
 }
+
+/**
+
+    Returns an n x n unit matrix.
+    @param {number} n - The number of rows and columns of the matrix.
+    @returns {Matrix} - The n x n unit matrix.
+    */
+    export function getUnitMatrix(n) {
+        let matrix = [];
+        for (let i = 0; i < n; i++) {
+            matrix.push([]);
+            for (let j = 0; j < n; j++) {
+                if (i == j) {
+                    matrix[i].push(new Fraction(1, 1));
+                } else {
+                    matrix[i].push(new Fraction(0, 1));
+                }
+            }
+        }
+        return new Matrix(matrix);
+    }
