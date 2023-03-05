@@ -88,46 +88,63 @@ export class RowOperation {
         ];
 
         elements.forEach(elem => {
-            document.getElementById(this.id + "_displayCombobox").innerHTML =
-                "❰";
+            if (document.getElementById(this.id).childElementCount < 7) {
+                document.getElementById(
+                    this.id + "_displayCombobox"
+                ).innerHTML = "❰";
 
-            const Element = document.createElement(elem.element_name);
-            Element.textContent = elem.name;
-            Element.id = elem.id;
-            Element.className = elem.class;
-            document
-                .getElementById(this.id)
-                .appendChild(
-                    Element,
-                    document.getElementById(this.id + "_displayCombobox")
-                );
+                const Element = document.createElement(elem.element_name);
+                Element.textContent = elem.name;
+                Element.id = elem.id;
+                Element.className = elem.class;
+                document
+                    .getElementById(this.id)
+                    .appendChild(
+                        Element,
+                        document.getElementById(this.id + "_displayCombobox")
+                    );
 
-            this.enabled = true;
+                this.enabled = true;
 
-            if (
-                elem.element_name == "select" &&
-                elem.id != this.rowDropdownID
-            ) {
-                this.createSelectOption(
-                    "Option_1" + this.id + elem.id,
-                    elem.option_1,
-                    elem.id
-                );
-                this.createSelectOption(
-                    "Option_2" + this.id + elem.id,
-                    elem.option_2,
-                    elem.id
-                );
-            } else if (
-                elem.element_name == "select" &&
-                elem.id == this.rowDropdownID
-            ) {
-                for (let i = 0; i < this.table.rows.length; i++) {
+                if (
+                    elem.element_name == "select" &&
+                    elem.id != this.rowDropdownID
+                ) {
                     this.createSelectOption(
-                        "Option_" + i + this.id + elem.id,
-                        i + 1,
+                        "Option_1" + this.id + elem.id,
+                        elem.option_1,
                         elem.id
                     );
+                    this.createSelectOption(
+                        "Option_2" + this.id + elem.id,
+                        elem.option_2,
+                        elem.id
+                    );
+                } else if (
+                    elem.element_name == "select" &&
+                    elem.id == this.rowDropdownID
+                ) {
+                    for (let i = 0; i < this.table.rows.length; i++) {
+                        this.createSelectOption(
+                            "Option_" + i + this.id + elem.id,
+                            i + 1,
+                            elem.id
+                        );
+                    }
+                }
+            } else {
+                if (document.getElementById(elem.id).style.display == "none") {
+                    document.getElementById(elem.id).style.display = "inline";
+                    this.enabled = true;
+                    document.getElementById(
+                        this.id + "_displayCombobox"
+                    ).innerHTML = "❰";
+                } else {
+                    document.getElementById(elem.id).style.display = "none";
+                    this.enabled = false;
+                    document.getElementById(
+                        this.id + "_displayCombobox"
+                    ).innerHTML = "❱";
                 }
             }
         });
@@ -184,8 +201,7 @@ export class RowOperation {
             this.secondOperatorDropdownID
         ).value;
 
-        let objIdx =
-            Number(document.getElementById(this.rowDropdownID).value) - 1;
+        let objIdx = Number(document.getElementById(this.rowDropdownID).value) - 1;
         let objMultiplier = stringToFraction(this.secondTextFieldValue);
         let mulOrDivObj = document.getElementById(
             this.thirdOperatorDropdownID
