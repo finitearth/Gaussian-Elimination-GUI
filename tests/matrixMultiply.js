@@ -1,5 +1,5 @@
-import {Matrix} from '../matrix.js';
-import {Fraction} from '../fraction.js';
+import {Matrix} from '../src/js/matrix.js';
+import {Fraction} from '../src/js/fraction.js';
 
 var matrix1 = new Matrix([
     [new Fraction(1, 1), new Fraction(1, 1)],

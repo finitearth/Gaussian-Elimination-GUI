@@ -1,7 +1,6 @@
 import { designConfig } from "./config.js";
-import { stringToFraction } from "./utils.js";
 import { Matrix } from "./matrix.js";
-import { Fraction } from "./fraction.js";
+import { Fraction, stringToFraction } from "./fraction.js";
 
 /**
  *  Represents a table object with functionality to add, remove rows and columns dynamically.
@@ -19,8 +18,9 @@ export class Table {
         this.tableElement.id = id;
 
         this.nColumns = initCols || designConfig.nInitColumns;
+        this.nRows = designConfig.nInitRows;
         this.rows = [];
-        for (let i = 0; i < designConfig.nInitRows; i++) {
+        for (let i = 0; i < this.nRows; i++) {
             this.addRow();
         }
 
@@ -301,3 +301,72 @@ export class Table {
         }
     }
 }
+
+
+/**
+
+    Adds keydown event listener to move focus between cells of multiple tables.
+    @param {Array} tables - Array of table objects.
+    @param {boolean} nextTableToTheRight - If true, moves focus to the next table to the right.
+    */
+    export function addKeyDownListener(tables, nextTableToTheRight = false) {
+        let tableIds = tables.map(table => String(table.id));
+    
+        document.addEventListener("keydown", function (e) {
+            let activeCellId = document.activeElement.id;
+            let row = 0;
+            let column = 0;
+            let tableId = 0;
+            let tableIdx = 0;
+    
+            if (activeCellId !== "") {
+                tableId = activeCellId.split("-")[0];
+                tableIdx = tableIds.indexOf(tableId);
+                row = Number(activeCellId.split("-")[1]);
+                column = Number(activeCellId.split("-")[2]);
+            }
+    
+            if (e.code == "ArrowUp" && row > 0) {
+                row -= 1;
+            } else if (e.code == "ArrowDown" && row < tables[tableIdx].rows.length - 1) {
+                row += 1;
+            } else if (e.code == "ArrowLeft" && column > 0) {
+                column -= 1;
+            } else if (e.code == "ArrowRight" && column < tables[tableIdx].nColumns - 1) {
+                column += 1;
+            } else if (
+                e.code == "ArrowUp" &&
+                tableIdx > 0 &&
+                !nextTableToTheRight
+            ) {
+                tableIdx -= 1;
+                row = tables[tableIdx].rows.length - 1;
+            } else if (
+                e.code == "ArrowDown" &&
+                tableIdx < tables.length - 1 &&
+                !nextTableToTheRight
+            ) {
+                tableIdx += 1;
+                row = 0;
+            } else if (
+                e.code == "ArrowLeft" &&
+                tableIdx > 0 &&
+                nextTableToTheRight
+            ) {
+                tableIdx -= 1;
+                column = tables[tableIdx].nColumns - 1;
+            } else if (
+                e.code == "ArrowRight" &&
+                tableIdx < tables.length - 1 &&
+                nextTableToTheRight
+            ) {
+                tableIdx += 1;
+                column = 0;
+            } else {
+                return;
+            }
+            tableId = tableIds[tableIdx];
+            let cell = document.getElementById(`${tableId}-${row}-${column}`);
+            cell.select();
+        });
+    }

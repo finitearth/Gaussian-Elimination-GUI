@@ -1,10 +1,8 @@
-import { Table } from "./table.js";
+import { Table, addKeyDownListener } from "./table.js";
 import { gaussElimination } from "./gaussalgorithm.js";
-import { addKeyDownListener } from "./utils.js";
-import { generateMatrix } from "./generateExercise.js"; 
-import { getUnitMatrix } from "./utils.js";
-import { addCombobox } from "./utils.js";
-import { adaptComboboxes } from "./utils.js";
+import { generateMatrix } from "./generateExercise.js";
+import { getUnitMatrix } from "./matrix.js";
+import { addCombobox, adaptComboboxes } from "./utils.js";
 
 function createTable(id, initCols, disableInput) {
     let table = new Table(id, false, initCols);
@@ -21,11 +19,11 @@ let solTable = createTable("solTable", 1);
 let resCoefTable = createTable("resCoefTable", false, true);
 let resSolTable = createTable("resSolTable", 1, true);
 let tables = [coefTable, solTable, resCoefTable, resSolTable];
-let rowOperations = []; 
+let rowOperations = [];
 
 // creating initial comboboxes
-for ( let i = 0; i < coefTable.nRows; i++ ){
-    rowOperations = addCombobox(("combobox_"+i), rowOperations, coefTable);
+for (let i = 0; i < coefTable.nRows; i++) {
+    rowOperations = addCombobox("combobox_" + i, rowOperations, coefTable);
 }
 
 // calc button
@@ -50,7 +48,11 @@ document.getElementById("nr-eq").addEventListener("input", e => {
     let numberEquations = e.target.value;
     tables.forEach(table => {
         table.setNRows(numberEquations);
-        rowOperations = adaptComboboxes(rowOperations, coefTable, numberEquations);
+        rowOperations = adaptComboboxes(
+            rowOperations,
+            coefTable,
+            numberEquations
+        );
     });
 });
 
@@ -100,22 +102,24 @@ document
         });
     });
 
-// "Berechne" Button 
-document
-    .getElementById("calculate")
-    .addEventListener("click", function () {
-        for (let i = 0; i < rowOperations.length; i++) {
-            if (rowOperations[i].isEnabled()) {
-                let newCoefMatrix = rowOperations[i].performRowOperation(coefTable.getData());
-                let newSolMatrix  = rowOperations[i].performRowOperation(solTable.getData());
+// "Berechne" Button
+document.getElementById("calculate").addEventListener("click", function () {
+    for (let i = 0; i < rowOperations.length; i++) {
+        if (rowOperations[i].enabled) {
+            let newCoefMatrix = rowOperations[i].performRowOperation(
+                coefTable.getData()
+            );
+            let newSolMatrix = rowOperations[i].performRowOperation(
+                solTable.getData()
+            );
 
-                resCoefTable.setRow(i, newCoefMatrix);
-                resSolTable.setRow(i, newSolMatrix);
-            } else {
-                resCoefTable.setRow(i, coefTable.getData());
-                resSolTable.setRow(i, solTable.getData());
-            }
+            resCoefTable.setRow(i, newCoefMatrix);
+            resSolTable.setRow(i, newSolMatrix);
+        } else {
+            resCoefTable.setRow(i, coefTable.getData());
+            resSolTable.setRow(i, solTable.getData());
         }
-    });
+    }
+});
 
 addKeyDownListener(tables, true);

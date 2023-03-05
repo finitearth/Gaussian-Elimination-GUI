@@ -1,10 +1,6 @@
-import { Table } from "./table.js";
+import { Table, addKeyDownListener } from "./table.js";
 import { gaussElimination } from "./gaussalgorithm.js";
-import { getUnitMatrix } from "./utils.js";
-import { addKeyDownListener } from "./utils.js";
-
-var nRows = 3;
-var nCols = 3;
+import { getUnitMatrix } from "./matrix.js";
 
 function resizeMatrixRows(e) {
     if(e.target.value > 9) {

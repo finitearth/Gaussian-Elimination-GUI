@@ -14,6 +14,13 @@ function closeModal() {
 spanClose.addEventListener("click", closeModal);
 btnClose.addEventListener("click", closeModal);
 
+// add eventlistener for esc-press
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        closeModal();
+    }
+});
+
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
