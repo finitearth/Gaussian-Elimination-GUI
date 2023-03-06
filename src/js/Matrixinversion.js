@@ -1,6 +1,6 @@
 import { Table, addKeyDownListener } from "./table.js";
 import { gaussElimination } from "./gaussalgorithm.js";
-import { addCombobox, removeCombobox, updateRowOperations } from "./utils.js";
+import { addCombobox, removeCombobox, updateRowOperations, adaptComboboxes } from "./utils.js";
 import { generateMatrix } from "./generateExercise.js";
 import { getUnitMatrix } from "./matrix.js";
 
@@ -11,28 +11,20 @@ document
     .addEventListener("input", modifyDimension);
 
 function modifyDimension(e) {
-    if (e.target.value < dimension) {
-        for (let i = 0; i < tables.length; i++) {
-            tables[i].removeRow();
-            tables[i].removeColumn();
-        }
+    if (e.target.value > 9) {
+        document.getElementById("dimensionButton").value = 9
+    }
+    else if (e.target.value < 2) {
+        document.getElementById("dimensionButton").value = 2
+    }
 
-        RowOperations = removeCombobox(dimension, RowOperations);
-    } else if (e.target.value > dimension) {
-        for (let i = 0; i < tables.length; i++) {
-            tables[i].addRow();
-            tables[i].addColumn();
-        }
-
-        RowOperations = addCombobox(
-            "combobox_" + (e.target.value - 1),
-            RowOperations,
-            tables[0]
-        );
+    for (let i = 0; i < tables.length; i++) {
+        tables[i].setNColumns(e.target.value)
+        tables[i].setNRows(e.target.value)
     }
 
     tables[1].setData(getUnitMatrix(e.target.value));
-
+    RowOperations = adaptComboboxes(RowOperations, tables[0], e.target.value )
     updateRowOperations(RowOperations, dimension, e.target.value);
     dimension = e.target.value;
 }
@@ -77,7 +69,7 @@ function calculateSolution() {
         tables[2].setData(solMatrix);
         tables[3].setData(coefMatrix);
     } catch (e) {
-        alert("Inversenberechnung nicht mglich");
+        alert("Inversenberechnung nicht möglich");
     }
 }
 
