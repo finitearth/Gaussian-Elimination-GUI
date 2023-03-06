@@ -45,6 +45,13 @@ document
 
 // number of rows
 document.getElementById("nr-eq").addEventListener("input", e => {
+    if (e.target.value > 9) {
+        document.getElementById("nr-eq").value = 9;
+    }
+    else if (e.target.value < 2) {
+        document.getElementById("nr-eq").value = 2;
+    }
+
     let numberEquations = e.target.value;
     tables.forEach(table => {
         table.setNRows(numberEquations);
@@ -58,6 +65,12 @@ document.getElementById("nr-eq").addEventListener("input", e => {
 
 // number of cols in coeff matrix
 document.getElementById("nr-var").addEventListener("input", e => {
+    if (e.target.value > 9) {
+        document.getElementById("nr-var").value = 9;
+    }
+    else if (e.target.value < 2) {
+        document.getElementById("nr-var").value = 2;
+    }
     let numberVariables = e.target.value;
     coefTable.setNColumns(numberVariables);
     resCoefTable.setNColumns(numberVariables);
@@ -65,6 +78,12 @@ document.getElementById("nr-var").addEventListener("input", e => {
 
 // number of cols solution matrix
 document.getElementById("nr-b").addEventListener("input", e => {
+    if (e.target.value > 9) {
+        document.getElementById("nr-b").value = 9;
+    }
+    else if (e.target.value < 1) {
+        document.getElementById("nr-b").value = 1;
+    }
     let numberResultVectors = e.target.value;
     solTable.setNColumns(numberResultVectors, true);
     resSolTable.setNColumns(numberResultVectors, true);
