@@ -112,3 +112,8 @@ test("String to fraction, no slash", () => {
     let a = stringToFraction("1");
     expect(a).toEqual(new Fraction(1, 1));
 });
+
+test("stringify if 0", () => {
+    let a = new Fraction(0, 1);
+    expect(a.stringify()).toEqual("");
+});

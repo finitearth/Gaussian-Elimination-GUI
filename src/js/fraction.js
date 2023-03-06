@@ -38,13 +38,14 @@ export class Fraction {
      * @returns {string} A string representation of the fraction.
      */
     stringify() {
+        if (this.numerator == 0) {
+            return "";
+        } 
+        
         if (this.denominator == 1) {
             return this.numerator.toString();
-        } else {
-            return (
-                this.numerator.toString() + "/" + this.denominator.toString()
-            );
         }
+        return this.numerator.toString() + "/" + this.denominator.toString();
     }
 
     /**
@@ -279,7 +280,7 @@ export function stringToFraction(string) {
         string = string.replace(",", ".");
 
         let digits = string.split(".")[1].length;
-        
+
         let decimal = Number(string);
         denominator = 10 ** digits;
         numerator = decimal * denominator;

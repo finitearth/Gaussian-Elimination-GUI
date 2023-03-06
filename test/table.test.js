@@ -45,6 +45,18 @@ test("remove columns should work", () => {
     expect(Array.from(table.rows[0].children).length).toEqual(2);
 });
 
+test("setNrows should not work if nRows=0", () => {
+    let table = new Table();
+    table.setNRows(0);
+    expect(table.rows.length).toEqual(3);
+});
+
+test("setNColumns should not work if nColumns=0", () => {
+    let table = new Table();
+    table.setNColumns(0);
+    expect(Array.from(table.rows[0].children).length).toEqual(3);
+});
+
 test("remove columns should not allow smaller than 2", () => {
     let table = new Table();
     table.setNColumns(2);
@@ -157,3 +169,10 @@ test("reading from user input in table should work", () => {
 //     let newId = selectedCell.id;
 //     expect(id).not.toEqual(newId);
 // });
+
+test("set Row", () => {
+    let table = new Table();
+    let row = new Matrix([[new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)]]);
+    table.setRow(0, row);
+    expect(table.getData().getRow(0).equals(row)).toEqual(true);
+});
