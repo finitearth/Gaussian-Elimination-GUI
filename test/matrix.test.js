@@ -169,7 +169,11 @@ test("Mul Matrix by matrix", () => {
         matrix1.mul(matrix2).equals(
             new Matrix([
                 [new Fraction(9, 8), new Fraction(15, 8), new Fraction(41, 16)],
-                [new Fraction(47, 16), new Fraction(93, 16), new Fraction(13, 2)],
+                [
+                    new Fraction(47, 16),
+                    new Fraction(93, 16),
+                    new Fraction(13, 2),
+                ],
                 [new Fraction(1, 4), new Fraction(3, 16), new Fraction(7, 8)],
             ])
         )

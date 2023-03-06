@@ -115,9 +115,11 @@ export class Fraction {
         if (this.numerator === 0 && other.numerator === 0) {
             return true;
         }
+        other = other.reduce();
+        let thisReduced = this.reduce();
         return (
-            this.numerator === other.numerator &&
-            this.denominator === other.denominator
+            thisReduced.numerator === other.numerator &&
+            thisReduced.denominator === other.denominator
         );
     }
     /**

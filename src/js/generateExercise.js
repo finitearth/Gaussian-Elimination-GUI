@@ -1,20 +1,7 @@
 import { Matrix } from "./matrix.js";
 import { Fraction } from "./fraction.js";
 
-// const levelSettings = [
-//     {
-//         dimension: 3,
-//         nOperations: 4,
-//     },
-//     {
-//         dimension: 4,
-//         nOperations: 6,
-//     },
-//     {
-//         dimension: 5,
-//         nOperations: 8,
-//     },
-// ];
+
 let matrix; 
 export function generateMatrix(rows, cols) {
     let linearDependent = true;
@@ -37,50 +24,3 @@ function getRandomMatrix(rows, cols) {
     }
     return new Matrix(matrix);
 }
-
-// export function generateMatrix(difficultyLevel) {
-//     let dimension = levelSettings[difficultyLevel].dimension;
-//     let nOperations = levelSettings[difficultyLevel].nOperations;
-
-//     let matrix = getUnitMatrix(dimension);
-//     for (let i = 0; i < nOperations; i++) {
-//         try {
-//             matrix = randomOperation(matrix);
-//         } catch (error) {
-//             console.log(error);
-//         }
-//     }
-
-//     return matrix;
-// }
-
-// const operations = [
-//     (matrix, scalar) => {
-//         return matrix.mul(scalar);
-//     },
-//     (matrix, scalar) => {
-//         return matrix.swapRows((scalar + 1) % matrix.nRows, scalar);
-//     },
-//     (matrix, scalar) => {
-//         return matrix.multiplyRowByScalar((scalar + 1) % matrix.nRows, scalar);
-//     },
-//     (matrix, scalar) => {
-//         return matrix.addRow(
-//             scalar,
-//             matrix.getRow((scalar + 1) % matrix.nRows)
-//         );
-//     },
-//     (matrix, scalar) => {
-
-// ];
-
-// function randomOperation(matrix) {
-//     let operationIdx = Math.floor(Math.random() * operations.length);
-//     let scalar = Math.floor(Math.random() * matrix.nRows - 1) + 1;
-//     let operation = operations[operationIdx];
-//     matrix = operation(matrix, scalar);
-
-//     return matrix;
-// }
-
-// function generateRandomMatrix()
