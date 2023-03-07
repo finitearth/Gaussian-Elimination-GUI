@@ -13,7 +13,7 @@ import {
  * @paramenter {parentId} ID of the parent node.
  */
 function addTable(parentId, disableInput) {
-    let newTable = new Table(tables.length, false);
+    let newTable = new Table(parentId, false);
     if (disableInput) {
         newTable.disableInput();
     }
@@ -35,7 +35,7 @@ let tables = [coefTable, identityTable, solIdentityTable, solCoefTable];
 // create initial comboboxes
 let RowOperations = []; // rowOperations
 for (let i = 0; i < 3; i++) {
-    RowOperations = addCombobox("combobox_" + i, RowOperations, tables[0]);
+    RowOperations = addCombobox("combobox_" + i, RowOperations, coefTable);
 }
 
 listenTableDimension("dimensionButton", tables, RowOperations, "rows");
