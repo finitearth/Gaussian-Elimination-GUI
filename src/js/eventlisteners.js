@@ -8,7 +8,7 @@ export function setEventListenerFunction(
     operation
 ) {
     let button = document.getElementById(buttonId);
-    button.onclick = () => {
+    button.addEventListener("click", () => {
         try {
             let inputMatrices = inputTables.map(table => table.getData());
             let outputMatrices = operation(...inputMatrices);
@@ -19,7 +19,7 @@ export function setEventListenerFunction(
             // alert(error);
             throw error;
         }
-    };
+    });
 }
 
 export function listenTableDimension(

@@ -4,7 +4,7 @@ import { addCombobox } from "./rowoperation.js";
 import { generateMatrix } from "./generateExercise.js";
 import { getUnitMatrix } from "./matrix.js";
 import {
-    addEventListenerCalculation,
+    setEventListenerFunction,
     listenTableDimension,
 } from "./eventlisteners.js";
 
@@ -40,7 +40,7 @@ for (let i = 0; i < 3; i++) {
 
 listenTableDimension("dimensionButton", tables, RowOperations, "rows");
 listenTableDimension("dimensionButton", tables, RowOperations, "cols");
-addEventListenerCalculation(
+setEventListenerFunction(
     "dimensionButton",
     [identityTable],
     [identityTable],
@@ -48,7 +48,7 @@ addEventListenerCalculation(
 );
 
 // calculate solution
-addEventListenerCalculation(
+setEventListenerFunction(
     "calculateSolutionButton",
     [coefTable, identityTable],
     [solIdentityTable, solCoefTable],
@@ -60,7 +60,7 @@ addEventListenerCalculation(
 );
 
 // use result as input
-addEventListenerCalculation(
+setEventListenerFunction(
     "adaptResult",
     [solIdentityTable, solCoefTable],
     [coefTable, identityTable],
@@ -103,7 +103,7 @@ document
     });
 
 // generate excercise
-addEventListenerCalculation("generateExercise", [], [coefTable], () => [
+setEventListenerFunction("generateExercise", [], [coefTable], () => [
     generateMatrix(dimension, dimension),
 ]);
 

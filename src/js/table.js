@@ -262,6 +262,15 @@ export class Table {
         }
     }
 
+    // converts to fraction or to decimal depending on boolean
+    convertRepresentation(decimal = false) {
+        if (decimal) {
+            this.toDecimal();
+        } else {
+            this.toFraction();
+        }
+    }
+
     /**
      * Converts all the input values in the table to their decimal representation and updates the input fields with the new values.
      */

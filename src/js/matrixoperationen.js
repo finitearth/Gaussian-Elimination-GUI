@@ -6,6 +6,7 @@ import {
     setEventListenerFunction,
 } from "./eventlisteners.js";
 
+// =========== Tables ===========
 let inputTable = new Table("input_matrix", true);
 document.getElementById("input_matrix").appendChild(inputTable.tableContainer);
 
@@ -15,6 +16,7 @@ document
     .getElementById("output_matrix")
     .appendChild(outputTable.tableContainer);
 
+// =========== Event Listeners ===========
 listenTableDimension("nr-rows", [inputTable], [], "rows");
 listenTableDimension("nr-cols", [inputTable], [], "cols");
 addKeyDownListener([inputTable], true);
