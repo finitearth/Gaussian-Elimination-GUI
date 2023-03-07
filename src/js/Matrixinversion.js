@@ -1,23 +1,36 @@
 import { Table, addKeyDownListener } from "./table.js";
 import { gaussElimination } from "./gaussalgorithm.js";
-import { addCombobox, updateRowOperations, adaptComboboxes } from "./rowoperation.js";
+import { addCombobox } from "./rowoperation.js";
 import { generateMatrix } from "./generateExercise.js";
 import { getUnitMatrix } from "./matrix.js";
+import {
+    addEventListenerCalculation,
+    listenTableDimension,
+} from "./eventlisteners.js";
 
+/**
+ * Adds a Table to a Parent Node and appends it to the tables array.
+ * @paramenter {parentId} ID of the parent node.
+ */
+function addTable(parentId, disableInput) {
+    let newTable = new Table(tables.length, false);
+    if (disableInput) {
+        newTable.disableInput();
+    }
+    document.getElementById(parentId).appendChild(newTable.tableContainer);
+
+    return newTable;
+}
 var dimension = 3;
 
 // creating tables
-let tables = [];
+let coefTable = addTable("table_element_1", false);
+let identityTable = addTable("table_element_2", false);
+identityTable.setData(getUnitMatrix(dimension));
 
-addTable("table_element_1");
-addTable("table_element_2");
-
-addTable("resultContainerTableRowCol1");
-addTable("resultContainerTableRowCol2");
-
-tables[1].setData(getUnitMatrix(dimension));
-tables[2].disableInput(); 
-tables[3].disableInput();
+let solIdentityTable = addTable("resultContainerTableRowCol1", true);
+let solCoefTable = addTable("resultContainerTableRowCol2", true);
+let tables = [coefTable, identityTable, solIdentityTable, solCoefTable];
 
 // create initial comboboxes
 let RowOperations = []; // rowOperations
@@ -25,82 +38,56 @@ for (let i = 0; i < 3; i++) {
     RowOperations = addCombobox("combobox_" + i, RowOperations, tables[0]);
 }
 
-/**
- * Adds a Table to a Parent Node and appends it to the tables array.
- * @paramenter {parentId} ID of the parent node.
- */
-function addTable(parentId) {
-    tables.push(new Table(tables.length, false));
-    document
-        .getElementById(parentId)
-        .appendChild(tables[tables.length - 1].tableContainer);
-}
+listenTableDimension("dimensionButton", tables, RowOperations, "rows");
+listenTableDimension("dimensionButton", tables, RowOperations, "cols");
+addEventListenerCalculation(
+    "dimensionButton",
+    [identityTable],
+    [identityTable],
+    matrix => [getUnitMatrix(matrix.nRows)]
+);
 
-// Adapt dimensions of tables and comboxes if the user changes the dimension value.
-document
-    .getElementById("dimensionButton")
-    .addEventListener("input", function (e) {
-        if (e.target.value > 9) {
-            document.getElementById("dimensionButton").value = 9
-        }
-        else if (e.target.value < 2) {
-            document.getElementById("dimensionButton").value = 2
-        }
-    
-        for (let i = 0; i < tables.length; i++) {
-            tables[i].setNColumns(e.target.value)
-            tables[i].setNRows(e.target.value)
-        }
-    
-        tables[1].setData(getUnitMatrix(e.target.value));
-        RowOperations = adaptComboboxes(RowOperations, tables[0], e.target.value )
-        updateRowOperations(RowOperations, dimension, e.target.value);
-        dimension = e.target.value;
-    });
-
-// calculate solution 
-document
-    .getElementById("calculateSolutionButton")
-    .addEventListener("click", function () {
-        try {
-            let coefMatrix = tables[0].getData();
-            let solMatrix = tables[1].getData();
-            [coefMatrix, solMatrix] = gaussElimination(coefMatrix, solMatrix, true);
-            tables[2].setData(solMatrix);
-            tables[3].setData(coefMatrix);
-        } catch (e) {
-            alert("Inversenberechnung nicht möglich");
-        }
-    });
+// calculate solution
+addEventListenerCalculation(
+    "calculateSolutionButton",
+    [coefTable, identityTable],
+    [solIdentityTable, solCoefTable],
+    (coefMatrix, solMatrix) => {
+        let outputMatrix = gaussElimination(coefMatrix, solMatrix);
+        let unitMatrix = getUnitMatrix(coefMatrix.nRows);
+        return [unitMatrix, outputMatrix];
+    }
+);
 
 // use result as input
-document
-    .getElementById("adaptResult")
-    .addEventListener("click", function () {
-        tables[0].setData(tables[2].getData());
-        tables[1].setData(tables[3].getData());
-    });
+addEventListenerCalculation(
+    "adaptResult",
+    [solIdentityTable, solCoefTable],
+    [coefTable, identityTable],
+    (coefMatrix, solMatrix) => [solMatrix, coefMatrix]
+);
 
 //
 document
     .getElementById("calculateButton")
     .addEventListener("click", function () {
         for (let i = 0; i < RowOperations.length; i++) {
-            let matrix = tables[0].getData();
-            let secondMatrix = tables[1].getData();
-    
+            let matrix = coefTable.getData();
+            let secondMatrix = identityTable.getData();
+
             if (RowOperations[i].enabled) {
-                let newMatrix       = RowOperations[i].performRowOperation(matrix);
-                let newSecondMatrix = RowOperations[i].performRowOperation(secondMatrix);
-    
-                tables[2].setRow(i, newMatrix);
-                tables[3].setRow(i, newSecondMatrix);
+                let newMatrix = RowOperations[i].performRowOperation(matrix);
+                let newSecondMatrix =
+                    RowOperations[i].performRowOperation(secondMatrix);
+
+                solIdentityTable.setRow(i, newMatrix);
+                solCoefTable.setRow(i, newSecondMatrix);
             } else {
-                tables[2].setRow(i, matrix);
-                tables[3].setRow(i, secondMatrix);
+                solIdentityTable.setRow(i, matrix);
+                solCoefTable.setRow(i, secondMatrix);
             }
         }
-});
+    });
 
 // decimal conversion
 document
@@ -116,12 +103,8 @@ document
     });
 
 // generate excercise
-document
-    .getElementById("generateExercise")
-    .addEventListener("click", function () {
-        let dim = document.getElementById("dimensionButton").value;
-        let matrix = generateMatrix(dim, dim);
-        tables[0].setData(matrix);
-    });
+addEventListenerCalculation("generateExercise", [], [coefTable], () => [
+    generateMatrix(dimension, dimension),
+]);
 
 addKeyDownListener(tables, true);

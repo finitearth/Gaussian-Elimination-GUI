@@ -27,13 +27,27 @@ export class Table {
         this.tableContainer = document.createElement("div");
         this.tableContainer.appendChild(this.tableElement);
 
-
-
         const buttons = [
-            { name: "+ R", class: "button-addrow", function: (e) => this.addRow(false) },
-            { name: "- R", class: "button-removerow", function: (e) => this.removeRow(false) },
-            { name: "+ C", class: "button-addcol", function: (e) => this.addColumn(false) },
-            { name: "- C", class: "button-removecol", function: (e) => this.removeColumn(false) },
+            {
+                name: "+ R",
+                class: "button-addrow",
+                function: e => this.addRow(false),
+            },
+            {
+                name: "- R",
+                class: "button-removerow",
+                function: e => this.removeRow(false),
+            },
+            {
+                name: "+ C",
+                class: "button-addcol",
+                function: e => this.addColumn(false),
+            },
+            {
+                name: "- C",
+                class: "button-removecol",
+                function: e => this.removeColumn(false),
+            },
         ];
 
         buttons.forEach(button => {
@@ -55,17 +69,13 @@ export class Table {
     Sets the number of rows in the table.
     @method
     @param {number} nRows - The number of rows to set in the table.
-    @param {boolean} [force=false] - Optional parameter to force adding/removing rows even if the current number of rows is greater or less than the desired number of rows.
     */
-    setNRows(nRows, force = false) {
-        if ((nRows < designConfig.minRows || nRows > designConfig.maxRows) && !force) {
-            return;
-        }
+    setNRows(nRows) {
         while (this.rows.length < nRows) {
-            this.addRow(force);
+            this.addRow();
         }
         while (this.rows.length > nRows) {
-            this.removeRow(force);
+            this.removeRow();
         }
     }
 
@@ -74,17 +84,13 @@ export class Table {
     Sets the number of columns in the table.
     @method
     @param {number} nColumns - The number of columns to set in the table.
-    @param {boolean} [force=false] - Optional parameter to force adding/removing columns even if the current number of columns is greater or less than the desired number of columns.
     */
-    setNColumns(nColumns, force = false) {
-        if ((nColumns < designConfig.minColumns || nColumns > designConfig.maxColumns)&& !force) {
-            return;
-        }
+    setNColumns(nColumns) {
         while (this.nColumns < nColumns) {
-            this.addColumn(force);
+            this.addColumn();
         }
         while (this.nColumns > nColumns) {
-            this.removeColumn(force);
+            this.removeColumn();
         }
     }
 
@@ -115,10 +121,7 @@ export class Table {
     @method
     @param {boolean} [force=false] - Optional parameter to force adding a row even if the current number of rows is equal to the maximum number of rows allowed in the design config.
     */
-    addRow(force = false) {
-        if (this.rows.length >= designConfig.maxRows && !force) {
-            return;
-        }
+    addRow() {
         const rowId = this.rows.length;
         const row = document.createElement("tr");
         row.id = rowId;
@@ -138,10 +141,7 @@ export class Table {
     @method
     @param {boolean} [force=false] - Optional parameter to force adding a column even if the current number of columns is equal to the maximum number of columns allowed in the design config.
     */
-    addColumn(force = false) {
-        if (this.nColumns >= designConfig.maxColumns && !force) {
-            return;
-        }
+    addColumn() {
         this.nColumns += 1;
         for (let i = 0; i < this.rows.length; i++) {
             const cell = this.addCell(i, this.nColumns - 1);
@@ -155,10 +155,7 @@ export class Table {
     @method
     @param {boolean} [force=false] - Optional parameter to force removing a row even if the current number of rows is equal to the minimum number of rows allowed in the design config.
     */
-    removeRow(force = false) {
-        if (this.rows.length <= designConfig.minRows && !force) {
-            return;
-        }
+    removeRow() {
         this.rows.pop();
         this.tableElement.removeChild(this.tableElement.lastChild);
     }
@@ -169,10 +166,7 @@ export class Table {
     @method
     @param {boolean} [force=false] - Optional parameter to force removing a column even if the current number of columns is equal to the minimum number of columns allowed in the design config.
     */
-    removeColumn(force = false) {
-        if (this.nColumns <= designConfig.minColumns && !force) {
-            return;
-        }
+    removeColumn() {
         this.nColumns -= 1;
         for (let i = 0; i < this.rows.length; i++) {
             this.rows[i].removeChild(this.rows[i].lastChild);
@@ -302,71 +296,76 @@ export class Table {
     }
 }
 
-
 /**
 
     Adds keydown event listener to move focus between cells of multiple tables.
     @param {Array} tables - Array of table objects.
     @param {boolean} nextTableToTheRight - If true, moves focus to the next table to the right.
     */
-    export function addKeyDownListener(tables, nextTableToTheRight = false) {
-        let tableIds = tables.map(table => String(table.id));
-    
-        document.addEventListener("keydown", function (e) {
-            let activeCellId = document.activeElement.id;
-            let row = 0;
-            let column = 0;
-            let tableId = 0;
-            let tableIdx = 0;
-    
-            if (activeCellId !== "") {
-                tableId = activeCellId.split("-")[0];
-                tableIdx = tableIds.indexOf(tableId);
-                row = Number(activeCellId.split("-")[1]);
-                column = Number(activeCellId.split("-")[2]);
-            }
-    
-            if (e.code == "ArrowUp" && row > 0) {
-                row -= 1;
-            } else if (e.code == "ArrowDown" && row < tables[tableIdx].rows.length - 1) {
-                row += 1;
-            } else if (e.code == "ArrowLeft" && column > 0) {
-                column -= 1;
-            } else if (e.code == "ArrowRight" && column < tables[tableIdx].nColumns - 1) {
-                column += 1;
-            } else if (
-                e.code == "ArrowUp" &&
-                tableIdx > 0 &&
-                !nextTableToTheRight
-            ) {
-                tableIdx -= 1;
-                row = tables[tableIdx].rows.length - 1;
-            } else if (
-                e.code == "ArrowDown" &&
-                tableIdx < tables.length - 1 &&
-                !nextTableToTheRight
-            ) {
-                tableIdx += 1;
-                row = 0;
-            } else if (
-                e.code == "ArrowLeft" &&
-                tableIdx > 0 &&
-                nextTableToTheRight
-            ) {
-                tableIdx -= 1;
-                column = tables[tableIdx].nColumns - 1;
-            } else if (
-                e.code == "ArrowRight" &&
-                tableIdx < tables.length - 1 &&
-                nextTableToTheRight
-            ) {
-                tableIdx += 1;
-                column = 0;
-            } else {
-                return;
-            }
-            tableId = tableIds[tableIdx];
-            let cell = document.getElementById(`${tableId}-${row}-${column}`);
-            cell.select();
-        });
-    }
+export function addKeyDownListener(tables, nextTableToTheRight = false) {
+    let tableIds = tables.map(table => String(table.id));
+
+    document.addEventListener("keydown", function (e) {
+        let activeCellId = document.activeElement.id;
+        let row = 0;
+        let column = 0;
+        let tableId = 0;
+        let tableIdx = 0;
+
+        if (activeCellId !== "") {
+            tableId = activeCellId.split("-")[0];
+            tableIdx = tableIds.indexOf(tableId);
+            row = Number(activeCellId.split("-")[1]);
+            column = Number(activeCellId.split("-")[2]);
+        }
+
+        if (e.code == "ArrowUp" && row > 0) {
+            row -= 1;
+        } else if (
+            e.code == "ArrowDown" &&
+            row < tables[tableIdx].rows.length - 1
+        ) {
+            row += 1;
+        } else if (e.code == "ArrowLeft" && column > 0) {
+            column -= 1;
+        } else if (
+            e.code == "ArrowRight" &&
+            column < tables[tableIdx].nColumns - 1
+        ) {
+            column += 1;
+        } else if (
+            e.code == "ArrowUp" &&
+            tableIdx > 0 &&
+            !nextTableToTheRight
+        ) {
+            tableIdx -= 1;
+            row = tables[tableIdx].rows.length - 1;
+        } else if (
+            e.code == "ArrowDown" &&
+            tableIdx < tables.length - 1 &&
+            !nextTableToTheRight
+        ) {
+            tableIdx += 1;
+            row = 0;
+        } else if (
+            e.code == "ArrowLeft" &&
+            tableIdx > 0 &&
+            nextTableToTheRight
+        ) {
+            tableIdx -= 1;
+            column = tables[tableIdx].nColumns - 1;
+        } else if (
+            e.code == "ArrowRight" &&
+            tableIdx < tables.length - 1 &&
+            nextTableToTheRight
+        ) {
+            tableIdx += 1;
+            column = 0;
+        } else {
+            return;
+        }
+        tableId = tableIds[tableIdx];
+        let cell = document.getElementById(`${tableId}-${row}-${column}`);
+        cell.select();
+    });
+}
