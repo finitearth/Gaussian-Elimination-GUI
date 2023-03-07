@@ -24,8 +24,8 @@ function addTable(parentId, disableInput) {
 var dimension = 3;
 
 // creating tables
-let coefTable = addTable("table_element_1", false);
-let identityTable = addTable("table_element_2", false);
+let coefTable = addTable("table-element-1", false);
+let identityTable = addTable("table-element-2", false);
 identityTable.setData(getUnitMatrix(dimension));
 
 let solIdentityTable = addTable("resultContainerTableRowCol1", true);
@@ -33,15 +33,15 @@ let solCoefTable = addTable("resultContainerTableRowCol2", true);
 let tables = [coefTable, identityTable, solIdentityTable, solCoefTable];
 
 // create initial comboboxes
-let RowOperations = []; // rowOperations
+let rowOperations = []; // rowOperations
 for (let i = 0; i < 3; i++) {
-    RowOperations = addCombobox("combobox_" + i, RowOperations, coefTable);
+    rowOperations = addCombobox("combobox_" + i, rowOperations, coefTable);
 }
 
-listenTableDimension("dimensionButton", tables, RowOperations, "rows");
-listenTableDimension("dimensionButton", tables, RowOperations, "cols");
+listenTableDimension("button-dimension", tables, rowOperations, "rows");
+listenTableDimension("button-dimension", tables, rowOperations, "cols");
 setEventListenerFunction(
-    "dimensionButton",
+    "button-dimension",
     [identityTable],
     [identityTable],
     matrix => [getUnitMatrix(matrix.nRows)]
@@ -49,7 +49,7 @@ setEventListenerFunction(
 
 // calculate solution
 setEventListenerFunction(
-    "calculateSolutionButton",
+    "button-calculate",
     [coefTable, identityTable],
     [solIdentityTable, solCoefTable],
     (coefMatrix, solMatrix) => {
@@ -61,7 +61,7 @@ setEventListenerFunction(
 
 // use result as input
 setEventListenerFunction(
-    "adaptResult",
+    "button-adapt-result",
     [solIdentityTable, solCoefTable],
     [coefTable, identityTable],
     (coefMatrix, solMatrix) => [solMatrix, coefMatrix]
@@ -69,16 +69,16 @@ setEventListenerFunction(
 
 //
 document
-    .getElementById("calculateButton")
+    .getElementById("button-calculate")
     .addEventListener("click", function () {
-        for (let i = 0; i < RowOperations.length; i++) {
+        for (let i = 0; i < rowOperations.length; i++) {
             let matrix = coefTable.getData();
             let secondMatrix = identityTable.getData();
 
-            if (RowOperations[i].enabled) {
-                let newMatrix = RowOperations[i].performRowOperation(matrix);
+            if (rowOperations[i].enabled) {
+                let newMatrix = rowOperations[i].performRowOperation(matrix);
                 let newSecondMatrix =
-                    RowOperations[i].performRowOperation(secondMatrix);
+                    rowOperations[i].performRowOperation(secondMatrix);
 
                 solIdentityTable.setRow(i, newMatrix);
                 solCoefTable.setRow(i, newSecondMatrix);
@@ -91,19 +91,15 @@ document
 
 // decimal conversion
 document
-    .getElementById("convertToDecimal")
+    .getElementById("button-representation-conversion")
     .addEventListener("click", function () {
         tables.forEach(table => {
-            if (this.checked) {
-                table.toDecimal();
-            } else {
-                table.toFraction();
-            }
+            table.convertRepresentation(this.checked);
         });
     });
 
 // generate excercise
-setEventListenerFunction("generateExercise", [], [coefTable], () => [
+setEventListenerFunction("button-generate-excercise", [], [coefTable], () => [
     generateMatrix(dimension, dimension),
 ]);
 

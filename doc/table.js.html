@@ -123,7 +123,7 @@ export class Table {
     addCell(rowId, columnId) {
         const cell = document.createElement("td");
         const input = document.createElement("input");
-        input.value = "";
+        input.value = ";
         input.size = designConfig.inputFieldSize;
         input.width = designConfig.inputFieldSize;
         input.id = `${this.id}-${rowId}-${columnId}`;

@@ -2,13 +2,13 @@ import { Table, addKeyDownListener } from "./table.js";
 import { gaussElimination } from "./gaussalgorithm.js";
 import { generateMatrix } from "./generateExercise.js";
 import { getUnitMatrix } from "./matrix.js";
-import { addCombobox, adaptComboboxes } from "./rowoperation.js";
+import { addCombobox } from "./rowoperation.js";
 import {
     setEventListenerFunction,
     listenTableDimension,
 } from "./eventlisteners.js";
 
-function createTable(id, disableInput, initCols=3) {
+function createTable(id, disableInput, initCols = 3) {
     let table = new Table(id, false, initCols);
     if (disableInput) {
         table.disableInput();
@@ -18,10 +18,10 @@ function createTable(id, disableInput, initCols=3) {
 }
 
 // create Tables
-let coefTable = createTable("coefTable");
-let solTable = createTable("solTable", false, 1);
-let resCoefTable = createTable("resCoefTable", true);
-let resSolTable = createTable("resSolTable", true, 1);
+let coefTable = createTable("table-coef");
+let solTable = createTable("table-sol", false, 1);
+let resCoefTable = createTable("table-res-coef", true);
+let resSolTable = createTable("table-res-sol", true, 1);
 let tables = [coefTable, solTable, resCoefTable, resSolTable];
 
 // creating initial comboboxes
@@ -32,7 +32,7 @@ for (let i = 0; i < coefTable.nRows; i++) {
 
 // calc button
 setEventListenerFunction(
-    "calculateSolutionButton",
+    "button-calculate",
     [coefTable, solTable],
     [resCoefTable, resSolTable],
     (coefMatrix, solMatrix) => {
@@ -42,19 +42,25 @@ setEventListenerFunction(
     }
 );
 
-listenTableDimension("nr-eq", tables, rowOperations, "rows"); // number of rows
+listenTableDimension("input-nr-eq", tables, rowOperations, "rows"); // number of rows
 listenTableDimension(
-    "nr-var",
+    "input-nr-var",
     [coefTable, resCoefTable],
     rowOperations,
     "cols",
     false
 ); // number of cols in coeff matrix
-listenTableDimension("nr-b", [solTable, resSolTable], rowOperations, "cols", true); // number of cols solution matrix
+listenTableDimension(
+    "input-nr-b",
+    [solTable, resSolTable],
+    rowOperations,
+    "cols",
+    true
+); // number of cols solution matrix
 
 // generate excercise
 setEventListenerFunction(
-    "generateExercise",
+    "button-generate-excercise",
     [coefTable, solTable],
     [coefTable, solTable],
     (coefMatrix, solMatrix) => {
@@ -67,7 +73,7 @@ setEventListenerFunction(
 
 // up button
 setEventListenerFunction(
-    "up",
+    "button-adapt-result",
     [coefTable, solTable],
     [resCoefTable, resSolTable],
     coefMatrix => {
@@ -77,19 +83,15 @@ setEventListenerFunction(
 
 // to decimal
 document
-    .getElementById("convertToDecimal")
+    .getElementById("button-representation-conversion")
     .addEventListener("click", function () {
         tables.forEach(table => {
-            if (this.checked) {
-                table.toDecimal();
-            } else {
-                table.toFraction();
-            }
+            table.convertRepresentation(this.checked);
         });
     });
 
 // "Berechne" Button
-document.getElementById("calculate").addEventListener("click", function () {
+document.getElementById("button-calculate").addEventListener("click", function () {
     for (let i = 0; i < rowOperations.length; i++) {
         if (rowOperations[i].enabled) {
             let newCoefMatrix = rowOperations[i].performRowOperation(

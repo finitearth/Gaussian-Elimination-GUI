@@ -39,25 +39,25 @@ for (let i = 0; i < 2; i++) {
     addTable();
 }
 
-let resultTable = new Table("resultTable", false);
+let resultTable = new Table("table-result", false);
 resultTable.disableInput();
-document.getElementById("resultTable").appendChild(resultTable.tableContainer);
+document.getElementById("table-result").appendChild(resultTable.tableContainer);
 
 // =========== Event listeners ===========
-document.getElementById("addTableButton").addEventListener("click", addTable);
+document.getElementById("button-add-table").addEventListener("click", addTable);
 document
-    .getElementById("removeTableButton")
+    .getElementById("remove-table")
     .addEventListener("click", removeTable);
 
-setEventListenerFunction("calculateButton", tables, [resultTable], () => {
-    let equation = document.getElementById("equationInput").value;
+setEventListenerFunction("button-calculate", tables, [resultTable], () => {
+    let equation = document.getElementById("input-equation").value;
     return [calculate(equation, tables)];
 });
 
 addKeyDownListener(tables);
 
 document
-    .getElementById("convertToDecimal")
+    .getElementById("button-representation-conversion")
     .addEventListener("click", function () {
         resultTable.convertRepresentation(this.checked);
     });

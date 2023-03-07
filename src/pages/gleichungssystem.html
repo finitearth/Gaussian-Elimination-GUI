@@ -14,7 +14,7 @@
         <nav id="navbar"></nav>
         <header>
             <h1>Gleichungssystem lösen</h1>
-            <button id="btn-help-modal" class="button-help">Hilfe</button>
+            <button id="button-help-modal" class="button-help">Hilfe</button>
         </header>
 
         <main>
@@ -30,42 +30,42 @@
                         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
                         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
                     </div>
-                    <button id="btn-close" class="secondary">Schließen</button>
+                    <button id="button-close" class="secondary">Schließen</button>
                 </div>
             </div>
 
             <form class="gl-setup page-divider">
-                <label for="nr-eq">Anzahl Gleichungen:</label>
-                <input type="number" id="nr-eq" value="3" min="2" max="9" name="nr-eq" />
-                <label for="nr-var">Anzahl Variablen:</label>
-                <input type="number" id="nr-var" value="3" min="2" max="9" name="nr-var" />
-                <label for="nr-b">Anzahl rechte Seiten:</label>
-                <input type="number" id="nr-b" value="1" min="1" max="9" name="nr-b" />
+                <label for="input-nr-eq">Anzahl Gleichungen:</label>
+                <input type="number" id="input-nr-eq" value="3" min="2" max="9" name="input-nr-eq" />
+                <label for="input-nr-var">Anzahl Variablen:</label>
+                <input type="number" id="input-nr-var" value="3" min="2" max="9" name="input-nr-var" />
+                <label for="input-nr-b">Anzahl rechte Seiten:</label>
+                <input type="number" id="input-nr-b" value="1" min="1" max="9" name="input-nr-b" />
             </form>
 
             <div id="matrixBox" class="page-divider align-center">
                 <table id="table">
                     <tr id="table_row">
-                        <th id="coefTable"></th>
+                        <th id="table-coef"></th>
                         <th id="table_vertical_1" class="vertical"></th>
-                        <th id="solTable"></th>
+                        <th id="table-sol"></th>
                         <th id="table_vertical_2" class="vertical"></th>
                         <th id="table_vertical_3" class="vertical"></th>
                     </tr>
                     <tr id="table_row"></tr>
-                    <button id="generateExercise">Aufgabe erstellen</button>
+                    <button id="button-generate-excercise">Aufgabe erstellen</button>
                 </table>
-                <button id="calculateSolutionButton">Lösen</button>
+                <button id="button-calculate"-solution">Lösen</button>
             </div>
 
             <div class="container-button">
                 <button
                     class="button-gl-inv button-berechnen-down"
-                    id="calculate"
+                    id="button-calculate"
                 >
                     Berechnen
                 </button>
-                <button class="button-gl-inv button-hoch-up" id="up">
+                <button class="button-gl-inv button-hoch-up" id="button-adapt-result">
                     Hoch
                 </button>
             </div>
@@ -73,14 +73,14 @@
             <div class="page-divider align-center">
                 <table>
                     <tr id="table_row">
-                        <th id="resCoefTable"></th>
+                        <th id="table-res-coef"></th>
                         <th id="table_vertical_4" class="vertical"></th>
-                        <th id="resSolTable"></th>
+                        <th id="table-res-sol"></th>
                         <!-- button for conversion to decimal -->
                         <th>
                             <!-- Rounded switch -->
                             <label class="switch">
-                                <input type="checkbox" id="convertToDecimal" />
+                                <input type="checkbox" id="button-representation-conversion" />
                                 <span class="slider round"></span>
                             </label>
                         </th>

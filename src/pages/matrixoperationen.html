@@ -13,7 +13,7 @@
         <nav id="navbar"></nav>
         <header>
             <h1>Matrixoperationen</h1>
-            <button id="btn-help-modal" class="button-help">Hilfe</button>
+            <button id="button-help-modal" class="button-help">Hilfe</button>
         </header>
 
         <main>
@@ -52,7 +52,7 @@
                             Matrix der zweiten Spalte, usw.
                         </p>  
                     </div>
-                    <button id="btn-close" class="secondary">Schließen</button>
+                    <button id="button-close" class="secondary">Schließen</button>
                 </div>
             </div>
 
@@ -61,29 +61,29 @@
                     <div class="left">
                         <table>
                             <tr>
-                                <td><label for="nr-rows">Anzahl Zeilen:</label></td>
-                                <td><input type="number" id="nr-rows" min="2" max="9" value="3"/></td>
+                                <td><label for="input-nr-rows">Anzahl Zeilen:</label></td>
+                                <td><input type="number" id="input-nr-rows" min="2" max="9" value="3"/></td>
                             </tr>
                             <tr>
-                                <td><label for="nr-cols">Anzahl Spalten:</label></td>
-                                <td><input type="number" id="nr-cols" min="2" max="9" value="3"/></td>
+                                <td><label for="input-nr-cols">Anzahl Spalten:</label></td>
+                                <td><input type="number" id="input-nr-cols" min="2" max="9" value="3"/></td>
                             </tr>
                         </table>
                     </div>
-                    <div id="input_matrix" class="input-matrix"></div>
+                    <div id="input-matrix" class="input-matrix"></div>
                 </div>
             </div>
             <div class="container-button">
-                <button id="button_inverse">M⁻¹</button>
-                <button id="button_determinant">|M|</button>
-                <button id="button_transpose">Mᵀ</button>
+                <button id="button-inverse">M⁻¹</button>
+                <button id="button-determinant">|M|</button>
+                <button id="button-transpose">Mᵀ</button>
             </div>
             <div class="page-divider">
                 <div class ="wrapper">
                     <div class="left">
                         <h2 class="result">Ergebnis</h2>
                     </div>
-                    <table id="output_matrix" class="align-center"></table>
+                    <table id="output-matrix" class="align-center"></table>
                 </div> 
             </div>
         </main>

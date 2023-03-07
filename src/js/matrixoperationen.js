@@ -7,27 +7,27 @@ import {
 } from "./eventlisteners.js";
 
 // =========== Tables ===========
-let inputTable = new Table("input_matrix", true);
-document.getElementById("input_matrix").appendChild(inputTable.tableContainer);
+let inputTable = new Table("input-matrix", true);
+document.getElementById("input-matrix").appendChild(inputTable.tableContainer);
 
-let outputTable = new Table("output_matrix", false);
+let outputTable = new Table("output-matrix", false);
 outputTable.disableInput();
 document
-    .getElementById("output_matrix")
+    .getElementById("output-matrix")
     .appendChild(outputTable.tableContainer);
 
 // =========== Event Listeners ===========
-listenTableDimension("nr-rows", [inputTable], [], "rows");
-listenTableDimension("nr-cols", [inputTable], [], "cols");
+listenTableDimension("input-nr-rows", [inputTable], [], "rows");
+listenTableDimension("input-nr-cols", [inputTable], [], "cols");
 addKeyDownListener([inputTable], true);
 
 let listeners = [
     {
-        id: "button_transpose",
+        id: "button-transpose",
         func: matrix => [matrix.transpose()],
     },
     {
-        id: "button_inverse",
+        id: "button-inverse",
         func: matrix => {
             let [coefMatrix, solMatrix] = gaussElimination(
                 matrix,
@@ -38,7 +38,7 @@ let listeners = [
         },
     },
     {
-        id: "button_determinant",
+        id: "button-determinant",
         func: matrix => [matrix.getDeterminant()],
     },
 ];

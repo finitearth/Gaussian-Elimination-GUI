@@ -224,8 +224,8 @@ export class RowOperation {
     }
 }
 
-export function addCombobox(id, RowOperations, table) {
-    RowOperations.push(new RowOperation(id, table));
+export function addCombobox(id, rowOperations, table) {
+    rowOperations.push(new RowOperation(id, table));
 
     const table_element = document.createElement("th");
     table_element.id = "Operation";
@@ -233,9 +233,9 @@ export function addCombobox(id, RowOperations, table) {
     document.getElementById("table_row").appendChild(table_element);
     document
         .getElementById("Operation")
-        .appendChild(RowOperations[RowOperations.length - 1].comboBoxElement);
+        .appendChild(rowOperations[rowOperations.length - 1].comboBoxElement);
 
-    return RowOperations;
+    return rowOperations;
 }
 
 export function removeCombobox(id, rowOperations) {

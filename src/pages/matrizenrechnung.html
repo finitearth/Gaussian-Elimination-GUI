@@ -12,7 +12,7 @@
         <nav id="navbar"></nav>
         <header>
             <h1>Matrizenrechnung</h1>
-            <button id="btn-help-modal" class="button-help">Hilfe</button>
+            <button id="button-help-modal" class="button-help">Hilfe</button>
         </header>
 
         <main>
@@ -51,7 +51,7 @@
                         benötigen, zögern Sie bitte nicht, uns zu kontaktieren.
                         Vielen Dank für die Nutzung unserer Anwendung!
                     </div>
-                    <button id="btn-close" class="secondary">Schließen</button>
+                    <button id="button-close" class="secondary">Schließen</button>
                 </div>
             </div>
 
@@ -60,33 +60,33 @@
                     <div id="table" class="matrix-container"></div>
                 </div>
                 <div class="button-box-add-remove-matrix">
-                    <button id="addTableButton">Neue Matrix</button>
+                    <button id="button-add-table">Neue Matrix</button>
                     <br />
-                    <button id="removeTableButton">Matrix entfernen</button>
+                    <button id="remove-table">Matrix entfernen</button>
                 </div>
             </div>
             <div class="page-divider">
                 <h2>Berechnung</h2>
-                <button id="calculateButton" class="button-matrixrechnung">
+                <button id="button-calculate" class="button-matrixrechnung">
                     Berechnen
                 </button>
                 <table>
                     <tr>
                         <td>
                             <input
-                                id="equationInput"
+                                id="input-equation"
                                 type="text"
                                 class="equation-input"
                             />
                         </td>
                         <td>=</td>
                         <td>
-                            <div id="resultTable"></div>
+                            <div id="table-result"></div>
                         </td>
                         <td>
                             <!-- Rounded switch -->
                             <label class="switch">
-                                <input type="checkbox" id="convertToDecimal" />
+                                <input type="checkbox" id="button-representation-conversion" />
                                 <span class="slider round"></span>
                             </label>
                         </td>

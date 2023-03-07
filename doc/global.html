@@ -484,7 +484,7 @@
     
 
     
-    <h4 class="name" id="calculate"><span class="type-signature"></span>calculate<span class="signature">(equationString)</span><span class="type-signature"> &rarr; {<a href="Fraction.html">Fraction</a>|<a href="Matrix.html">Matrix</a>}</span></h4>
+    <h4 class="name" id="button-calculate"><span class="type-signature"></span>calculate<span class="signature">(equationString)</span><span class="type-signature"> &rarr; {<a href="Fraction.html">Fraction</a>|<a href="Matrix.html">Matrix</a>}</span></h4>
     
 
     
@@ -683,7 +683,8 @@
 
 
 <div class="description">
-    Perform Gaussian elimination on a system of linear equations represented by coefficient and solution matrices.Throws an UnsolvableMatrixException if the coefficient matrix is not square or its determinant is zero.
+    Perform Gaussian elimination on a system of linear equations represented by coefficient and solution matrices.
+Throws an UnsolvableMatrixException if the coefficient matrix is not square or its determinant is zero.
 </div>
 
 
@@ -1024,7 +1025,15 @@
 
 
 <div class="description">
-    Converts a string representing a fraction or decimal to a Fraction object.If the input string contains a forward slash (/), it is assumed to representa fraction and is split into numerator and denominator. If the input stringcontains a comma (,) or a period (.), it is assumed to represent a decimaland is converted to a whole numbered fraction. If the input string consistsof only numerals, it is treated as an integer and a denominator of 1 is used.If the input string is empty, a Fraction object representing 0/1 is returned.
+    Converts a string representing a fraction or decimal to a Fraction object.
+
+If the input string contains a forward slash (/), it is assumed to represent
+a fraction and is split into numerator and denominator. If the input string
+contains a comma (,) or a period (.), it is assumed to represent a decimal
+and is converted to a whole numbered fraction. If the input string consists
+of only numerals, it is treated as an integer and a denominator of 1 is used.
+
+If the input string is empty, a Fraction object representing 0/1 is returned.
 </div>
 
 
@@ -1147,7 +1156,8 @@
 <dl>
     <dt>
         <div class="param-desc">
-        if the input string is not a valid representationof a fraction or decimal.
+        if the input string is not a valid representation
+of a fraction or decimal.
         </div>
     </dt>
     <dd></dd>

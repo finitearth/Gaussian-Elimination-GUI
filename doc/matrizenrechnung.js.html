@@ -54,13 +54,13 @@ function calculate(equationString) {
     }
 
     // Remove all spaces
-    equationString = equationString.replace(/\s/g, "");
+    equationString = equationString.replace(/\s/g, ");
 
     // Split equationString into array of strings
     let equation = equationString.split(/([A-Z])/);
 
     // Remove empty strings
-    equation = equation.filter(element => element != "");
+    equation = equation.filter(element => element != ");
 
     // Replace letters with matrices, but if numeral, convert to fraction
     for (let i = 0; i &lt; equation.length; i++) {
@@ -157,14 +157,14 @@ for (let i = 0; i &lt; 2; i++) {
     addTable();
 }
 
-let resultTable = new Table("resultTable", false);
+let resultTable = new Table("table-result", false);
 resultTable.disableInput();
-document.getElementById("resultTable").appendChild(resultTable.tableContainer);
+document.getElementById("table-result").appendChild(resultTable.tableContainer);
 
 document
-    .getElementById("calculateButton")
+    .getElementById("button-calculate")
     .addEventListener("click", function () {
-        let equation = document.getElementById("equationInput").value;
+        let equation = document.getElementById("input-equation").value;
         try {
             let result = calculate(equation);
             resultTable.setData(result);
@@ -174,9 +174,9 @@ document
         }
     });
 
-document.getElementById("addTableButton").addEventListener("click", addTable);
+document.getElementById("button-add-table").addEventListener("click", addTable);
 document
-    .getElementById("removeTableButton")
+    .getElementById("remove-table")
     .addEventListener("click", removeTable);
 addKeyDownListener(tables);
 </code></pre>

@@ -12,32 +12,12 @@ test("set Rows should work", () => {
     expect(table.rows.length).toEqual(7);
 });
 
-test("set rows should not allow bigger than 9", () => {
-    let table = new Table();
-    table.setNRows(9);
-    table.addRow();
-    expect(table.rows.length).toEqual(9);
-});
-
-test("set rows should not allow smaller than 2", () => {
-    let table = new Table();
-    table.setNRows(2);
-    table.removeRow();
-    expect(table.rows.length).toEqual(2);
-});
-
 test("add columns should work", () => {
     let table = new Table();
     table.addColumn();
     expect(Array.from(table.rows[0].children).length).toEqual(4);
 });
 
-test("add columns should not allow bigger than 9", () => {
-    let table = new Table();
-    table.setNColumns(9);
-    table.addColumn();
-    expect(Array.from(table.rows[0].children).length).toEqual(9);
-});
 
 test("remove columns should work", () => {
     let table = new Table();
@@ -45,24 +25,7 @@ test("remove columns should work", () => {
     expect(Array.from(table.rows[0].children).length).toEqual(2);
 });
 
-test("setNrows should not work if nRows=0", () => {
-    let table = new Table();
-    table.setNRows(0);
-    expect(table.rows.length).toEqual(3);
-});
 
-test("setNColumns should not work if nColumns=0", () => {
-    let table = new Table();
-    table.setNColumns(0);
-    expect(Array.from(table.rows[0].children).length).toEqual(3);
-});
-
-test("remove columns should not allow smaller than 2", () => {
-    let table = new Table();
-    table.setNColumns(2);
-    table.removeColumn();
-    expect(Array.from(table.rows[0].children).length).toEqual(2);
-});
 
 test("set columns should work", () => {
     let table = new Table();

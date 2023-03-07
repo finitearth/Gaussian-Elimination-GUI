@@ -16,8 +16,7 @@ export function setEventListenerFunction(
                 table.setData(outputMatrices[index])
             );
         } catch (error) {
-            // alert(error);
-            throw error;
+            alert(error);
         }
     });
 }

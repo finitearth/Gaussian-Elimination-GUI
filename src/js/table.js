@@ -107,7 +107,7 @@ export class Table {
         input.value = "";
         input.size = designConfig.inputFieldSize;
         input.width = designConfig.inputFieldSize;
-        input.id = `${this.id}-${rowId}-${columnId}`;
+        input.id = `${this.id}.${rowId}.${columnId}`;
         // center cell input
         input.style.textAlign = "center";
         input.disabled = !this.enabled;
@@ -322,17 +322,17 @@ export function addKeyDownListener(tables, nextTableToTheRight = false) {
         let tableIdx = 0;
 
         if (activeCellId !== "") {
-            tableId = activeCellId.split("-")[0];
+            tableId = activeCellId.split(".")[0];
             tableIdx = tableIds.indexOf(tableId);
-            row = Number(activeCellId.split("-")[1]);
-            column = Number(activeCellId.split("-")[2]);
+            row = Number(activeCellId.split(".")[1]);
+            column = Number(activeCellId.split(".")[2]);
         }
 
         if (e.code == "ArrowUp" && row > 0) {
             row -= 1;
         } else if (
             e.code == "ArrowDown" &&
-            row < tables[tableIdx].rows.length - 1
+            row < tables[tableIdx].nRows - 1
         ) {
             row += 1;
         } else if (e.code == "ArrowLeft" && column > 0) {
@@ -348,7 +348,7 @@ export function addKeyDownListener(tables, nextTableToTheRight = false) {
             !nextTableToTheRight
         ) {
             tableIdx -= 1;
-            row = tables[tableIdx].rows.length - 1;
+            row = tables[tableIdx].nRows - 1;
         } else if (
             e.code == "ArrowDown" &&
             tableIdx < tables.length - 1 &&
@@ -374,7 +374,7 @@ export function addKeyDownListener(tables, nextTableToTheRight = false) {
             return;
         }
         tableId = tableIds[tableIdx];
-        let cell = document.getElementById(`${tableId}-${row}-${column}`);
+        let cell = document.getElementById(`${tableId}.${row}.${column}`);
         cell.select();
     });
 }

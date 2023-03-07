@@ -339,7 +339,7 @@ export class Matrix {
      * @returns {string} - The string representation of the matrix.
      */
 //     stringify(decimal = false) {
-//         let string = "";
+//         let string = ";
 //         for (let i = 0; i < this.nRows; i++) {
 //             for (let j = 0; j < this.nColumns; j++) {
 //                 if (decimal) {

@@ -70,7 +70,7 @@ export const NEGONE = new Fraction(-1, 1);
 export function stringToFraction(string) {
     let numerator;
     let denominator;
-    if (string == "") {
+    if (string == ") {
         // if string is empty, return 0/1 (0
         return ZERO;
     }
@@ -142,7 +142,7 @@ export function addKeyDownListener(tables, nextTableToTheRight = false) {
         let tableId = 0;
         let tableIdx = 0;
 
-        if (activeCellId !== "") {
+        if (activeCellId !== ") {
             tableId = activeCellId.split("-")[0];
             tableIdx = tableIds.indexOf(tableId);
             row = Number(activeCellId.split("-")[1]);

@@ -1,9 +1,9 @@
 var modal = document.getElementById("help-modal");
-var btnOpen = document.getElementById("btn-help-modal");
+var buttonOpen = document.getElementById("button-help-modal");
 var spanClose = document.getElementById("span-close");
-var btnClose = document.getElementById("btn-close");
+var buttonClose = document.getElementById("button-close");
 
-btnOpen.addEventListener("click", function () {
+buttonOpen.addEventListener("click", function () {
     modal.style.display = "block";
 });
 
@@ -12,7 +12,7 @@ function closeModal() {
 }
 
 spanClose.addEventListener("click", closeModal);
-btnClose.addEventListener("click", closeModal);
+buttonClose.addEventListener("click", closeModal);
 
 // add eventlistener for esc-press
 document.addEventListener("keydown", function (event) {

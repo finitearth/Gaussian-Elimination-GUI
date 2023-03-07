@@ -80,7 +80,7 @@ function saveAndProceed() {
   document.cookie = JSON.stringify(matrix);
   window.location.href = "matrix_display.html";
 
-//   matrixContainer.innerHTML = "";
+//   matrixContainer.innerHTML = ";
 //   matrixContainer.appendChild(matrixTable);
 }
 

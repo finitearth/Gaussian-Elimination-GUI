@@ -14,7 +14,7 @@
         
         <header>
             <h1>Matrixinversion - Matrizengleichung</h1>
-            <button id="btn-help-modal" class="button-help">Hilfe</button>
+            <button id="button-help-modal" class="button-help">Hilfe</button>
         </header>
 
         <main>
@@ -27,32 +27,32 @@
                         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
                 	    ta sanctus est Lorem ipsum dolor sit amet.
                     </div>
-                    <button id="btn-close" class="secondary">Schließen</button>
+                    <button id="button-close" class="secondary">Schließen</button>
                 </div>
             </div>
             
                 <form class="page-divider">
-                    <label for="dimensionButton">Dimensionen:</label>
-                    <input id="dimensionButton" type="number" min="2" max="9" defaultValue="3" value="3" size="1">
+                    <label for="button-dimension">Dimensionen:</label>
+                    <input id="button-dimension" type="number" min="2" max="9" defaultValue="3" value="3" size="1">
                 </form>
                                     
                 <div id="matrixBox" class="page-divider align-center">
-                    <button id="generateExercise">Aufgabe erstellen</button>
+                    <button id="button-generate-excercise">Aufgabe erstellen</button>
                     <table id="table">
                         <tr id="table_row">
-                            <th id="table_element_1"></th>
+                            <th id="table-element-1"></th>
                             <th id="table_vertical_1" class="vertical"></th>
-                            <th id="table_element_2"></th>
+                            <th id="table-element-2"></th>
                             <th id="table_vertical_2" class="vertical"></th>
                             <th id="table_vertical_3" class="vertical"></th>
                         </tr>
                         <tr id="table_row"></tr>
                     </table>
-                    <button id="calculateSolutionButton">Lösen</button>
+                    <button id="button-calculate"-solution">Lösen</button>
                 </div>
                 <div id="mainButtonContainer" class="container-button">
-                    <button id="calculateButton" class="button-gl-inv button-berechnen-down">Berechnen</button>
-                    <button id="adaptResult" class="button-gl-inv button-hoch-up">Hoch</button>
+                    <button id="button-calculate" class="button-gl-inv button-berechnen-down">Berechnen</button>
+                    <button id="button-adapt-result" class="button-gl-inv button-hoch-up">Hoch</button>
                 </div>
             </div>
             <div id="resultContainer" class="page-divider align-center">
@@ -63,7 +63,7 @@
                         <th id="resultContainerTableRowCol2"></th>
                         <th>
                             <label class="switch">
-                                <input type="checkbox" id="convertToDecimal">
+                                <input type="checkbox" id="button-representation-conversion">
                                 <span class="slider round"></span>
                               </label>
                         </th>
@@ -83,6 +83,6 @@
             </div>
         </footer>
     </body>
-    <script src="../js/Matrixinversion.js" type="module"></script>
+    <script src="../js/matrixinversion.js" type="module"></script>
     <script src="../js/modal.js"></script>
 </html>
