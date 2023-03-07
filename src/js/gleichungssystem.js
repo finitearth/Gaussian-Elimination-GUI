@@ -30,9 +30,9 @@ for (let i = 0; i < coefTable.nRows; i++) {
     rowOperations = addCombobox("combobox_" + i, rowOperations, coefTable);
 }
 
-// calc button
+// solve button
 setEventListenerFunction(
-    "button-calculate",
+    "button-solve",
     [coefTable, solTable],
     [resCoefTable, resSolTable],
     (coefMatrix, solMatrix) => {

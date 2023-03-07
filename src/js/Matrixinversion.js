@@ -49,7 +49,7 @@ setEventListenerFunction(
 
 // calculate solution
 setEventListenerFunction(
-    "button-calculate",
+    "button-solve",
     [coefTable, identityTable],
     [solIdentityTable, solCoefTable],
     (coefMatrix, solMatrix) => {
