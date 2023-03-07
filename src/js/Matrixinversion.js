@@ -1,6 +1,6 @@
 import { Table, addKeyDownListener } from "./table.js";
 import { gaussElimination } from "./gaussalgorithm.js";
-import { addCombobox, updateRowOperations, adaptComboboxes } from "./utils.js";
+import { addCombobox, updateRowOperations, adaptComboboxes } from "./rowoperation.js";
 import { generateMatrix } from "./generateExercise.js";
 import { getUnitMatrix } from "./matrix.js";
 
@@ -25,6 +25,10 @@ for (let i = 0; i < 3; i++) {
     RowOperations = addCombobox("combobox_" + i, RowOperations, tables[0]);
 }
 
+/**
+ * Adds a Table to a Parent Node and appends it to the tables array.
+ * @paramenter {parentId} ID of the parent node.
+ */
 function addTable(parentId) {
     tables.push(new Table(tables.length, false));
     document
@@ -32,6 +36,7 @@ function addTable(parentId) {
         .appendChild(tables[tables.length - 1].tableContainer);
 }
 
+// Adapt dimensions of tables and comboxes if the user changes the dimension value.
 document
     .getElementById("dimensionButton")
     .addEventListener("input", function (e) {
@@ -53,6 +58,7 @@ document
         dimension = e.target.value;
     });
 
+// calculate solution 
 document
     .getElementById("calculateSolutionButton")
     .addEventListener("click", function () {
@@ -67,6 +73,7 @@ document
         }
     });
 
+// use result as input
 document
     .getElementById("adaptResult")
     .addEventListener("click", function () {
@@ -74,7 +81,7 @@ document
         tables[1].setData(tables[3].getData());
     });
 
-
+//
 document
     .getElementById("calculateButton")
     .addEventListener("click", function () {

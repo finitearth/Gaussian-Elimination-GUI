@@ -2,7 +2,7 @@ import { Table, addKeyDownListener } from "./table.js";
 import { gaussElimination } from "./gaussalgorithm.js";
 import { generateMatrix } from "./generateExercise.js";
 import { getUnitMatrix } from "./matrix.js";
-import { addCombobox, adaptComboboxes } from "./utils.js";
+import { addCombobox, adaptComboboxes } from "./rowoperation.js";
 
 function createTable(id, initCols, disableInput) {
     let table = new Table(id, false, initCols);
