@@ -1,5 +1,5 @@
 import { Fraction } from "./fraction.js";
-import { InvalidInputException } from "./exceptions.js";
+import { InvalidInputException } from "../exceptions.js";
 
 
 const operators = {

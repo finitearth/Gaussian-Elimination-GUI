@@ -1,6 +1,6 @@
-import { gaussElimination } from "../src/js/gaussalgorithm";
-import { getUnitMatrix, Matrix } from "../src/js/matrix";
-import { Fraction } from "../src/js/fraction";
+import { gaussElimination } from "../src/js/logic/gaussalgorithm";
+import { getUnitMatrix, Matrix } from "../src/js/logic/matrix";
+import { Fraction } from "../src/js/logic/fraction";
 
 test("Inverting via GaussElimination twice should return orig. matrix", () => {
     let coefMatrix = new Matrix([

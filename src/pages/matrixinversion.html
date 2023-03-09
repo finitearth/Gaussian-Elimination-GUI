@@ -6,9 +6,8 @@
         <title>Matrixinversion</title>
         <link rel="stylesheet" href="../style/style.css" type="text/css" />
         <link rel="icon" href="../images/icon_logo.png" />
-        <script src="../js/navbar.js"></script>
     </head>
-
+    
     <body>
         <nav id="navbar"></nav>
         
@@ -16,7 +15,7 @@
             <h1>Matrixinversion - Matrizengleichung</h1>
             <button id="button-help-modal" class="button-help">Hilfe</button>
         </header>
-
+        
         <main>
             <div id="help-modal" class="modal">
                 <div class="modal-content">
@@ -31,16 +30,16 @@
                 </div>
             </div>
             
-                <form class="page-divider">
-                    <label for="button-dimension">Dimensionen:</label>
-                    <input id="button-dimension" type="number" min="2" max="9" defaultValue="3" value="3" size="1">
-                </form>
-                                    
-                <div id="matrixBox" class="page-divider align-center">
-                    <button id="button-generate-excercise">Aufgabe erstellen</button>
-                    <table id="table">
-                        <tr id="table_row">
-                            <th id="table-element-1"></th>
+            <form class="page-divider">
+                <label for="button-dimension">Dimensionen:</label>
+                <input id="button-dimension" type="number" min="2" max="9" defaultValue="3" value="3" size="1">
+            </form>
+            
+            <div id="matrixBox" class="page-divider align-center">
+                <button id="button-generate-excercise">Aufgabe erstellen</button>
+                <table id="table">
+                    <tr id="table_row">
+                        <th id="table-element-1"></th>
                             <th id="table_vertical_1" class="vertical"></th>
                             <th id="table-element-2"></th>
                             <th id="table_vertical_2" class="vertical"></th>
@@ -66,23 +65,25 @@
                                 <input type="checkbox" id="button-representation-conversion">
                                 <span class="slider round"></span>
                               </label>
-                        </th>
-                    </tr>
-                    <tr id="table_row"></tr>
-                </table>
-            </div>
+                            </th>
+                        </tr>
+                        <tr id="table_row"></tr>
+                    </table>
+                </div>
         </main>
         <footer>
             <div class="impressum">
                 <a
-                    class="impressum-text"
-                    ,
-                    href="http://www.kirchbergnet.de/impressum.php"
-                    >Impressum</a
+                class="impressum-text"
+                ,
+                href="http://www.kirchbergnet.de/impressum.php"
+                >Impressum</a
                 >
             </div>
         </footer>
     </body>
-    <script src="../js/matrixinversion.js" type="module"></script>
-    <script src="../js/modal.js"></script>
-</html>
+    <script src="../js/ui/navbar.js"></script>
+    <script src="../js/ui/matrixinversion.js" type="module"></script>
+    <script src="../js/ui/modal.js"></script>
+    </html>
+    

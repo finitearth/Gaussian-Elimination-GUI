@@ -1,6 +1,6 @@
-import { designConfig } from "./config.js";
-import { Matrix } from "./matrix.js";
-import { Fraction, stringToFraction } from "./fraction.js";
+import { designConfig } from "../config.js";
+import { Matrix } from "../logic/matrix.js";
+import { Fraction, stringToFraction } from "../logic/fraction.js";
 
 /**
  *  Represents a table object with functionality to add, remove rows and columns dynamically.

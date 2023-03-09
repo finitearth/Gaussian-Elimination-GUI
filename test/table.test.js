@@ -2,9 +2,9 @@
  * @jest-environment jsdom
  */
 
-import { Table, addKeyDownListener } from "../src/js/table.js";
-import { Matrix } from "../src/js/matrix.js";
-import { Fraction } from "../src/js/fraction.js";
+import { Table, addKeyDownListener } from "../src/js/intermediate/table.js";
+import { Matrix } from "../src/js/logic/matrix.js";
+import { Fraction } from "../src/js/logic/fraction.js";
 
 test("set Rows should work", () => {
     let table = new Table();

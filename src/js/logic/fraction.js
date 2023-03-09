@@ -1,5 +1,5 @@
 import { Matrix } from "./matrix.js";
-import { DivByZeroException } from "./exceptions.js";
+import { DivByZeroException } from "../exceptions.js";
 
 /**
  * Class for fractions, defined as numerator divided by denominator.

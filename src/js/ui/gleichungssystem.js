@@ -1,12 +1,12 @@
-import { Table, addKeyDownListener } from "./table.js";
-import { gaussElimination } from "./gaussalgorithm.js";
-import { generateMatrix } from "./generateExercise.js";
-import { getUnitMatrix } from "./matrix.js";
-import { addCombobox } from "./rowoperation.js";
+import { gaussElimination } from "../logic/gaussalgorithm.js";
+import { generateMatrix } from "../logic/generateExercise.js";
+import { getUnitMatrix } from "../logic/matrix.js";
+import { Table, addKeyDownListener } from "../intermediate/table.js";
+import { addCombobox } from "../intermediate/rowoperation.js";
 import {
     setEventListenerFunction,
     listenTableDimension,
-} from "./eventlisteners.js";
+} from "../intermediate/eventlisteners.js";
 
 function createTable(id, disableInput, initCols = 3) {
     let table = new Table(id, false, initCols);

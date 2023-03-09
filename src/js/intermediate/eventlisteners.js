@@ -1,5 +1,5 @@
 import { adaptComboboxes } from "./rowoperation.js";
-import { designConfig } from "./config.js";
+import { designConfig } from "../config.js";
 
 export function setEventListenerFunction(
     buttonId,

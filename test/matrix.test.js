@@ -1,5 +1,5 @@
-import { Matrix } from "../src/js/matrix";
-import { Fraction } from "../src/js/fraction";
+import { Matrix } from "../src/js/logic/matrix";
+import { Fraction } from "../src/js/logic/fraction";
 
 test("Matrix addition", () => {
     let matrix1 = new Matrix([

@@ -1,10 +1,10 @@
-import { Table, addKeyDownListener } from "./table.js";
-import { gaussElimination } from "./gaussalgorithm.js";
-import { getUnitMatrix } from "./matrix.js";
+import { gaussElimination } from "../logic/gaussalgorithm.js";
+import { getUnitMatrix } from "../logic/matrix.js";
+import { Table, addKeyDownListener } from "../intermediate/table.js";
 import {
     listenTableDimension,
     setEventListenerFunction,
-} from "./eventlisteners.js";
+} from "../intermediate/eventlisteners.js";
 
 // =========== Tables ===========
 let inputTable = new Table("input-matrix", true);

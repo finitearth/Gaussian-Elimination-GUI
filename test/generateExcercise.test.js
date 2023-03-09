@@ -1,6 +1,6 @@
-import { gaussElimination } from '../src/js/gaussalgorithm.js';
-import { getUnitMatrix } from '../src/js/matrix.js';
-import { generateMatrix } from '../src/js/generateExercise.js';
+import { gaussElimination } from '../src/js/logic/gaussalgorithm.js';
+import { getUnitMatrix } from '../src/js/logic/matrix.js';
+import { generateMatrix } from '../src/js/logic/generateExercise.js';
 
 test("generated Matrix should be solvable", () => {
     let matrix = generateMatrix(3, 3);

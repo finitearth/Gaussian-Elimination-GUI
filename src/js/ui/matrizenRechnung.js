@@ -1,6 +1,6 @@
-import { Table, addKeyDownListener } from "./table.js";
-import { calculate } from "./matrizenRechnungLogic.js";
-import { setEventListenerFunction } from "./eventlisteners.js";
+import { Table, addKeyDownListener } from "../intermediate/table.js";
+import { calculate } from "../logic/equationParser.js";
+import { setEventListenerFunction } from "../intermediate/eventlisteners.js";
 
 // =========== Tables ===========
 function addTable() {

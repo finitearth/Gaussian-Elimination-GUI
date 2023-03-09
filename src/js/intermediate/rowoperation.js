@@ -1,4 +1,4 @@
-import { NEGONE, stringToFraction } from "./fraction.js";
+import { NEGONE, stringToFraction } from "../logic/fraction.js";
 
 export class RowOperation {
     constructor(id, table) {

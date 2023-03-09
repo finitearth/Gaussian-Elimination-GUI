@@ -1,13 +1,13 @@
-import { Table, addKeyDownListener } from "./table.js";
-import { gaussElimination } from "./gaussalgorithm.js";
-import { addCombobox } from "./rowoperation.js";
-import { generateMatrix } from "./generateExercise.js";
-import { getUnitMatrix } from "./matrix.js";
+import { gaussElimination } from "../logic/gaussalgorithm.js";
+import { getUnitMatrix } from "../logic/matrix.js";
+import { generateMatrix } from "../logic/generateExercise.js";
+import { addCombobox } from "../intermediate/rowoperation.js";
+import { Table, addKeyDownListener } from "../intermediate/table.js";
 import {
     setEventListenerFunction,
     listenTableDimension,
-} from "./eventlisteners.js";
-
+} from "../intermediate/eventlisteners.js";
+    
 /**
  * Adds a Table to a Parent Node and appends it to the tables array.
  * @paramenter {parentId} ID of the parent node.

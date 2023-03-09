@@ -1,4 +1,4 @@
-import { UnsolvableMatrixException } from "./exceptions.js";
+import { UnsolvableMatrixException } from "../exceptions.js";
 
 /**
  * Perform Gaussian elimination on a system of linear equations represented by coefficient and solution matrices.
