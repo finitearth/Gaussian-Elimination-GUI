@@ -10,7 +10,7 @@ import { Fraction, stringToFraction } from "../logic/fraction.js";
  * @param {boolean} [showButtons=true] - Optional parameter to determine whether to display buttons to add/remove rows and columns.
  */
 export class Table {
-    constructor(id, showButtons = true, initCols) {
+    constructor(id, initCols) {
         this.id = id;
         this.enabled = true;
         this.fractionArray = null;
@@ -26,42 +26,6 @@ export class Table {
 
         this.tableContainer = document.createElement("div");
         this.tableContainer.appendChild(this.tableElement);
-
-        const buttons = [
-            {
-                name: "+ R",
-                class: "button-addrow",
-                function: e => this.addRow(false),
-            },
-            {
-                name: "- R",
-                class: "button-removerow",
-                function: e => this.removeRow(false),
-            },
-            {
-                name: "+ C",
-                class: "button-addcol",
-                function: e => this.addColumn(false),
-            },
-            {
-                name: "- C",
-                class: "button-removecol",
-                function: e => this.removeColumn(false),
-            },
-        ];
-
-        buttons.forEach(button => {
-            const buttonElement = document.createElement("button");
-            // add css class
-            buttonElement.classList.add("table-button");
-            buttonElement.textContent = button.name;
-            buttonElement.classList.add(button.class);
-            buttonElement.addEventListener("click", button.function.bind(this));
-            if (!showButtons) {
-                buttonElement.style.display = "none";
-            }
-            this.tableContainer.appendChild(buttonElement);
-        });
     }
 
     /**
@@ -148,7 +112,40 @@ export class Table {
             this.rows[i].appendChild(cell);
         }
     }
+    addButtons() {
+        const buttons = [
+            {
+                name: "+ R",
+                class: "button-addrow",
+                function: e => this.addRow(false),
+            },
+            {
+                name: "- R",
+                class: "button-removerow",
+                function: e => this.removeRow(false),
+            },
+            {
+                name: "+ C",
+                class: "button-addcol",
+                function: e => this.addColumn(false),
+            },
+            {
+                name: "- C",
+                class: "button-removecol",
+                function: e => this.removeColumn(false),
+            },
+        ];
 
+        buttons.forEach(button => {
+            const buttonElement = document.createElement("button");
+            // add css class
+            buttonElement.classList.add("table-button");
+            buttonElement.textContent = button.name;
+            buttonElement.classList.add(button.class);
+            buttonElement.addEventListener("click", button.function.bind(this));
+            this.tableContainer.appendChild(buttonElement);
+        });
+    }
     /**
 
     Removes the last row from the table.
@@ -330,10 +327,7 @@ export function addKeyDownListener(tables, nextTableToTheRight = false) {
 
         if (e.code == "ArrowUp" && row > 0) {
             row -= 1;
-        } else if (
-            e.code == "ArrowDown" &&
-            row < tables[tableIdx].nRows - 1
-        ) {
+        } else if (e.code == "ArrowDown" && row < tables[tableIdx].nRows - 1) {
             row += 1;
         } else if (e.code == "ArrowLeft" && column > 0) {
             column -= 1;

@@ -7,7 +7,8 @@ import {
 } from "../intermediate/eventlisteners.js";
 
 // =========== Tables ===========
-let inputTable = new Table("input-matrix", true);
+let inputTable = new Table("input-matrix");
+inputTable.addButtons();
 document.getElementById("input-matrix").appendChild(inputTable.tableContainer);
 
 let outputTable = new Table("output-matrix", false);
