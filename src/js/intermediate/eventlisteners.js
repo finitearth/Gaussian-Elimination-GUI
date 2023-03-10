@@ -1,4 +1,4 @@
-import { adaptComboboxes } from "./rowoperation.js";
+import { adaptComboboxes, updateRowOperations } from "./rowoperation.js";
 import { designConfig } from "../config.js";
 
 export function setEventListenerFunction(
@@ -39,11 +39,17 @@ export function listenTableDimension(
             if (rowsOrCols === "rows") {
                 table.setNRows(numberEquations);
                 if (rowOperations.length > 0) {
+                    rowOperations = updateRowOperations(
+                        rowOperations, 
+                        rowOperations.length, 
+                        numberEquations);
+                        
                     rowOperations = adaptComboboxes(
                         rowOperations,
                         table,
                         numberEquations
                     );
+                    
                 }
             } else if (rowsOrCols === "cols") {
                 table.setNColumns(numberEquations);

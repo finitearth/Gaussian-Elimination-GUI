@@ -262,5 +262,6 @@ export function updateRowOperations(rowOperations, dimension, n) {
             rowOperations[i].setNRowDropdownSelectOptions(dimension, n);
         }
     }
-    
+
+    return rowOperations;
 }
