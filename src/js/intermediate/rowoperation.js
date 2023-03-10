@@ -227,10 +227,10 @@ export class RowOperation {
 export function addCombobox(id, rowOperations, table) {
     rowOperations.push(new RowOperation(id, table));
 
-    const table_element = document.createElement("th");
-    table_element.id = "Operation";
+    // const table_element = document.createElement("th");
+    // table_element.id = "Operation";
 
-    document.getElementById("table_row").appendChild(table_element);
+    // document.getElementById("table_row").appendChild(table_element);
     document
         .getElementById("Operation")
         .appendChild(rowOperations[rowOperations.length - 1].comboBoxElement);
