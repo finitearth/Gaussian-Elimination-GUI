@@ -27,42 +27,6 @@ export class Table {
 
         this.tableContainer = document.createElement("div");
         this.tableContainer.appendChild(this.tableElement);
-
-        const buttons = [
-            {
-                name: "+ R",
-                class: "button-addrow",
-                function: e => this.addRow(false),
-            },
-            {
-                name: "- R",
-                class: "button-removerow",
-                function: e => this.removeRow(false),
-            },
-            {
-                name: "+ C",
-                class: "button-addcol",
-                function: e => this.addColumn(false),
-            },
-            {
-                name: "- C",
-                class: "button-removecol",
-                function: e => this.removeColumn(false),
-            },
-        ];
-
-        buttons.forEach(button => {
-            const buttonElement = document.createElement("button");
-            // add css class
-            buttonElement.classList.add("table-button");
-            buttonElement.textContent = button.name;
-            buttonElement.classList.add(button.class);
-            buttonElement.addEventListener("click", button.function.bind(this));
-            if (!showButtons) {
-                buttonElement.style.display = "none";
-            }
-            this.tableContainer.appendChild(buttonElement);
-        });
     }
 
     /**
@@ -174,6 +138,55 @@ export class Table {
         }
     }
 
+    addButtons() {
+        const buttons = [
+            {
+                name: "+ R",
+                class: "table-button.button-addrow",
+                function: e => {
+                    if (this.rows.length < designConfig.maxRows) {
+                        this.addRow();
+                    }
+                },
+            },
+            {
+                name: "- R",
+                class: "table-button.button-removerow",
+                function: e => {
+                    if (this.rows.length > designConfig.minRows) {
+                        this.removeRow(false);
+                    }
+                },
+            },
+            {
+                name: "+ C",
+                class: "table-button.button-addcol",
+                function: e => {
+                    if (this.nColumns < designConfig.maxColumns) {
+                        this.addColumn();
+                    }
+                },
+            },
+            {
+                name: "- C",
+                class: "table-button.button-removecol",
+                function: e => {
+                    if (this.nColumns > designConfig.minColumns) {
+                        this.removeColumn(false);
+                    }
+                },
+            },
+        ];
+
+        buttons.forEach(button => {
+            const buttonElement = document.createElement("button");
+            buttonElement.classList.add("table-button");
+            buttonElement.textContent = button.name;
+            // buttonElement.classList.add(button.class);
+            buttonElement.addEventListener("click", button.function.bind(this));
+            this.tableContainer.appendChild(buttonElement);
+        });
+    }
     /**
 
     Removes the last row from the table.
@@ -187,9 +200,9 @@ export class Table {
 
     /**
 
-    Removes the last column from the table.
-    @method
-    @param {boolean} [force=false] - Optional parameter to force removing a column even if the current number of columns is equal to the minimum number of columns allowed in the design config.
+    * Removes the last column from the table.
+    * @method
+    * @param {boolean} [force=false] - Optional parameter to force removing a column even if the current number of columns is equal to the minimum number of columns allowed in the design config.
     */
     removeColumn() {
         this.nColumns -= 1;
@@ -355,10 +368,7 @@ export function addKeyDownListener(tables, nextTableToTheRight = false) {
 
         if (e.code == "ArrowUp" && row > 0) {
             row -= 1;
-        } else if (
-            e.code == "ArrowDown" &&
-            row < tables[tableIdx].nRows - 1
-        ) {
+        } else if (e.code == "ArrowDown" && row < tables[tableIdx].nRows - 1) {
             row += 1;
         } else if (e.code == "ArrowLeft" && column > 0) {
             column -= 1;

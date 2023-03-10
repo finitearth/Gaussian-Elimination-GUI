@@ -8,6 +8,7 @@ function addTable() {
         return;
     }
     let newTable = new Table(tables.length);
+    newTable.addButtons();
     tables.push(newTable);
 
     let tableContainer = document.createElement("table");
