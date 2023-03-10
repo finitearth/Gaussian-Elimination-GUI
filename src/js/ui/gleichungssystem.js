@@ -9,7 +9,7 @@ import {
 } from "../intermediate/eventlisteners.js";
 
 function createTable(id, disableInput, initCols = 3) {
-    let table = new Table(id, false, initCols);
+    let table = new Table(id, initCols);
     if (disableInput) {
         table.disableInput();
     }

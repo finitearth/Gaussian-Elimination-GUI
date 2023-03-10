@@ -112,36 +112,52 @@ export class Table {
             this.rows[i].appendChild(cell);
         }
     }
+
     addButtons() {
         const buttons = [
             {
                 name: "+ R",
-                class: "button-addrow",
-                function: e => this.addRow(false),
+                class: "table-button.button-addrow",
+                function: e => {
+                    if (this.rows.length < designConfig.maxRows) {
+                        this.addRow();
+                    }
+                },
             },
             {
                 name: "- R",
-                class: "button-removerow",
-                function: e => this.removeRow(false),
+                class: "table-button.button-removerow",
+                function: e => {
+                    if (this.rows.length > designConfig.minRows) {
+                        this.removeRow(false);
+                    }
+                },
             },
             {
                 name: "+ C",
-                class: "button-addcol",
-                function: e => this.addColumn(false),
+                class: "table-button.button-addcol",
+                function: e => {
+                    if (this.nColumns < designConfig.maxColumns) {
+                        this.addColumn();
+                    }
+                },
             },
             {
                 name: "- C",
-                class: "button-removecol",
-                function: e => this.removeColumn(false),
+                class: "table-button.button-removecol",
+                function: e => {
+                    if (this.nColumns > designConfig.minColumns) {
+                        this.removeColumn(false);
+                    }
+                },
             },
         ];
 
         buttons.forEach(button => {
             const buttonElement = document.createElement("button");
-            // add css class
             buttonElement.classList.add("table-button");
             buttonElement.textContent = button.name;
-            buttonElement.classList.add(button.class);
+            // buttonElement.classList.add(button.class);
             buttonElement.addEventListener("click", button.function.bind(this));
             this.tableContainer.appendChild(buttonElement);
         });
@@ -159,9 +175,9 @@ export class Table {
 
     /**
 
-    Removes the last column from the table.
-    @method
-    @param {boolean} [force=false] - Optional parameter to force removing a column even if the current number of columns is equal to the minimum number of columns allowed in the design config.
+    * Removes the last column from the table.
+    * @method
+    * @param {boolean} [force=false] - Optional parameter to force removing a column even if the current number of columns is equal to the minimum number of columns allowed in the design config.
     */
     removeColumn() {
         this.nColumns -= 1;
