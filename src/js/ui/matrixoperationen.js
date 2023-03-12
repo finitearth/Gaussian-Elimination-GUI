@@ -11,7 +11,7 @@ let inputTable = new Table("input-matrix");
 inputTable.addButtons();
 document.getElementById("input-matrix").appendChild(inputTable.tableContainer);
 
-let outputTable = new Table("output-matrix", false);
+let outputTable = new Table("output-matrix");
 outputTable.disableInput();
 document
     .getElementById("output-matrix")
@@ -22,7 +22,7 @@ listenTableDimension("input-nr-rows", [inputTable], [], "rows");
 listenTableDimension("input-nr-cols", [inputTable], [], "cols");
 addKeyDownListener([inputTable], true);
 
-let listeners = [
+[
     {
         id: "button-transpose",
         func: matrix => [matrix.transpose()],
@@ -42,9 +42,7 @@ let listeners = [
         id: "button-determinant",
         func: matrix => [matrix.getDeterminant()],
     },
-];
-
-listeners.forEach(listener => {
+].forEach(listener => {
     setEventListenerFunction(
         listener.id,
         [inputTable],

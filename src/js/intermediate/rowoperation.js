@@ -184,7 +184,7 @@ export class RowOperation {
         }
     }
 
-    performRowOperation(matrix) {
+    apply(matrix) {
         let matrixCopy = matrix.clone();
 
         // subj = Row to be modified, obj = row subj is modified with
@@ -264,4 +264,16 @@ export function updateRowOperations(rowOperations, dimension, n) {
     }
 
     return rowOperations;
+}
+
+export function applyRowOperations(matrix, rowOperations) {
+    let matrixCopy = matrix.clone();
+
+    rowOperations
+        .filter(r => r.enabled)
+        .forEach((rowOperation, i) => {
+            let newMatrix = rowOperation.apply(matrix);
+            matrixCopy = matrixCopy.setRow(i, newMatrix);
+        });
+    return matrixCopy;
 }

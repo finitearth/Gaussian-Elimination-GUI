@@ -16,6 +16,7 @@ export function setEventListenerFunction(
                 table.setData(outputMatrices[index])
             );
         } catch (error) {
+            console.log(error);
             alert(error);
         }
     });
@@ -26,7 +27,8 @@ export function listenTableDimension(
     tables,
     rowOperations,
     rowsOrCols,
-    allowSmaller = false
+    allowSmaller = false,
+    desCharacter = null
 ) {
     let input = document.getElementById(inputId);
     input.addEventListener("input", e => {
@@ -40,22 +42,23 @@ export function listenTableDimension(
                 table.setNRows(numberEquations);
                 if (rowOperations.length > 0) {
                     rowOperations = updateRowOperations(
-                        rowOperations, 
-                        rowOperations.length, 
-                        numberEquations);
+                        rowOperations,
+                        rowOperations.length,
+                        numberEquations
+                    );
 
                     rowOperations = adaptComboboxes(
                         rowOperations,
                         table,
                         numberEquations
                     );
-                    
                 }
             } else if (rowsOrCols === "cols") {
                 table.setNColumns(numberEquations);
-                table.addDescription();
+                if (desCharacter){
+                    table.addDescription(desCharacter);
+                }
             }
-           
         });
     });
 }

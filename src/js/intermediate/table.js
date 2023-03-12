@@ -10,13 +10,12 @@ import { Fraction, stringToFraction } from "../logic/fraction.js";
  * @param {boolean} [showButtons=true] - Optional parameter to determine whether to display buttons to add/remove rows and columns.
  */
 export class Table {
-    constructor(id, showButtons = true, initCols, desCharacter) {
+    constructor(id, initCols) {
         this.id = id;
         this.enabled = true;
         this.fractionArray = null;
         this.tableElement = document.createElement("table");
         this.tableElement.id = id;
-        this.desCharacter = desCharacter;
 
         this.nColumns = initCols || designConfig.nInitColumns;
         this.nRows = designConfig.nInitRows;
@@ -80,28 +79,34 @@ export class Table {
         return cell;
     }
 
-    addDescription() {
+    addDescription(desCharacter) {
         const describtionRowId = "describtion-row";
 
         if (this.tableElement.firstChild.id === describtionRowId) {
             this.tableElement.firstChild.remove();
         }
-    
+
         let describtionRow = document.createElement("tr");
         describtionRow.id = describtionRowId;
-    
+
         for (let i = 0; i < this.nColumns; i++) {
             let colDescribtion = document.createElement("td");
-            colDescribtion.innerText = this.desCharacter;
+            colDescribtion.innerText = desCharacter;
             let subDes = document.createElement("sub");
-            subDes.innerText = i+1;
-            colDescribtion.appendChild(subDes)
-            colDescribtion.style = "width : "+document.getElementById(this.id+".0.0").offsetWidth+"px";
-    
+            subDes.innerText = i + 1;
+            colDescribtion.appendChild(subDes);
+            // colDescribtion.style =
+            //     "width : " +
+            //     document.getElementById(this.id + ".0.0").offsetWidth +
+            //     "px";
+
             describtionRow.appendChild(colDescribtion);
         }
-    
-        this.tableElement.insertBefore(describtionRow, this.tableElement.firstChild);
+
+        this.tableElement.insertBefore(
+            describtionRow,
+            this.tableElement.firstChild
+        );
     }
 
     /**
@@ -187,7 +192,7 @@ export class Table {
             this.tableContainer.appendChild(buttonElement);
         });
     }
-    
+
     /**
     Removes the last row from the table.
     @method
@@ -199,10 +204,10 @@ export class Table {
     }
 
     /**
-    * Removes the last column from the table.
-    * @method
-    * @param {boolean} [force=false] - Optional parameter to force removing a column even if the current number of columns is equal to the minimum number of columns allowed in the design config.
-    */
+     * Removes the last column from the table.
+     * @method
+     * @param {boolean} [force=false] - Optional parameter to force removing a column even if the current number of columns is equal to the minimum number of columns allowed in the design config.
+     */
     removeColumn() {
         this.nColumns -= 1;
         for (let i = 0; i < this.rows.length; i++) {
@@ -211,10 +216,10 @@ export class Table {
     }
 
     /**
-    * Sets the data of the table to the values in the given matrix.
-    * @method
-    * @param {Matrix|Fraction} matrix - The matrix to use as the new data for the table. If a Fraction is given, it will be converted to a single-cell Matrix.
-    */
+     * Sets the data of the table to the values in the given matrix.
+     * @method
+     * @param {Matrix|Fraction} matrix - The matrix to use as the new data for the table. If a Fraction is given, it will be converted to a single-cell Matrix.
+     */
     setData(matrix) {
         // if matrix is fraction, convert it to a matrix
         if (matrix instanceof Fraction) {
@@ -340,10 +345,10 @@ export class Table {
 }
 
 /**
-* Adds keydown event listener to move focus between cells of multiple tables.
-* @param {Array} tables - Array of table objects.
-* @param {boolean} nextTableToTheRight - If true, moves focus to the next table to the right.
-*/
+ * Adds keydown event listener to move focus between cells of multiple tables.
+ * @param {Array} tables - Array of table objects.
+ * @param {boolean} nextTableToTheRight - If true, moves focus to the next table to the right.
+ */
 export function addKeyDownListener(tables, nextTableToTheRight = false) {
     let tableIds = tables.map(table => String(table.id));
 
