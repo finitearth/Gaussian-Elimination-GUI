@@ -10,12 +10,13 @@ import { Fraction, stringToFraction } from "../logic/fraction.js";
  * @param {boolean} [showButtons=true] - Optional parameter to determine whether to display buttons to add/remove rows and columns.
  */
 export class Table {
-    constructor(id, initCols) {
+    constructor(id, showButtons = true, initCols, desCharacter) {
         this.id = id;
         this.enabled = true;
         this.fractionArray = null;
         this.tableElement = document.createElement("table");
         this.tableElement.id = id;
+        this.desCharacter = desCharacter;
 
         this.nColumns = initCols || designConfig.nInitColumns;
         this.nRows = designConfig.nInitRows;
@@ -77,6 +78,30 @@ export class Table {
         input.disabled = !this.enabled;
         cell.appendChild(input);
         return cell;
+    }
+
+    addDescription() {
+        const describtionRowId = "describtion-row";
+
+        if (this.tableElement.firstChild.id === describtionRowId) {
+            this.tableElement.firstChild.remove();
+        }
+    
+        let describtionRow = document.createElement("tr");
+        describtionRow.id = describtionRowId;
+    
+        for (let i = 0; i < this.nColumns; i++) {
+            let colDescribtion = document.createElement("td");
+            colDescribtion.innerText = this.desCharacter;
+            let subDes = document.createElement("sub");
+            subDes.innerText = i+1;
+            colDescribtion.appendChild(subDes)
+            colDescribtion.style = "width : "+document.getElementById(this.id+".0.0").offsetWidth+"px";
+    
+            describtionRow.appendChild(colDescribtion);
+        }
+    
+        this.tableElement.insertBefore(describtionRow, this.tableElement.firstChild);
     }
 
     /**

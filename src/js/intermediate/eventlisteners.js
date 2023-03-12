@@ -43,7 +43,7 @@ export function listenTableDimension(
                         rowOperations, 
                         rowOperations.length, 
                         numberEquations);
-                        
+
                     rowOperations = adaptComboboxes(
                         rowOperations,
                         table,
@@ -53,7 +53,9 @@ export function listenTableDimension(
                 }
             } else if (rowsOrCols === "cols") {
                 table.setNColumns(numberEquations);
+                table.addDescription();
             }
+           
         });
     });
 }

@@ -8,8 +8,8 @@ import {
     listenTableDimension,
 } from "../intermediate/eventlisteners.js";
 
-function createTable(id, disableInput, initCols = 3) {
-    let table = new Table(id, initCols);
+function createTable(id, disableInput, initCols = 3, desCharacter) {
+    let table = new Table(id, false, initCols, desCharacter);
     if (disableInput) {
         table.disableInput();
     }
@@ -18,10 +18,10 @@ function createTable(id, disableInput, initCols = 3) {
 }
 
 // create Tables
-let coefTable = createTable("table-coef");
-let solTable = createTable("table-sol", false, 1);
-let resCoefTable = createTable("table-res-coef", true);
-let resSolTable = createTable("table-res-sol", true, 1);
+let coefTable = createTable("table-coef", false, 3, "x");
+let solTable = createTable("table-sol", false, 1, "b");
+let resCoefTable = createTable("table-res-coef", true, 3, "x");
+let resSolTable = createTable("table-res-sol", true, 1, "b");
 let tables = [coefTable, solTable, resCoefTable, resSolTable];
 
 // creating initial comboboxes
@@ -112,3 +112,10 @@ document
     });
 
 addKeyDownListener(tables, true);
+
+coefTable.addDescription();
+solTable.addDescription();
+resCoefTable.addDescription();
+resSolTable.addDescription();
+
+
