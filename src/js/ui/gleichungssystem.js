@@ -47,8 +47,7 @@ listenTableDimension(
     "input-nr-var",
     [coefTable, resCoefTable],
     rowOperations,
-    "cols",
-    false
+    "cols"
 ); // number of cols in coeff matrix
 listenTableDimension(
     "input-nr-b",
@@ -91,23 +90,25 @@ document
     });
 
 // "Berechne" Button
-document.getElementById("button-calculate").addEventListener("click", function () {
-    for (let i = 0; i < rowOperations.length; i++) {
-        if (rowOperations[i].enabled) {
-            let newCoefMatrix = rowOperations[i].performRowOperation(
-                coefTable.getData()
-            );
-            let newSolMatrix = rowOperations[i].performRowOperation(
-                solTable.getData()
-            );
+document
+    .getElementById("button-calculate")
+    .addEventListener("click", function () {
+        for (let i = 0; i < rowOperations.length; i++) {
+            if (rowOperations[i].enabled) {
+                let newCoefMatrix = rowOperations[i].performRowOperation(
+                    coefTable.getData()
+                );
+                let newSolMatrix = rowOperations[i].performRowOperation(
+                    solTable.getData()
+                );
 
-            resCoefTable.setRow(i, newCoefMatrix);
-            resSolTable.setRow(i, newSolMatrix);
-        } else {
-            resCoefTable.setRow(i, coefTable.getData());
-            resSolTable.setRow(i, solTable.getData());
+                resCoefTable.setRow(i, newCoefMatrix);
+                resSolTable.setRow(i, newSolMatrix);
+            } else {
+                resCoefTable.setRow(i, coefTable.getData());
+                resSolTable.setRow(i, solTable.getData());
+            }
         }
-    }
-});
+    });
 
 addKeyDownListener(tables, true);
