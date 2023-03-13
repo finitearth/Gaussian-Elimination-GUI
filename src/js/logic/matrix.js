@@ -1,3 +1,4 @@
+import { InvalidInputException } from "../exceptions.js";
 import { Fraction, NEGONE, ZERO } from "./fraction.js";
 
 /**
@@ -28,7 +29,10 @@ export class Matrix {
     }
 
     equals(otherMatrix) {
-        if (this.nRows != otherMatrix.nRows || this.nColumns != otherMatrix.nColumns) {
+        if (
+            this.nRows != otherMatrix.nRows ||
+            this.nColumns != otherMatrix.nColumns
+        ) {
             return false;
         }
         for (let i = 0; i < this.nRows; i++) {
@@ -72,6 +76,12 @@ export class Matrix {
      * @returns {Matrix} A new Matrix object representing the sum of this matrix and the input matrix.
      */
     add(otherMatrix) {
+        if (
+            this.nRows != otherMatrix.nRows ||
+            this.nColumns != otherMatrix.nColumns
+        ) {
+            throw new InvalidInputException();
+        }
         let newArray = [];
         for (let i = 0; i < this.nRows; i++) {
             newArray[i] = [];
@@ -143,7 +153,8 @@ export class Matrix {
      * @throws {Error} If the number of rows in this matrix does not match the number of columns in the other matrix.
      */
     multiplyByMatrix(other) {
-        if (this.nColumns != other.nRows || this.nRows != other.nColumns) {
+        if (this.nColumns != other.nRows) {
+            // || this.nRows != other.nColumns) {
             throw new Error("Matrix dimensions do not match");
         }
         let newArray = [];
@@ -333,26 +344,33 @@ export class Matrix {
         return new Matrix(newArray);
     }
 
+    setRow(iRow, newRow) {
+        for (let i = 0; i < this.nColumns; i++) {
+            this.array[iRow][i] = newRow.getCell(0, i);
+        }
+        return this;
+    }
+
     /**
      * Returns a string representation of the matrix.
      * @param {boolean} decimal - Whether to display decimal values instead of fractions.
      * @returns {string} - The string representation of the matrix.
      */
-//     stringify(decimal = false) {
-//         let string = ";
-//         for (let i = 0; i < this.nRows; i++) {
-//             for (let j = 0; j < this.nColumns; j++) {
-//                 if (decimal) {
-//                     string += this.array[i][j].toDecimal();
-//                 } else {
-//                     string += this.array[i][j].stringify();
-//                 }
-//                 string += " ";
-//             }
-//             string += "<br>";
-//         }
-//         return string;
-//     }
+    //     stringify(decimal = false) {
+    //         let string = ";
+    //         for (let i = 0; i < this.nRows; i++) {
+    //             for (let j = 0; j < this.nColumns; j++) {
+    //                 if (decimal) {
+    //                     string += this.array[i][j].toDecimal();
+    //                 } else {
+    //                     string += this.array[i][j].stringify();
+    //                 }
+    //                 string += " ";
+    //             }
+    //             string += "<br>";
+    //         }
+    //         return string;
+    //     }
 }
 
 /**
@@ -362,16 +380,16 @@ export class Matrix {
     @returns {Matrix} - The n x n unit matrix.
     */
 export function getUnitMatrix(n) {
-        let matrix = [];
-        for (let i = 0; i < n; i++) {
-            matrix.push([]);
-            for (let j = 0; j < n; j++) {
-                if (i == j) {
-                    matrix[i].push(new Fraction(1, 1));
-                } else {
-                    matrix[i].push(new Fraction(0, 1));
-                }
+    let matrix = [];
+    for (let i = 0; i < n; i++) {
+        matrix.push([]);
+        for (let j = 0; j < n; j++) {
+            if (i == j) {
+                matrix[i].push(new Fraction(1, 1));
+            } else {
+                matrix[i].push(new Fraction(0, 1));
             }
         }
-        return new Matrix(matrix);
     }
+    return new Matrix(matrix);
+}

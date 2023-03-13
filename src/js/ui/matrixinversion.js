@@ -1,13 +1,16 @@
 import { gaussElimination } from "../logic/gaussalgorithm.js";
 import { getUnitMatrix } from "../logic/matrix.js";
 import { generateMatrix } from "../logic/generateExercise.js";
-import { addCombobox } from "../intermediate/rowoperation.js";
+import { addCombobox, applyRowOperations } from "../intermediate/rowoperation.js";
 import { Table, addKeyDownListener } from "../intermediate/table.js";
 import {
     setEventListenerFunction,
     listenTableDimension,
 } from "../intermediate/eventlisteners.js";
-    
+
+
+// =========== Tables ===========
+
 /**
  * Adds a Table to a Parent Node and appends it to the tables array.
  * @paramenter {parentId} ID of the parent node.
@@ -17,6 +20,7 @@ function addTable(id, disableInput, initCols = 3, desCharacter, rowDescription) 
     if (disableInput) {
         table.disableInput();
     }
+
     document.getElementById(id).appendChild(table.tableContainer);
     return table;
 }
@@ -37,8 +41,6 @@ let rowOperations = []; // rowOperations
 for (let i = 0; i < 3; i++) {
     rowOperations = addCombobox("combobox_" + i, rowOperations, coefTable);
 }
-
-console.log(typeof tables[0]);
 
 listenTableDimension("button-dimension", tables, rowOperations, "rows");
 listenTableDimension("button-dimension", tables, rowOperations, "cols");
@@ -69,27 +71,17 @@ setEventListenerFunction(
     (coefMatrix, solMatrix) => [solMatrix, coefMatrix]
 );
 
-//
-document
-    .getElementById("button-calculate")
-    .addEventListener("click", function () {
-        for (let i = 0; i < rowOperations.length; i++) {
-            let matrix = coefTable.getData();
-            let secondMatrix = identityTable.getData();
+setEventListenerFunction(
+    "button-calculate",
+    [coefTable, identityTable],
+    [solIdentityTable, solCoefTable],
+    (coefMatrix, solMatrix) => {
+        coefMatrix = applyRowOperations(coefMatrix, rowOperations);
+        solMatrix = applyRowOperations(solMatrix, rowOperations);
 
-            if (rowOperations[i].enabled) {
-                let newMatrix = rowOperations[i].performRowOperation(matrix);
-                let newSecondMatrix =
-                    rowOperations[i].performRowOperation(secondMatrix);
-
-                solIdentityTable.setRow(i, newMatrix);
-                solCoefTable.setRow(i, newSecondMatrix);
-            } else {
-                solIdentityTable.setRow(i, matrix);
-                solCoefTable.setRow(i, secondMatrix);
-            }
-        }
-    });
+        return [coefMatrix, solMatrix];
+    }
+);
 
 // decimal conversion
 document

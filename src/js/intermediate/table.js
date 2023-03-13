@@ -10,14 +10,12 @@ import { Fraction, stringToFraction } from "../logic/fraction.js";
  * @param {boolean} [showButtons=true] - Optional parameter to determine whether to display buttons to add/remove rows and columns.
  */
 export class Table {
-    constructor(id, showButtons = true, initCols, desCharacter, rowDescription = false) {
+    constructor(id, initCols) {
         this.id = id;
         this.enabled = true;
         this.fractionArray = null;
         this.tableElement = document.createElement("table");
         this.tableElement.id = id;
-        this.desCharacter = desCharacter;
-        this.rowDescription = rowDescription;
 
         this.nColumns = initCols || designConfig.nInitColumns;
         this.nRows = designConfig.nInitRows;
@@ -115,7 +113,7 @@ export class Table {
         if (this.tableElement.firstChild.id === describtionRowId) {
             this.tableElement.firstChild.remove();
         }
-    
+
         let describtionRow = document.createElement("tr");
         describtionRow.id = describtionRowId;
 
@@ -181,7 +179,7 @@ export class Table {
         const buttons = [
             {
                 name: "+ R",
-                class: "table-button.button-addrow",
+                class: "button-addrow",
                 function: e => {
                     if (this.rows.length < designConfig.maxRows) {
                         this.addRow();
@@ -190,7 +188,7 @@ export class Table {
             },
             {
                 name: "- R",
-                class: "table-button.button-removerow",
+                class: "button-removerow",
                 function: e => {
                     if (this.rows.length > designConfig.minRows) {
                         this.removeRow(false);
@@ -199,7 +197,7 @@ export class Table {
             },
             {
                 name: "+ C",
-                class: "table-button.button-addcol",
+                class: "button-addcol",
                 function: e => {
                     if (this.nColumns < designConfig.maxColumns) {
                         this.addColumn();
@@ -208,7 +206,7 @@ export class Table {
             },
             {
                 name: "- C",
-                class: "table-button.button-removecol",
+                class: "button-removecol",
                 function: e => {
                     if (this.nColumns > designConfig.minColumns) {
                         this.removeColumn(false);
@@ -226,8 +224,8 @@ export class Table {
             this.tableContainer.appendChild(buttonElement);
         });
     }
-    /**
 
+    /**
     Removes the last row from the table.
     @method
     @param {boolean} [force=false] - Optional parameter to force removing a row even if the current number of rows is equal to the minimum number of rows allowed in the design config.
@@ -238,11 +236,10 @@ export class Table {
     }
 
     /**
-
-    * Removes the last column from the table.
-    * @method
-    * @param {boolean} [force=false] - Optional parameter to force removing a column even if the current number of columns is equal to the minimum number of columns allowed in the design config.
-    */
+     * Removes the last column from the table.
+     * @method
+     * @param {boolean} [force=false] - Optional parameter to force removing a column even if the current number of columns is equal to the minimum number of columns allowed in the design config.
+     */
     removeColumn() {
         this.nColumns -= 1;
         for (let i = 0; i < this.rows.length; i++) {
@@ -251,11 +248,10 @@ export class Table {
     }
 
     /**
-
-    Sets the data of the table to the values in the given matrix.
-    @method
-    @param {Matrix|Fraction} matrix - The matrix to use as the new data for the table. If a Fraction is given, it will be converted to a single-cell Matrix.
-    */
+     * Sets the data of the table to the values in the given matrix.
+     * @method
+     * @param {Matrix|Fraction} matrix - The matrix to use as the new data for the table. If a Fraction is given, it will be converted to a single-cell Matrix.
+     */
     setData(matrix) {
         // if matrix is fraction, convert it to a matrix
         if (matrix instanceof Fraction) {
@@ -314,7 +310,6 @@ export class Table {
     /**
      * Disables all input fields in the matrix table.
      */
-
     disableInput() {
         this.enabled = false;
         for (let i = 0; i < this.rows.length; i++) {
@@ -328,7 +323,6 @@ export class Table {
     /**
      * Enables all input fields in the matrix table.
      */
-
     enableInput() {
         this.enabled = true;
         for (let i = 0; i < this.rows.length; i++) {
@@ -383,11 +377,10 @@ export class Table {
 }
 
 /**
-
-    Adds keydown event listener to move focus between cells of multiple tables.
-    @param {Array} tables - Array of table objects.
-    @param {boolean} nextTableToTheRight - If true, moves focus to the next table to the right.
-    */
+ * Adds keydown event listener to move focus between cells of multiple tables.
+ * @param {Array} tables - Array of table objects.
+ * @param {boolean} nextTableToTheRight - If true, moves focus to the next table to the right.
+ */
 export function addKeyDownListener(tables, nextTableToTheRight = false) {
     let tableIds = tables.map(table => String(table.id));
 
