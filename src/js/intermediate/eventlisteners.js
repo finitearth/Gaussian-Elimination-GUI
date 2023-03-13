@@ -1,6 +1,7 @@
 import { adaptComboboxes, updateRowOperations } from "./rowoperation.js";
 import { designConfig } from "../config.js";
 
+
 export function setEventListenerFunction(
     buttonId,
     inputTables,
@@ -28,12 +29,12 @@ export function listenTableDimension(
     rowsOrCols,
     allowSmaller = false
 ) {
+    console.log(typeof tables.length);
     let input = document.getElementById(inputId);
     input.addEventListener("input", e => {
         e.target.value = Math.min(e.target.value, designConfig.maxRows);
         let min = allowSmaller ? 1 : designConfig.minRows;
         e.target.value = Math.max(e.target.value, min);
-
         let numberEquations = e.target.value;
         tables.forEach(table => {
             if (rowsOrCols === "rows") {
@@ -52,10 +53,10 @@ export function listenTableDimension(
                     
                 }
             } else if (rowsOrCols === "cols") {
-                table.setNColumns(numberEquations);
-                table.addDescription();
+                table.setNColumns(numberEquations)
             }
-           
+            table.addRowDescription();
+            table.addColumnDescription();
         });
     });
 }

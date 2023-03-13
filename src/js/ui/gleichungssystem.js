@@ -8,8 +8,8 @@ import {
     listenTableDimension,
 } from "../intermediate/eventlisteners.js";
 
-function createTable(id, disableInput, initCols = 3, desCharacter) {
-    let table = new Table(id, false, initCols, desCharacter);
+function createTable(id, disableInput, initCols = 3, desCharacter, rowDescription) {
+    let table = new Table(id, false, initCols, desCharacter, rowDescription);
     if (disableInput) {
         table.disableInput();
     }
@@ -18,9 +18,9 @@ function createTable(id, disableInput, initCols = 3, desCharacter) {
 }
 
 // create Tables
-let coefTable = createTable("table-coef", false, 3, "x");
+let coefTable = createTable("table-coef", false, 3, "x", true);
 let solTable = createTable("table-sol", false, 1, "b");
-let resCoefTable = createTable("table-res-coef", true, 3, "x");
+let resCoefTable = createTable("table-res-coef", true, 3, "x", true);
 let resSolTable = createTable("table-res-sol", true, 1, "b");
 let tables = [coefTable, solTable, resCoefTable, resSolTable];
 
@@ -112,9 +112,19 @@ document.getElementById("button-calculate").addEventListener("click", function (
 
 addKeyDownListener(tables, true);
 
-coefTable.addDescription();
-solTable.addDescription();
-resCoefTable.addDescription();
-resSolTable.addDescription();
+for (let i = 0; i < tables.length; i++) {
+    tables[i].addRowDescription();
+    tables[i].addColumnDescription();
+}
+
+// coefTable.addRowDescription();
+// solTable.addRowDescription();
+// resCoefTable.addRowDescription();
+// resSolTable.addRowDescription();
+
+// coefTable.addColumnDescription();
+// solTable.addColumnDescription();
+// resCoefTable.addColumnDescription();
+// resSolTable.addColumnDescription();
 
 

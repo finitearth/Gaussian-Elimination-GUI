@@ -10,13 +10,14 @@ import { Fraction, stringToFraction } from "../logic/fraction.js";
  * @param {boolean} [showButtons=true] - Optional parameter to determine whether to display buttons to add/remove rows and columns.
  */
 export class Table {
-    constructor(id, showButtons = true, initCols, desCharacter) {
+    constructor(id, showButtons = true, initCols, desCharacter, rowDescription = false) {
         this.id = id;
         this.enabled = true;
         this.fractionArray = null;
         this.tableElement = document.createElement("table");
         this.tableElement.id = id;
         this.desCharacter = desCharacter;
+        this.rowDescription = rowDescription;
 
         this.nColumns = initCols || designConfig.nInitColumns;
         this.nRows = designConfig.nInitRows;
@@ -80,8 +81,36 @@ export class Table {
         return cell;
     }
 
-    addDescription() {
-        const describtionRowId = "describtion-row";
+    addRowDescription() {
+        if (this.rowDescription == true) {
+            let counter = 1;
+
+            this.tableElement.childNodes.forEach(row => {
+                const descriptionColumnId = "description-column";
+                if (row.id != "description-row") {
+                    if (row.firstChild.id === descriptionColumnId) {
+                        row.firstChild.remove();
+                    }
+        
+                    let rowDes = document.createElement("td");
+                    rowDes.id = descriptionColumnId;
+                    rowDes.innerText = "("+counter+")";
+                    counter = counter+1;
+        
+                    row.insertBefore(rowDes, row.firstChild);
+                }
+            });
+        }
+    }
+
+    addColumnDescription() {
+        console.log(this.desCharacter);
+
+        if (typeof this.desCharacter === 'undefined') {
+            console.log('Variable is undefined');
+            return;
+        }
+        const describtionRowId = "description-row";
 
         if (this.tableElement.firstChild.id === describtionRowId) {
             this.tableElement.firstChild.remove();
@@ -89,18 +118,28 @@ export class Table {
     
         let describtionRow = document.createElement("tr");
         describtionRow.id = describtionRowId;
+
+        if (this.tableElement.lastChild.childElementCount > this.nColumns) {
+
+            let dummyElement = document.createElement("td");
+            dummyElement.id = "dummy";
+            dummyElement.style = "width : "+document.getElementById(this.id+".0.0").offsetWidth+"px";
+
+            describtionRow.appendChild(dummyElement);
+        }
     
         for (let i = 0; i < this.nColumns; i++) {
             let colDescribtion = document.createElement("td");
-            colDescribtion.innerText = this.desCharacter;
             let subDes = document.createElement("sub");
+
             subDes.innerText = i+1;
+            colDescribtion.innerText = this.desCharacter;
             colDescribtion.appendChild(subDes)
             colDescribtion.style = "width : "+document.getElementById(this.id+".0.0").offsetWidth+"px";
     
             describtionRow.appendChild(colDescribtion);
         }
-    
+        
         this.tableElement.insertBefore(describtionRow, this.tableElement.firstChild);
     }
 

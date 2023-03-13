@@ -12,24 +12,24 @@ import {
  * Adds a Table to a Parent Node and appends it to the tables array.
  * @paramenter {parentId} ID of the parent node.
  */
-function addTable(parentId, disableInput) {
-    let newTable = new Table(parentId, false);
+function addTable(id, disableInput, initCols = 3, desCharacter, rowDescription) {
+    let table = new Table(id, false, initCols, desCharacter, rowDescription);
     if (disableInput) {
-        newTable.disableInput();
+        table.disableInput();
     }
-    document.getElementById(parentId).appendChild(newTable.tableContainer);
-
-    return newTable;
+    document.getElementById(id).appendChild(table.tableContainer);
+    return table;
 }
+
 var dimension = 3;
 
 // creating tables
-let coefTable = addTable("table-element-1", false);
-let identityTable = addTable("table-element-2", false);
+let coefTable = addTable("table-element-1", false, 3, "", true);
+let identityTable = addTable("table-element-2", false, 3, "" );
 identityTable.setData(getUnitMatrix(dimension));
 
-let solIdentityTable = addTable("resultContainerTableRowCol1", true);
-let solCoefTable = addTable("resultContainerTableRowCol2", true);
+let solIdentityTable = addTable("resultContainerTableRowCol1", true, "", true);
+let solCoefTable = addTable("resultContainerTableRowCol2", true, "");
 let tables = [coefTable, identityTable, solIdentityTable, solCoefTable];
 
 // create initial comboboxes
@@ -37,6 +37,8 @@ let rowOperations = []; // rowOperations
 for (let i = 0; i < 3; i++) {
     rowOperations = addCombobox("combobox_" + i, rowOperations, coefTable);
 }
+
+console.log(typeof tables[0]);
 
 listenTableDimension("button-dimension", tables, rowOperations, "rows");
 listenTableDimension("button-dimension", tables, rowOperations, "cols");
@@ -104,3 +106,7 @@ setEventListenerFunction("button-generate-excercise", [], [coefTable], () => [
 ]);
 
 addKeyDownListener(tables, true);
+
+for (let i = 0; i < tables.length; i++) {
+    tables[i] = tables[i].addRowDescription();
+}
