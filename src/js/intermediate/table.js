@@ -263,7 +263,7 @@ export class Table {
         let data = matrix.array;
         for (let i = 0; i < data.length; i++) {
             for (let j = 0; j < data[0].length; j++) {
-                let input = this.rows[i].childNodes[j].childNodes[0];
+                let input = document.getElementById(`${this.id}.${i}.${j}`);
                 input.value = data[i][j].stringify();
             }
         }
