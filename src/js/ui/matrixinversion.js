@@ -17,25 +17,24 @@ import {
  * Adds a Table to a Parent Node and appends it to the tables array.
  * @paramenter {parentId} ID of the parent node.
  */
-function addTable(parentId, disableInput) {
-    let newTable = new Table(parentId, false);
+function addTable(id, disableInput, rowDescription = false) {
+    let table = new Table(id, false);
     if (disableInput) {
-        newTable.disableInput();
+        table.disableInput();
     }
-
-    document.getElementById(parentId).appendChild(newTable.tableContainer);
-
-    return newTable;
+    table.addRowDescription(rowDescription);
+    document.getElementById(id).appendChild(table.tableContainer);
+    return table;
 }
 
 var dimension = 3;
 
 // creating tables
-let coefTable = addTable("table-element-1", false);
+let coefTable = addTable("table-element-1", false, true);
 let identityTable = addTable("table-element-2", false);
 identityTable.setData(getUnitMatrix(dimension));
 
-let solIdentityTable = addTable("resultContainerTableRowCol1", true);
+let solIdentityTable = addTable("resultContainerTableRowCol1", true, true);
 let solCoefTable = addTable("resultContainerTableRowCol2", true);
 let tables = [coefTable, identityTable, solIdentityTable, solCoefTable];
 
@@ -45,8 +44,8 @@ for (let i = 0; i < 3; i++) {
     rowOperations = addCombobox("combobox_" + i, rowOperations, coefTable);
 }
 
-// =========== Event listeners ===========
-listenTableDimension("button-dimension", tables, rowOperations, "rows");
+listenTableDimension("button-dimension", [coefTable, solIdentityTable], rowOperations, "rows", false, "", true);
+listenTableDimension("button-dimension", [solCoefTable, identityTable], rowOperations, "rows", false, "", false);
 listenTableDimension("button-dimension", tables, rowOperations, "cols");
 setEventListenerFunction(
     "button-dimension",
@@ -98,3 +97,7 @@ setEventListenerFunction("button-generate-excercise", [], [coefTable], () => [
 ]);
 
 addKeyDownListener(tables, true);
+
+for (let i = 0; i < tables.length; i++) {
+    tables[i].addRowDescription();
+}

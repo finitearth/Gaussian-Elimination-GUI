@@ -26,6 +26,9 @@ export class Table {
 
         this.tableContainer = document.createElement("div");
         this.tableContainer.appendChild(this.tableElement);
+
+        this.descriptionColumnId = "description-column";
+        this.describtionRowId = "description-row";
     }
 
     /**
@@ -79,34 +82,61 @@ export class Table {
         return cell;
     }
 
-    addDescription(desCharacter) {
-        const describtionRowId = "describtion-row";
+    addRowDescription(rowDescription) {
+        if (rowDescription) {
+            // don't use i => bugs
+            var counter = 0;
+            this.tableElement.childNodes.forEach(row => {
+                if (row.id != this.describtionRowId) {
+                    counter = counter+1;
 
-        if (this.tableElement.firstChild.id === describtionRowId) {
+                    if (row.firstChild.id === this.descriptionColumnId) {
+                        row.firstChild.remove();
+                    }
+                    
+                    let rowDes = document.createElement("td");
+                    rowDes.id = this.descriptionColumnId;
+                    rowDes.innerText = "("+counter+")";
+        
+                    row.insertBefore(rowDes, row.firstChild);
+                }
+            });
+        }
+    }
+
+    addColumnDescription(desCharacter) {
+        if (typeof desCharacter) {
+            
+        if (this.tableElement.firstChild.id === this.describtionRowId) {
             this.tableElement.firstChild.remove();
         }
 
         let describtionRow = document.createElement("tr");
-        describtionRow.id = describtionRowId;
+        describtionRow.id = this.describtionRowId;
 
+        if (this.tableElement.lastChild.childElementCount > this.nColumns) {
+
+            let dummyElement = document.createElement("td");
+            dummyElement.id = "dummy";
+            dummyElement.style = "width : "+document.getElementById(this.id+".0.0").offsetWidth+"px";
+
+            describtionRow.appendChild(dummyElement);
+        }
+    
         for (let i = 0; i < this.nColumns; i++) {
             let colDescribtion = document.createElement("td");
-            colDescribtion.innerText = desCharacter;
             let subDes = document.createElement("sub");
-            subDes.innerText = i + 1;
-            colDescribtion.appendChild(subDes);
-            // colDescribtion.style =
-            //     "width : " +
-            //     document.getElementById(this.id + ".0.0").offsetWidth +
-            //     "px";
 
+            subDes.innerText = i+1;
+            colDescribtion.innerText = desCharacter;
+            colDescribtion.appendChild(subDes)
+            colDescribtion.style = "width : "+document.getElementById(this.id+".0.0").offsetWidth+"px";
+    
             describtionRow.appendChild(colDescribtion);
         }
-
-        this.tableElement.insertBefore(
-            describtionRow,
-            this.tableElement.firstChild
-        );
+        
+        this.tableElement.insertBefore(describtionRow, this.tableElement.firstChild);
+        }
     }
 
     /**
@@ -233,7 +263,7 @@ export class Table {
         let data = matrix.array;
         for (let i = 0; i < data.length; i++) {
             for (let j = 0; j < data[0].length; j++) {
-                let input = this.rows[i].childNodes[j].childNodes[0];
+                let input = document.getElementById(`${this.id}.${i}.${j}`);
                 input.value = data[i][j].stringify();
             }
         }
@@ -264,7 +294,9 @@ export class Table {
         for (let i = 0; i < this.rows.length; i++) {
             let row = [];
             for (let j = 0; j < this.nColumns; j++) {
-                let input = this.rows[i].childNodes[j].childNodes[0];
+                console.log(this.nColumns);
+                // j +1 because of the description column
+                let input = document.getElementById(`${this.id}.${i}.${j}`);
                 let val = input.value;
                 val = stringToFraction(val);
                 row.push(val);

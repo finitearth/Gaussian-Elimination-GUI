@@ -12,21 +12,30 @@ import {
 } from "../intermediate/eventlisteners.js";
 
 // =========== Tables ===========
-function createTable(id, disableInput, initCols = 3, desCharacter) {
+function createTable(id, disableInput, initCols = 3, desCharacter, rowDescription) {
     let table = new Table(id, initCols);
     if (disableInput) {
         table.disableInput();
     }
     document.getElementById(id).appendChild(table.tableContainer);
-    table.addDescription(desCharacter);
+    table.addRowDescription(rowDescription);
+    table.addColumnDescription(desCharacter);
+    
     return table;
 }
 
-let coefTable = createTable("table-coef", false, 3, "x");
+let coefTable = createTable("table-coef", false, 3, "x", true);
 let solTable = createTable("table-sol", false, 1, "b");
-let resCoefTable = createTable("table-res-coef", true, 3, "x");
+let resCoefTable = createTable("table-res-coef", true, 3, "x", true);
 let resSolTable = createTable("table-res-sol", true, 1, "b");
 let tables = [coefTable, solTable, resCoefTable, resSolTable];
+
+let comboboxDummy = document.createElement("div");
+comboboxDummy.id = "comboboxDummy";
+comboboxDummy.style = "width : "+document.getElementById(coefTable.id+".0.0").offsetWidth+"px";
+comboboxDummy.style = "height : "+document.getElementById(coefTable.id+".0.0").offsetWidth+"px";
+
+document.getElementById("Operation").appendChild(comboboxDummy);
 
 let rowOperations = [];
 for (let i = 0; i < coefTable.nRows; i++) {
@@ -94,7 +103,8 @@ document
         });
     });
 
-listenTableDimension("input-nr-eq", tables, rowOperations, "rows"); // number of rows
+listenTableDimension("input-nr-eq", [coefTable, resCoefTable], rowOperations, "rows", false, "", true); // number of rows
+listenTableDimension("input-nr-eq", [solTable, resSolTable], rowOperations, "rows", false, "", false);
 listenTableDimension(
     "input-nr-var",
     [coefTable, resCoefTable],
