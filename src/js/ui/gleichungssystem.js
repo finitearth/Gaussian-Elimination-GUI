@@ -12,17 +12,19 @@ import {
 } from "../intermediate/eventlisteners.js";
 
 // =========== Tables ===========
-function createTable(id, disableInput, initCols = 3, desCharacter) {
+function createTable(id, disableInput, initCols = 3, desCharacter, rowDescription) {
     let table = new Table(id, initCols);
     if (disableInput) {
         table.disableInput();
     }
     document.getElementById(id).appendChild(table.tableContainer);
-    table.addDescription(desCharacter);
+    table.addRowDescription(rowDescription);
+    table.addColumnDescription(desCharacter);
+    
     return table;
 }
 
-let coefTable = createTable("table-coef", false, 3, "x");
+let coefTable = createTable("table-coef", false, 3, "x", true);
 let solTable = createTable("table-sol", false, 1, "b");
 let resCoefTable = createTable("table-res-coef", true, 3, "x", true);
 let resSolTable = createTable("table-res-sol", true, 1, "b");
@@ -94,7 +96,8 @@ document
         });
     });
 
-listenTableDimension("input-nr-eq", tables, rowOperations, "rows"); // number of rows
+listenTableDimension("input-nr-eq", [coefTable, resCoefTable], rowOperations, "rows", false, "", true); // number of rows
+listenTableDimension("input-nr-eq", [solTable, resSolTable], rowOperations, "rows", false, "", false);
 listenTableDimension(
     "input-nr-var",
     [coefTable, resCoefTable],
@@ -112,20 +115,3 @@ listenTableDimension(
     "b"
 ); // number of cols solution matrix
 addKeyDownListener(tables, true);
-
-for (let i = 0; i < tables.length; i++) {
-    tables[i].addRowDescription();
-    tables[i].addColumnDescription();
-}
-
-// coefTable.addRowDescription();
-// solTable.addRowDescription();
-// resCoefTable.addRowDescription();
-// resSolTable.addRowDescription();
-
-// coefTable.addColumnDescription();
-// solTable.addColumnDescription();
-// resCoefTable.addColumnDescription();
-// resSolTable.addColumnDescription();
-
-

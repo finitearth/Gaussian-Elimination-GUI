@@ -26,6 +26,9 @@ export class Table {
 
         this.tableContainer = document.createElement("div");
         this.tableContainer.appendChild(this.tableElement);
+
+        this.descriptionColumnId = "description-column";
+        this.describtionRowId = "description-row";
     }
 
     /**
@@ -79,21 +82,21 @@ export class Table {
         return cell;
     }
 
-    addRowDescription() {
-        if (this.rowDescription == true) {
-            let counter = 1;
-
+    addRowDescription(rowDescription) {
+        if (rowDescription) {
+            // don't use i => bugs
+            var counter = 0;
             this.tableElement.childNodes.forEach(row => {
-                const descriptionColumnId = "description-column";
-                if (row.id != "description-row") {
-                    if (row.firstChild.id === descriptionColumnId) {
+                if (row.id != this.describtionRowId) {
+                    counter = counter+1;
+
+                    if (row.firstChild.id === this.descriptionColumnId) {
                         row.firstChild.remove();
                     }
-        
+                    
                     let rowDes = document.createElement("td");
-                    rowDes.id = descriptionColumnId;
+                    rowDes.id = this.descriptionColumnId;
                     rowDes.innerText = "("+counter+")";
-                    counter = counter+1;
         
                     row.insertBefore(rowDes, row.firstChild);
                 }
@@ -101,21 +104,15 @@ export class Table {
         }
     }
 
-    addColumnDescription() {
-        console.log(this.desCharacter);
-
-        if (typeof this.desCharacter === 'undefined') {
-            console.log('Variable is undefined');
-            return;
-        }
-        const describtionRowId = "description-row";
-
-        if (this.tableElement.firstChild.id === describtionRowId) {
+    addColumnDescription(desCharacter) {
+        if (typeof desCharacter) {
+            
+        if (this.tableElement.firstChild.id === this.describtionRowId) {
             this.tableElement.firstChild.remove();
         }
 
         let describtionRow = document.createElement("tr");
-        describtionRow.id = describtionRowId;
+        describtionRow.id = this.describtionRowId;
 
         if (this.tableElement.lastChild.childElementCount > this.nColumns) {
 
@@ -131,7 +128,7 @@ export class Table {
             let subDes = document.createElement("sub");
 
             subDes.innerText = i+1;
-            colDescribtion.innerText = this.desCharacter;
+            colDescribtion.innerText = desCharacter;
             colDescribtion.appendChild(subDes)
             colDescribtion.style = "width : "+document.getElementById(this.id+".0.0").offsetWidth+"px";
     
@@ -139,6 +136,7 @@ export class Table {
         }
         
         this.tableElement.insertBefore(describtionRow, this.tableElement.firstChild);
+        }
     }
 
     /**
@@ -296,7 +294,9 @@ export class Table {
         for (let i = 0; i < this.rows.length; i++) {
             let row = [];
             for (let j = 0; j < this.nColumns; j++) {
-                let input = this.rows[i].childNodes[j].childNodes[0];
+                console.log(this.nColumns);
+                // j +1 because of the description column
+                let input = document.getElementById(`${this.id}.${i}.${j}`);
                 let val = input.value;
                 val = stringToFraction(val);
                 row.push(val);

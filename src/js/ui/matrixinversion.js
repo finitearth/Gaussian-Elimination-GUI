@@ -15,12 +15,12 @@ import {
  * Adds a Table to a Parent Node and appends it to the tables array.
  * @paramenter {parentId} ID of the parent node.
  */
-function addTable(id, disableInput, initCols = 3, desCharacter, rowDescription) {
-    let table = new Table(id, false, initCols, desCharacter, rowDescription);
+function addTable(id, disableInput, rowDescription = false) {
+    let table = new Table(id, false);
     if (disableInput) {
         table.disableInput();
     }
-
+    table.addRowDescription(rowDescription);
     document.getElementById(id).appendChild(table.tableContainer);
     return table;
 }
@@ -28,12 +28,12 @@ function addTable(id, disableInput, initCols = 3, desCharacter, rowDescription) 
 var dimension = 3;
 
 // creating tables
-let coefTable = addTable("table-element-1", false, 3, "", true);
-let identityTable = addTable("table-element-2", false, 3, "" );
+let coefTable = addTable("table-element-1", false, true);
+let identityTable = addTable("table-element-2", false);
 identityTable.setData(getUnitMatrix(dimension));
 
-let solIdentityTable = addTable("resultContainerTableRowCol1", true, "", true);
-let solCoefTable = addTable("resultContainerTableRowCol2", true, "");
+let solIdentityTable = addTable("resultContainerTableRowCol1", true, true);
+let solCoefTable = addTable("resultContainerTableRowCol2", true);
 let tables = [coefTable, identityTable, solIdentityTable, solCoefTable];
 
 // create initial comboboxes
@@ -42,7 +42,8 @@ for (let i = 0; i < 3; i++) {
     rowOperations = addCombobox("combobox_" + i, rowOperations, coefTable);
 }
 
-listenTableDimension("button-dimension", tables, rowOperations, "rows");
+listenTableDimension("button-dimension", [coefTable, solIdentityTable], rowOperations, "rows", false, "", true);
+listenTableDimension("button-dimension", [solCoefTable, identityTable], rowOperations, "rows", false, "", false);
 listenTableDimension("button-dimension", tables, rowOperations, "cols");
 setEventListenerFunction(
     "button-dimension",
@@ -100,5 +101,5 @@ setEventListenerFunction("button-generate-excercise", [], [coefTable], () => [
 addKeyDownListener(tables, true);
 
 for (let i = 0; i < tables.length; i++) {
-    tables[i] = tables[i].addRowDescription();
+    tables[i].addRowDescription();
 }

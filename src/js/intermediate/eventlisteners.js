@@ -29,9 +29,9 @@ export function listenTableDimension(
     rowOperations,
     rowsOrCols,
     allowSmaller = false,
-    desCharacter = null
+    desCharacter = null,
+    rowDescription = false
 ) {
-    console.log(typeof tables.length);
     let input = document.getElementById(inputId);
     input.addEventListener("input", e => {
         e.target.value = Math.min(e.target.value, designConfig.maxRows);
@@ -53,11 +53,15 @@ export function listenTableDimension(
                         table,
                         numberEquations
                     );
+                    if (rowDescription) {
+                        table.addRowDescription(rowDescription);
+                    }
                 }
             } else if (rowsOrCols === "cols") {
                 table.setNColumns(numberEquations);
                 if (desCharacter){
-                    table.addDescription(desCharacter);
+                    console.log("shit");
+                    table.addColumnDescription(desCharacter);
                 }
             }
         });
