@@ -1,13 +1,15 @@
 import { gaussElimination } from "../logic/gaussalgorithm.js";
 import { getUnitMatrix } from "../logic/matrix.js";
 import { generateMatrix } from "../logic/generateExercise.js";
-import { addCombobox, applyRowOperations } from "../intermediate/rowoperation.js";
+import {
+    addCombobox,
+    applyRowOperations,
+} from "../intermediate/rowoperation.js";
 import { Table, addKeyDownListener } from "../intermediate/table.js";
 import {
     setEventListenerFunction,
     listenTableDimension,
 } from "../intermediate/eventlisteners.js";
-
 
 // =========== Tables ===========
 
@@ -52,7 +54,6 @@ setEventListenerFunction(
     matrix => [getUnitMatrix(matrix.nRows)]
 );
 
-// calculate solution
 setEventListenerFunction(
     "button-solve-solution",
     [coefTable, identityTable],
@@ -64,7 +65,6 @@ setEventListenerFunction(
     }
 );
 
-// use result as input
 setEventListenerFunction(
     "button-adapt-result",
     [solIdentityTable, solCoefTable],
@@ -84,7 +84,6 @@ setEventListenerFunction(
     }
 );
 
-// decimal conversion
 document
     .getElementById("button-representation-conversion")
     .addEventListener("click", function () {
@@ -93,7 +92,6 @@ document
         });
     });
 
-// generate excercise
 setEventListenerFunction("button-generate-excercise", [], [coefTable], () => [
     generateMatrix(dimension, dimension),
 ]);
