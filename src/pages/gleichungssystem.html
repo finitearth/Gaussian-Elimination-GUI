@@ -115,21 +115,19 @@
             </form>
 
             <div id="matrixBox" class="page-divider align-center">
-                <table id="table">
-                    <tr id="table_row">
-                        <th id="table-coef"></th>
-                        <th id="table_vertical_1" class="vertical"></th>
-                        <th id="table-sol"></th>
-                        <th id="table_vertical_2" class="vertical"></th>
-                        <th id="table_vertical_3" class="vertical"></th>
-                        <th id="Operation"></th>
-                    </tr>
-                    <tr id="table_row"></tr>
-                    <button id="button-generate-excercise">
-                        Aufgabe erstellen
-                    </button>
-                </table>
+                <button id="button-generate-excercise">Aufgabe erstellen</button>
                 <button id="button-solve">Lösen</button>
+                <table id="table" class="table">
+                    <tr id="table_row">
+                        <td id="table-coef"></td>
+                        <td id="table_vertical_1" class="vertical"></td>
+                        <td id="table-sol"></td>
+                        <td id="table_vertical_2" class="vertical"></td>
+                        <td id="table_vertical_3" class="vertical"></td>
+                        <td id="Operation" class="operations"></td>
+                    </tr>
+                </table>
+                
             </div>
 
             <div class="container-button">
@@ -150,11 +148,11 @@
             <div class="page-divider align-center">
                 <table>
                     <tr id="table_row">
-                        <th id="table-res-coef"></th>
-                        <th id="table_vertical_4" class="vertical"></th>
-                        <th id="table-res-sol"></th>
+                        <td id="table-res-coef"></td>
+                        <td id="table_vertical_4" class="vertical"></td>
+                        <td id="table-res-sol"></td>
                         <!-- button for conversion to decimal -->
-                        <th>
+                        <td>
                             <!-- Rounded switch -->
                             <label class="switch">
                                 <input
@@ -163,7 +161,7 @@
                                 />
                                 <span class="slider round"></span>
                             </label>
-                        </th>
+                        </td>
                     </tr>
                 </table>
             </div>

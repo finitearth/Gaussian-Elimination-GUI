@@ -37,36 +37,35 @@
             
             <div id="matrixBox" class="page-divider align-center">
                 <button id="button-generate-excercise">Aufgabe erstellen</button>
+                <button id="button-solve-solution">Lösen</button>
                 <table id="table">
                     <tr id="table_row">
-                        <th id="table-element-1"></th>
-                            <th id="table_vertical_1" class="vertical"></th>
-                            <th id="table-element-2"></th>
-                            <th id="table_vertical_2" class="vertical"></th>
-                            <th id="table_vertical_3" class="vertical"></th>
-                            <th id="Operation"></th>
-                        </tr>
-                        <tr id="table_row"></tr>
-                    </table>
-                    <button id="button-solve"-solution">Lösen</button>
-                </div>
-                <div id="mainButtonContainer" class="container-button">
-                    <button id="button-calculate" class="button-gl-inv button-berechnen-down">Berechnen</button>
-                    <button id="button-adapt-result" class="button-gl-inv button-hoch-up">Hoch</button>
-                </div>
+                        <td id="table-element-1"></td>
+                        <td id="table_vertical_1" class="vertical"></td>
+                        <td id="table-element-2"></td>
+                        <td id="table_vertical_2" class="vertical"></td>
+                        <td id="table_vertical_3" class="vertical"></td>
+                        <td id="Operation" class="operations"></td>
+                    </tr>
+                    <tr id="table_row"></tr>
+                </table>
+            </div>
+            <div id="mainButtonContainer" class="container-button">
+                <button id="button-calculate" class="button-gl-inv button-berechnen-down">Berechnen</button>
+                <button id="button-adapt-result" class="button-gl-inv button-hoch-up">Hoch</button>
             </div>
             <div id="resultContainer" class="page-divider align-center">
                 <table id="resultContainerTable">
                     <tr id="resultContainerTableRow">
-                        <th id="resultContainerTableRowCol1"></th>
-                        <th id="table_vertical_1" class="vertical"></th>
-                        <th id="resultContainerTableRowCol2"></th>
-                        <th>
+                        <td id="resultContainerTableRowCol1"></td>
+                        <td id="table_vertical_1" class="vertical"></td>
+                        <td id="resultContainerTableRowCol2"></td>
+                        <td>
                             <label class="switch">
                                 <input type="checkbox" id="button-representation-conversion">
                                 <span class="slider round"></span>
                               </label>
-                            </th>
+                            </td>
                         </tr>
                         <tr id="table_row"></tr>
                     </table>

@@ -60,7 +60,7 @@ p {
 }
 
 td {
-    padding: 5px;
+    text-align: center;
 }
 
 input {
@@ -342,7 +342,6 @@ button:active {
 }
 
 .container-combobox {
-    margin: 20px;
     display: flex;
     margin-left: 5px;
     margin-right: 5px;
@@ -499,6 +498,11 @@ input:checked + .slider:before {
     padding-right: 0.25em;
     vertical-align: middle;
 }
+
+.operations {
+    width: 18em;
+}
+
 
 /* Guide-Page */
 
