@@ -10,17 +10,24 @@ import {
     setEventListenerFunction,
     listenTableDimension,
 } from "../intermediate/eventlisteners.js";
+import { getById } from "../intermediate/getElement.js";
 
 // =========== Tables ===========
-function createTable(id, disableInput, initCols = 3, desCharacter, rowDescription) {
+function createTable(
+    id,
+    disableInput,
+    initCols = 3,
+    desCharacter,
+    rowDescription
+) {
     let table = new Table(id, initCols);
     if (disableInput) {
         table.disableInput();
     }
-    document.getElementById(id).appendChild(table.tableContainer);
+    getById(id).appendChild(table.tableContainer);
     table.addRowDescription(rowDescription);
     table.addColumnDescription(desCharacter);
-    
+
     return table;
 }
 
@@ -92,16 +99,30 @@ for (let i = 0; i < coefTable.nRows; i++) {
     );
 });
 
-document
-    .getElementById("button-representation-conversion")
-    .addEventListener("click", function () {
-        tables.forEach(table => {
-            table.convertRepresentation(this.checked);
-        });
+getById("button-representation-conversion").addEventListener("click", () => {
+    tables.forEach(table => {
+        table.convertRepresentation(this.checked);
     });
+});
 
-listenTableDimension("input-nr-eq", [coefTable, resCoefTable], rowOperations, "rows", false, "", true); // number of rows
-listenTableDimension("input-nr-eq", [solTable, resSolTable], rowOperations, "rows", false, "", false);
+listenTableDimension(
+    "input-nr-eq",
+    [coefTable, resCoefTable],
+    rowOperations,
+    "rows",
+    false,
+    "",
+    true
+); // number of rows
+listenTableDimension(
+    "input-nr-eq",
+    [solTable, resSolTable],
+    rowOperations,
+    "rows",
+    false,
+    "",
+    false
+);
 listenTableDimension(
     "input-nr-var",
     [coefTable, resCoefTable],

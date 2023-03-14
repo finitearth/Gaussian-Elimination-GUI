@@ -95,10 +95,10 @@ export class Matrix {
     /**
      * Subs the value
     //  */
-    // sub(otherMatrix) {
-    //     otherMatrix = otherMatrix.mul(NEGONE);
-    //     return this.add(otherMatrix);
-    // }
+    sub(otherMatrix) {
+        otherMatrix = otherMatrix.mul(NEGONE);
+        return this.add(otherMatrix);
+    }
 
     /**
      * Multiplies this matrix by the input value, which can be either a scalar value represented as a Fraction or a Matrix object.

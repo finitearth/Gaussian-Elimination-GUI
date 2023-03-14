@@ -1,6 +1,34 @@
 import { adaptComboboxes, updateRowOperations } from "./rowoperation.js";
 import { designConfig } from "../config.js";
+import { getById } from "./getElement.js";
 
+export function modifyDimListener(tables) {
+    ["addrow", "addcol", "removerow", "removecol"].forEach(b => {
+        getById(b).addEventListener("click", () => {
+            let nRows = Number(getById("input-nr-rows").value);
+            let nCols = Number(getById("input-nr-cols").value);
+            if (b == "addrow") {
+                nRows++;
+            } else if (b == "addcol") {
+                nCols++;
+            } else if (b == "removerow") {
+                nRows--;
+            } else if (b == "removecol") {
+                nCols--;
+            }
+            nRows = Math.min(nRows, designConfig.maxRows);
+            nCols = Math.min(nCols, designConfig.maxColumns);
+            nRows = Math.max(nRows, designConfig.minRows);
+            nCols = Math.max(nCols, designConfig.minColumns);
+            getById("input-nr-rows").value = nRows;
+            getById("input-nr-cols").value = nCols;
+            tables.forEach(table => {
+                table.setNRows(nRows);
+                table.setNColumns(nCols);
+            });
+        });
+    });
+}
 
 export function setEventListenerFunction(
     buttonId,
@@ -33,7 +61,6 @@ export function listenTableDimension(
     rowDescription = false,
     eventString = "input"
 ) {
-
     let input = document.getElementById(inputId);
     input.addEventListener(eventString, e => {
         // if its button and not
@@ -63,7 +90,7 @@ export function listenTableDimension(
                 }
             } else if (rowsOrCols === "cols") {
                 table.setNColumns(numberEquations);
-                if (desCharacter){
+                if (desCharacter) {
                     console.log("shit");
                     table.addColumnDescription(desCharacter);
                 }

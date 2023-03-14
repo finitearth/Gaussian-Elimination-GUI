@@ -1,13 +1,15 @@
 import { gaussElimination } from "../logic/gaussalgorithm.js";
 import { getUnitMatrix } from "../logic/matrix.js";
 import { generateMatrix } from "../logic/generateExercise.js";
-import { addCombobox, applyRowOperations } from "../intermediate/rowoperation.js";
+import {
+    addCombobox,
+    applyRowOperations,
+} from "../intermediate/rowoperation.js";
 import { Table, addKeyDownListener } from "../intermediate/table.js";
 import {
     setEventListenerFunction,
     listenTableDimension,
 } from "../intermediate/eventlisteners.js";
-
 
 // =========== Tables ===========
 
@@ -42,8 +44,24 @@ for (let i = 0; i < 3; i++) {
     rowOperations = addCombobox("combobox_" + i, rowOperations, coefTable);
 }
 
-listenTableDimension("button-dimension", [coefTable, solIdentityTable], rowOperations, "rows", false, "", true);
-listenTableDimension("button-dimension", [solCoefTable, identityTable], rowOperations, "rows", false, "", false);
+listenTableDimension(
+    "button-dimension",
+    [coefTable, solIdentityTable],
+    rowOperations,
+    "rows",
+    false,
+    "",
+    true
+);
+listenTableDimension(
+    "button-dimension",
+    [solCoefTable, identityTable],
+    rowOperations,
+    "rows",
+    false,
+    "",
+    false
+);
 listenTableDimension("button-dimension", tables, rowOperations, "cols");
 setEventListenerFunction(
     "button-dimension",
@@ -52,7 +70,6 @@ setEventListenerFunction(
     matrix => [getUnitMatrix(matrix.nRows)]
 );
 
-// calculate solution
 setEventListenerFunction(
     "button-solve-solution",
     [coefTable, identityTable],
@@ -64,7 +81,6 @@ setEventListenerFunction(
     }
 );
 
-// use result as input
 setEventListenerFunction(
     "button-adapt-result",
     [solIdentityTable, solCoefTable],
@@ -84,16 +100,14 @@ setEventListenerFunction(
     }
 );
 
-// decimal conversion
 document
     .getElementById("button-representation-conversion")
-    .addEventListener("click", function () {
+    .addEventListener("click", () => {
         tables.forEach(table => {
             table.convertRepresentation(this.checked);
         });
     });
 
-// generate excercise
 setEventListenerFunction("button-generate-excercise", [], [coefTable], () => [
     generateMatrix(dimension, dimension),
 ]);
