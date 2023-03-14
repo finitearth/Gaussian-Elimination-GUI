@@ -404,6 +404,12 @@ button.secondary:active {
 .left {
     min-width: 50%;
 }
+
+.invalid {
+    border-color: red;
+}
+
+
 /* Vlt schmutz, gerne löschen, aber is für todecimal*/
 .switch {
     position: relative;

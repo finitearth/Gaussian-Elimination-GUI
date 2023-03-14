@@ -6,6 +6,8 @@ import {
     setEventListenerFunction,
 } from "../intermediate/eventlisteners.js";
 
+const pattern = /^([\d]*)$|^([\d]*[\/]{1}[\d]+)$|^([\d]*[\,]{1}[\d]*)$/g;
+
 // =========== Tables ===========
 let inputTable = new Table("input-matrix");
 inputTable.addButtons();
@@ -50,3 +52,28 @@ addKeyDownListener([inputTable], true);
         listener.func
     );
 });
+
+document.getElementById("input-matrix").addEventListener("keydown", validate);
+
+function validate(e) {
+    let valid = true
+    var focused = document.activeElement;
+    if(focused.value != ''){
+        if(! focused.value.match(pattern) == true) {
+            valid = false
+        }
+        else{
+            valid = true  
+        }              
+    }
+    else {
+        valid = true
+    }
+
+    if(valid == false){
+        focused.classList.add("invalid");
+    } else {
+        focused.classList.remove("invalid");   
+
+    }
+}
