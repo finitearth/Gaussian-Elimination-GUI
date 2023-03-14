@@ -412,6 +412,7 @@ button.secondary:active {
 .switch {
     position: relative;
     display: inline-block;
+    margin: 1em;
     width: 60px;
     height: 34px;
 }
@@ -510,6 +511,11 @@ input:checked + .slider:before {
     font-size: 20pt;
     padding-right: 0.25em;
     vertical-align: middle;
+}
+
+.button-float-right{
+    float: right;
+    margin: 0;
 }
 
 .operations {

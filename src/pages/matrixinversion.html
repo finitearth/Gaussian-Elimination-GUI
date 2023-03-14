@@ -30,14 +30,13 @@
                 </div>
             </div>
             
-            <form class="page-divider">
+            <div class="page-divider">
                 <label for="button-dimension">Dimensionen:</label>
                 <input id="button-dimension" type="number" min="2" max="9" defaultValue="3" value="3" size="1">
-            </form>
+                <button id="button-generate-excercise" class="button-float-right">Aufgabe erstellen</button>
+            </div>
             
             <div id="matrixBox" class="page-divider align-center">
-                <button id="button-generate-excercise">Aufgabe erstellen</button>
-                <button id="button-solve-solution">Lösen</button>
                 <table id="table">
                     <tr id="table_row">
                         <td id="table-element-1"></td>
@@ -53,22 +52,20 @@
             </div>
             <div id="mainButtonContainer" class="container-button">
                 <button id="button-calculate" class="button-gl-inv button-berechnen-down">Berechnen</button>
+                <button id="button-solve-solution" class="button-gl-inv">Lösen</button>
                 <button id="button-adapt-result" class="button-gl-inv button-hoch-up">Hoch</button>
             </div>
             <div id="resultContainer" class="page-divider align-center">
                 <table id="resultContainerTable">
-                    <tr id="resultContainerTableRow">
                         <td id="resultContainerTableRowCol1"></td>
                         <td id="table_vertical_1" class="vertical"></td>
                         <td id="resultContainerTableRowCol2"></td>
-                        <td>
+                        <td class="operations">
                             <label class="switch">
                                 <input type="checkbox" id="button-representation-conversion">
                                 <span class="slider round"></span>
-                              </label>
-                            </td>
-                        </tr>
-                        <tr id="table_row"></tr>
+                            </label>
+                        </td>
                     </table>
                 </div>
         </main>
