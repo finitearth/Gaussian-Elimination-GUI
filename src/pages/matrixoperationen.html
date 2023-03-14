@@ -71,7 +71,30 @@
             </form>
             
             <div class="page-divider align-center">
-                    <div id="input-matrix" class="input-matrix"></div>
+                <table>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button class="button-addrow" id="addrow">+</button>
+                            <button class="button-removerow" id="removerow">-</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><div id="input-matrix" class="input-matrix"></div></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="button-addcol" id="addcol">+</button>
+                            <button class="button-removecol" id="removecol">-</button>  
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+
             </div>
             <div class="container-button">
                 <button id="button-inverse">M⁻¹</button>

@@ -30,10 +30,14 @@ export function listenTableDimension(
     rowsOrCols,
     allowSmaller = false,
     desCharacter = null,
-    rowDescription = false
+    rowDescription = false,
+    eventString = "input"
 ) {
+
     let input = document.getElementById(inputId);
-    input.addEventListener("input", e => {
+    input.addEventListener(eventString, e => {
+        // if its button and not
+        console.log(e);
         e.target.value = Math.min(e.target.value, designConfig.maxRows);
         let min = allowSmaller ? 1 : designConfig.minRows;
         e.target.value = Math.max(e.target.value, min);

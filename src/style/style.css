@@ -176,7 +176,7 @@ select {
 .logo-img {
     float: right;
     margin: 3%;
-    margin-top: max(2em, 3%);
+    margin-top: max(2em, 5%);
     width: 35%;
     height: auto;
     position: relative;
