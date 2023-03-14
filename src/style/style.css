@@ -179,7 +179,7 @@ select {
 .logo-img {
     float: right;
     margin: 3%;
-    margin-top: max(2em, 3%);
+    margin-top: max(2em, 5%);
     width: 35%;
     height: auto;
     position: relative;
@@ -189,15 +189,18 @@ select {
 /* Matrizenrechnung */
 .matrix-overflow-box {
     height: 33vh;
-    width: 66%;
+    width: 50%;
     min-width: 20em;
     overflow: auto;
-    border: 1px solid #eee;
+    border: 1px solid #ddd;
     border-radius: 5px;
     padding: 0.5em;
     position: relative;
     margin-right: 0;
-    float: left;
+}
+
+.container-button-matrixrechnung {
+    margin-top: 1em;
 }
 
 .button-box-add-remove-matrix {
@@ -344,12 +347,6 @@ button:active {
     border-radius: 1px;
 }
 
-.container-combobox {
-    display: flex;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
 button.secondary {
     background-color: #6C757D;
 }
@@ -367,6 +364,7 @@ button.secondary:active {
     height: 2em;
     width: 2em;
     margin: 0;
+    padding: 0;
     /* margin: 6px 0 0 0; */
 }
 
@@ -407,10 +405,17 @@ button.secondary:active {
 .left {
     min-width: 50%;
 }
+
+.invalid {
+    border-color: red;
+}
+
+
 /* Vlt schmutz, gerne löschen, aber is für todecimal*/
 .switch {
     position: relative;
     display: inline-block;
+    margin: 1em;
     width: 60px;
     height: 34px;
 }
@@ -483,6 +488,15 @@ input:checked + .slider:before {
     box-sizing: content-box;
 }
 
+.combobox-field {
+    height: min(1.75em, 3.5vmin);
+    width: min(2.5em, 5vmin);
+    min-width: 2em;
+    min-height: 1.25em;
+    margin-right: 0.5em;
+    text-align: left;
+}
+
 .button-gl-inv {
     width: 9em;
     padding: 0;
@@ -500,6 +514,11 @@ input:checked + .slider:before {
     font-size: 20pt;
     padding-right: 0.25em;
     vertical-align: middle;
+}
+
+.button-float-right{
+    float: right;
+    margin: 0;
 }
 
 .operations {

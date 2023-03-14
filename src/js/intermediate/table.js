@@ -173,55 +173,58 @@ export class Table {
         }
     }
 
-    addButtons() {
-        const buttons = [
-            {
-                name: "+ R",
-                class: "button-addrow",
-                function: e => {
-                    if (this.rows.length < designConfig.maxRows) {
-                        this.addRow();
-                    }
-                },
-            },
-            {
-                name: "- R",
-                class: "button-removerow",
-                function: e => {
-                    if (this.rows.length > designConfig.minRows) {
-                        this.removeRow(false);
-                    }
-                },
-            },
-            {
-                name: "+ C",
-                class: "button-addcol",
-                function: e => {
-                    if (this.nColumns < designConfig.maxColumns) {
-                        this.addColumn();
-                    }
-                },
-            },
-            {
-                name: "- C",
-                class: "button-removecol",
-                function: e => {
-                    if (this.nColumns > designConfig.minColumns) {
-                        this.removeColumn(false);
-                    }
-                },
-            },
-        ];
+    // addButtons() {
+    //     const buttons = [
+    //         {
+    //             name: "+",
+    //             class: "button-addrow",
+    //             function: e => {
+    //                 if (this.rows.length < designConfig.maxRows) {
+    //                     this.addRow();
+    //                 }
+    //             },
+    //         },
+    //         {
+    //             name: "-",
+    //             class: "button-removerow",
+    //             function: e => {
+    //                 if (this.rows.length > designConfig.minRows) {
+    //                     this.removeRow(false);
+    //                 }
+    //             },
+    //         },
+    //         {
+    //             name: "+",
+    //             class: "button-addcol",
+    //             function: e => {
+    //                 if (this.nColumns < designConfig.maxColumns) {
+    //                     this.addColumn();
+    //                 }
+    //             },
+    //         },
+    //         {
+    //             name: "-",
+    //             class: "button-removecol",
+    //             function: e => {
+    //                 if (this.nColumns > designConfig.minColumns) {
+    //                     this.removeColumn(false);
+    //                 }
+    //             },
+    //         },
+    //     ];
 
-        buttons.forEach(button => {
-            const buttonElement = document.createElement("button");
-            buttonElement.classList.add("table-button");
-            buttonElement.textContent = button.name;
-            // buttonElement.classList.add(button.class);
-            buttonElement.addEventListener("click", button.function.bind(this));
-            this.tableContainer.appendChild(buttonElement);
-        });
-    }
+    //     let buttonRowContainer = document.getElementById("container-row-buttons");
+    //     let buttonColContainer = document.getElementById("container-col-buttons");
+
+    //     buttons.forEach(button => {
+    //         const buttonElement = document.createElement("button");
+    //         buttonElement.textContent = button.name;
+    //         buttonElement.classList.add(button.class);
+    //         buttonElement.classList.add("table-button");
+    //         buttonElement.addEventListener("click", button.function.bind(this));
+    //         this.tableContainer.appendChild(buttonElement);
+    //     });
+    // }
 
     /**
     Removes the last row from the table.

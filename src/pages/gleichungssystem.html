@@ -112,11 +112,10 @@
                     max="9"
                     name="input-nr-b"
                 />
+                <button id="button-generate-excercise" class="button-float-right">Aufgabe erstellen</button>
             </form>
 
             <div id="matrixBox" class="page-divider align-center">
-                <button id="button-generate-excercise">Aufgabe erstellen</button>
-                <button id="button-solve">Lösen</button>
                 <table id="table" class="table">
                     <tr id="table_row">
                         <td id="table-coef"></td>
@@ -124,7 +123,9 @@
                         <td id="table-sol"></td>
                         <td id="table_vertical_2" class="vertical"></td>
                         <td id="table_vertical_3" class="vertical"></td>
-                        <td id="Operation" class="operations"></td>
+                        <td id="Operation" class="operations">
+                            <table id="operations-table"></table>
+                        </td>
                     </tr>
                 </table>
                 
@@ -137,6 +138,7 @@
                 >
                     Berechnen
                 </button>
+                <button class="button-gl-inv" id="button-solve">Lösen</button>
                 <button
                     class="button-gl-inv button-hoch-up"
                     id="button-adapt-result"
@@ -152,7 +154,7 @@
                         <td id="table_vertical_4" class="vertical"></td>
                         <td id="table-res-sol"></td>
                         <!-- button for conversion to decimal -->
-                        <td>
+                        <td class="operations">
                             <!-- Rounded switch -->
                             <label class="switch">
                                 <input

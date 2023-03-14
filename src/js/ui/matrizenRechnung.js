@@ -1,6 +1,6 @@
 import { Table, addKeyDownListener } from "../intermediate/table.js";
 import { calculate } from "../logic/equationParser.js";
-import { setEventListenerFunction } from "../intermediate/eventlisteners.js";
+import { modifyDimListener, setEventListenerFunction } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 
 // =========== Tables ===========
@@ -9,7 +9,7 @@ function addTable() {
         return;
     }
     let newTable = new Table(tables.length);
-    newTable.addButtons();
+    // newTable.addButtons();
     tables.push(newTable);
 
     let tableContainer = document.createElement("table");
@@ -43,6 +43,8 @@ resultTable.disableInput();
 getById("table-result").appendChild(resultTable.tableContainer);
 
 // =========== Event listeners ===========
+modifyDimListener(tables);
+
 getById("button-add-table").addEventListener("click", addTable);
 getById("remove-table").addEventListener("click", removeTable);
 

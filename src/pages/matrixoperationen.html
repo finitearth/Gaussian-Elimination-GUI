@@ -23,13 +23,19 @@
                     <h3 class="subheading-help">Bedienungsanleitung & Tipps</h3>
                     <div class="help-content">
                         <p>
-                            Auf dieser Seite kannst Du verschiedene Matrixoperationen berechnen.
+                            Auf dieser Seite können verschiedene Matrixoperationen berechnet werden.
                         </p>
                         <ul>
                             <li>M⁻¹ zur Matrixinversion</li>
                             <li>|M| zur Ausgabe der Determinante</li>
                             <li>Mᵀ zum Transponieren der Matrix</li>
                         </ul>
+                        <p>
+                            Hierzu muss zuerst die Input-Matrix eingegeben werden, auf der die Operationen durchgeführt
+                            werden sollen. Diese Matrix ist die obere der beiden Matrizen auf der Seite. Bei Klick auf
+                            einen der Buttons wird die entsprechende Operation durchgeführt und berechnet. Das Ergebnis
+                            der Berechnung wird in der unteren Matrix im Tab 'Ergebnis' ausgegeben.
+                        </p>
                         <p>
                             Wichtig zu beachten ist, dass die Berechnung der Matrixinversion und der Determinante nur bei 
                             quadratischen Matrizen möglich ist. Eine quadratische Matrize ist eine Matrize, bei der die 
@@ -42,7 +48,9 @@
                             eine Spalte ausschließlich aus Nullen besteht oder auch eine Matrix linearen Abhängigkeiten.
                         </p>
                         <p>
-                            Determinante ?
+                            Die Determinante ist eine Zahl bzw. ein Skalar und wird einer quadratischen Matrix zugeordnet.
+                            Sie wird aus den Einträgen der Matrix berechnet. Die Berechnung der Determinante kann als 
+                            Hilfsmittel für die Lösung des linearen Gleichungssystems genutzt werden.
                         </p>
                         <p>
                             Das Ergebnis des Transponierens ist die transponierte oder auch gespiegelte Matrix. Beim 
@@ -63,7 +71,30 @@
             </form>
             
             <div class="page-divider align-center">
-                    <div id="input-matrix" class="input-matrix"></div>
+                <table>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button class="button-addrow" id="addrow">+</button>
+                            <button class="button-removerow" id="removerow">-</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><div id="input-matrix" class="input-matrix"></div></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="button-addcol" id="addcol">+</button>
+                            <button class="button-removecol" id="removecol">-</button>  
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+
             </div>
             <div class="container-button">
                 <button id="button-inverse">M⁻¹</button>
@@ -71,12 +102,20 @@
                 <button id="button-transpose">Mᵀ</button>
             </div>
             <div class="page-divider">
-                <div class ="wrapper">
-                    <div class="left">
-                        <h2 class="result">Ergebnis</h2>
-                    </div>
-                    <table id="output-matrix" class="align-center"></table>
-                </div> 
+                    <table class="align-center">
+                        <td id="output-matrix">
+                        </td>
+                        <td>
+                            <!-- Rounded switch -->
+                            <label class="switch">
+                                <input
+                                    type="checkbox"
+                                    id="button-representation-conversion"
+                                />
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+                    </table>
             </div>
         </main>
         <footer>
