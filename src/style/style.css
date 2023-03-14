@@ -186,15 +186,18 @@ select {
 /* Matrizenrechnung */
 .matrix-overflow-box {
     height: 33vh;
-    width: 66%;
+    width: 50%;
     min-width: 20em;
     overflow: auto;
-    border: 1px solid #eee;
+    border: 1px solid #ddd;
     border-radius: 5px;
     padding: 0.5em;
     position: relative;
     margin-right: 0;
-    float: left;
+}
+
+.container-button-matrixrechnung {
+    margin-top: 1em;
 }
 
 .button-box-add-remove-matrix {
