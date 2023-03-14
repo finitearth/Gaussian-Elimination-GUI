@@ -54,23 +54,16 @@
                     <button id="button-close" class="secondary">Schließen</button>
                 </div>
             </div>
+
+            <form class="page-divider">
+                <label for="input-nr-rows">Anzahl Zeilen:</label>
+                <input type="number" id="input-nr-rows" min="2" max="9" value="3"/>
+                <label for="input-nr-cols">Anzahl Spalten:</label>
+                <input type="number" id="input-nr-cols" min="2" max="9" value="3"/>
+            </form>
             
-            <div class="page-divider">
-                <div class ="wrapper">
-                    <div class="left">
-                        <table>
-                            <tr>
-                                <td><label for="input-nr-rows">Anzahl Zeilen:</label></td>
-                                <td><input type="number" id="input-nr-rows" min="2" max="9" value="3"/></td>
-                            </tr>
-                            <tr>
-                                <td><label for="input-nr-cols">Anzahl Spalten:</label></td>
-                                <td><input type="number" id="input-nr-cols" min="2" max="9" value="3"/></td>
-                            </tr>
-                        </table>
-                    </div>
+            <div class="page-divider align-center">
                     <div id="input-matrix" class="input-matrix"></div>
-                </div>
             </div>
             <div class="container-button">
                 <button id="button-inverse">M⁻¹</button>
