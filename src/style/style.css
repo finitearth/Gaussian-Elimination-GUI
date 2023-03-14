@@ -104,6 +104,9 @@ select {
     margin-bottom: 1em;
     padding: 1em;
     overflow: hidden;
+    
+    object-fit: contain;
+    object-position: center;
 }
 
 /* Start Page */
@@ -242,7 +245,7 @@ select {
 .align-center {
     align-items: center;
     justify-content: center;
-    display: flex;
+    display: flex;  
 }
 
 .nav {
