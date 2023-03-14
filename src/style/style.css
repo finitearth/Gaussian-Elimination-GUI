@@ -341,12 +341,6 @@ button:active {
     border-radius: 1px;
 }
 
-.container-combobox {
-    display: flex;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
 button.secondary {
     background-color: #6C757D;
 }
@@ -364,6 +358,7 @@ button.secondary:active {
     height: 2em;
     width: 2em;
     margin: 0;
+    padding: 0;
     /* margin: 6px 0 0 0; */
 }
 
@@ -484,6 +479,15 @@ input:checked + .slider:before {
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
+}
+
+.combobox-field {
+    height: min(1.75em, 3.5vmin);
+    width: min(2.5em, 5vmin);
+    min-width: 2em;
+    min-height: 1.25em;
+    margin-right: 0.5em;
+    text-align: left;
 }
 
 .button-gl-inv {

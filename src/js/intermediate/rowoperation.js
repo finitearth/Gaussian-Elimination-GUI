@@ -21,7 +21,7 @@ export class RowOperation {
         this.comboboxButton.innerHTML = "❱";
         this.comboboxButton.id = this.id + "_displayCombobox";
         this.comboboxButton.className = "button-combobox";
-        this.comboBoxElement.className = "container-combobox";
+        this.comboBoxElement.className = "combobox-field";
         this.comboBoxElement.appendChild(this.comboboxButton);
 
         this.comboboxButton.addEventListener(
@@ -228,7 +228,7 @@ export function addCombobox(id, rowOperations, table) {
     rowOperations.push(new RowOperation(id, table));
     
     document
-        .getElementById("Operation")
+        .getElementById("operations-table")
         .appendChild(rowOperations[rowOperations.length - 1].comboBoxElement);
 
     return rowOperations;
