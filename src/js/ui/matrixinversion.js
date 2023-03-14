@@ -44,8 +44,24 @@ for (let i = 0; i < 3; i++) {
     rowOperations = addCombobox("combobox_" + i, rowOperations, coefTable);
 }
 
-listenTableDimension("button-dimension", [coefTable, solIdentityTable], rowOperations, "rows", false, "", true);
-listenTableDimension("button-dimension", [solCoefTable, identityTable], rowOperations, "rows", false, "", false);
+listenTableDimension(
+    "button-dimension",
+    [coefTable, solIdentityTable],
+    rowOperations,
+    "rows",
+    false,
+    "",
+    true
+);
+listenTableDimension(
+    "button-dimension",
+    [solCoefTable, identityTable],
+    rowOperations,
+    "rows",
+    false,
+    "",
+    false
+);
 listenTableDimension("button-dimension", tables, rowOperations, "cols");
 setEventListenerFunction(
     "button-dimension",
@@ -86,7 +102,7 @@ setEventListenerFunction(
 
 document
     .getElementById("button-representation-conversion")
-    .addEventListener("click", function () {
+    .addEventListener("click", () => {
         tables.forEach(table => {
             table.convertRepresentation(this.checked);
         });

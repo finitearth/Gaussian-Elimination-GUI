@@ -10,7 +10,7 @@ import {
     setEventListenerFunction,
     listenTableDimension,
 } from "../intermediate/eventlisteners.js";
-import getById from "../intermediate/getElement.js";
+import { getById } from "../intermediate/getElement.js";
 
 // =========== Tables ===========
 function createTable(
@@ -24,7 +24,7 @@ function createTable(
     if (disableInput) {
         table.disableInput();
     }
-    document.getElementById(id).appendChild(table.tableContainer);
+    getById(id).appendChild(table.tableContainer);
     table.addRowDescription(rowDescription);
     table.addColumnDescription(desCharacter);
 
@@ -40,15 +40,11 @@ let tables = [coefTable, solTable, resCoefTable, resSolTable];
 let comboboxDummy = document.createElement("div");
 comboboxDummy.id = "comboboxDummy";
 comboboxDummy.style =
-    "width : " +
-    document.getElementById(coefTable.id + ".0.0").offsetWidth +
-    "px";
+    "width : " + getById(coefTable.id + ".0.0").offsetWidth + "px";
 comboboxDummy.style =
-    "height : " +
-    document.getElementById(coefTable.id + ".0.0").offsetWidth +
-    "px";
+    "height : " + getById(coefTable.id + ".0.0").offsetWidth + "px";
 
-document.getElementById("Operation").appendChild(comboboxDummy);
+getById("Operation").appendChild(comboboxDummy);
 
 let rowOperations = [];
 for (let i = 0; i < coefTable.nRows; i++) {
@@ -108,14 +104,11 @@ for (let i = 0; i < coefTable.nRows; i++) {
     );
 });
 
-getById("button-representation-conversion").addEventListener(
-    "click",
-    function () {
-        tables.forEach(table => {
-            table.convertRepresentation(this.checked);
-        });
-    }
-);
+getById("button-representation-conversion").addEventListener("click", () => {
+    tables.forEach(table => {
+        table.convertRepresentation(this.checked);
+    });
+});
 
 listenTableDimension(
     "input-nr-eq",
