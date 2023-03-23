@@ -282,8 +282,9 @@ export function stringToFraction(string) {
         let digits = string.split(".")[1].length;
 
         let decimal = Number(string);
+        numerator = decimal * 10 ** digits;
         denominator = 10 ** digits;
-        numerator = decimal * denominator;
+
     } else if (string.match(/^-?[0-9]+$/)) {
         // string consists of only numerals
         numerator = Number(string);

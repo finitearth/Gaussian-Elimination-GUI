@@ -62,6 +62,8 @@ setEventListenerFunction("button-calculate", tables, [resultTable], () => {
 
 addKeyDownListener(tables);
 
+let conversionButtonchecked = false;
 getById("button-representation-conversion").addEventListener("click", () => {
-    resultTable.convertRepresentation(this.checked);
+    conversionButtonchecked = !conversionButtonchecked;
+    resultTable.convertRepresentation(conversionButtonchecked);
 });
