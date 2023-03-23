@@ -11,6 +11,7 @@ import {
     listenTableDimension,
 } from "../intermediate/eventlisteners.js";
 
+import { getById } from "../intermediate/getElement.js";
 // =========== Tables ===========
 
 /**

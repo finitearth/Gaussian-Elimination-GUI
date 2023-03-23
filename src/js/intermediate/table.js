@@ -381,7 +381,7 @@ export class Table {
         this.fractionArray = this.getData();
         for (let i = 0; i < this.rows.length; i++) {
             for (let j = 0; j < this.nColumns; j++) {
-                let input = this.rows[i].childNodes[j].childNodes[0];
+                let input = getById(`${this.id}.${i}.${j}`);
                 let val = input.value;
                 val = stringToFraction(val);
                 input.value = val.toDecimal();
@@ -399,7 +399,7 @@ export class Table {
         }
         for (let i = 0; i < this.rows.length; i++) {
             for (let j = 0; j < this.nColumns; j++) {
-                let input = this.rows[i].childNodes[j].childNodes[0];
+                let input = getById(`${this.id}.${i}.${j}`);
                 let val = input.value;
                 val = stringToFraction(val);
                 input.value = val.stringify();
