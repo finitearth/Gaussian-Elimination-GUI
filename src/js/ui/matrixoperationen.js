@@ -10,9 +10,7 @@ const pattern = /^([\d]*)$|^([\d]*[\/]{1}[\d]+)$|^([\d]*[\,]{1}[\d]*)$/g;
 
 // =========== Tables ===========
 let inputTable = new Table("input-matrix");
-// inputTable.addButtons();
-
-
+inputTable.addButtons();
 document.getElementById("input-matrix").appendChild(inputTable.tableContainer);
 
 let outputTable = new Table("output-matrix");
@@ -24,7 +22,6 @@ document
 // =========== Event Listeners ===========
 listenTableDimension("input-nr-rows", [inputTable], [], "rows");
 listenTableDimension("input-nr-cols", [inputTable], [], "cols");
-listenTableDimension("addrow", [inputTable], [], "rows", false, null, false, "click");
 addKeyDownListener([inputTable], true);
 
 [
