@@ -11,6 +11,7 @@ import {
     listenTableDimension,
 } from "../intermediate/eventlisteners.js";
 
+import { getById } from "../intermediate/getElement.js";
 // =========== Tables ===========
 
 /**
@@ -83,13 +84,16 @@ setEventListenerFunction(
     }
 );
 
-document
-    .getElementById("button-representation-conversion")
-    .addEventListener("click", function () {
+let conversionButtonChecked = false;
+getById("button-representation-conversion").addEventListener(
+    "click",
+    () => {
+        conversionButtonChecked = !conversionButtonChecked;
         tables.forEach(table => {
-            table.convertRepresentation(this.checked);
+            table.convertRepresentation(conversionButtonChecked);
         });
-    });
+    }
+);
 
 setEventListenerFunction("button-generate-excercise", [], [coefTable], () => [
     generateMatrix(dimension, dimension),

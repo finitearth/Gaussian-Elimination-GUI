@@ -7,8 +7,6 @@ import {
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 
-const pattern = /^([\d]*)$|^([\d]*[\/]{1}[\d]+)$|^([\d]*[\,]{1}[\d]*)$/g;
-
 // =========== Tables ===========
 let inputTable = new Table("input-table-placeholder");
 inputTable.addButtons();
@@ -50,24 +48,23 @@ addKeyDownListener([inputTable], true);
     );
 });
 
-getById("input-table-placeholder").addEventListener("keydown", validate);
-
+// allowed character: 0-9, /, comma, . - nothing else
+let validPattern = /^[\d\/.,-]*$/;
 function validate(e) {
-    let valid = true;
-    var focused = document.activeElement;
-    if (focused.value != "") {
-        if (!focused.value.match(pattern) == true) {
-            valid = false;
-        } else {
-            valid = true;
-        }
-    } else {
-        valid = true;
-    }
+    let valid = document.activeElement.value.match(validPattern);
 
-    if (valid == false) {
+    if (!valid) {
         focused.classList.add("invalid");
     } else {
         focused.classList.remove("invalid");
     }
 }
+getById("input-table-placeholder").addEventListener("keydown", validate);
+
+let conversionButtonchecked = false;
+getById("button-representation-conversion").addEventListener("click", () => {
+    conversionButtonchecked = !conversionButtonchecked;
+    [inputTable, outputTable].forEach(table => {
+        table.convertRepresentation(conversionButtonchecked);
+    });
+});

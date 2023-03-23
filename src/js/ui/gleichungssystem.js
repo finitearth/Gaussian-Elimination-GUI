@@ -98,11 +98,10 @@ for (let i = 0; i < coefTable.nRows; i++) {
     );
 });
 
-
 let conversionButtonChecked = false;
 getById("button-representation-conversion").addEventListener(
     "click",
-    function () {
+    () => {
         conversionButtonChecked = !conversionButtonChecked;
         tables.forEach(table => {
             table.convertRepresentation(conversionButtonChecked);
