@@ -10,9 +10,16 @@ import {
     setEventListenerFunction,
     listenTableDimension,
 } from "../intermediate/eventlisteners.js";
+import getById from "../intermediate/getElement.js";
 
 // =========== Tables ===========
-function createTable(id, disableInput, initCols = 3, desCharacter, rowDescription) {
+function createTable(
+    id,
+    disableInput,
+    initCols = 3,
+    desCharacter,
+    rowDescription
+) {
     let table = new Table(id, initCols);
     if (disableInput) {
         table.disableInput();
@@ -20,7 +27,7 @@ function createTable(id, disableInput, initCols = 3, desCharacter, rowDescriptio
     document.getElementById(id).appendChild(table.tableContainer);
     table.addRowDescription(rowDescription);
     table.addColumnDescription(desCharacter);
-    
+
     return table;
 }
 
@@ -30,9 +37,18 @@ let resCoefTable = createTable("table-res-coef", true, 3, "x", true);
 let resSolTable = createTable("table-res-sol", true, 1, "b");
 let tables = [coefTable, solTable, resCoefTable, resSolTable];
 
-let comboboxDummy = document.createElement("tr");
-comboboxDummy.className = "combobox-field"
-document.getElementById("operations-table").appendChild(comboboxDummy);
+let comboboxDummy = document.createElement("div");
+comboboxDummy.id = "comboboxDummy";
+comboboxDummy.style =
+    "width : " +
+    document.getElementById(coefTable.id + ".0.0").offsetWidth +
+    "px";
+comboboxDummy.style =
+    "height : " +
+    document.getElementById(coefTable.id + ".0.0").offsetWidth +
+    "px";
+
+document.getElementById("Operation").appendChild(comboboxDummy);
 
 let rowOperations = [];
 for (let i = 0; i < coefTable.nRows; i++) {
@@ -92,16 +108,33 @@ for (let i = 0; i < coefTable.nRows; i++) {
     );
 });
 
-document
-    .getElementById("button-representation-conversion")
-    .addEventListener("click", function () {
+getById("button-representation-conversion").addEventListener(
+    "click",
+    function () {
         tables.forEach(table => {
             table.convertRepresentation(this.checked);
         });
-    });
+    }
+);
 
-listenTableDimension("input-nr-eq", [coefTable, resCoefTable], rowOperations, "rows", false, "", true); // number of rows
-listenTableDimension("input-nr-eq", [solTable, resSolTable], rowOperations, "rows", false, "", false);
+listenTableDimension(
+    "input-nr-eq",
+    [coefTable, resCoefTable],
+    rowOperations,
+    "rows",
+    false,
+    "",
+    true
+); // number of rows
+listenTableDimension(
+    "input-nr-eq",
+    [solTable, resSolTable],
+    rowOperations,
+    "rows",
+    false,
+    "",
+    false
+);
 listenTableDimension(
     "input-nr-var",
     [coefTable, resCoefTable],

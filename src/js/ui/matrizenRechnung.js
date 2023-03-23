@@ -1,6 +1,7 @@
 import { Table, addKeyDownListener } from "../intermediate/table.js";
 import { calculate } from "../logic/equationParser.js";
 import { setEventListenerFunction } from "../intermediate/eventlisteners.js";
+import { getById } from "../intermediate/getElement.js";
 
 // =========== Tables ===========
 function addTable() {
@@ -21,18 +22,15 @@ function addTable() {
     contentCell.appendChild(tables[tables.length - 1].tableContainer);
     tableRow.appendChild(contentCell);
     tableContainer.appendChild(tableRow);
-    document.getElementById("table").appendChild(tableContainer);
+    getById("table").appendChild(tableContainer);
 }
 
 function removeTable() {
     if (tables.length <= 2) {
         return;
     }
-
     tables.pop();
-    document
-        .getElementById("table")
-        .removeChild(document.getElementById("table").lastChild);
+    getById("table").removeChild(getById("table").lastChild);
 }
 
 let tables = [];
@@ -42,23 +40,19 @@ for (let i = 0; i < 2; i++) {
 
 let resultTable = new Table("table-result", false);
 resultTable.disableInput();
-document.getElementById("table-result").appendChild(resultTable.tableContainer);
+getById("table-result").appendChild(resultTable.tableContainer);
 
 // =========== Event listeners ===========
-document.getElementById("button-add-table").addEventListener("click", addTable);
-document
-    .getElementById("remove-table")
-    .addEventListener("click", removeTable);
+getById("button-add-table").addEventListener("click", addTable);
+getById("remove-table").addEventListener("click", removeTable);
 
 setEventListenerFunction("button-calculate", tables, [resultTable], () => {
-    let equation = document.getElementById("input-equation").value;
+    let equation = getById("input-equation").value;
     return [calculate(equation, tables)];
 });
 
 addKeyDownListener(tables);
 
-document
-    .getElementById("button-representation-conversion")
-    .addEventListener("click", function () {
-        resultTable.convertRepresentation(this.checked);
-    });
+getById("button-representation-conversion").addEventListener("click", () => {
+    resultTable.convertRepresentation(this.checked);
+});
