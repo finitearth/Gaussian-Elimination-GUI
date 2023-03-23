@@ -8,21 +8,28 @@ function addTable() {
     if (tables.length > 25) {
         return;
     }
-    let newTable = new Table(tables.length);
+
+    let tableRow = document.createElement("tr");
+    
+    let tableContainer = document.createElement("table");
+    getById("table").appendChild(tableContainer);
+    
+    let letterCell = document.createElement("td");
+    let letter = String.fromCharCode(65 + tables.length);
+    letterCell.innerHTML = `${letter} =`;
+    tableRow.appendChild(letterCell);
+    
+    let contentCell = document.createElement("td");
+    contentCell.id = `table-${tables.length}`;
+    tableRow.appendChild(contentCell);
+
+    tableContainer.appendChild(tableRow);
+    getById("table").appendChild(tableContainer);
+
+    let newTable = new Table(contentCell.id);
     newTable.addButtons();
     tables.push(newTable);
 
-    let tableContainer = document.createElement("table");
-    let tableRow = document.createElement("tr");
-    let letterCell = document.createElement("td");
-    let letter = String.fromCharCode(64 + tables.length);
-    letterCell.innerHTML = `${letter} =`;
-    tableRow.appendChild(letterCell);
-    let contentCell = document.createElement("td");
-    contentCell.appendChild(tables[tables.length - 1].tableContainer);
-    tableRow.appendChild(contentCell);
-    tableContainer.appendChild(tableRow);
-    getById("table").appendChild(tableContainer);
 }
 
 function removeTable() {
@@ -31,16 +38,18 @@ function removeTable() {
     }
     tables.pop();
     getById("table").removeChild(getById("table").lastChild);
+
+    tableContainers.pop();
 }
 
 let tables = [];
+let tableContainers = [];
 for (let i = 0; i < 2; i++) {
     addTable();
 }
 
 let resultTable = new Table("table-result", false);
 resultTable.disableInput();
-getById("table-result").appendChild(resultTable.tableContainer);
 
 // =========== Event listeners ===========
 getById("button-add-table").addEventListener("click", addTable);

@@ -23,7 +23,6 @@ function addTable(id, disableInput, rowDescription = false) {
         table.disableInput();
     }
     table.addRowDescription(rowDescription);
-    document.getElementById(id).appendChild(table.tableContainer);
     return table;
 }
 

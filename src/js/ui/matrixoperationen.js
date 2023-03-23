@@ -5,19 +5,16 @@ import {
     listenTableDimension,
     setEventListenerFunction,
 } from "../intermediate/eventlisteners.js";
+import { getById } from "../intermediate/getElement.js";
 
 const pattern = /^([\d]*)$|^([\d]*[\/]{1}[\d]+)$|^([\d]*[\,]{1}[\d]*)$/g;
 
 // =========== Tables ===========
-let inputTable = new Table("input-matrix");
+let inputTable = new Table("input-table-placeholder");
 inputTable.addButtons();
-document.getElementById("input-matrix").appendChild(inputTable.tableContainer);
 
-let outputTable = new Table("output-matrix");
+let outputTable = new Table("output-table-placeholder");
 outputTable.disableInput();
-document
-    .getElementById("output-matrix")
-    .appendChild(outputTable.tableContainer);
 
 // =========== Event Listeners ===========
 listenTableDimension("input-nr-rows", [inputTable], [], "rows");
@@ -53,27 +50,24 @@ addKeyDownListener([inputTable], true);
     );
 });
 
-document.getElementById("input-matrix").addEventListener("keydown", validate);
+getById("input-table-placeholder").addEventListener("keydown", validate);
 
 function validate(e) {
-    let valid = true
+    let valid = true;
     var focused = document.activeElement;
-    if(focused.value != ''){
-        if(! focused.value.match(pattern) == true) {
-            valid = false
+    if (focused.value != "") {
+        if (!focused.value.match(pattern) == true) {
+            valid = false;
+        } else {
+            valid = true;
         }
-        else{
-            valid = true  
-        }              
-    }
-    else {
-        valid = true
+    } else {
+        valid = true;
     }
 
-    if(valid == false){
+    if (valid == false) {
         focused.classList.add("invalid");
     } else {
-        focused.classList.remove("invalid");   
-
+        focused.classList.remove("invalid");
     }
 }

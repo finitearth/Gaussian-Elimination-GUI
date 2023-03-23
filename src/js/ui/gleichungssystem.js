@@ -10,7 +10,7 @@ import {
     setEventListenerFunction,
     listenTableDimension,
 } from "../intermediate/eventlisteners.js";
-import {getById} from "../intermediate/getElement.js";
+import { getById } from "../intermediate/getElement.js";
 
 // =========== Tables ===========
 function createTable(
@@ -24,7 +24,6 @@ function createTable(
     if (disableInput) {
         table.disableInput();
     }
-    document.getElementById(id).appendChild(table.tableContainer);
     table.addRowDescription(rowDescription);
     table.addColumnDescription(desCharacter);
 
@@ -38,7 +37,7 @@ let resSolTable = createTable("table-res-sol", true, 1, "b");
 let tables = [coefTable, solTable, resCoefTable, resSolTable];
 
 let comboboxDummy = document.createElement("tr");
-comboboxDummy.className = "combobox-field"
+comboboxDummy.className = "combobox-field";
 document.getElementById("operations-table").appendChild(comboboxDummy);
 
 let rowOperations = [];
@@ -99,11 +98,14 @@ for (let i = 0; i < coefTable.nRows; i++) {
     );
 });
 
+
+let conversionButtonChecked = false;
 getById("button-representation-conversion").addEventListener(
     "click",
     function () {
+        conversionButtonChecked = !conversionButtonChecked;
         tables.forEach(table => {
-            table.convertRepresentation(this.checked);
+            table.convertRepresentation(conversionButtonChecked);
         });
     }
 );

@@ -203,11 +203,11 @@ select {
     margin-top: 1em;
 }
 
-.button-box-add-remove-matrix {
+/* .button-box-add-remove-matrix {
     overflow: hidden;
     position: relative;
     padding-left: 1em;
-}
+} */
 
 .equation-input {
     border: 1px solid rgb(154, 157, 160);
@@ -326,14 +326,26 @@ button:active {
     height: 1.25em;
     margin: 0;
     padding: 0;
+
+}
+
+.button-addrow, .button-removerow{
+    display: block;
+    margin-bottom: 0.05em;
+}
+
+.button-addcol, .button-removecol{
+    margin-right: 0.05em;
 }
 
 .vertical-align-sizebuttons{
     vertical-align: top;
+    padding-top: 0.5em;
 }
 
 .horizontal-align-sizebuttons{
-    text-align: left;;
+    text-align: left;
+    padding-left: 0.3em;
 }
 
 .main-text {
