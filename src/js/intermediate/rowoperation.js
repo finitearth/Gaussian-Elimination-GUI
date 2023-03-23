@@ -226,7 +226,7 @@ export class RowOperation {
 
 export function addCombobox(id, rowOperations, table) {
     rowOperations.push(new RowOperation(id, table));
-    
+
     document
         .getElementById("operations-table")
         .appendChild(rowOperations[rowOperations.length - 1].comboBoxElement);
@@ -243,10 +243,14 @@ export function removeCombobox(id, rowOperations) {
 
 export function adaptComboboxes(rowOperations, table, n) {
     while (rowOperations.length < n) {
-        rowOperations = addCombobox(("combobox_"+rowOperations.length), rowOperations, table);
+        rowOperations = addCombobox(
+            "combobox_" + rowOperations.length,
+            rowOperations,
+            table
+        );
     }
     while (rowOperations.length > n) {
-        rowOperations = removeCombobox((rowOperations.length-1), rowOperations);
+        rowOperations = removeCombobox(rowOperations.length - 1, rowOperations);
     }
 
     return rowOperations;

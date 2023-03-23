@@ -10,7 +10,7 @@ import {
     setEventListenerFunction,
     listenTableDimension,
 } from "../intermediate/eventlisteners.js";
-import getById from "../intermediate/getElement.js";
+import {getById} from "../intermediate/getElement.js";
 
 // =========== Tables ===========
 function createTable(
@@ -37,18 +37,9 @@ let resCoefTable = createTable("table-res-coef", true, 3, "x", true);
 let resSolTable = createTable("table-res-sol", true, 1, "b");
 let tables = [coefTable, solTable, resCoefTable, resSolTable];
 
-let comboboxDummy = document.createElement("div");
-comboboxDummy.id = "comboboxDummy";
-comboboxDummy.style =
-    "width : " +
-    document.getElementById(coefTable.id + ".0.0").offsetWidth +
-    "px";
-comboboxDummy.style =
-    "height : " +
-    document.getElementById(coefTable.id + ".0.0").offsetWidth +
-    "px";
-
-document.getElementById("Operation").appendChild(comboboxDummy);
+let comboboxDummy = document.createElement("tr");
+comboboxDummy.className = "combobox-field"
+document.getElementById("operations-table").appendChild(comboboxDummy);
 
 let rowOperations = [];
 for (let i = 0; i < coefTable.nRows; i++) {
