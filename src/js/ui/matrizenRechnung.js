@@ -29,7 +29,6 @@ function addTable() {
     let newTable = new Table(contentCell.id);
     newTable.addButtons();
     tables.push(newTable);
-
 }
 
 function removeTable() {
@@ -38,7 +37,7 @@ function removeTable() {
     }
     tables.pop();
     getById("table").removeChild(getById("table").lastChild);
-
+    
     tableContainers.pop();
 }
 
@@ -60,10 +59,10 @@ setEventListenerFunction("button-calculate", tables, [resultTable], () => {
     return [calculate(equation, tables)];
 });
 
-addKeyDownListener(tables);
-
 let conversionButtonchecked = false;
 getById("button-representation-conversion").addEventListener("click", () => {
     conversionButtonchecked = !conversionButtonchecked;
     resultTable.convertRepresentation(conversionButtonchecked);
 });
+
+addKeyDownListener(tables);

@@ -136,10 +136,7 @@ export class Table {
             if (this.tableElement.lastChild.childElementCount > this.nColumns) {
                 let dummyElement = document.createElement("td");
                 dummyElement.id = "dummy";
-                dummyElement.style =
-                    "width : " +
-                    getById(this.id + ".0.0").offsetWidth +
-                    "px";
+                dummyElement.style = "width : " + getById(this.id + ".0.0").offsetWidth + "px";
 
                 describtionRow.appendChild(dummyElement);
             }
@@ -151,18 +148,12 @@ export class Table {
                 subDes.innerText = i + 1;
                 colDescribtion.innerText = desCharacter;
                 colDescribtion.appendChild(subDes);
-                colDescribtion.style =
-                    "width : " +
-                    getById(this.id + ".0.0").offsetWidth +
-                    "px";
+                colDescribtion.style = "width : " + getById(this.id + ".0.0").offsetWidth + "px";
 
                 describtionRow.appendChild(colDescribtion);
             }
 
-            this.tableElement.insertBefore(
-                describtionRow,
-                this.tableElement.firstChild
-            );
+            this.tableElement.insertBefore(describtionRow, this.tableElement.firstChild);
         }
     }
 
@@ -436,37 +427,18 @@ export function addKeyDownListener(tables, nextTableToTheRight = false) {
             row += 1;
         } else if (e.code == "ArrowLeft" && column > 0) {
             column -= 1;
-        } else if (
-            e.code == "ArrowRight" &&
-            column < tables[tableIdx].nColumns - 1
-        ) {
+        } else if (e.code == "ArrowRight" && column < tables[tableIdx].nColumns - 1) {
             column += 1;
-        } else if (
-            e.code == "ArrowUp" &&
-            tableIdx > 0 &&
-            !nextTableToTheRight
-        ) {
+        } else if (e.code == "ArrowUp" && tableIdx > 0 && !nextTableToTheRight) {
             tableIdx -= 1;
             row = tables[tableIdx].nRows - 1;
-        } else if (
-            e.code == "ArrowDown" &&
-            tableIdx < tables.length - 1 &&
-            !nextTableToTheRight
-        ) {
+        } else if (e.code == "ArrowDown" && tableIdx < tables.length - 1 && !nextTableToTheRight) {
             tableIdx += 1;
             row = 0;
-        } else if (
-            e.code == "ArrowLeft" &&
-            tableIdx > 0 &&
-            nextTableToTheRight
-        ) {
+        } else if (e.code == "ArrowLeft" && tableIdx > 0 && nextTableToTheRight) {
             tableIdx -= 1;
             column = tables[tableIdx].nColumns - 1;
-        } else if (
-            e.code == "ArrowRight" &&
-            tableIdx < tables.length - 1 &&
-            nextTableToTheRight
-        ) {
+        } else if (e.code == "ArrowRight" && tableIdx < tables.length - 1 && nextTableToTheRight) {
             tableIdx += 1;
             column = 0;
         } else {
