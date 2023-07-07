@@ -1,7 +1,6 @@
 import { Fraction } from "./fraction.js";
 import { InvalidInputException } from "../exceptions.js";
 
-
 const operators = {
     "+": (a, b) => a.add(b),
     "-": (a, b) => a.sub(b),

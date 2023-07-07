@@ -229,7 +229,7 @@ export function addCombobox(id, rowOperations, table) {
 }
 
 export function removeCombobox(id, rowOperations) {
-    document.getElementById("combobox_" + (id - 1)).remove();
+    document.getElementById("combobox_" + (rowOperations.length-1)).remove();
     rowOperations.pop();
 
     return rowOperations;

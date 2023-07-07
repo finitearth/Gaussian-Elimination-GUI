@@ -99,15 +99,12 @@ for (let i = 0; i < coefTable.nRows; i++) {
 });
 
 let conversionButtonChecked = false;
-getById("button-representation-conversion").addEventListener(
-    "click",
-    () => {
-        conversionButtonChecked = !conversionButtonChecked;
-        tables.forEach(table => {
-            table.convertRepresentation(conversionButtonChecked);
-        });
-    }
-);
+getById("button-representation-conversion").addEventListener("click", () => {
+    conversionButtonChecked = !conversionButtonChecked;
+    tables.forEach(table => {
+        table.convertRepresentation(conversionButtonChecked);
+    });
+});
 
 listenTableDimension(
     "input-nr-eq",
