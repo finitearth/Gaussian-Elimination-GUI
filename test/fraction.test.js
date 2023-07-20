@@ -1,52 +1,52 @@
 import { Fraction, stringToFraction } from "../src/js/logic/fraction";
 import { Matrix } from "../src/js/logic/matrix";
 
+let a;
+let b;
+
+beforeEach(() => {
+    a = new Fraction(1, 2);
+    b = new Fraction(1, 4);
+});
+
 test("Fraction addition", () => {
-    let a = new Fraction(1, 2);
-    let b = new Fraction(1, 4);
     let c = a.add(b);
     expect(c).toEqual(new Fraction(3, 4));
 });
 
 test("Fraction Multiplication", () => {
-    let a = new Fraction(1, 2);
-    let b = new Fraction(1, 4);
     let c = a.mul(b);
     expect(c).toEqual(new Fraction(1, 8));
 });
 
 test("Fraction Division", () => {
-    let a = new Fraction(1, 2);
-    let b = new Fraction(1, 4);
     let c = a.div(b);
     expect(c).toEqual(new Fraction(2, 1));
 });
 
 test("Fraction reduction", () => {
-    let a = new Fraction(2, 4);
-    a = a.reduce();
-    expect(a).toEqual(new Fraction(1, 2));
+    let c = new Fraction(2, 4);
+    c = c.reduce();
+    expect(c).toEqual(a);
 });
 
 test("Fraction cloning", () => {
-    let a = new Fraction(1, 2);
-    let b = a.clone();
-    expect(a).toEqual(b);
+    let c = a.clone();
+    expect(a).toEqual(c);
 });
 
 test("Fraction stringify", () => {
-    let a = new Fraction(1, 2);
     expect(a.stringify()).toEqual("1/2");
 });
 
 test("Fraction stringify, denom=1", () => {
-    let a = new Fraction(1, 1);
-    expect(a.stringify()).toEqual("1");
+    let c = new Fraction(1, 1);
+    expect(c.stringify()).toEqual("1");
 });
 
 test("Fraction div by zero", () => {
-    let a = new Fraction(0, 1);
-    expect(() => a.inverse()).toThrow();
+    let c = new Fraction(0, 1);
+    expect(() => c.inverse()).toThrow();
 });
 
 test("Sub by Fraction", () => {
