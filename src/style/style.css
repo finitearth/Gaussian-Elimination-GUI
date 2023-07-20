@@ -489,10 +489,18 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
+    vertical-align: middle;
+    content: "0.75";
+    font-size: 9pt;
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
+
+input:not(checked) + .slider:before {
+    content: "¾";
+}
+
 
 /* Rounded sliders */
 .slider.round {
