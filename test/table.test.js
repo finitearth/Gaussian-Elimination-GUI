@@ -25,12 +25,10 @@ test("set Rows should work", () => {
 
     let spyAddRow = jest.spyOn(table, "addRow").mockImplementation(() => {
         table.rows.push(document.createElement("tr"));
-        console.log("MOOOOOOOCK 1");
     })
 
     let spyRemoveRow = jest.spyOn(table, "removeRow").mockImplementation(() => {
         table.rows.pop();
-        console.log("MOOOOOOOCK 2");
     })
     
     table.setNRows(7);

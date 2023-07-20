@@ -36,7 +36,7 @@ export function setEventListenerFunction(
     outputTables,
     operation
 ) {
-    let button = document.getElementById(buttonId);
+    let button = getById(buttonId);
     button.addEventListener("click", () => {
         try {
             let inputMatrices = inputTables.map(table => table.getData());
