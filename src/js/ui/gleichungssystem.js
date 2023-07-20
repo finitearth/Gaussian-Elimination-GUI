@@ -24,7 +24,7 @@ function createTable(
     if (disableInput) {
         table.disableInput();
     }
-    getById(id).appendChild(table.tableContainer);
+    // getById(id).appendChild(table.tableContainer);
     table.addRowDescription(rowDescription);
     table.addColumnDescription(desCharacter);
 
@@ -39,7 +39,7 @@ let tables = [coefTable, solTable, resCoefTable, resSolTable];
 
 let comboboxDummy = document.createElement("tr");
 comboboxDummy.className = "combobox-field";
-document.getElementById("operations-table").appendChild(comboboxDummy);
+// document.getElementById("operations-table").appendChild(comboboxDummy);
 
 let rowOperations = [];
 for (let i = 0; i < coefTable.nRows; i++) {

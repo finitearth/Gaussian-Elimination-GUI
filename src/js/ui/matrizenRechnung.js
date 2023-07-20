@@ -7,8 +7,7 @@ import { getById } from "../intermediate/getElement.js";
 function addTable() {
     if (tables.length > 25)
         return;
-
-
+        
     let tableRow = document.createElement("tr");
     
     let tableContainer = document.createElement("table");
@@ -29,6 +28,7 @@ function addTable() {
     let newTable = new Table(contentCell.id);
     newTable.addButtons();
     tables.push(newTable);
+}
 
 
 function removeTable() {
