@@ -209,9 +209,9 @@ test("add keydown listener should work", () => {
 });
 
 
-// test("set Row", () => {
-//     let table = new Table();
-//     let row = new Matrix([[new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)]]);
-//     table.setRow(0, row);
-//     expect(table.getData().getRow(0).equals(row)).toEqual(true);
-// });
+test("set Row", () => {
+    let table = new Table("test-id");
+    let row = new Matrix([[new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)]]);
+    table.setRow(0, row);
+    expect(table.getData().getRow(0).equals(row)).toEqual(true);
+});
