@@ -530,18 +530,29 @@ input:checked + .slider:before {
     padding: 0;
 }
 
-.button-berechnen-down::before {
-    content: "⮋";
-    font-size: 20pt;
-    padding-right: 0.25em;
+.button-berechnen-down{
+    background-image: url("../images/icon_arrow_down.png");
+    background-repeat: no-repeat;
+    background-size: 2.5em 2.5em;
     vertical-align: middle;
+    padding-left: 1.5em;
 }
 
-.button-hoch-up::before {
-    content: "⮉";
-    font-size: 20pt;
-    padding-right: 0.25em;
+
+.button-hoch-up{
+    background-image: url("../images/icon_arrow_up.png");
+    background-repeat: no-repeat;
+    background-size: 2.5em 2.5em;
     vertical-align: middle;
+    padding-left: 1.5em;
+}
+
+.button-solve{
+    background-image: url("../images/icon_magic_wand.png");
+    background-repeat: no-repeat;
+    background-size: 2.5em 2.5em;
+    vertical-align: middle;
+    padding-left: 1.5em;
 }
 
 .button-float-right{
