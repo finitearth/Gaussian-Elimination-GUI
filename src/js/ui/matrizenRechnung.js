@@ -5,9 +5,8 @@ import { getById } from "../intermediate/getElement.js";
 
 // =========== Tables ===========
 function addTable() {
-    if (tables.length > 25) {
+    if (tables.length > 25)
         return;
-    }
 
     let tableRow = document.createElement("tr");
     

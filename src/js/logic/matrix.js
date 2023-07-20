@@ -305,6 +305,7 @@ export class Matrix {
         }
 
         let determinant = ZERO;
+        let i = 0;
         for (let j = 0; j < this.nColumns; j++) {
             let sign = (i + j) % 2 == 0 ? 1 : -1;
             let subMatrix = this.getSubMatrix(i, j);

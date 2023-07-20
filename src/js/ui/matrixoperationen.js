@@ -51,7 +51,8 @@ addKeyDownListener([inputTable], true);
 // allowed character: 0-9, /, comma, . - nothing else
 let validPattern = /^[\d\/.,-]*$/;
 function validate(e) {
-    let valid = document.activeElement.value.match(validPattern);
+    let focused = document.activeElement;
+    let valid = focused.value.match(validPattern);
 
     if (!valid) {
         focused.classList.add("invalid");
