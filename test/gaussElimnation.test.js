@@ -2,16 +2,23 @@ import { gaussElimination } from "../src/js/logic/gaussalgorithm";
 import { getUnitMatrix, Matrix } from "../src/js/logic/matrix";
 import { Fraction } from "../src/js/logic/fraction";
 
-test("Inverting via GaussElimination twice should return orig. matrix", () => {
-    let coefMatrix = new Matrix([
+let matrix1;
+let unitMatrix;
+beforeEach(() => {
+    matrix1 = new Matrix([
         [new Fraction(1, 4), new Fraction(3, 4), new Fraction(5, 4)],
         [new Fraction(1, 1), new Fraction(9, 4), new Fraction(7, 4)],
         [new Fraction(1, 4), new Fraction(0, 1), new Fraction(3, 4)],
     ]);
-    let solMatrix = getUnitMatrix(3);
+    unitMatrix = getUnitMatrix(3);
+});
+
+
+// integration tests
+test("Inverting via GaussElimination twice should return orig. matrix", () => {
     let [coefMatrix2, solMatrix2] = gaussElimination(
-        coefMatrix,
-        solMatrix,
+        matrix1,
+        unitMatrix,
         true
     );
     let [coefMatrix3, solMatrix3] = gaussElimination(
@@ -19,8 +26,8 @@ test("Inverting via GaussElimination twice should return orig. matrix", () => {
         solMatrix2,
         true
     );
-    expect(coefMatrix3).toEqual(coefMatrix);
-    expect(solMatrix3).toEqual(solMatrix);
+    expect(coefMatrix3).toEqual(matrix1);
+    expect(solMatrix3).toEqual(unitMatrix);
 });
 
 test("matrix with linearly dependent rows should throw error", () => {
