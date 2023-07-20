@@ -52,7 +52,6 @@ let resultTable = new Table("table-result", false);
 resultTable.disableInput();
 
 // =========== Event listeners ===========
-
 getById("button-add-table").addEventListener("click", addTable);
 getById("remove-table").addEventListener("click", removeTable);
 
@@ -72,4 +71,3 @@ addKeyDownListener(tables);
 getById("button-representation-conversion").addEventListener("click", () => {
     resultTable.convertRepresentation(conversionButtonchecked);
 });
-
