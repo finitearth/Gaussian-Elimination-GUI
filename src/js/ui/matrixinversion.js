@@ -85,7 +85,7 @@ setEventListenerFunction(
     "button-adapt-result",
     [solIdentityTable, solCoefTable],
     [coefTable, identityTable],
-    (coefMatrix, solMatrix) => [solMatrix, coefMatrix]
+    (coefMatrix, solMatrix) => [coefMatrix, solMatrix]
 );
 
 setEventListenerFunction(
