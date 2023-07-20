@@ -155,7 +155,7 @@ export class Matrix {
     multiplyByMatrix(other) {
         if (this.nColumns != other.nRows) {
             // || this.nRows != other.nColumns) {
-            throw new Error("Matrix dimensions do not match");
+            throw new InvalidInputException();
         }
         let newArray = [];
         for (let i = 0; i < this.nRows; i++) {
@@ -354,50 +354,6 @@ export class Matrix {
             this.array[iRow][i] = newRow.getCell(0, i);
         }
         return this;
-    }
-    /**
-     * Check if the matrix is in standard form.
-     * @returns {boolean} - True if the matrix is in standard form, false otherwise.
-     */
-    isInStandardForm() {
-        for (let i = 0; i < this.nRows - 1; i++) {
-            if (this.getRow(i).lastIndexOf(0) > this.nCols - 2) {
-                return false;
-            }
-        }
-        return true;
-    }
-    /**
-     * Get the objective row of the matrix.
-     * @returns {Vector} - The objective row of the matrix.
-     */
-    getObjectiveRow() {
-        return this.getRow(this.nRows - 1);
-    }
-    /**
-     * Check if the vector has negative coefficients.
-     * @returns {boolean} - True if the vector has negative coefficients, false otherwise.
-     */
-    hasNegativeCoefficients() {
-        for (let i = 0; i < this.length - 1; i++) {
-            if (this[i].lt(0)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    /**
-     * Get the index of the most negative coefficient in the vector.
-     * @returns {number} - The index of the most negative coefficient in the vector.
-     */
-    getMostNegativeCoefficientIndex() {
-        let mostNegativeIndex = 0;
-        for (let i = 1; i < this.length - 1; i++) {
-            if (this[i].lt(this[mostNegativeIndex])) {
-                mostNegativeIndex = i;
-            }
-        }
-        return mostNegativeIndex;
     }
 
     /**
