@@ -1,9 +1,13 @@
 import {
     modifyDimListener,
     setEventListenerFunction,
+    listenTableDimension,
 } from "../src/js/intermediate/eventlisteners.js";
 import { getById } from "../src/js/intermediate/getElement.js";
 import { JSDOM } from "jsdom";
+import { Table } from "../src/js/intermediate/table.js";
+import { Matrix } from "../src/js/logic/matrix.js";
+import { Fraction } from "../src/js/logic/fraction.js";
 
 describe("modifyDimListener()", () => {
     let mockTables;
@@ -84,5 +88,116 @@ describe("modifyDimListener()", () => {
 
         // Check that the number of columns has decreased
         expect(getById("input-nr-cols").value).toEqual("2");
+    });
+});
+
+describe("setEventListenerFunction()", () => {
+    it("should call the operation function when the button is clicked", () => {
+        const dom = new JSDOM(`
+        <html>
+            <body>
+                <div id="id1"></div>
+                <button id="button"></button>
+            </body>
+        </html>
+        `);
+        global.document = dom.window.document;
+        let table = new Table("id1");
+        table.setData(new Matrix([[new Fraction(1, 2), new Fraction(1, 2)]]));
+        let fn = () => {
+            table.setData(
+                new Matrix([[new Fraction(1, 2), new Fraction(1, 2)]])
+            );
+        };
+        setEventListenerFunction("button", [table], [table], fn);
+        getById("button").click();
+        expect(table.getData()).toEqual(
+            new Matrix([[new Fraction(1, 2), new Fraction(1, 2)]])
+        );
+    });
+});
+
+// const jsdom = require("jsdom");
+// const { JSDOM } = jsdom;
+
+// const { listenTableDimension } = require("./eventlisteners");
+
+describe("listenTableDimension", () => {
+    let dom;
+    let input;
+    let tables;
+
+    beforeEach(() => {
+        dom = new JSDOM(`
+      <!DOCTYPE html>
+      <html>
+        <body>
+          <input id="input" type="number" value="2">
+          <table id="table1"></table>
+          <table id="table2"></table>
+        </body>
+      </html>
+    `);
+
+        input = dom.window.document.getElementById("input");
+        global.document = dom.window.document;
+        tables = [new Table("table1", 3), new Table("table2", 3)];
+    });
+
+    test("sets number of rows for tables when rowsOrCols is 'rows'", () => {
+        listenTableDimension("input", tables, [], "rows");
+
+        input.value = 5;
+        input.dispatchEvent(new dom.window.Event("input"));
+        expect(tables[0].rows).toHaveLength(5);
+    });
+
+    test("sets number of columns for tables when rowsOrCols is 'cols'", () => {
+        listenTableDimension("input", tables, [], "cols");
+
+        input.value = 4;
+        input.dispatchEvent(new dom.window.Event("input"));
+
+        expect(tables[0].nColumns).toEqual(4);
+        expect(tables[1].nColumns).toEqual(4);
+        expect(tables[0].nRows).toEqual(3);
+        expect(tables[1].nRows).toEqual(3);
+    });
+
+    test("adds column description when desCharacter is provided and rowsOrCols is 'cols'", () => {
+        const desCharacter = "y";
+        tables[0].setData(
+            new Matrix([
+                [new Fraction(1, 2), new Fraction(1, 2)],
+                [new Fraction(1, 2), new Fraction(1, 2)],
+            ])
+        );
+
+        tables[1].setData(
+            new Matrix([
+                [new Fraction(1, 2), new Fraction(1, 2)],
+                [new Fraction(1, 2), new Fraction(1, 2)],
+            ])
+        );
+
+        listenTableDimension(
+            "input",
+            tables,
+            [],
+            "cols",
+            false,
+            desCharacter,
+            true
+        );
+
+        input.value = 5;
+        input.dispatchEvent(new dom.window.Event("input"));
+            // check innertext of table[0].describtionRowId
+        expect(document.getElementById(tables[0].describtionRowId).firstChild.innerText).toEqual(desCharacter);
+        expect(document.getElementById(tables[1].describtionRowId).firstChild.innerText).toEqual(desCharacter);
+    });
+
+    afterEach(() => {
+        global.document = undefined;
     });
 });

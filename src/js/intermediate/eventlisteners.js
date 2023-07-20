@@ -88,7 +88,6 @@ export function listenTableDimension(
             } else if (rowsOrCols === "cols") {
                 table.setNColumns(numberEquations);
                 if (desCharacter) {
-                    console.log("shit");
                     table.addColumnDescription(desCharacter);
                 }
             }
