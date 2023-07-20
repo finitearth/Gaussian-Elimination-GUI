@@ -70,6 +70,6 @@ getById("button-representation-conversion").addEventListener("click", () => {
 
 addKeyDownListener(tables);
 getById("button-representation-conversion").addEventListener("click", () => {
-    resultTable.convertRepresentation(this.checked);
+    resultTable.convertRepresentation(conversionButtonchecked);
 });
 

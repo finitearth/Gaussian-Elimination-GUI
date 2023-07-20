@@ -265,7 +265,6 @@ export function stringToFraction(string) {
         // if string is empty, return 0/1
         return ZERO;
     }
-    console.log(string)
 
     if (string.includes("/")) {
         // split string into numerator and denominator
