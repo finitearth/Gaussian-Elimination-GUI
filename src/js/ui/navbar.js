@@ -38,8 +38,8 @@ function createHTMLForNavbar() {
             text: "Inversenberechnung",
         },
         {
-            ref: `anleitung.html`,
-            text: "Anleitung",
+            ref: `info.html`,
+            text: "ⓘ",
         },
     ];
     navbar.appendChild(navbarLogo);
