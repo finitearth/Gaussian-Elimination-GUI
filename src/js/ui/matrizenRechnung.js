@@ -8,6 +8,7 @@ function addTable() {
     if (tables.length > 25)
         return;
 
+
     let tableRow = document.createElement("tr");
     
     let tableContainer = document.createElement("table");
@@ -28,7 +29,7 @@ function addTable() {
     let newTable = new Table(contentCell.id);
     newTable.addButtons();
     tables.push(newTable);
-}
+
 
 function removeTable() {
     if (tables.length <= 2) {
@@ -38,6 +39,7 @@ function removeTable() {
     getById("table").removeChild(getById("table").lastChild);
     
     tableContainers.pop();
+
 }
 
 let tables = [];
@@ -50,6 +52,7 @@ let resultTable = new Table("table-result", false);
 resultTable.disableInput();
 
 // =========== Event listeners ===========
+
 getById("button-add-table").addEventListener("click", addTable);
 getById("remove-table").addEventListener("click", removeTable);
 
@@ -64,4 +67,9 @@ getById("button-representation-conversion").addEventListener("click", () => {
     resultTable.convertRepresentation(conversionButtonchecked);
 });
 
+
 addKeyDownListener(tables);
+getById("button-representation-conversion").addEventListener("click", () => {
+    resultTable.convertRepresentation(this.checked);
+});
+

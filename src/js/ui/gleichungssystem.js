@@ -24,6 +24,7 @@ function createTable(
     if (disableInput) {
         table.disableInput();
     }
+    getById(id).appendChild(table.tableContainer);
     table.addRowDescription(rowDescription);
     table.addColumnDescription(desCharacter);
 
@@ -102,7 +103,7 @@ let conversionButtonChecked = false;
 getById("button-representation-conversion").addEventListener("click", () => {
     conversionButtonChecked = !conversionButtonChecked;
     tables.forEach(table => {
-        table.convertRepresentation(conversionButtonChecked);
+        table.convertRepresentation(conversionButtonChecked)
     });
 });
 

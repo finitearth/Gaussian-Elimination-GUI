@@ -10,8 +10,8 @@ import {
     setEventListenerFunction,
     listenTableDimension,
 } from "../intermediate/eventlisteners.js";
-
 import { getById } from "../intermediate/getElement.js";
+
 // =========== Tables ===========
 
 /**
@@ -44,8 +44,24 @@ for (let i = 0; i < 3; i++) {
     rowOperations = addCombobox("combobox_" + i, rowOperations, coefTable);
 }
 
-listenTableDimension("button-dimension", [coefTable, solIdentityTable], rowOperations, "rows", false, "", true);
-listenTableDimension("button-dimension", [solCoefTable, identityTable], rowOperations, "rows", false, "", false);
+listenTableDimension(
+    "button-dimension",
+    [coefTable, solIdentityTable],
+    rowOperations,
+    "rows",
+    false,
+    "",
+    true
+);
+listenTableDimension(
+    "button-dimension",
+    [solCoefTable, identityTable],
+    rowOperations,
+    "rows",
+    false,
+    "",
+    false
+);
 listenTableDimension("button-dimension", tables, rowOperations, "cols");
 setEventListenerFunction(
     "button-dimension",
@@ -89,6 +105,7 @@ getById("button-representation-conversion").addEventListener(
     "click",
     () => {
         conversionButtonChecked = !conversionButtonChecked;
+
         tables.forEach(table => {
             table.convertRepresentation(conversionButtonChecked);
         });
