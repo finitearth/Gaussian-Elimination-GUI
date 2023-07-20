@@ -1,16 +1,28 @@
-// /**
-//  * @jest-environment jsdom
-//  */
+/**
+ * @jest-environment node
+ */
 
-// import { Table, addKeyDownListener } from "../src/js/intermediate/table.js";
-// import { Matrix } from "../src/js/logic/matrix.js";
-// import { Fraction } from "../src/js/logic/fraction.js";
+import { Table, addKeyDownListener } from "../src/js/intermediate/table.js";
+import { Matrix } from "../src/js/logic/matrix.js";
+import { Fraction } from "../src/js/logic/fraction.js";
+import { JSDOM } from "jsdom";
 
-// test("set Rows should work", () => {
-//     let table = new Table();
-//     table.setNRows(7);
-//     expect(table.rows.length).toEqual(7);
-// });
+beforeEach(() => {
+    const dom = new JSDOM(
+        `<html>
+         <div id="test-id">
+         </div>
+         </html>`
+    );
+    global.window = dom.window;
+    global.document = dom.window.document;
+});
+
+test("set Rows should work", () => {
+    let table = new Table("test-id");
+    table.setNRows(7);
+    expect(table.rows.length).toEqual(7);
+});
 
 // test("add columns should work", () => {
 //     let table = new Table();
