@@ -52,15 +52,6 @@ test("set Rows to a lower value should work", () => {
     expect(table.rows.length).toEqual(2);
 });
 
-
-
-
-
-
-
-
-
-
 test("set Columns to a higher value should work", () => {
     let table = new Table("test-id");
 
@@ -95,102 +86,103 @@ test("set Columns to a lower value should work", () => {
 
 
 
-// test("add columns should work", () => {
-//     let table = new Table();
-//     table.addColumn();
-//     expect(Array.from(table.rows[0].children).length).toEqual(4);
-// });
 
+test("buttons should not show if showButtons=false", () => {
+    let table = new Table("test-id", false);
 
-// test("remove columns should work", () => {
-//     let table = new Table();
-//     table.removeColumn();
-//     expect(Array.from(table.rows[0].children).length).toEqual(2);
-// });
+    let buttons = Array.from(table.tableContainer.children);
+    buttons = buttons.filter(button =>
+        button.classList.contains("table-button")
+    );
+    buttons.forEach(button => {
+        expect(button.style.display).toEqual("none");
+    });
+});
 
+test("disable input should work", () => {
+    let table = new Table("test-id");
+    table.disableInput();
+    expect(table.rows[0].children[0].children[0].disabled).toEqual(true);
+});
 
+test("reenabling input should work", () => {
+    let table = new Table("test-id");
+    table.disableInput();
+    table.enableInput();
+    expect(table.rows[0].children[0].children[0].disabled).toEqual(false);
+    expect(table.enabled).toEqual(true);
+});
 
-// test("set columns should work", () => {
-//     let table = new Table();
-//     table.setNColumns(7);
-//     expect(Array.from(table.rows[0].children).length).toEqual(7);
-// });
+test("setData should work", () => {
+    let table = new Table("test-id");
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(3, 4), new Fraction(5, 4)],
+        [new Fraction(1, 1), new Fraction(9, 4), new Fraction(7, 4)],
+        [new Fraction(1, 2), new Fraction(1, 4), new Fraction(3, 4)],
+    ])
 
+    
+    let spySetNRows = jest.spyOn(table, "setNRows").mockImplementation(() => {
+       table.nRows = 3;
+    })
 
-// test("buttons should not show if showButtons=false", () => {
-//     let table = new Table("test", false);
-//     table.setNRows(2);
+    let spySetNColumns = jest.spyOn(table, "setNColumns").mockImplementation(() => {
+        table.nColumns = 3;
+    })
 
-//     let buttons = Array.from(table.tableContainer.children);
-//     buttons = buttons.filter(button =>
-//         button.classList.contains("table-button")
-//     );
-//     buttons.forEach(button => {
-//         expect(button.style.display).toEqual("none");
-//     });
-// });
+    table.setData(data);
+    expect(table.getData()).toEqual(data);
+});
 
-// test("disable input should work", () => {
-//     let table = new Table();
-//     table.disableInput();
-//     expect(table.rows[0].children[0].children[0].disabled).toEqual(true);
-// });
+test("set Data with only a fraction should work", () => {
+    let table = new Table("test-id");
+    let data = new Matrix([
+        [new Fraction(1, 4)]
+    ])
+    table.setData(data);
+    expect(table.getData()).toEqual(data);
+});
 
-// toString("reenabling input should work", () => {
-//     let table = new Table();
-//     table.disableInput();
-//     table.enableInput();
-//     expect(table.rows[0].children[0].children[0].disabled).toEqual(false);
-//     excpect(table.enabled).toEqual(true);
-// });
+test("toDecimal should work", () => {
+    let table = new Table("test-id");
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+    ])
+    let spyGetData = jest.spyOn(table, "getData").mockImplementation(() => {
+        return data;
+     })
+    table.setData(data);
+    table.toDecimal();
+    table.tableContainer.querySelectorAll("input").forEach(input => {
+        expect(input.value).toEqual("0.25");
+    }
+    );
+});
 
-// test("setData should work", () => {
-//     let table = new Table();
-//     let data = new Matrix([
-//         [new Fraction(1, 4), new Fraction(3, 4), new Fraction(5, 4)],
-//         [new Fraction(1, 1), new Fraction(9, 4), new Fraction(7, 4)],
-//         [new Fraction(1, 2), new Fraction(1, 4), new Fraction(3, 4)],
-//     ])
-//     table.setData(data);
-//     expect(table.getData()).toEqual(data);
-// });
+test("toFraction should work", () => {
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+    ])
+    let table = new Table("test-id");
 
-// test("set Data with only a fraction should work", () => {
-//     let table = new Table();
-//     let data = new Fraction(1, 4);
-//     table.setData(data);
-//     expect(table.getData()).toEqual(new Matrix([[data]]));
-// });
-
-// test("toDecimal should work", () => {
-//     let table = new Table();
-//     let data = new Matrix([
-//         [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
-//         [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
-//         [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
-//     ])
-//     table.setData(data);
-//     table.toDecimal();
-//     table.tableContainer.querySelectorAll("input").forEach(input => {
-//         expect(input.value).toEqual("0.25");
-//     }
-//     );
-// });
-
-// test("toFraction should work", () => {
-//     let table = new Table();
-//     let data = new Matrix([
-//         [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
-//         [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
-//         [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
-//     ])
-//     table.setData(data);
-//     table.toDecimal();
-//     table.toFraction();
-//     table.tableContainer.querySelectorAll("input").forEach(input => {
-//         expect(input.value).toEqual("1/4");
-//     });
-// });
+    let spyToDecimal = jest.spyOn(table, "toDecimal").mockImplementation(() => {
+        table.fractionArray = [
+            [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+            [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+            [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        ]
+     })
+    table.setData(data);
+    table.toDecimal();
+    table.toFraction();
+    table.tableContainer.querySelectorAll("input").forEach(input => {
+        expect(input.value).toEqual("1/4");
+    });
+});
 
 // test("reading from user input in table should work", () => {
 //     let table = new Table();
