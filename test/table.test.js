@@ -10,18 +10,33 @@ import { JSDOM } from "jsdom";
 beforeEach(() => {
     const dom = new JSDOM(
         `<html>
-         <div id="test-id">
-         </div>
-         </html>`
+        <div id="test-id">
+        </div>
+        </html>`
     );
     global.window = dom.window;
     global.document = dom.window.document;
+
+    
 });
 
 test("set Rows should work", () => {
     let table = new Table("test-id");
+
+    let spyAddRow = jest.spyOn(table, "addRow").mockImplementation(() => {
+        table.rows.push(document.createElement("tr"));
+        console.log("MOOOOOOOCK 1");
+    })
+
+    let spyRemoveRow = jest.spyOn(table, "removeRow").mockImplementation(() => {
+        table.rows.pop();
+        console.log("MOOOOOOOCK 2");
+    })
+    
     table.setNRows(7);
     expect(table.rows.length).toEqual(7);
+    table.setNRows(2);
+    expect(table.rows.length).toEqual(2);
 });
 
 // test("add columns should work", () => {
