@@ -10,19 +10,90 @@ import { JSDOM } from "jsdom";
 beforeEach(() => {
     const dom = new JSDOM(
         `<html>
-         <div id="test-id">
-         </div>
-         </html>`
+        <div id="test-id">
+        </div>
+        </html>`
     );
     global.window = dom.window;
     global.document = dom.window.document;
+
+    
 });
 
-test("set Rows should work", () => {
+test("set Rows to a higher value should work", () => {
     let table = new Table("test-id");
+
+    let spyAddRow = jest.spyOn(table, "addRow").mockImplementation(() => {
+        table.rows.push(document.createElement("tr"));
+    })
+
+    let spyRemoveRow = jest.spyOn(table, "removeRow").mockImplementation(() => {
+        table.rows.pop();
+    })
+
     table.setNRows(7);
+    expect(spyAddRow).toHaveBeenCalled()
     expect(table.rows.length).toEqual(7);
 });
+
+test("set Rows to a lower value should work", () => {
+    let table = new Table("test-id");
+
+    let spyAddRow = jest.spyOn(table, "addRow").mockImplementation(() => {
+        table.rows.push(document.createElement("tr"));
+    })
+
+    let spyRemoveRow = jest.spyOn(table, "removeRow").mockImplementation(() => {
+        table.rows.pop();
+    })
+
+    table.setNRows(2);
+    expect(spyRemoveRow).toHaveBeenCalled()
+    expect(table.rows.length).toEqual(2);
+});
+
+
+
+
+
+
+
+
+
+
+test("set Columns to a higher value should work", () => {
+    let table = new Table("test-id");
+
+    let spyAddColumn = jest.spyOn(table, "addColumn").mockImplementation(() => {
+        table.nColumns += 1;
+    })
+
+    let spyRemoveColumn = jest.spyOn(table, "removeColumn").mockImplementation(() => {
+        table.nColumns -= 1;
+    })
+
+    table.setNColumns(7);
+    expect(spyAddColumn).toHaveBeenCalled()
+    expect(table.nColumns).toEqual(7);
+});
+
+test("set Columns to a lower value should work", () => {
+    let table = new Table("test-id");
+
+    let spyAddColumn = jest.spyOn(table, "addColumn").mockImplementation(() => {
+        table.nColumns += 1;
+    })
+
+    let spyRemoveColumn = jest.spyOn(table, "removeColumn").mockImplementation(() => {
+        table.nColumns -= 1;
+    })
+
+    table.setNColumns(2);
+    expect(spyRemoveColumn).toHaveBeenCalled()
+    expect(table.nColumns).toEqual(2);
+});
+
+
 
 // test("add columns should work", () => {
 //     let table = new Table();

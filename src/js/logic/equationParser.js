@@ -12,7 +12,9 @@ export function calculate(equationString, tables) {
     if (
         !equationString.match(/^[a-z0-9\+\-\*\(\)\s\/]+$/i) ||
         equationString.match(/[a-z]{2,}/i) ||
-        equationString.match(/[\+\-\*]{2,}/i)
+        equationString.match(/[\+\-\*]{2,}/i) ||
+        equationString.match(/[\+\-\*\/]$/i) ||
+        equationString.match(/^[\+\-\*\/]/i)
     ) {
         throw new InvalidInputException();
     }

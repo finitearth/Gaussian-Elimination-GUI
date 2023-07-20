@@ -1,5 +1,5 @@
 import { Matrix } from "./matrix.js";
-import { DivByZeroException } from "../exceptions.js";
+import { DivByZeroException, InvalidInputException } from "../exceptions.js";
 
 /**
  * Class for fractions, defined as numerator divided by denominator.
@@ -265,7 +265,6 @@ export function stringToFraction(string) {
         // if string is empty, return 0/1
         return ZERO;
     }
-    console.log(string)
 
     if (string.includes("/")) {
         // split string into numerator and denominator
