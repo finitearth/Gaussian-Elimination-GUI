@@ -1,4 +1,5 @@
 import { NEGONE, stringToFraction } from "../logic/fraction.js";
+import { getById } from "./getElement.js";
 
 export class RowOperation {
     constructor(id, table) {
@@ -190,20 +191,13 @@ export class RowOperation {
         // subj = Row to be modified, obj = row subj is modified with
         let subjIdx = Number(this.id.substr(9));
         let subjMultiplier = stringToFraction(this.firstTextFieldValue);
-        let mulOrDivSubj = document.getElementById(
-            this.firstOperatorDropdownID
-        ).value;
+        let mulOrDivSubj = getById(this.firstOperatorDropdownID).value;
 
-        let operation = document.getElementById(
-            this.secondOperatorDropdownID
-        ).value;
+        let operation = getById(this.secondOperatorDropdownID).value;
 
-        let objIdx =
-            Number(document.getElementById(this.rowDropdownID).value) - 1;
+        let objIdx = Number(getById(this.rowDropdownID).value) - 1;
         let objMultiplier = stringToFraction(this.secondTextFieldValue);
-        let mulOrDivObj = document.getElementById(
-            this.thirdOperatorDropdownID
-        ).value;
+        let mulOrDivObj = getById(this.thirdOperatorDropdownID).value;
 
         if (mulOrDivSubj === "/") {
             subjMultiplier = subjMultiplier.inverse();
@@ -226,16 +220,16 @@ export class RowOperation {
 
 export function addCombobox(id, rowOperations, table) {
     rowOperations.push(new RowOperation(id, table));
-    
-    document
-        .getElementById("operations-table")
-        .appendChild(rowOperations[rowOperations.length - 1].comboBoxElement);
+
+    getById("operations-table").appendChild(
+        rowOperations[rowOperations.length - 1].comboBoxElement
+    );
 
     return rowOperations;
 }
 
 export function removeCombobox(id, rowOperations) {
-    document.getElementById("combobox_" + (id - 1)).remove();
+    document.getElementById("combobox_" + (rowOperations.length-1)).remove();
     rowOperations.pop();
 
     return rowOperations;
@@ -243,10 +237,14 @@ export function removeCombobox(id, rowOperations) {
 
 export function adaptComboboxes(rowOperations, table, n) {
     while (rowOperations.length < n) {
-        rowOperations = addCombobox(("combobox_"+rowOperations.length), rowOperations, table);
+        rowOperations = addCombobox(
+            "combobox_" + rowOperations.length,
+            rowOperations,
+            table
+        );
     }
     while (rowOperations.length > n) {
-        rowOperations = removeCombobox((rowOperations.length-1), rowOperations);
+        rowOperations = removeCombobox(rowOperations.length - 1, rowOperations);
     }
 
     return rowOperations;
@@ -266,10 +264,12 @@ export function applyRowOperations(matrix, rowOperations) {
     let matrixCopy = matrix.clone();
 
     rowOperations
-        .filter(r => r.enabled)
-        .forEach((rowOperation, i) => {
-            let newMatrix = rowOperation.apply(matrix);
-            matrixCopy = matrixCopy.setRow(i, newMatrix);
+        // .filter(r => r.enabled)
+        .forEach((r, i) => {
+            if (r.enabled) {
+                let newMatrix = r.apply(matrix);
+                matrixCopy = matrixCopy.setRow(i, newMatrix.getRow(i));
+            }
         });
     return matrixCopy;
 }

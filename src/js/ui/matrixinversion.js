@@ -10,6 +10,7 @@ import {
     setEventListenerFunction,
     listenTableDimension,
 } from "../intermediate/eventlisteners.js";
+import { getById } from "../intermediate/getElement.js";
 
 // =========== Tables ===========
 
@@ -23,7 +24,6 @@ function addTable(id, disableInput, rowDescription = false) {
         table.disableInput();
     }
     table.addRowDescription(rowDescription);
-    document.getElementById(id).appendChild(table.tableContainer);
     return table;
 }
 
@@ -100,13 +100,17 @@ setEventListenerFunction(
     }
 );
 
-document
-    .getElementById("button-representation-conversion")
-    .addEventListener("click", () => {
+let conversionButtonChecked = false;
+getById("button-representation-conversion").addEventListener(
+    "click",
+    () => {
+        conversionButtonChecked = !conversionButtonChecked;
+
         tables.forEach(table => {
-            table.convertRepresentation(this.checked);
+            table.convertRepresentation(conversionButtonChecked);
         });
-    });
+    }
+);
 
 setEventListenerFunction("button-generate-excercise", [], [coefTable], () => [
     generateMatrix(dimension, dimension),

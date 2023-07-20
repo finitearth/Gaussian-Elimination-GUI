@@ -1,6 +1,7 @@
 import { designConfig } from "../config.js";
 import { Matrix } from "../logic/matrix.js";
 import { Fraction, stringToFraction } from "../logic/fraction.js";
+import { getById } from "./getElement.js";
 
 /**
  *  Represents a table object with functionality to add, remove rows and columns dynamically.
@@ -24,8 +25,27 @@ export class Table {
             this.addRow();
         }
 
-        this.tableContainer = document.createElement("div");
-        this.tableContainer.appendChild(this.tableElement);
+        this.tableContainer = getById(id);
+
+        // append to table container two rows and two columns
+        this.row1 = document.createElement("tr");
+        this.row2 = document.createElement("tr");
+        this.emptyCell = document.createElement("td");
+        this.buttonsColCell = document.createElement("td");
+        this.buttonsColCell.classList.add("horizontal-align-sizebuttons");
+        this.buttonsRowCell = document.createElement("td");
+        this.buttonsRowCell.classList.add("vertical-align-sizebuttons");
+        this.tableCell = document.createElement("td");
+
+        // append
+        this.row1.appendChild(this.emptyCell);
+        this.row1.appendChild(this.buttonsColCell);
+        this.row2.appendChild(this.buttonsRowCell);
+        this.row2.appendChild(this.tableCell);
+        this.tableCell.appendChild(this.tableElement);
+
+        this.tableContainer.appendChild(this.row1);
+        this.tableContainer.appendChild(this.row2);
 
         this.descriptionColumnId = "description-column";
         this.describtionRowId = "description-row";
@@ -88,16 +108,16 @@ export class Table {
             var counter = 0;
             this.tableElement.childNodes.forEach(row => {
                 if (row.id != this.describtionRowId) {
-                    counter = counter+1;
+                    counter = counter + 1;
 
                     if (row.firstChild.id === this.descriptionColumnId) {
                         row.firstChild.remove();
                     }
-                    
+
                     let rowDes = document.createElement("td");
                     rowDes.id = this.descriptionColumnId;
-                    rowDes.innerText = "("+counter+")";
-        
+                    rowDes.innerText = "(" + counter + ")";
+
                     row.insertBefore(rowDes, row.firstChild);
                 }
             });
@@ -106,36 +126,34 @@ export class Table {
 
     addColumnDescription(desCharacter) {
         if (typeof desCharacter) {
-            
-        if (this.tableElement.firstChild.id === this.describtionRowId) {
-            this.tableElement.firstChild.remove();
-        }
+            if (this.tableElement.firstChild.id === this.describtionRowId) {
+                this.tableElement.firstChild.remove();
+            }
 
-        let describtionRow = document.createElement("tr");
-        describtionRow.id = this.describtionRowId;
+            let describtionRow = document.createElement("tr");
+            describtionRow.id = this.describtionRowId;
 
-        if (this.tableElement.lastChild.childElementCount > this.nColumns) {
+            if (this.tableElement.lastChild.childElementCount > this.nColumns) {
+                let dummyElement = document.createElement("td");
+                dummyElement.id = "dummy";
+                dummyElement.style = "width : " + getById(this.id + ".0.0").offsetWidth + "px";
 
-            let dummyElement = document.createElement("td");
-            dummyElement.id = "dummy";
-            dummyElement.style = "width : "+document.getElementById(this.id+".0.0").offsetWidth+"px";
+                describtionRow.appendChild(dummyElement);
+            }
 
-            describtionRow.appendChild(dummyElement);
-        }
-    
-        for (let i = 0; i < this.nColumns; i++) {
-            let colDescribtion = document.createElement("td");
-            let subDes = document.createElement("sub");
+            for (let i = 0; i < this.nColumns; i++) {
+                let colDescribtion = document.createElement("td");
+                let subDes = document.createElement("sub");
 
-            subDes.innerText = i+1;
-            colDescribtion.innerText = desCharacter;
-            colDescribtion.appendChild(subDes)
-            colDescribtion.style = "width : "+document.getElementById(this.id+".0.0").offsetWidth+"px";
-    
-            describtionRow.appendChild(colDescribtion);
-        }
-        
-        this.tableElement.insertBefore(describtionRow, this.tableElement.firstChild);
+                subDes.innerText = i + 1;
+                colDescribtion.innerText = desCharacter;
+                colDescribtion.appendChild(subDes);
+                colDescribtion.style = "width : " + getById(this.id + ".0.0").offsetWidth + "px";
+
+                describtionRow.appendChild(colDescribtion);
+            }
+
+            this.tableElement.insertBefore(describtionRow, this.tableElement.firstChild);
         }
     }
 
@@ -173,58 +191,62 @@ export class Table {
         }
     }
 
-    // addButtons() {
-    //     const buttons = [
-    //         {
-    //             name: "+",
-    //             class: "button-addrow",
-    //             function: e => {
-    //                 if (this.rows.length < designConfig.maxRows) {
-    //                     this.addRow();
-    //                 }
-    //             },
-    //         },
-    //         {
-    //             name: "-",
-    //             class: "button-removerow",
-    //             function: e => {
-    //                 if (this.rows.length > designConfig.minRows) {
-    //                     this.removeRow(false);
-    //                 }
-    //             },
-    //         },
-    //         {
-    //             name: "+",
-    //             class: "button-addcol",
-    //             function: e => {
-    //                 if (this.nColumns < designConfig.maxColumns) {
-    //                     this.addColumn();
-    //                 }
-    //             },
-    //         },
-    //         {
-    //             name: "-",
-    //             class: "button-removecol",
-    //             function: e => {
-    //                 if (this.nColumns > designConfig.minColumns) {
-    //                     this.removeColumn(false);
-    //                 }
-    //             },
-    //         },
-    //     ];
+    addButtons() {
+        const buttons = [
+            {
+                name: "+",
+                class: "button-matrixsize button-addrow",
+                pos: "top",
+                function: e => {
+                    if (this.rows.length < designConfig.maxRows) {
+                        this.addRow();
+                    }
+                },
+            },
+            {
+                name: "-",
+                class: "button-matrixsize button-removerow",
+                pos: "top",
+                function: e => {
+                    if (this.rows.length > designConfig.minRows) {
+                        this.removeRow(false);
+                    }
+                },
+            },
+            {
+                name: "+",
+                class: "button-matrixsize button-addcol",
+                pos: "left",
+                function: e => {
+                    if (this.nColumns < designConfig.maxColumns) {
+                        this.addColumn();
+                    }
+                },
+            },
+            {
+                name: "-",
+                class: "button-matrixsize button-removecol",
+                pos: "left",
+                function: e => {
+                    if (this.nColumns > designConfig.minColumns) {
+                        this.removeColumn(false);
+                    }
+                },
+            },
+        ];
 
-    //     let buttonRowContainer = document.getElementById("container-row-buttons");
-    //     let buttonColContainer = document.getElementById("container-col-buttons");
-
-    //     buttons.forEach(button => {
-    //         const buttonElement = document.createElement("button");
-    //         buttonElement.textContent = button.name;
-    //         buttonElement.classList.add(button.class);
-    //         buttonElement.classList.add("table-button");
-    //         buttonElement.addEventListener("click", button.function.bind(this));
-    //         this.tableContainer.appendChild(buttonElement);
-    //     });
-    // }
+        buttons.forEach(button => {
+            const buttonElement = document.createElement("button");
+            buttonElement.className = button.class;
+            buttonElement.textContent = button.name;
+            buttonElement.addEventListener("click", button.function.bind(this));
+            if (button.pos === "top") {
+                this.buttonsRowCell.appendChild(buttonElement);
+            } else {
+                this.buttonsColCell.appendChild(buttonElement);
+            }
+        });
+    }
 
     /**
     Removes the last row from the table.
@@ -266,7 +288,7 @@ export class Table {
         let data = matrix.array;
         for (let i = 0; i < data.length; i++) {
             for (let j = 0; j < data[0].length; j++) {
-                let input = document.getElementById(`${this.id}.${i}.${j}`);
+                let input = getById(`${this.id}.${i}.${j}`);
                 input.value = data[i][j].stringify();
             }
         }
@@ -297,9 +319,7 @@ export class Table {
         for (let i = 0; i < this.rows.length; i++) {
             let row = [];
             for (let j = 0; j < this.nColumns; j++) {
-                console.log(this.nColumns);
-                // j +1 because of the description column
-                let input = document.getElementById(`${this.id}.${i}.${j}`);
+                let input = getById(`${this.id}.${i}.${j}`);
                 let val = input.value;
                 val = stringToFraction(val);
                 row.push(val);
@@ -352,7 +372,7 @@ export class Table {
         this.fractionArray = this.getData();
         for (let i = 0; i < this.rows.length; i++) {
             for (let j = 0; j < this.nColumns; j++) {
-                let input = this.rows[i].childNodes[j].childNodes[0];
+                let input = getById(`${this.id}.${i}.${j}`);
                 let val = input.value;
                 val = stringToFraction(val);
                 input.value = val.toDecimal();
@@ -370,7 +390,7 @@ export class Table {
         }
         for (let i = 0; i < this.rows.length; i++) {
             for (let j = 0; j < this.nColumns; j++) {
-                let input = this.rows[i].childNodes[j].childNodes[0];
+                let input = getById(`${this.id}.${i}.${j}`);
                 let val = input.value;
                 val = stringToFraction(val);
                 input.value = val.stringify();
@@ -407,44 +427,25 @@ export function addKeyDownListener(tables, nextTableToTheRight = false) {
             row += 1;
         } else if (e.code == "ArrowLeft" && column > 0) {
             column -= 1;
-        } else if (
-            e.code == "ArrowRight" &&
-            column < tables[tableIdx].nColumns - 1
-        ) {
+        } else if (e.code == "ArrowRight" && column < tables[tableIdx].nColumns - 1) {
             column += 1;
-        } else if (
-            e.code == "ArrowUp" &&
-            tableIdx > 0 &&
-            !nextTableToTheRight
-        ) {
+        } else if (e.code == "ArrowUp" && tableIdx > 0 && !nextTableToTheRight) {
             tableIdx -= 1;
             row = tables[tableIdx].nRows - 1;
-        } else if (
-            e.code == "ArrowDown" &&
-            tableIdx < tables.length - 1 &&
-            !nextTableToTheRight
-        ) {
+        } else if (e.code == "ArrowDown" && tableIdx < tables.length - 1 && !nextTableToTheRight) {
             tableIdx += 1;
             row = 0;
-        } else if (
-            e.code == "ArrowLeft" &&
-            tableIdx > 0 &&
-            nextTableToTheRight
-        ) {
+        } else if (e.code == "ArrowLeft" && tableIdx > 0 && nextTableToTheRight) {
             tableIdx -= 1;
             column = tables[tableIdx].nColumns - 1;
-        } else if (
-            e.code == "ArrowRight" &&
-            tableIdx < tables.length - 1 &&
-            nextTableToTheRight
-        ) {
+        } else if (e.code == "ArrowRight" && tableIdx < tables.length - 1 && nextTableToTheRight) {
             tableIdx += 1;
             column = 0;
         } else {
             return;
         }
         tableId = tableIds[tableIdx];
-        let cell = document.getElementById(`${tableId}.${row}.${column}`);
+        let cell = getById(`${tableId}.${row}.${column}`);
         cell.select();
     });
 }

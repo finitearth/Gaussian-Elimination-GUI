@@ -265,6 +265,7 @@ export function stringToFraction(string) {
         // if string is empty, return 0/1
         return ZERO;
     }
+    console.log(string)
 
     if (string.includes("/")) {
         // split string into numerator and denominator
@@ -282,8 +283,9 @@ export function stringToFraction(string) {
         let digits = string.split(".")[1].length;
 
         let decimal = Number(string);
+        numerator = decimal * 10 ** digits;
         denominator = 10 ** digits;
-        numerator = decimal * denominator;
+
     } else if (string.match(/^-?[0-9]+$/)) {
         // string consists of only numerals
         numerator = Number(string);

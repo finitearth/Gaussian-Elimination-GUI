@@ -310,7 +310,7 @@ export class Matrix {
             let sign = (i + j) % 2 == 0 ? 1 : -1;
             let subMatrix = this.getSubMatrix(i, j);
             let subDeterminant = subMatrix.getDeterminant();
-            let coefficient = this.getCell(i, j);
+            let coefficient = this.getCell(0, j);
             determinant = determinant.add(
                 coefficient.mul(subDeterminant).mul(sign)
             );
@@ -343,12 +343,61 @@ export class Matrix {
         }
         return new Matrix(newArray);
     }
-
+    /**
+     * Sets the values of a row in the matrix to the values of a row in another matrix.
+     * @param {number} iRow - The index of the row to set.
+     * @param {Matrix} newRow - The matrix containing the new row values.
+     * @returns {Matrix} This matrix object, for chaining.
+     */
     setRow(iRow, newRow) {
         for (let i = 0; i < this.nColumns; i++) {
             this.array[iRow][i] = newRow.getCell(0, i);
         }
         return this;
+    }
+    /**
+     * Check if the matrix is in standard form.
+     * @returns {boolean} - True if the matrix is in standard form, false otherwise.
+     */
+    isInStandardForm() {
+        for (let i = 0; i < this.nRows - 1; i++) {
+            if (this.getRow(i).lastIndexOf(0) > this.nCols - 2) {
+                return false;
+            }
+        }
+        return true;
+    }
+    /**
+     * Get the objective row of the matrix.
+     * @returns {Vector} - The objective row of the matrix.
+     */
+    getObjectiveRow() {
+        return this.getRow(this.nRows - 1);
+    }
+    /**
+     * Check if the vector has negative coefficients.
+     * @returns {boolean} - True if the vector has negative coefficients, false otherwise.
+     */
+    hasNegativeCoefficients() {
+        for (let i = 0; i < this.length - 1; i++) {
+            if (this[i].lt(0)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
+     * Get the index of the most negative coefficient in the vector.
+     * @returns {number} - The index of the most negative coefficient in the vector.
+     */
+    getMostNegativeCoefficientIndex() {
+        let mostNegativeIndex = 0;
+        for (let i = 1; i < this.length - 1; i++) {
+            if (this[i].lt(this[mostNegativeIndex])) {
+                mostNegativeIndex = i;
+            }
+        }
+        return mostNegativeIndex;
     }
 
     /**
@@ -374,11 +423,10 @@ export class Matrix {
 }
 
 /**
-
-    Returns an n x n unit matrix.
-    @param {number} n - The number of rows and columns of the matrix.
-    @returns {Matrix} - The n x n unit matrix.
-    */
+ *  Returns an n x n unit matrix.
+ *  @param {number} n - The number of rows and columns of the matrix.
+ *  @returns {Matrix} - The n x n unit matrix.
+ */
 export function getUnitMatrix(n) {
     let matrix = [];
     for (let i = 0; i < n; i++) {

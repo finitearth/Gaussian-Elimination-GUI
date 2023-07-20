@@ -1,29 +1,35 @@
 import { Table, addKeyDownListener } from "../intermediate/table.js";
 import { calculate } from "../logic/equationParser.js";
-import { modifyDimListener, setEventListenerFunction } from "../intermediate/eventlisteners.js";
+import { setEventListenerFunction } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 
 // =========== Tables ===========
 function addTable() {
-    if (tables.length > 25) {
+    if (tables.length > 25)
         return;
-    }
-    let newTable = new Table(tables.length);
-    // newTable.addButtons();
-    tables.push(newTable);
-
-    let tableContainer = document.createElement("table");
+        
     let tableRow = document.createElement("tr");
+    
+    let tableContainer = document.createElement("table");
+    getById("table").appendChild(tableContainer);
+    
     let letterCell = document.createElement("td");
-    let letter = String.fromCharCode(64 + tables.length);
+    let letter = String.fromCharCode(65 + tables.length);
     letterCell.innerHTML = `${letter} =`;
     tableRow.appendChild(letterCell);
+    
     let contentCell = document.createElement("td");
-    contentCell.appendChild(tables[tables.length - 1].tableContainer);
+    contentCell.id = `table-${tables.length}`;
     tableRow.appendChild(contentCell);
+
     tableContainer.appendChild(tableRow);
     getById("table").appendChild(tableContainer);
+
+    let newTable = new Table(contentCell.id);
+    newTable.addButtons();
+    tables.push(newTable);
 }
+
 
 function removeTable() {
     if (tables.length <= 2) {
@@ -31,19 +37,21 @@ function removeTable() {
     }
     tables.pop();
     getById("table").removeChild(getById("table").lastChild);
+    
+    tableContainers.pop();
+
 }
 
 let tables = [];
+let tableContainers = [];
 for (let i = 0; i < 2; i++) {
     addTable();
 }
 
 let resultTable = new Table("table-result", false);
 resultTable.disableInput();
-getById("table-result").appendChild(resultTable.tableContainer);
 
 // =========== Event listeners ===========
-modifyDimListener(tables);
 
 getById("button-add-table").addEventListener("click", addTable);
 getById("remove-table").addEventListener("click", removeTable);
@@ -53,8 +61,15 @@ setEventListenerFunction("button-calculate", tables, [resultTable], () => {
     return [calculate(equation, tables)];
 });
 
-addKeyDownListener(tables);
+let conversionButtonchecked = false;
+getById("button-representation-conversion").addEventListener("click", () => {
+    conversionButtonchecked = !conversionButtonchecked;
+    resultTable.convertRepresentation(conversionButtonchecked);
+});
 
+
+addKeyDownListener(tables);
 getById("button-representation-conversion").addEventListener("click", () => {
     resultTable.convertRepresentation(this.checked);
 });
+
