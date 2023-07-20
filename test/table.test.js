@@ -189,14 +189,6 @@ test("reading from user input in table should work", () => {
 });
 
 test("add keydown listener should work", () => {
-    // sample.test.js
-
-    // const { addKeyDownListener } = require('./your-module-file'); // Replace with the actual path to your module
-
-    // Mock the DOM environment using JSDOM before running the tests
-    
-
-
     let table = new Table("test-id");
     let data = new Matrix([
         [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
@@ -205,16 +197,14 @@ test("add keydown listener should work", () => {
     ])
     table.setData(data)
     addKeyDownListener([table]);
+    document.getElementById("test-id.1.1").focus();
     let selectedCell = document.activeElement;
     let id = selectedCell.id;
-    let event = new KeyboardEvent("keydown", { key: "ArrowDown" });
+    let event = new KeyboardEvent("keydown", { code: "ArrowDown" })
     document.dispatchEvent(event);
     // get id of cell below
     selectedCell = document.activeElement;
     let newId = selectedCell.id;
-    console.log(id)
-    console.log(newId)
-    console.log(selectedCell)
     expect(id).not.toEqual(newId);
 });
 

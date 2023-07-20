@@ -444,8 +444,9 @@ export function addKeyDownListener(tables, nextTableToTheRight = false) {
         } else {
             return;
         }
+
         tableId = tableIds[tableIdx];
         let cell = getById(`${tableId}.${row}.${column}`);
-        cell.select();
+        cell.focus();
     });
 }
