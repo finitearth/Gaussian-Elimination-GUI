@@ -65,8 +65,9 @@ for (let i = 0; i < coefTable.nRows; i++) {
         outputTables: [coefTable, solTable],
         func: (coefMatrix, solMatrix) => {
             let nRows = coefMatrix.nRows;
+            let nEq = solMatrix.nColumns;
             let newCoefMatrix = generateMatrix(nRows, nRows);
-            let newSolMatrix = generateMatrix(nRows, 1);
+            let newSolMatrix = generateMatrix(nRows, nEq);
             return [newCoefMatrix, newSolMatrix];
         },
     },

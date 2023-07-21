@@ -16,7 +16,7 @@ beforeEach(() => {
     );
     global.window = dom.window;
     global.document = dom.window.document;
-
+    global.KeyboardEvent = dom.window.KeyboardEvent;
     
 });
 
@@ -169,13 +169,6 @@ test("toFraction should work", () => {
     ])
     let table = new Table("test-id");
 
-    let spyToDecimal = jest.spyOn(table, "toDecimal").mockImplementation(() => {
-        table.fractionArray = [
-            [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
-            [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
-            [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
-        ]
-     })
     table.setData(data);
     table.toDecimal();
     table.toFraction();
@@ -184,33 +177,41 @@ test("toFraction should work", () => {
     });
 });
 
-// test("reading from user input in table should work", () => {
-//     let table = new Table();
-//     table.setNRows(2);
-//     table.setNColumns(2);
-//     table.tableContainer.querySelectorAll("input").forEach((input, index) => {
-//         input.value = `${index}/4`
-//     });
-//     let expected = new Matrix([[new Fraction(0, 4), new Fraction(1, 4)], [new Fraction(2, 4), new Fraction(3, 4)]])
-//     expect(table.getData().equals(expected)).toEqual(true);
-// });
+test("reading from user input in table should work", () => {
+    let table = new Table("test-id");
+    table.setNRows(2);
+    table.setNColumns(2);
+    table.tableContainer.querySelectorAll("input").forEach((input, index) => {
+        input.value = `${index}/4`
+    });
+    let expected = new Matrix([[new Fraction(0, 4), new Fraction(1, 4)], [new Fraction(2, 4), new Fraction(3, 4)]])
+    expect(table.getData().equals(expected)).toEqual(true);
+});
 
-// // test("add keydown listener should work", () => {
-// //     let table = new Table();
-// //     addKeyDownListener([table]);
-// //     let selectedCell = table.tableContainer.querySelector(".selected");
-// //     let id = selectedCell.id;
-// //     let event = new KeyboardEvent("keydown", { key: "Down" });
-// //     cell.dispatchEvent(event);
-// //     // get id of cell below
-// //     selectedCell = table.tableContainer.querySelector(".selected");
-// //     let newId = selectedCell.id;
-// //     expect(id).not.toEqual(newId);
-// // });
+test("add keydown listener should work", () => {
+    let table = new Table("test-id");
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+    ])
+    table.setData(data)
+    addKeyDownListener([table]);
+    document.getElementById("test-id.1.1").focus();
+    let selectedCell = document.activeElement;
+    let id = selectedCell.id;
+    let event = new KeyboardEvent("keydown", { code: "ArrowDown" })
+    document.dispatchEvent(event);
+    // get id of cell below
+    selectedCell = document.activeElement;
+    let newId = selectedCell.id;
+    expect(id).not.toEqual(newId);
+});
 
-// test("set Row", () => {
-//     let table = new Table();
-//     let row = new Matrix([[new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)]]);
-//     table.setRow(0, row);
-//     expect(table.getData().getRow(0).equals(row)).toEqual(true);
-// });
+
+test("set Row", () => {
+    let table = new Table("test-id");
+    let row = new Matrix([[new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)]]);
+    table.setRow(0, row);
+    expect(table.getData().getRow(0).equals(row)).toEqual(true);
+});
