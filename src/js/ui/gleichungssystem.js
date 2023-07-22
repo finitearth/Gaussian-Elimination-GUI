@@ -1,7 +1,7 @@
 import { gaussElimination } from "../logic/gaussalgorithm.js";
 import { generateMatrix } from "../logic/generateExercise.js";
 import { getUnitMatrix } from "../logic/matrix.js";
-import { Table, addKeyDownListener } from "../intermediate/table.js";
+import { Table, addKeyDownListener, clearTables } from "../intermediate/table.js";
 import {
     addCombobox,
     applyRowOperations,
@@ -98,6 +98,10 @@ for (let i = 0; i < coefTable.nRows; i++) {
         listener.outputTables,
         listener.func
     );
+});
+
+getById("button-generate-excercise").addEventListener("click", () => {
+    clearTables([resCoefTable, resSolTable]);
 });
 
 let conversionButtonChecked = false;

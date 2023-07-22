@@ -5,7 +5,7 @@ import {
     addCombobox,
     applyRowOperations,
 } from "../intermediate/rowoperation.js";
-import { Table, addKeyDownListener } from "../intermediate/table.js";
+import { Table, addKeyDownListener, clearTables } from "../intermediate/table.js";
 import {
     setEventListenerFunction,
     listenTableDimension,
@@ -115,6 +115,10 @@ getById("button-representation-conversion").addEventListener(
 setEventListenerFunction("button-generate-excercise", [], [coefTable], () => [
     generateMatrix(dimension, dimension),
 ]);
+
+getById("button-generate-excercise").addEventListener("click", () => {
+    clearTables([solIdentityTable, solCoefTable]);
+});
 
 addKeyDownListener(tables, true);
 
