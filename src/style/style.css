@@ -2,8 +2,9 @@
 
 :root {
     --primary-color: #3e95ad;
+    --primary-color-dark: #3a8ba1;
     --background-color: #ECEDF0;
-    --header-color: #35363A; /* #4A4A4A; */
+    --header-color: #35363A;
     --input-background-color-light: #ECEDF0;
     --input-background-color-dark: #D1D2D3;
     --old-color: rgb(0, 133, 252);
@@ -17,7 +18,7 @@ html {
 
 body {
     font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
-    background-color: var(--background-color); 
+    background-color: var(--background-color);
     position: relative;
     margin: 0;
     min-height: 100%;
@@ -118,86 +119,8 @@ select {
     margin-bottom: 1em;
     padding: 1em;
     overflow: hidden;
-    
     object-fit: contain;
     object-position: center;
-}
-
-/* Start Page */
-
-.start-divider {
-    width: 40%;
-    min-width: 17.5em;
-    /* top: 25%; */
-    min-height: 15em;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 3em;
-    padding: 2em;
-    z-index: 1;
-}
-
-.start-text {
-    font-size: 16pt;
-    padding-top: 1em;
-}
-
-.header-start {
-    position: fixed;
-    /* box-sizing: border-box; */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    background-color: var(--header-color);
-    box-shadow: 0px -24px 20px 26px rgba(19, 41, 104, 0.4);
-    z-index: -1;
-}
-
-.page-links {
-    list-style-type: none;
-    padding: 0;
-}
-
-.page-link {
-    margin: 1em 0;
-}
-
-.page-link-element {
-    background-color: var(--primary-color);
-    color: rgb(255, 255, 255);
-    font-size: 14pt;
-    border: none;
-    border-radius: 5px;
-    padding: 0.5em;
-    width: 10.5em;
-    display: block;
-}
-
-.page-link-element:hover {
-    background-color: rgb(0, 120, 252); /* mit opacity machen*/
-}
-
-.page-link-element:active {
-    background-color: rgb(0, 100, 252);
-    transform: translateY(1px);
-}
-
-.page-link-element:before {
-    content: "❱";
-    padding-right: 0.5em;
-    text-align: right;
-}
-
-.logo-img {
-    float: right;
-    margin: 3%;
-    margin-top: max(2em, 3%);
-    width: 35%;
-    height: auto;
-    position: relative;
-    z-index: 99;
 }
 
 /* Matrizenrechnung */
@@ -262,7 +185,7 @@ select {
 .align-center {
     align-items: center;
     justify-content: center;
-    display: flex;  
+    display: flex;
 }
 
 .align-40 {
@@ -333,7 +256,7 @@ button {
 
 button:hover {
     cursor: pointer;
-    filter: brightness(0.9);
+    background-color: var(--primary-color-dark);
 }
 
 button:active {
@@ -348,21 +271,23 @@ button:active {
 
 }
 
-.button-addrow, .button-removerow{
+.button-addrow,
+.button-removerow {
     display: block;
     margin-bottom: 0.05em;
 }
 
-.button-addcol, .button-removecol{
+.button-addcol,
+.button-removecol {
     margin-right: 0.05em;
 }
 
-.vertical-align-sizebuttons{
+.vertical-align-sizebuttons {
     vertical-align: top;
     padding-top: 0.5em;
 }
 
-.horizontal-align-sizebuttons{
+.horizontal-align-sizebuttons {
     text-align: left;
     padding-left: 0.3em;
 }
@@ -498,15 +423,15 @@ button.secondary:active {
     transition: 0.4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: var(--primary-color);
 }
 
-input:focus + .slider {
+input:focus+.slider {
     box-shadow: 0 0 1px var(--primary-color);
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     vertical-align: middle;
     content: "0.75";
     font-size: 9pt;
@@ -515,7 +440,7 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
-input:not(checked) + .slider:before {
+input:not(checked)+.slider:before {
     content: "¾";
 }
 
@@ -557,7 +482,7 @@ input:not(checked) + .slider:before {
     padding: 0;
 }
 
-.button-berechnen-down{
+.button-berechnen-down {
     background-image: url("../images/icon_arrow_down.png");
     background-repeat: no-repeat;
     background-size: 2.5em 2.5em;
@@ -566,7 +491,7 @@ input:not(checked) + .slider:before {
 }
 
 
-.button-hoch-up{
+.button-hoch-up {
     background-image: url("../images/icon_arrow_up.png");
     background-repeat: no-repeat;
     background-size: 2.5em 2.5em;
@@ -574,7 +499,7 @@ input:not(checked) + .slider:before {
     padding-left: 1.5em;
 }
 
-.button-solve{
+.button-solve {
     background-image: url("../images/icon_magic_wand.png");
     background-repeat: no-repeat;
     background-size: 2.5em 2.5em;
@@ -582,7 +507,7 @@ input:not(checked) + .slider:before {
     padding-left: 1.5em;
 }
 
-.button-float-right{
+.button-float-right {
     float: right;
     margin: 0;
 }
@@ -617,7 +542,7 @@ input:not(checked) + .slider:before {
     margin-top: 0;
 }
 
-.guide-outline-list > li:before {
+.guide-outline-list>li:before {
     content: "❱";
     padding-right: 0.25em;
     text-align: right;
@@ -626,10 +551,12 @@ input:not(checked) + .slider:before {
 
 /* Hilfe-Modal */
 .modal {
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
     position: fixed;
     z-index: 99;
-    padding-top: 7.5em; /* Location of the box */
+    padding-top: 7.5em;
+    /* Location of the box */
     left: 0;
     top: 0;
     width: 100%;
@@ -649,7 +576,7 @@ input:not(checked) + .slider:before {
     width: max(50%, 25em);
 }
 
-.subheading-help{
+.subheading-help {
     margin: 0;
     padding: 0;
     font-size: 13pt;

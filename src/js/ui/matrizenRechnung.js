@@ -1,4 +1,4 @@
-import { Table, addKeyDownListener } from "../intermediate/table.js";
+import { Table, addKeyDownListener, clearTables } from "../intermediate/table.js";
 import { calculate } from "../logic/equationParser.js";
 import { setEventListenerFunction } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
@@ -70,4 +70,8 @@ getById("button-representation-conversion").addEventListener("click", () => {
 addKeyDownListener(tables);
 getById("button-representation-conversion").addEventListener("click", () => {
     resultTable.convertRepresentation(conversionButtonchecked);
+});
+
+getById("button-clear").addEventListener("click", () => {
+    clearTables(tables);
 });

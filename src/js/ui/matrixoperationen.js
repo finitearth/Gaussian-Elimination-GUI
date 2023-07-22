@@ -1,14 +1,16 @@
 import { gaussElimination } from "../logic/gaussalgorithm.js";
 import { getUnitMatrix } from "../logic/matrix.js";
-import { Table, addKeyDownListener } from "../intermediate/table.js";
+import {
+    Table,
+    addKeyDownListener,
+    clearTables,
+} from "../intermediate/table.js";
 import {
     modifyDimListener,
     listenTableDimension,
     setEventListenerFunction,
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
-
-
 
 // =========== Tables ===========
 let inputTable = new Table("input-table-placeholder");
@@ -55,7 +57,6 @@ addKeyDownListener([inputTable], true);
     );
 });
 
-
 // listenTableDimension(
 //     "addrow",
 //     [inputTable],
@@ -89,4 +90,8 @@ getById("button-representation-conversion").addEventListener("click", () => {
     [inputTable, outputTable].forEach(table => {
         table.convertRepresentation(conversionButtonchecked);
     });
+});
+
+getById("button-clear").addEventListener("click", () => {
+    clearTables([inputTable, outputTable]);
 });

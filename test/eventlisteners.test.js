@@ -103,14 +103,12 @@ describe("setEventListenerFunction()", () => {
         `);
         global.document = dom.window.document;
         let table = new Table("id1");
-        table.setData(new Matrix([[new Fraction(1, 2), new Fraction(1, 2)]]));
+        table.setData(new Matrix([[new Fraction(0, 1), new Fraction(0, 1)]]));
         let fn = () => {
-            table.setData(
-                new Matrix([[new Fraction(1, 2), new Fraction(1, 2)]])
-            );
+            return [new Matrix([[new Fraction(1, 2), new Fraction(1, 2)]])];
         };
-        setEventListenerFunction("button", [table], [table], fn);
-        getById("button").click();
+        setEventListenerFunction("button", [table], [table], fn, false);
+        document.getElementById("button").click();
         expect(table.getData()).toEqual(
             new Matrix([[new Fraction(1, 2), new Fraction(1, 2)]])
         );
@@ -192,9 +190,15 @@ describe("listenTableDimension", () => {
 
         input.value = 5;
         input.dispatchEvent(new dom.window.Event("input"));
-            // check innertext of table[0].describtionRowId
-        expect(document.getElementById(tables[0].describtionRowId).firstChild.innerText).toEqual(desCharacter);
-        expect(document.getElementById(tables[1].describtionRowId).firstChild.innerText).toEqual(desCharacter);
+        // check innertext of table[0].describtionRowId
+        expect(
+            document.getElementById(tables[0].describtionRowId).firstChild
+                .innerText
+        ).toEqual(desCharacter);
+        expect(
+            document.getElementById(tables[1].describtionRowId).firstChild
+                .innerText
+        ).toEqual(desCharacter);
     });
 
     afterEach(() => {
