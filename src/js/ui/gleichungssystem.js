@@ -147,3 +147,7 @@ listenTableDimension(
     "b"
 ); // number of cols solution matrix
 addKeyDownListener(tables, true);
+
+getById("button-clear").addEventListener("click", () => {
+    clearTables(tables);
+});

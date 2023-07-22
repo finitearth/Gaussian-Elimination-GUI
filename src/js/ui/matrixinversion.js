@@ -122,6 +122,10 @@ getById("button-generate-excercise").addEventListener("click", () => {
 
 addKeyDownListener(tables, true);
 
+getById("button-clear").addEventListener("click", () => {
+    clearTables(tables);
+});
+
 for (let i = 0; i < tables.length; i++) {
     tables[i].addRowDescription();
 }
