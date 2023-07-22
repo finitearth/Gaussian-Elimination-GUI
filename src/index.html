@@ -1,75 +1,63 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Startseite</title>
-        <link rel="stylesheet" href="style/style.css" type="text/css" />
-        <link rel="icon" href="images/icon_logo.png" />
-    </head>
 
-    <body>
-        <script src="js/logic/gaussalgorithm.js" type="module"></script>
-        <header class="header-start"></header>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <main>
-            <img src="images/icon_logo.png" class="logo-img" alt="Logo" />
-            <div class="page-divider start-divider">
-                <h1>Gauß-Algorithmus Web-Oberfläche</h1>
-                <div class="start-text">
-                    <p>
-                        Herzlich willkommen auf dieser Seite! <br />
-                        Folgende Inhalte stehen Dir hier zur Verfügung:
-                    </p>
-                    <ul class="page-links">
-                        <li class="page-link">
-                            <button
-                                class="page-link-element arrow-right"
-                                onclick="window.location.href='pages/matrizenrechnung.html';"
-                                >Matrizenrechnung</button
-                            >
-                        </li>
-                        <li class="page-link">
-                            <button
-                                class="page-link-element arrow-right"
-                                onclick="window.location.href='pages/matrixoperationen.html';"
-                                >Matrixoperationen</button
-                            >
-                        </li>
-                        <li class="page-link">
-                            <button
-                                class="page-link-element arrow-right"
-                                onclick="window.location.href='pages/gleichungssystem.html';"
-                                >GL-System</button
-                            >
-                        </li>
-                        <li class="page-link">
-                            <button
-                                class="page-link-element arrow-right"
-                                onclick="window.location.href='pages/matrixinversion.html';"
-                                >Inversenberechnung</button
-                            >
-                        </li>
-                    </ul>
+    <title>Startseite</title>
 
-                    <p>
-                        Auf der Seite
-                        <a href="pages/anleitung.html">Anleitung</a> findest Du
-                        weitere Erklärungen
-                    </p>
-                </div>
+    <link rel="stylesheet" href="style/style.css" type="text/css" />
+    <link rel="stylesheet" href="style/index-style.css" type="text/css" />
+
+    <link rel="icon" href="images/icon_logo.png" />
+</head>
+
+<body>
+    <header class="header-start"></header>
+
+    <main>
+        <img src="images/icon_logo.png" class="logo-img" alt="Logo" />
+        <div class="page-divider start-divider">
+            <h1>Gauß-Algorithmus Web-Oberfläche</h1>
+            <div class="start-text">
+                <p>
+                    Herzlich willkommen auf dieser Seite! <br />
+                    Folgende Inhalte stehen Dir hier zur Verfügung:
+                </p>
+                <ul class="page-links">
+                    <li>
+                        <button class="page-link-element"
+                            onclick="window.location.href='pages/matrizenrechnung.html';">Matrizenrechnung</button>
+                    </li>
+                    <li>
+                        <button class="page-link-element"
+                            onclick="window.location.href='pages/matrixoperationen.html';">Matrixoperationen</button>
+                    </li>
+                    <li>
+                        <button class="page-link-element"
+                            onclick="window.location.href='pages/gleichungssystem.html';">GL-System</button>
+                    </li>
+                    <li>
+                        <button class="page-link-element"
+                            onclick="window.location.href='pages/matrixinversion.html';">Inversenberechnung</button>
+                    </li>
+                </ul>
+
+                <p>
+                    Auf der Seite
+                    <a href="pages/info.html">Information</a>
+                    findest Du weitere Erklärungen
+                </p>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <footer>
-            <div class="impressum">
-                <a
-                    class="impressum-text"
-                    ,
-                    href="http://www.kirchbergnet.de/impressum.php"
-                    >Impressum</a
-                >
-            </div>
-        </footer>
-    </body>
+    <footer>
+        <div class="impressum">
+            <a class="impressum-text" , href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
+        </div>
+    </footer>
+</body>
+
 </html>
