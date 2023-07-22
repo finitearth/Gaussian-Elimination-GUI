@@ -4,10 +4,10 @@ import { Fraction } from "./fraction.js";
 
 let matrix; 
 export function generateMatrix(rows, cols) {
-    let linearDependent = true;
-    while (linearDependent) {
+    let solvable = false;
+    while (!solvable) {
         matrix = getRandomMatrix(rows, cols);
-        linearDependent = matrix.hasLinearDependencies();
+        solvable = matrix.getNumberOfSolutions() === 1;
     }
     return matrix;
 }

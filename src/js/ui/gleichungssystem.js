@@ -1,7 +1,11 @@
 import { gaussElimination } from "../logic/gaussalgorithm.js";
 import { generateMatrix } from "../logic/generateExercise.js";
 import { getUnitMatrix } from "../logic/matrix.js";
-import { Table, addKeyDownListener, clearTables } from "../intermediate/table.js";
+import {
+    Table,
+    addKeyDownListener,
+    clearTables,
+} from "../intermediate/table.js";
 import {
     addCombobox,
     applyRowOperations,
@@ -54,10 +58,12 @@ for (let i = 0; i < coefTable.nRows; i++) {
         outputTables: [resCoefTable, resSolTable],
         func: (coefMatrix, solMatrix) => {
             if (coefMatrix.getNumberOfSolutions() === 0) {
-                alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG")
+                alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG");
             }
             if (coefMatrix.getNumberOfSolutions() === -1) {
-                alert("UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN")
+                alert(
+                    "UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN"
+                );
             }
             let unitMatrix = getUnitMatrix(coefMatrix.nRows);
             let outputMatrix = gaussElimination(coefMatrix, solMatrix);
@@ -93,10 +99,12 @@ for (let i = 0; i < coefTable.nRows; i++) {
         outputTables: [resCoefTable, resSolTable],
         func: (coefMatrix, solMatrix) => {
             if (coefMatrix.getNumberOfSolutions() === 0) {
-                alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG")
+                alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG");
             }
             if (coefMatrix.getNumberOfSolutions() === -1) {
-                alert("UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN")
+                alert(
+                    "UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN"
+                );
             }
             coefMatrix = applyRowOperations(coefMatrix, rowOperations);
             solMatrix = applyRowOperations(solMatrix, rowOperations);
@@ -120,7 +128,7 @@ let conversionButtonChecked = false;
 getById("button-representation-conversion").addEventListener("click", () => {
     conversionButtonChecked = !conversionButtonChecked;
     tables.forEach(table => {
-        table.convertRepresentation(conversionButtonChecked)
+        table.convertRepresentation(conversionButtonChecked);
     });
 });
 

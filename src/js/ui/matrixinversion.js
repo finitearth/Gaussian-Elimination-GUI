@@ -5,7 +5,11 @@ import {
     addCombobox,
     applyRowOperations,
 } from "../intermediate/rowoperation.js";
-import { Table, addKeyDownListener, clearTables } from "../intermediate/table.js";
+import {
+    Table,
+    addKeyDownListener,
+    clearTables,
+} from "../intermediate/table.js";
 import {
     setEventListenerFunction,
     listenTableDimension,
@@ -76,10 +80,12 @@ setEventListenerFunction(
     [solIdentityTable, solCoefTable],
     (coefMatrix, solMatrix) => {
         if (coefMatrix.getNumberOfSolutions() === 0) {
-            alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG")
+            alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG");
         }
         if (coefMatrix.getNumberOfSolutions() === -1) {
-            alert("UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN")
+            alert(
+                "UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN"
+            );
         }
         let outputMatrix = gaussElimination(coefMatrix, solMatrix);
         let unitMatrix = getUnitMatrix(coefMatrix.nRows);
@@ -100,10 +106,12 @@ setEventListenerFunction(
     [solIdentityTable, solCoefTable],
     (coefMatrix, solMatrix) => {
         if (coefMatrix.getNumberOfSolutions() === 0) {
-            alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG")
+            alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG");
         }
         if (coefMatrix.getNumberOfSolutions() === -1) {
-            alert("UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN")
+            alert(
+                "UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN"
+            );
         }
         coefMatrix = applyRowOperations(coefMatrix, rowOperations);
         solMatrix = applyRowOperations(solMatrix, rowOperations);
@@ -113,16 +121,13 @@ setEventListenerFunction(
 );
 
 let conversionButtonChecked = false;
-getById("button-representation-conversion").addEventListener(
-    "click",
-    () => {
-        conversionButtonChecked = !conversionButtonChecked;
+getById("button-representation-conversion").addEventListener("click", () => {
+    conversionButtonChecked = !conversionButtonChecked;
 
-        tables.forEach(table => {
-            table.convertRepresentation(conversionButtonChecked);
-        });
-    }
-);
+    tables.forEach(table => {
+        table.convertRepresentation(conversionButtonChecked);
+    });
+});
 
 setEventListenerFunction("button-generate-excercise", [], [coefTable], () => [
     generateMatrix(dimension, dimension),

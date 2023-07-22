@@ -23,7 +23,7 @@ export class Matrix {
     hasLinearDependencies() {
         return (
             this.isSquare() &&
-            this.getRank() < this.nRows &&
+            (this.getRank() < this.nRows) &&
             !this.hasEmptyRow()
         );
     }
@@ -31,7 +31,7 @@ export class Matrix {
     getNumberOfSolutions() {
         if (this.hasLinearDependencies()) {
             return -1; //infinitly many
-        } else if (this.getRank() < this.nRows) {
+        } else if ((this.getRank() < this.nRows) || this.hasEmptyRow()) {
             return 0; //no solution
         } else {
             return 1; //one solution
@@ -56,7 +56,7 @@ export class Matrix {
     getRank() {
         let rank = this.nRows;
         let matrix = this.clone();
-        for (let i = 0; i < this.nRows; i++) {
+        for (let i = 0; i < this.nColumns; i++) {
             let pivot = matrix.getPivot(i);
             if (pivot[1].equals(ZERO)) {
                 rank--;
