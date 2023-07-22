@@ -215,3 +215,183 @@ test("set Row", () => {
     table.setRow(0, row);
     expect(table.getData().getRow(0).equals(row)).toEqual(true);
 });
+
+test("add cell should work", () => {
+    let table = new Table("test-id");
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4)]
+    ])
+    table.setData(data);
+    let cell1 = table.addCell(0, 2);
+    let cell2 = table.addCell(1, 2);
+
+    let cell1Child = cell1.firstChild
+    let cell2Child = cell2.firstChild
+
+    expect(cell1Child.id).toEqual(table.id+".0.2");
+    expect(cell2Child.id).toEqual(table.id+".1.2");
+
+    console.log(table.tableContainer.innerHTML)
+})
+
+test("add row description should work", () => {
+    let table = new Table("test-id");
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4)]
+    ])
+    table.setData(data);
+    table.addRowDescription(true)
+    
+    for (let i = 0; i < table.nRows-1; i++) {
+        let row = document.getElementById(i.toString())
+        let firstElement = row.firstChild
+        expect(firstElement.innerText).toEqual("("+(i+1)+")")
+    }
+})
+
+test("add column description should work", ()=> {
+    let table = new Table("test-id");
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4)]
+    ])
+    table.setData(data);
+    table.addColumnDescription("X")
+    let desRow = document.getElementById("description-row")
+
+    for(let i = 1; i < table.nColumns-1; i++) {
+        let desElement = document.getElementById(table.id+"0."+i)
+        expect(desElement.innerText).toEqual("X")
+        expect(desElement.innerHTML).toEqual("<sub>"+i+"</sub>")
+    }
+})
+
+test("add row should work", () => {
+    let table = new Table("test-id");
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4)]
+    ])
+    table.setData(data);
+    table.addRow()
+
+    let newRow = document.getElementById("2")
+
+    expect(newRow).toBeTruthy()
+    expect(table.nRows).toEqual(3)
+})
+
+test("addColumn should work", () => {
+    let table = new Table("test-id");
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4)]
+    ])
+    table.setData(data);
+    table.addColumn()
+
+    let newColCell1 = document.getElementById(table.id+".0.2")
+    let newColCell2 = document.getElementById(table.id+".1.2")
+
+    expect(newColCell1).toBeTruthy()
+    expect(newColCell2).toBeTruthy()
+    expect(table.nColumns).toEqual(3)
+})
+
+test("addButtons should work", () => {
+    let table = new Table("test-id");
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4)]
+    ])
+    table.setData(data)
+    table.addButtons()
+
+    let buttonAddRow    = document.getElementsByClassName("button-matrixsize button-addrow")
+    let buttonRemoveRow = document.getElementsByClassName("button-matrixsize button-removerow")
+    let buttonAddCol    = document.getElementsByClassName("button-matrixsize button-addcol")
+    let buttonRemoveCol = document.getElementsByClassName("button-matrixsize button-removecol")
+
+    expect(buttonAddRow).toBeTruthy()
+    expect(buttonRemoveRow).toBeTruthy()
+    expect(buttonAddCol).toBeTruthy()
+    expect(buttonRemoveCol).toBeTruthy()
+})
+
+test("removeRow should work", () => {
+    let table = new Table("test-id");
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)]
+    ])
+    table.setData(data)
+    table.removeRow()
+
+    let lastRow = document.getElementById("2")
+    expect(lastRow).not.toBeTruthy()
+    expect(table.nRows).toEqual(2) // there's a bug related to nRows
+})
+
+test("convertRepresentation true should work", () => {
+    let table = new Table("test-id");
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)]
+    ])
+
+    table.setData(data)
+
+    let spyToDecimal = jest.spyOn(table, "toDecimal").mockImplementation(() => {
+        
+     })
+
+    table.convertRepresentation(true)
+
+    expect(spyToDecimal).toHaveBeenCalled()
+})
+
+test("convertRepresentation false should work", () => {
+    let table = new Table("test-id");
+    
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)]
+    ])
+    table.setData(data)
+
+    let spyToFraction = jest.spyOn(table, "toFraction").mockImplementation(() => {
+        
+     })
+
+    table.convertRepresentation(false)
+
+    expect(spyToFraction).toHaveBeenCalled()
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
