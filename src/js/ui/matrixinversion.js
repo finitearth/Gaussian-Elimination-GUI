@@ -5,7 +5,7 @@ import {
     addCombobox,
     applyRowOperations,
 } from "../intermediate/rowoperation.js";
-import { Table, addKeyDownListener } from "../intermediate/table.js";
+import { Table, addKeyDownListener, clearTables } from "../intermediate/table.js";
 import {
     setEventListenerFunction,
     listenTableDimension,
@@ -116,7 +116,15 @@ setEventListenerFunction("button-generate-excercise", [], [coefTable], () => [
     generateMatrix(dimension, dimension),
 ]);
 
+getById("button-generate-excercise").addEventListener("click", () => {
+    clearTables([solIdentityTable, solCoefTable]);
+});
+
 addKeyDownListener(tables, true);
+
+getById("button-clear").addEventListener("click", () => {
+    clearTables(tables);
+});
 
 for (let i = 0; i < tables.length; i++) {
     tables[i].addRowDescription();

@@ -472,3 +472,21 @@ export function addKeyDownListener(tables, nextTableToTheRight = false) {
         cell.focus();
     });
 }
+
+/**
+ * clears specified tables, by setting the matrices to 0s
+ * @param {Array} tables - Array of table objects.
+ */
+export function clearTables(tables) {
+    tables.forEach(table => {
+        let emptyArray = [];
+        for (let i = 0; i < table.nRows; i++) {
+            let row = [];
+            for (let j = 0; j < table.nColumns; j++) {
+                row.push(new Fraction(0));
+            }
+            emptyArray.push(row);
+        }
+        table.setData(new Matrix(emptyArray));
+    });
+}
