@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.64% </span>
+                <span class="strong">67.54% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>154/218</span>
+                <span class='fraction'>154/228</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">67.85% </span>
+                <span class="strong">63.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>19/28</span>
+                <span class='fraction'>19/30</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.84% </span>
+                <span class="strong">66.18% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>137/199</span>
+                <span class='fraction'>137/207</span>
             </div>
         
             
@@ -537,7 +537,24 @@
 <a name='L472'></a><a href='#L472'>472</a>
 <a name='L473'></a><a href='#L473'>473</a>
 <a name='L474'></a><a href='#L474'>474</a>
-<a name='L475'></a><a href='#L475'>475</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L475'></a><a href='#L475'>475</a>
+<a name='L476'></a><a href='#L476'>476</a>
+<a name='L477'></a><a href='#L477'>477</a>
+<a name='L478'></a><a href='#L478'>478</a>
+<a name='L479'></a><a href='#L479'>479</a>
+<a name='L480'></a><a href='#L480'>480</a>
+<a name='L481'></a><a href='#L481'>481</a>
+<a name='L482'></a><a href='#L482'>482</a>
+<a name='L483'></a><a href='#L483'>483</a>
+<a name='L484'></a><a href='#L484'>484</a>
+<a name='L485'></a><a href='#L485'>485</a>
+<a name='L486'></a><a href='#L486'>486</a>
+<a name='L487'></a><a href='#L487'>487</a>
+<a name='L488'></a><a href='#L488'>488</a>
+<a name='L489'></a><a href='#L489'>489</a>
+<a name='L490'></a><a href='#L490'>490</a>
+<a name='L491'></a><a href='#L491'>491</a>
+<a name='L492'></a><a href='#L492'>492</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1010,6 +1027,23 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { designConfig } from "../config.js";
 import { Matrix } from "../logic/matrix.js";
@@ -1485,14 +1519,31 @@ export function addKeyDownListener(tables, nextTableToTheRight = false) {
         cell.focus();
     });
 }
-&nbsp;</pre></td></tr></table></pre>
+&nbsp;
+/**
+ * clears specified tables, by setting the matrices to 0s
+ * @param {Array} tables - Array of table objects.
+ */
+export function <span class="fstat-no" title="function not covered" >clearTables(</span>tables) {
+<span class="cstat-no" title="statement not covered" >    tables.forEach(<span class="fstat-no" title="function not covered" >ta</span>ble =&gt; {</span>
+        let emptyArray = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >        for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; table.nRows; i++) {</span>
+            let row = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >            for (let j = <span class="cstat-no" title="statement not covered" >0;</span> j &lt; table.nColumns; j++) {</span>
+<span class="cstat-no" title="statement not covered" >                row.push(new Fraction(0));</span>
+            }
+<span class="cstat-no" title="statement not covered" >            emptyArray.push(row);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        table.setData(new Matrix(emptyArray));</span>
+    });
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-22T12:46:51.952Z
+                at 2023-07-22T14:01:59.991Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
