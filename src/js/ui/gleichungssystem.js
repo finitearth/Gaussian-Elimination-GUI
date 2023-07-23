@@ -77,8 +77,9 @@ for (let i = 0; i < coefTable.nRows; i++) {
         outputTables: [coefTable, solTable],
         func: (coefMatrix, solMatrix) => {
             let nRows = coefMatrix.nRows;
+            let nCols = coefMatrix.nColumns;
             let nEq = solMatrix.nColumns;
-            let newCoefMatrix = generateMatrix(nRows, nRows);
+            let newCoefMatrix = generateMatrix(nRows, nCols);
             let newSolMatrix = generateMatrix(nRows, nEq);
             return [newCoefMatrix, newSolMatrix];
         },

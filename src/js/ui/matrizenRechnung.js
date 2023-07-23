@@ -74,4 +74,8 @@ getById("button-representation-conversion").addEventListener("click", () => {
 
 getById("button-clear").addEventListener("click", () => {
     clearTables(tables);
+    let l = tables.length - 2;
+    for (let i = 0; i < l; i++) {
+        removeTable();
+    }
 });
