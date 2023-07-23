@@ -5,12 +5,14 @@ const operators = {
     "+": (a, b) => a.add(b),
     "-": (a, b) => a.sub(b),
     "*": (a, b) => a.mul(b),
+    "^": a => a.transpose(),
+    "|": a => a.getDeterminant(),
 };
 
 export function calculate(equationString, tables) {
     // check that only allowed characters are used (a-z, 0-9 and +, -, *, /), also check no operands and operators come twice after each other.
     if (
-        !equationString.match(/^[a-z0-9\+\-\*\(\)\s\/]+$/i) ||
+        !equationString.match(/^[a-z0-9\+\-\*\(\)\s\/\^\|]+$/i) ||
         equationString.match(/[a-z]{2,}/i) ||
         equationString.match(/[\+\-\*]{2,}/i) ||
         equationString.match(/[\+\-\*\/]$/i) ||
@@ -27,13 +29,14 @@ export function calculate(equationString, tables) {
     // Split equationString into array of strings,
     // split by letter or number or paranthasis or /
     // do not split if number followed by number
-    let equation = equationString.split(/([a-z]|[0-9]+\/[0-9]+|[0-9]+|\(|\))/i);
-
+    let equation = equationString.split(
+        /([a-z]|[0-9]+\/[0-9]+|[0-9]+|\(|\)|\^|\|)/i
+    );
     // Remove empty strings
     equation = equation.filter(element => element != "");
     // Replace letters with matrices, but if numeral, convert to fraction
     for (let i = 0; i < equation.length; i++) {
-        if (equation[i].length == 1 && equation[i].match(/[A-Z]/i)) {
+        if (equation[i].length == 1 && equation[i].match(/[A-SU-Z]/i)) {
             let index = equation[i].charCodeAt(0) - 65;
             equation[i] = tables[index].getData();
         }
@@ -60,6 +63,31 @@ export function calculate(equationString, tables) {
                 closeParenIndex - openParenIndex + 1,
                 groupResult
             );
+        }
+
+        // Handle determinant: i.e. |A|
+        for (let i = 0; i < equation.length; i++) {
+            if (equation[i] == "|") {
+                // Perform determinant
+                let opResult = operators[equation[i]](equation[i + 1]);
+                // Replace both pipes and the matrix in between with the result of the determinant
+                equation.splice(i, 3, opResult);
+
+                // Decrement i by 2 to adjust for the removed elements
+                i -= 2;
+            }
+        }
+
+        // Handle exponentiation: evaluate exponentiation second
+        for (let i = 1; i < equation.length - 1; i += 2) {
+            if (equation[i] == "^" && equation[i + 1] == "T") {
+                // Perform exponentiation
+                let opResult = operators[equation[i]](equation[i - 1]);
+                // Replace the three elements of the equation with the result of the exponentiation
+                equation.splice(i - 1, 3, opResult);
+                // Decrement i by 2 to adjust for the removed elements
+                i -= 2;
+            }
         }
 
         // Handle operator precedence: evaluate multiplication and division first
