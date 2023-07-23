@@ -19,6 +19,8 @@ export function calculate(equationString, tables) {
         throw new InvalidInputException();
     }
 
+    // replace lowercase letters with uppercase letters
+    equationString = equationString.replace(/[a-z]/g, l => l.toUpperCase());
     // Remove all spaces
     equationString = equationString.replace(/\s/g, "");
 
