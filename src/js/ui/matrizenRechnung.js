@@ -74,8 +74,12 @@ getById("button-representation-conversion").addEventListener("click", () => {
 
 getById("button-clear").addEventListener("click", () => {
     clearTables(tables);
+    clearTables([resultTable])
     let l = tables.length - 2;
     for (let i = 0; i < l; i++) {
         removeTable();
     }
+
+    getById("input-equation").value = "";
+
 });
