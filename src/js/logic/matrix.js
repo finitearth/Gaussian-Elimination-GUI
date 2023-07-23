@@ -145,7 +145,7 @@ export class Matrix {
     }
 
     max() {
-        let max = ZERO;
+        let max = this.array[0][0];
         for (let i = 0; i < this.nRows; i++) {
             for (let j = 0; j < this.nColumns; j++) {
                 if (this.array[i][j].greater(max)) {

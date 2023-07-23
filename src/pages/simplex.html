@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Simpelx</title>
+        <link rel="stylesheet" href="../style/style.css" type="text/css" />
+        <link rel="icon" href="../images/icon_logo.png" />
+    </head>
+
+    <body>
+        <nav id="navbar"></nav>
+        <header>
+            <h1>Simplex</h1>
+            <button id="button-help-modal" class="button-help">Hilfe</button>
+        </header>
+
+        <main>
+            <div id="help-modal" class="modal">
+                <div class="modal-content">
+                    <span id="span-close" class="close">&times;</span>
+                    <h2>Hilfe - Simplex</h2>
+                    <h3 class="subheading-help">Bedienungsanleitung & Tipps</h3>
+                    <div class="help-content">
+                        wer sich simplex wünscht ist ein simpler mann.
+                    </div>
+                    <button id="button-close" class="secondary">
+                        Schließen
+                    </button>
+                </div>
+            </div>
+
+            <form class="page-divider">
+                <label for="input-nr-rows">Anzahl Zeilen:</label>
+                <input
+                    type="number"
+                    id="input-nr-rows"
+                    min="2"
+                    max="9"
+                    value="3"
+                />
+                <label for="input-nr-cols">Anzahl Spalten:</label>
+                <input
+                    type="number"
+                    id="input-nr-cols"
+                    min="2"
+                    max="9"
+                    value="3"
+                />
+            </form>
+
+            <div class="page-divider">
+                <table class="align-40" id="input-table-placeholder"></table>
+            </div>
+            <div class="container-button">
+                <button id="button-calculate">Letse go</button>
+            </div>
+            <div class="page-divider">
+                <table class="align-40">
+                    <td>
+                        <table id="output-table-placeholder"></table>
+                    </td>
+                    <td>
+                        <!-- Rounded switch -->
+                        <label class="switch">
+                            <input
+                                type="checkbox"
+                                id="button-representation-conversion"
+                            />
+                            <span class="slider round"></span>
+                        </label>
+                    </td>
+                </table>
+            </div>
+        </main>
+        <footer>
+            <div class="impressum">
+                <a
+                    class="impressum-text"
+                    ,
+                    href="http://www.kirchbergnet.de/impressum.php"
+                    >Impressum</a
+                >
+            </div>
+        </footer>
+    </body>
+    <script src="../js/ui/navbar.js"></script>
+    <script src="../js/ui/simplex.js" type="module"></script>
+    <script src="../js/ui/modal.js"></script>
+</html>

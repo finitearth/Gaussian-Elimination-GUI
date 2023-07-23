@@ -38,6 +38,10 @@ function createHTMLForNavbar() {
             text: "Inversenberechnung",
         },
         {
+            ref: `simplex.html`,
+            text: "Simplex",
+        },
+        {
             ref: `info.html`,
             text: "ⓘ",
         },

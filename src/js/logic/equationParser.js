@@ -1,13 +1,13 @@
 import { Fraction } from "./fraction.js";
 import { InvalidInputException } from "../exceptions.js";
 
-const operators = {
-    "+": (a, b) => a.add(b),
-    "-": (a, b) => a.sub(b),
-    "*": (a, b) => a.mul(b),
-    "^": a => a.transpose(),
-    "|": a => a.getDeterminant(),
-};
+// const operators = {
+//     "+": (a, b) => a.add(b),
+//     "-": (a, b) => a.sub(b),
+//     "*": (a, b) => a.mul(b),
+//     "^": a => a.transpose(),
+//     "|": a => a.getDeterminant(),
+// };
 
 export function calculate(equationString, tables) {
     // check that only allowed characters are used (a-z, 0-9 and +, -, *, /), also check no operands and operators come twice after each other.
@@ -64,58 +64,39 @@ export function calculate(equationString, tables) {
                 groupResult
             );
         }
-
-        // Handle determinant: i.e. |A|
+        
         for (let i = 0; i < equation.length; i++) {
+            // Handle determinant: i.e. |A|
             if (equation[i] == "|") {
                 // Perform determinant
-                let opResult = operators[equation[i]](equation[i + 1]);
+                let opResult = equation[i + 1].getDeterminant();
                 // Replace both pipes and the matrix in between with the result of the determinant
                 equation.splice(i, 3, opResult);
-
                 // Decrement i by 2 to adjust for the removed elements
                 i -= 2;
-            }
-        }
-
-        // Handle exponentiation: evaluate exponentiation second
-        for (let i = 1; i < equation.length - 1; i += 2) {
-            if (equation[i] == "^" && equation[i + 1] == "T") {
-                // Perform exponentiation
-                let opResult = operators[equation[i]](equation[i - 1]);
-                // Replace the three elements of the equation with the result of the exponentiation
+            } else if (equation[i] == "^" && equation[i + 1] == "T") {
+                let opResult = equation[i - 1].transpose();
                 equation.splice(i - 1, 3, opResult);
-                // Decrement i by 2 to adjust for the removed elements
                 i -= 2;
             }
         }
 
-        // Handle operator precedence: evaluate multiplication and division first
         for (let i = 1; i < equation.length - 1; i += 2) {
             if (equation[i] == "*") {
-                // Perform multiplication
-                let opResult = operators[equation[i]](
-                    equation[i - 1],
-                    equation[i + 1]
-                );
-                // Replace the three elements of the equation with the result of the multiplication
+                let opResult = equation[i - 1].mul(equation[i + 1]);
                 equation.splice(i - 1, 3, opResult);
-                // Decrement i by 2 to adjust for the removed elements
                 i -= 2;
             }
         }
 
-        // Handle operator precedence: evaluate addition and subtraction last
         for (let i = 1; i < equation.length - 1; i += 2) {
-            if (equation[i] == "+" || equation[i] == "-") {
-                // Perform addition or subtraction
-                let opResult = operators[equation[i]](
-                    equation[i - 1],
-                    equation[i + 1]
-                );
-                // Replace the three elements of the equation with the result of the addition or subtraction
+            if (equation[i] == "+") {
+                let opResult = equation[i - 1].add(equation[i + 1]);
                 equation.splice(i - 1, 3, opResult);
-                // Decrement i by 2 to adjust for the removed elements
+                i -= 2;
+            } else if (equation[i] == "-") {
+                let opResult = equation[i - 1].sub(equation[i + 1]);
+                equation.splice(i - 1, 3, opResult);
                 i -= 2;
             }
         }
