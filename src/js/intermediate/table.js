@@ -315,9 +315,9 @@ export class Table {
      * @returns {Matrix} A Matrix object representing the data in the table.
      */
     getData() {
-        if (this.fractionArray) {
-            return this.fractionArray;
-        }
+        // if (this.fractionArray) {
+        //     return this.fractionArray;
+        // }
         let data = [];
         for (let i = 0; i < this.rows.length; i++) {
             let row = [];
@@ -372,7 +372,7 @@ export class Table {
      * Converts all the input values in the table to their decimal representation and updates the input fields with the new values.
      */
     toDecimal() {
-        this.fractionArray = this.getData();
+        this.fractionArray = this.getData(); // store exact values for conversion back to fraction
         for (let i = 0; i < this.rows.length; i++) {
             for (let j = 0; j < this.nColumns; j++) {
                 let input = getById(`${this.id}.${i}.${j}`);
@@ -387,18 +387,23 @@ export class Table {
      * Convert all values in the table to fractions and update the input fields.
      */
     toFraction() {
-        if (this.fractionArray) {
-            this.setData(this.fractionArray);
-            return;
-        }
+        // check if the deviation from the stored fraction is more than 0.01, meaning that the user has changed the value
+        let data = this.getData();
+        let diff = data.sub(this.fractionArray).abs();
+        let maxDiff = new Fraction(1, 100);
         for (let i = 0; i < this.rows.length; i++) {
             for (let j = 0; j < this.nColumns; j++) {
-                let input = getById(`${this.id}.${i}.${j}`);
-                let val = input.value;
-                val = stringToFraction(val);
-                input.value = val.stringify();
+                if (diff.array[i][j].greater(maxDiff)) {
+                    console.log(diff.array[i][j].stringify());
+                    let input = getById(`${this.id}.${i}.${j}`);
+                    let val = input.value;
+                    val = stringToFraction(val);
+                    this.fractionArray.array[i][j] = val;
+                }
             }
         }
+
+        this.setData(this.fractionArray);
     }
 }
 

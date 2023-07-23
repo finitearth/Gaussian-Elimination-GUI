@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">79.87% </span>
+                <span class="strong">81.09% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>131/164</span>
+                <span class='fraction'>133/164</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">68.08% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>30/45</span>
+                <span class='fraction'>32/47</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.61% </span>
+                <span class="strong">88.46% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>22/26</span>
+                <span class='fraction'>23/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.26% </span>
+                <span class="strong">79.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>108/138</span>
+                <span class='fraction'>110/138</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -530,13 +530,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">273x</span>
-<span class="cline-any cline-yes">273x</span>
-<span class="cline-any cline-yes">273x</span>
+<span class="cline-any cline-yes">281x</span>
+<span class="cline-any cline-yes">281x</span>
+<span class="cline-any cline-yes">281x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -544,12 +544,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -558,7 +558,7 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -574,14 +574,14 @@
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -988,18 +988,18 @@ export class Matrix {
     hasLinearDependencies() {
         return (
             this.isSquare() &amp;&amp;
-            this.getRank() &lt; this.nRows &amp;&amp;
-            !this.hasEmptyRow()
+            (this.getRank() &lt; this.nRows) &amp;&amp;
+<span class="branch-2 cbranch-no" title="branch not covered" >            !this.hasEmptyRow()</span>
         );
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    ge</span>tNumberOfSolutions() {
-<span class="cstat-no" title="statement not covered" >        if (this.hasLinearDependencies()) {</span>
+    getNumberOfSolutions() {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (this.hasLinearDependencies()) {
 <span class="cstat-no" title="statement not covered" >            return -1; </span>//infinitly many
-        } else <span class="cstat-no" title="statement not covered" >if (this.getRank() &lt; this.nRows) {</span>
+        } else <span class="missing-if-branch" title="if path not taken" >I</span>if ((this.getRank() &lt; this.nRows) || this.hasEmptyRow()) {
 <span class="cstat-no" title="statement not covered" >            return 0; </span>//no solution
         } else {
-<span class="cstat-no" title="statement not covered" >            return 1; </span>//one solution
+            return 1; //one solution
         }
     }
 &nbsp;
@@ -1021,10 +1021,10 @@ export class Matrix {
     getRank() {
         let rank = this.nRows;
         let matrix = this.clone();
-        for (let i = 0; i &lt; this.nRows; i++) {
+        for (let i = 0; i &lt; this.nColumns; i++) {
             let pivot = matrix.getPivot(i);
-            if (pivot[1].equals(ZERO)) {
-                rank--;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (pivot[1].equals(ZERO)) {
+<span class="cstat-no" title="statement not covered" >                rank--;</span>
             }
         }
         return rank;
@@ -1420,7 +1420,7 @@ export function getUnitMatrix(n) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-22T14:02:56.006Z
+                at 2023-07-23T21:36:18.364Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

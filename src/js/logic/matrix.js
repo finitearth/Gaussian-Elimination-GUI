@@ -133,6 +133,29 @@ export class Matrix {
         return new Matrix(newArray);
     }
 
+    abs() {
+        let newArray = [];
+        for (let i = 0; i < this.nRows; i++) {
+            newArray[i] = [];
+            for (let j = 0; j < this.nColumns; j++) {
+                newArray[i][j] = this.array[i][j].abs();
+            }
+        }
+        return new Matrix(newArray);
+    }
+
+    max() {
+        let max = ZERO;
+        for (let i = 0; i < this.nRows; i++) {
+            for (let j = 0; j < this.nColumns; j++) {
+                if (this.array[i][j].greater(max)) {
+                    max = this.array[i][j];
+                }
+            }
+        }
+        return max;
+    }
+
     /**
      * Subs the value
     //  */
