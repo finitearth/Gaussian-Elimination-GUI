@@ -12,6 +12,8 @@ beforeEach(() => {
         `<html>
         <div id="test-id">
         </div>
+        <div id="test-id2">
+        </div>
         </html>`
     );
     global.window = dom.window;
@@ -189,7 +191,7 @@ test("reading from user input in table should work", () => {
     expect(table.getData().equals(expected)).toEqual(true);
 });
 
-test("add keydown listener should work", () => {
+test("add keydown listener arrow down within one table should work", () => {
     let table = new Table("test-id");
     let data = new Matrix([
         [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
@@ -275,14 +277,15 @@ test("add row should work", () => {
     let data = new Matrix([
         [new Fraction(1, 4), new Fraction(1, 4)],
         [new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4)],
     ]);
     table.setData(data);
     table.addRow();
 
-    let newRow = document.getElementById("2");
+    let newRow = document.getElementById("3");
 
     expect(newRow).toBeTruthy();
-    expect(table.nRows).toEqual(3);
+    expect(table.nRows).toEqual(4);
 });
 
 test("addColumn should work", () => {
@@ -381,4 +384,116 @@ test("convertRepresentation false should work", () => {
     table.convertRepresentation(false);
 
     expect(spyToFraction).toHaveBeenCalled();
+});
+
+
+test("add keydown listener arrow up within one table should work", () => {
+    let table = new Table("test-id");
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+    ]);
+    table.setData(data);
+    addKeyDownListener([table]);
+    document.getElementById("test-id.1.1").focus();
+    let selectedCell = document.activeElement;
+    let id = selectedCell.id;
+    let event = new KeyboardEvent("keydown", { code: "ArrowUp" });
+    document.dispatchEvent(event);
+    // get id of cell below
+    selectedCell = document.activeElement;
+    let newId = selectedCell.id;
+    expect(id).not.toEqual(newId);
+});
+
+
+test("add keydown listener arrow left within one table should work", () => {
+    let table = new Table("test-id");
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+    ]);
+    table.setData(data);
+    addKeyDownListener([table]);
+    document.getElementById("test-id.1.1").focus();
+    let selectedCell = document.activeElement;
+    let id = selectedCell.id;
+    let event = new KeyboardEvent("keydown", { code: "ArrowLeft" });
+    document.dispatchEvent(event);
+    // get id of cell below
+    selectedCell = document.activeElement;
+    let newId = selectedCell.id;
+    expect(id).not.toEqual(newId);
+});
+
+test("add keydown listener arrow right within one table should work", () => {
+    let table = new Table("test-id");
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+    ]);
+    table.setData(data);
+    addKeyDownListener([table]);
+    document.getElementById("test-id.1.1").focus();
+    let selectedCell = document.activeElement;
+    let id = selectedCell.id;
+    let event = new KeyboardEvent("keydown", { code: "ArrowRight" });
+    document.dispatchEvent(event);
+    // get id of cell below
+    selectedCell = document.activeElement;
+    let newId = selectedCell.id;
+    expect(id).not.toEqual(newId);
+});
+
+test("add keydown listener arrow down to other table should work", () => {
+    let table1 = new Table("test-id");
+    let table2 = new Table("test-id2");
+
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+    ]);
+    table1.setData(data);
+    table2.setData(data);
+
+    addKeyDownListener([table1, table2]);
+
+    document.getElementById("test-id.2.1").focus();
+    let selectedCell = document.activeElement;
+    let id = selectedCell.id;
+    let event = new KeyboardEvent("keydown", { code: "ArrowDown" });
+    document.dispatchEvent(event);
+    // get id of cell below
+    selectedCell = document.activeElement;
+    let newId = selectedCell.id;
+    expect(id).not.toEqual(newId);
+});
+
+test("add keydown listener arrow up to other table should work", () => {
+    let table1 = new Table("test-id");
+    let table2 = new Table("test-id2");
+
+    let data = new Matrix([
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+        [new Fraction(1, 4), new Fraction(1, 4), new Fraction(1, 4)],
+    ]);
+    table1.setData(data);
+    table2.setData(data);
+
+    addKeyDownListener([table1, table2]);
+
+    document.getElementById("test-id2.0.1").focus();
+    let selectedCell = document.activeElement;
+    let id = selectedCell.id;
+    let event = new KeyboardEvent("keydown", { code: "ArrowUp" });
+    document.dispatchEvent(event);
+    // get id of cell below
+    selectedCell = document.activeElement;
+    let newId = selectedCell.id;
+    expect(id).not.toEqual(newId);
 });
