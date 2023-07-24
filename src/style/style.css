@@ -131,12 +131,6 @@ select {
     display: flex;
 }
 
-.align-40 {
-    left: 40%;
-    position: relative;
-
-}
-
 .nav {
     position: fixed;
     box-sizing: border-box;
