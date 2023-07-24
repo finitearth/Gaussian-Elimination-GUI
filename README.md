@@ -26,3 +26,18 @@ chrome.exe --allow-file-access-from-files
 
 ```
 - install module "http-server" via `npm install http-server`; than run `http-server --cors` and open the displayed localhost page.
+
+## Testing
+```
+npm install --save-dev babel-jest @babel/core @babel/preset-env
+npm i jest-environment-jsdom --save-dev
+npm install jest --global
+
+```
+
+in babbel.config.js:
+```
+module.exports = {
+  presets: [['@babel/preset-env', {targets: {node: 'current'}}]],
+};
+```
