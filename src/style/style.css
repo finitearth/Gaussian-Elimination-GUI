@@ -324,14 +324,12 @@ button.secondary:active {
     background-color: lightcoral;
 }
 
-
-/* Vlt schmutz, gerne löschen, aber is für todecimal*/
 .switch {
     position: relative;
-    display: inline-block;
     margin: 1em;
     width: 60px;
     height: 34px;
+    float: right;
 }
 
 /* Hide default HTML checkbox */
@@ -339,9 +337,9 @@ button.secondary:active {
     opacity: 0;
     width: 0;
     height: 0;
-}
 
-/*  */
+}
+ 
 .slider {
     position: absolute;
     cursor: pointer;
@@ -370,22 +368,19 @@ input:checked+.slider {
     background-color: var(--primary-color);
 }
 
-input:focus+.slider {
-    box-shadow: 0 0 1px var(--primary-color);
-}
-
 input:checked+.slider:before {
-    vertical-align: middle;
-    content: "0.75";
-    font-size: 9pt;
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
 
-input:not(checked)+.slider:before {
-    content: "¾";
+input:not(checked)+.slider {
+    background-image: url("../images/icon_toggle.png");
+    background-repeat: no-repeat;
+    background-size: 4em 2em;
+    vertical-align: middle;
 }
+
 
 .button-clear {
     background-image: url("../images/icon_clear.png");

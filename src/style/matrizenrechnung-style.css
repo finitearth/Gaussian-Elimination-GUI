@@ -31,9 +31,14 @@
     float: left;
 }
 
-.container-button-matrixrechnung {
+.container-button-left {
     margin-top: 0.5em;
     float: left;
+}
+
+.container-button-right {
+    margin-top: 0.5em;
+    float: right;
 }
 
 .equation-input {
@@ -54,7 +59,13 @@
     font-size: 16pt;
 }
 
-.button-matrixrechnung {
+.button-calculate {
+    background-image: url("../images/icon_calculate.png");
+    background-repeat: no-repeat;
+    background-size: 3em 3em;
+    vertical-align: middle;
+    padding-left: 3em;
+    width: 8.5em;
     float: right;
 }
 

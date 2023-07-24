@@ -67,16 +67,23 @@
             <div class="matrix-overflow-box">
                 <div id="table" class="matrix-container"></div>
             </div>
-            <div class="container-button-matrixrechnung">
+            <div class="container-button-left">
                 <button id="button-add-table" class="button-matrix add">Matrix hinzufügen</button><br>
                 <button id="remove-table" class="button-matrix remove">Matrix entfernen</button>
             </div>
-            <button id="button-clear" class="button-clear">Leeren</button>
+            <div class="container-button-right">
+                <button id="button-clear" class="button-clear">Leeren</button>
+                <br>
+                <label class="switch">
+                    <input type="checkbox" id="button-representation-conversion" />
+                    <span class="slider round"></span>
+                </label>
+            </div>
         </div>
 
         <div class="page-divider">
             <h2>Berechnung</h2>
-            <button id="button-calculate" class="button-matrixrechnung">
+            <button id="button-calculate" class="button-calculate">
                 Berechnen
             </button>
             <table>
@@ -89,11 +96,7 @@
                         <div id="table-result"></div>
                     </td>
                     <td>
-                        <!-- Rounded switch -->
-                        <label class="switch">
-                            <input type="checkbox" id="button-representation-conversion" />
-                            <span class="slider round"></span>
-                        </label>
+
                     </td>
                 </tr>
             </table>
