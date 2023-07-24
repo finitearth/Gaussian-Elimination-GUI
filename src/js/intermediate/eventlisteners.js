@@ -34,7 +34,8 @@ export function setEventListenerFunction(
     buttonId,
     inputTables,
     outputTables,
-    operation
+    operation,
+    alertOnError = true
 ) {
     let button = getById(buttonId);
     button.addEventListener("click", () => {
@@ -45,7 +46,11 @@ export function setEventListenerFunction(
                 table.setData(outputMatrices[index])
             );
         } catch (error) {
-            alert(error);
+            if (alertOnError) {
+                alert(error);
+                console.error(error);
+            }
+            else throw error;
         }
     });
 }
@@ -92,4 +97,16 @@ export function listenTableDimension(
             }
         });
     });
+}
+
+
+export function validate(validPattern) {
+    let focused = document.activeElement;
+    let valid = focused.value.match(validPattern);
+
+    if (!valid) {
+        focused.classList.add("invalid");
+    } else {
+        focused.classList.remove("invalid");
+    }
 }

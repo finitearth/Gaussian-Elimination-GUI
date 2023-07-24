@@ -21,7 +21,48 @@ export class Matrix {
     }
 
     hasLinearDependencies() {
-        return this.isSquare() && this.getDeterminant().equals(ZERO);
+        return (
+            this.isSquare() &&
+            (this.getRank() < this.nRows) &&
+            !this.hasEmptyRow()
+        );
+    }
+
+    getNumberOfSolutions() {
+        if (this.hasLinearDependencies()) {
+            return -1; //infinitly many
+        } else if ((this.getRank() < this.nRows) || this.hasEmptyRow()) {
+            return 0; //no solution
+        } else {
+            return 1; //one solution
+        }
+    }
+
+    hasEmptyRow() {
+        for (let i = 0; i < this.nRows; i++) {
+            let empty = true;
+            for (let j = 0; j < this.nColumns; j++) {
+                if (!this.getCell(i, j).equals(ZERO)) {
+                    empty = false;
+                }
+            }
+            if (empty) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    getRank() {
+        let rank = this.nRows;
+        let matrix = this.clone();
+        for (let i = 0; i < this.nColumns; i++) {
+            let pivot = matrix.getPivot(i);
+            if (pivot[1].equals(ZERO)) {
+                rank--;
+            }
+        }
+        return rank;
     }
 
     isSquare() {
@@ -90,6 +131,29 @@ export class Matrix {
             }
         }
         return new Matrix(newArray);
+    }
+
+    abs() {
+        let newArray = [];
+        for (let i = 0; i < this.nRows; i++) {
+            newArray[i] = [];
+            for (let j = 0; j < this.nColumns; j++) {
+                newArray[i][j] = this.array[i][j].abs();
+            }
+        }
+        return new Matrix(newArray);
+    }
+
+    max() {
+        let max = this.array[0][0];
+        for (let i = 0; i < this.nRows; i++) {
+            for (let j = 0; j < this.nColumns; j++) {
+                if (this.array[i][j].greater(max)) {
+                    max = this.array[i][j];
+                }
+            }
+        }
+        return max;
     }
 
     /**
@@ -316,6 +380,16 @@ export class Matrix {
             );
         }
 
+        return determinant;
+    }
+
+    getDeterminantUsingGaussElimination() {
+        let [coefMatrix, solMatrix] = gaussElimination(
+            this,
+            getUnitMatrix(this.nRows),
+            true
+        );
+        let determinant = solMatrix.getCell(0, 0);
         return determinant;
     }
 

@@ -1,7 +1,11 @@
 import { gaussElimination } from "../logic/gaussalgorithm.js";
 import { generateMatrix } from "../logic/generateExercise.js";
 import { getUnitMatrix } from "../logic/matrix.js";
-import { Table, addKeyDownListener, clearTables } from "../intermediate/table.js";
+import {
+    Table,
+    addKeyDownListener,
+    clearTables,
+} from "../intermediate/table.js";
 import {
     addCombobox,
     applyRowOperations,
@@ -9,6 +13,7 @@ import {
 import {
     setEventListenerFunction,
     listenTableDimension,
+    validate,
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 
@@ -53,6 +58,14 @@ for (let i = 0; i < coefTable.nRows; i++) {
         inputTables: [coefTable, solTable],
         outputTables: [resCoefTable, resSolTable],
         func: (coefMatrix, solMatrix) => {
+            if (coefMatrix.getNumberOfSolutions() === 0) {
+                alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG");
+            }
+            if (coefMatrix.getNumberOfSolutions() === -1) {
+                alert(
+                    "UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN"
+                );
+            }
             let unitMatrix = getUnitMatrix(coefMatrix.nRows);
             let outputMatrix = gaussElimination(coefMatrix, solMatrix);
             return [unitMatrix, outputMatrix];
@@ -65,8 +78,9 @@ for (let i = 0; i < coefTable.nRows; i++) {
         outputTables: [coefTable, solTable],
         func: (coefMatrix, solMatrix) => {
             let nRows = coefMatrix.nRows;
+            let nCols = coefMatrix.nColumns;
             let nEq = solMatrix.nColumns;
-            let newCoefMatrix = generateMatrix(nRows, nRows);
+            let newCoefMatrix = generateMatrix(nRows, nCols);
             let newSolMatrix = generateMatrix(nRows, nEq);
             return [newCoefMatrix, newSolMatrix];
         },
@@ -86,6 +100,14 @@ for (let i = 0; i < coefTable.nRows; i++) {
         inputTables: [coefTable, solTable],
         outputTables: [resCoefTable, resSolTable],
         func: (coefMatrix, solMatrix) => {
+            if (coefMatrix.getNumberOfSolutions() === 0) {
+                alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG");
+            }
+            if (coefMatrix.getNumberOfSolutions() === -1) {
+                alert(
+                    "UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN"
+                );
+            }
             coefMatrix = applyRowOperations(coefMatrix, rowOperations);
             solMatrix = applyRowOperations(solMatrix, rowOperations);
             return [coefMatrix, solMatrix];
@@ -108,7 +130,7 @@ let conversionButtonChecked = false;
 getById("button-representation-conversion").addEventListener("click", () => {
     conversionButtonChecked = !conversionButtonChecked;
     tables.forEach(table => {
-        table.convertRepresentation(conversionButtonChecked)
+        table.convertRepresentation(conversionButtonChecked);
     });
 });
 
@@ -150,4 +172,15 @@ addKeyDownListener(tables, true);
 
 getById("button-clear").addEventListener("click", () => {
     clearTables(tables);
+});
+
+
+let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
+
+getById("table-coef").addEventListener("keydown", () => {
+    validate(validPattern)
+});
+
+getById("table-sol").addEventListener("keydown", () => {
+    validate(validPattern)
 });

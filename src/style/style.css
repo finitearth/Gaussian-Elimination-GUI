@@ -321,7 +321,7 @@ button.secondary:active {
 }
 
 .invalid {
-    border-color: red;
+    background-color: lightcoral;
 }
 
 

@@ -5,10 +5,15 @@ import {
     addCombobox,
     applyRowOperations,
 } from "../intermediate/rowoperation.js";
-import { Table, addKeyDownListener, clearTables } from "../intermediate/table.js";
+import {
+    Table,
+    addKeyDownListener,
+    clearTables,
+} from "../intermediate/table.js";
 import {
     setEventListenerFunction,
     listenTableDimension,
+    validate,
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 
@@ -75,6 +80,14 @@ setEventListenerFunction(
     [coefTable, identityTable],
     [solIdentityTable, solCoefTable],
     (coefMatrix, solMatrix) => {
+        if (coefMatrix.getNumberOfSolutions() === 0) {
+            alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG");
+        }
+        if (coefMatrix.getNumberOfSolutions() === -1) {
+            alert(
+                "UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN"
+            );
+        }
         let outputMatrix = gaussElimination(coefMatrix, solMatrix);
         let unitMatrix = getUnitMatrix(coefMatrix.nRows);
         return [unitMatrix, outputMatrix];
@@ -93,6 +106,14 @@ setEventListenerFunction(
     [coefTable, identityTable],
     [solIdentityTable, solCoefTable],
     (coefMatrix, solMatrix) => {
+        if (coefMatrix.getNumberOfSolutions() === 0) {
+            alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG");
+        }
+        if (coefMatrix.getNumberOfSolutions() === -1) {
+            alert(
+                "UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN"
+            );
+        }
         coefMatrix = applyRowOperations(coefMatrix, rowOperations);
         solMatrix = applyRowOperations(solMatrix, rowOperations);
 
@@ -101,16 +122,13 @@ setEventListenerFunction(
 );
 
 let conversionButtonChecked = false;
-getById("button-representation-conversion").addEventListener(
-    "click",
-    () => {
-        conversionButtonChecked = !conversionButtonChecked;
+getById("button-representation-conversion").addEventListener("click", () => {
+    conversionButtonChecked = !conversionButtonChecked;
 
-        tables.forEach(table => {
-            table.convertRepresentation(conversionButtonChecked);
-        });
-    }
-);
+    tables.forEach(table => {
+        table.convertRepresentation(conversionButtonChecked);
+    });
+});
 
 setEventListenerFunction("button-generate-excercise", [], [coefTable], () => [
     generateMatrix(dimension, dimension),
@@ -129,3 +147,13 @@ getById("button-clear").addEventListener("click", () => {
 for (let i = 0; i < tables.length; i++) {
     tables[i].addRowDescription();
 }
+
+let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
+
+getById("table-element-1").addEventListener("keydown", () => {
+    validate(validPattern)
+});
+
+getById("table-element-2").addEventListener("keydown", () => {
+    validate(validPattern)
+});

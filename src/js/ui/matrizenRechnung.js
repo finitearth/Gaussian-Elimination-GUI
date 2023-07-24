@@ -1,6 +1,9 @@
 import { Table, addKeyDownListener, clearTables } from "../intermediate/table.js";
 import { calculate } from "../logic/equationParser.js";
-import { setEventListenerFunction } from "../intermediate/eventlisteners.js";
+import { 
+    setEventListenerFunction,
+    validate,
+ } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 
 // =========== Tables ===========
@@ -74,4 +77,31 @@ getById("button-representation-conversion").addEventListener("click", () => {
 
 getById("button-clear").addEventListener("click", () => {
     clearTables(tables);
+    clearTables([resultTable])
+    let l = tables.length - 2;
+    for (let i = 0; i < l; i++) {
+        removeTable();
+    }
+
+    getById("input-equation").value = "";
+
 });
+
+let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
+
+tables.forEach(table => {
+   getById(table.id).addEventListener("keydown", () => {
+   validate(validPattern)
+   });
+});
+
+
+let validPatternEqu = /^[-+]?[\d]*[.,\/]?[\d]*$/;
+
+getById("input-equation").addEventListener("keydown", () => {
+    validate(validPatternEqu)
+});
+
+
+
+
