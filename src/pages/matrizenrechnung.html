@@ -1,117 +1,112 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Matrizenrechnung</title>
-        <link rel="stylesheet" href="../style/style.css" type="text/css" />
-        <link rel="icon" href="../images/icon_logo.png" />
-    </head>
 
-    <body>
-        <nav id="navbar"></nav>
-        <header>
-            <h1>Matrizenrechnung</h1>
-            <button id="button-help-modal" class="button-help">Hilfe</button>
-        </header>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <main>
-            <div id="help-modal" class="modal">
-                <div class="modal-content">
-                    <span id="span-close" class="close">&times;</span>
-                    <h2>Hilfe - Matrizenrechnung</h2>
-                    <h3 class="subheading-help">Bedienungsanleitung & Tipps</h3>
-                    <div class="help-content">
-                        Unsere Anwendung ermöglicht es Ihnen, einfache bis
-                        komplexe Matrizenberechnungen durchzuführen, indem Sie
-                        eine Rechenanweisung in das Eingabefeld eingeben. Hier
-                        ist eine Schritt-für-Schritt-Anleitung, wie Sie unsere
-                        Anwendung nutzen können:<br />
-                        Auf der Seite finden Sie ein Eingabefeld, in das Sie
-                        Ihre Matrizenrechnungsanweisungen eingeben können. Geben
-                        Sie Ihre Matrizenrechnungsanweisung in das Eingabefeld
-                        ein. Ihre Rechenanweisung sollte mit der Bezeichnung der
-                        Matrix beginnen, gefolgt von einer Operation (+, -, *
-                        oder /), einem Skalar und der Bezeichnung einer anderen
-                        Matrix. Zum Beispiel: "A*3+B*1/4". Bitte achten Sie
-                        darauf, dass Sie die korrekten Matrixbezeichnungen und
-                        -operationen verwenden, damit das Ergebnis korrekt ist.
-                        <br />Nachdem Sie Ihre Matrizenrechnungsanweisung
-                        eingegeben haben, klicken Sie auf die Schaltfläche
-                        "Berechnen". Unser System führt die angegebenen
-                        Rechenoperationen durch und zeigt das Ergebnis auf dem
-                        Bildschirm an. Überprüfen Sie das Ergebnis auf Fehler
-                        oder Ungenauigkeiten. Wenn Sie der Meinung sind, dass
-                        das Ergebnis falsch ist oder es Ungenauigkeiten gibt,
-                        können Sie die Eingabeanweisung erneut überprüfen oder
-                        die Eingabedaten korrigieren und die Berechnung erneut
-                        durchführen. <br />Das ist alles! Wir hoffen, dass Ihnen
-                        diese Anleitung hilfreich war und Sie unsere Anwendung
-                        zur Matrizenrechnung genießen werden. Wenn Sie weitere
-                        Fragen haben oder Unterstützung benötigen, zögern Sie
-                        bitte nicht, uns zu kontaktieren. Vielen Dank für die
-                        Nutzung unserer Anwendung!
-                    </div>
-                    <button id="button-close" class="secondary">
-                        Schließen
-                    </button>
-                </div>
-            </div>
+    <title>Matrizenrechnung</title>
 
-            <div class="page-divider">
-                <div class="matrix-overflow-box">
-                    <div id="table" class="matrix-container"></div>
+    <link rel="stylesheet" href="../style/style.css" type="text/css" />
+    <link rel="stylesheet" href="../style/matrizenrechnung-style.css" type="text/css" />
+    <link rel="icon" href="../images/icon_logo.png" />
+</head>
+
+<body>
+    <nav id="navbar"></nav>
+    
+    <header>
+        <h1>Matrizenrechnung</h1>
+        <button id="button-help-modal" class="button-help">Hilfe</button>
+    </header>
+
+    <main>
+        <div id="help-modal" class="modal">
+            <div class="modal-content">
+                <span id="span-close" class="close">&times;</span>
+                <h2>Hilfe - Matrizenrechnung</h2>
+                <h3 class="subheading-help">Bedienungsanleitung & Tipps</h3>
+                <div class="help-content">
+                    Unsere Anwendung ermöglicht es Ihnen, einfache bis
+                    komplexe Matrizenberechnungen durchzuführen, indem Sie
+                    eine Rechenanweisung in das Eingabefeld eingeben. Hier
+                    ist eine Schritt-für-Schritt-Anleitung, wie Sie unsere
+                    Anwendung nutzen können:<br />
+                    Auf der Seite finden Sie ein Eingabefeld, in das Sie
+                    Ihre Matrizenrechnungsanweisungen eingeben können. Geben
+                    Sie Ihre Matrizenrechnungsanweisung in das Eingabefeld
+                    ein. Ihre Rechenanweisung sollte mit der Bezeichnung der
+                    Matrix beginnen, gefolgt von einer Operation (+, -, *
+                    oder /), einem Skalar und der Bezeichnung einer anderen
+                    Matrix. Zum Beispiel: "A*3+B*1/4". Bitte achten Sie
+                    darauf, dass Sie die korrekten Matrixbezeichnungen und
+                    -operationen verwenden, damit das Ergebnis korrekt ist.
+                    <br />Nachdem Sie Ihre Matrizenrechnungsanweisung
+                    eingegeben haben, klicken Sie auf die Schaltfläche
+                    "Berechnen". Unser System führt die angegebenen
+                    Rechenoperationen durch und zeigt das Ergebnis auf dem
+                    Bildschirm an. Überprüfen Sie das Ergebnis auf Fehler
+                    oder Ungenauigkeiten. Wenn Sie der Meinung sind, dass
+                    das Ergebnis falsch ist oder es Ungenauigkeiten gibt,
+                    können Sie die Eingabeanweisung erneut überprüfen oder
+                    die Eingabedaten korrigieren und die Berechnung erneut
+                    durchführen. <br />Das ist alles! Wir hoffen, dass Ihnen
+                    diese Anleitung hilfreich war und Sie unsere Anwendung
+                    zur Matrizenrechnung genießen werden. Wenn Sie weitere
+                    Fragen haben oder Unterstützung benötigen, zögern Sie
+                    bitte nicht, uns zu kontaktieren. Vielen Dank für die
+                    Nutzung unserer Anwendung!
                 </div>
-                <div class="container-button-matrixrechnung">
-                    <button id="button-add-table">Matrix hinzufügen</button>
-                    <button id="remove-table">Matrix entfernen</button>
-                    <button id="button-clear">🗑</button>
-                </div>
-            </div>
-            <div class="page-divider">
-                <h2>Berechnung</h2>
-                <button id="button-calculate" class="button-matrixrechnung">
-                    Berechnen
+                <button id="button-close" class="secondary">
+                    Schließen
                 </button>
-                <table>
-                    <tr>
-                        <td>
-                            <input
-                                id="input-equation"
-                                type="text"
-                                class="equation-input"
-                            />
-                        </td>
-                        <td>=</td>
-                        <td>
-                            <div id="table-result"></div>
-                        </td>
-                        <td>
-                            <!-- Rounded switch -->
-                            <label class="switch">
-                                <input
-                                    type="checkbox"
-                                    id="button-representation-conversion"
-                                />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
-                    </tr>
-                </table>
             </div>
-        </main>
-        <footer>
-            <div class="impressum">
-                <a
-                    class="impressum-text"
-                    ,
-                    href="http://www.kirchbergnet.de/impressum.php"
-                    >Impressum</a
-                >
+        </div>
+
+        <div class="page-divider">
+            <div class="matrix-overflow-box">
+                <div id="table" class="matrix-container"></div>
             </div>
-        </footer>
-    </body>
-    <script src="../js/ui/navbar.js"></script>
-    <script src="../js/ui/matrizenRechnung.js" type="module"></script>
-    <script src="../js/ui/modal.js"></script>
+            <div class="container-button-matrixrechnung">
+                <button id="button-add-table" class="button-matrix add">Matrix hinzufügen</button><br>
+                <button id="remove-table" class="button-matrix remove">Matrix entfernen</button>
+            </div>
+            <button id="button-clear" class="button-clear">Leeren</button>
+        </div>
+
+        <div class="page-divider">
+            <h2>Berechnung</h2>
+            <button id="button-calculate" class="button-matrixrechnung">
+                Berechnen
+            </button>
+            <table>
+                <tr>
+                    <td>
+                        <input id="input-equation" type="text" class="equation-input" />
+                    </td>
+                    <td>=</td>
+                    <td>
+                        <div id="table-result"></div>
+                    </td>
+                    <td>
+                        <!-- Rounded switch -->
+                        <label class="switch">
+                            <input type="checkbox" id="button-representation-conversion" />
+                            <span class="slider round"></span>
+                        </label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </main>
+    <footer>
+        <div class="impressum">
+            <a class="impressum-text" , href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
+        </div>
+    </footer>
+</body>
+<script src="../js/ui/navbar.js"></script>
+<script src="../js/ui/matrizenRechnung.js" type="module"></script>
+<script src="../js/ui/modal.js"></script>
+
 </html>

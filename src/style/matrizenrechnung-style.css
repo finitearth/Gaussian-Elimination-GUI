@@ -1,0 +1,71 @@
+.button-clear {
+    float: right;
+}
+
+.add {
+    background-image: url("../images/icon_plus.png");
+}
+
+.remove {
+    background-image: url("../images/icon_minus.png");
+}
+
+.button-matrix {
+    width: 8.5em;
+    background-repeat: no-repeat;
+    background-size: 3em 3em;
+    vertical-align: middle;
+    padding-left: 3em;
+}
+
+.matrix-overflow-box {
+    height: 33vh;
+    width: 50%;
+    min-width: 20em;
+    overflow: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0.5em;
+    position: relative;
+    margin-right: 0;
+    float: left;
+}
+
+.container-button-matrixrechnung {
+    margin-top: 0.5em;
+    float: left;
+}
+
+.equation-input {
+    border: None;
+    border-radius: 5px;
+    height: 1.75em;
+    width: 12.5em;
+    text-align: left;
+}
+
+.matrix-box {
+    overflow: hidden;
+}
+
+.matrix-name {
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 16pt;
+}
+
+.button-matrixrechnung {
+    float: right;
+}
+
+.equation {
+    overflow: hidden;
+}
+
+.equation-leftside {
+    float: left;
+}
+
+.equation-rightside {
+    float: right;
+}

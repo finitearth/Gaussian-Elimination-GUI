@@ -123,63 +123,6 @@ select {
     object-position: center;
 }
 
-/* Matrizenrechnung */
-.matrix-overflow-box {
-    height: 33vh;
-    width: 50%;
-    min-width: 20em;
-    overflow: auto;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 0.5em;
-    position: relative;
-    margin-right: 0;
-}
-
-.container-button-matrixrechnung {
-    margin-top: 0.5em;
-}
-
-/* .button-box-add-remove-matrix {
-    overflow: hidden;
-    position: relative;
-    padding-left: 1em;
-} */
-
-.equation-input {
-    border: None;
-    border-radius: 5px;
-    height: 1.75em;
-    width: 12.5em;
-    text-align: left;
-}
-
-.matrix-box {
-    overflow: hidden;
-}
-
-.matrix-name {
-    vertical-align: middle;
-    font-weight: bold;
-    font-size: 16pt;
-}
-
-.button-matrixrechnung {
-    float: right;
-}
-
-.equation {
-    overflow: hidden;
-}
-
-.equation-leftside {
-    float: left;
-}
-
-.equation-rightside {
-    float: right;
-}
-
 /* Layout */
 
 .align-center {
@@ -444,6 +387,15 @@ input:not(checked)+.slider:before {
     content: "¾";
 }
 
+.button-clear {
+    background-image: url("../images/icon_clear.png");
+    background-repeat: no-repeat;
+    background-size: 3em 3em;
+    vertical-align: middle;
+    padding-left: 3em;
+    width: 7em;
+}
+
 
 /* Rounded sliders */
 .slider.round {
@@ -506,6 +458,7 @@ input:not(checked)+.slider:before {
     vertical-align: middle;
     padding-left: 1.5em;
 }
+
 
 .button-float-right {
     float: right;
