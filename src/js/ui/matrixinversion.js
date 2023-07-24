@@ -13,6 +13,7 @@ import {
 import {
     setEventListenerFunction,
     listenTableDimension,
+    validate,
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 
@@ -146,3 +147,13 @@ getById("button-clear").addEventListener("click", () => {
 for (let i = 0; i < tables.length; i++) {
     tables[i].addRowDescription();
 }
+
+let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
+
+getById("table-element-1").addEventListener("keydown", () => {
+    validate(validPattern)
+});
+
+getById("table-element-2").addEventListener("keydown", () => {
+    validate(validPattern)
+});
