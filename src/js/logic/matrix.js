@@ -1,5 +1,6 @@
 import { InvalidInputException } from "../exceptions.js";
 import { Fraction, NEGONE, ZERO } from "./fraction.js";
+import { gaussElimination } from "./gaussalgorithm.js";
 
 /**
  * Class for a matrix consisting of a 2-dimensional array of Fraction objects.
@@ -23,7 +24,7 @@ export class Matrix {
     hasLinearDependencies() {
         return (
             this.isSquare() &&
-            (this.getRank() < this.nRows) &&
+            this.getRank() < this.nRows &&
             !this.hasEmptyRow()
         );
     }
@@ -31,7 +32,7 @@ export class Matrix {
     getNumberOfSolutions() {
         if (this.hasLinearDependencies()) {
             return -1; //infinitly many
-        } else if ((this.getRank() < this.nRows) || this.hasEmptyRow()) {
+        } else if (this.getRank() < this.nRows || this.hasEmptyRow()) {
             return 0; //no solution
         } else {
             return 1; //one solution
@@ -133,6 +134,10 @@ export class Matrix {
         return new Matrix(newArray);
     }
 
+    /**
+     * Returns a new matrix with the absolute values of all elements in the original matrix.
+     * @returns {Matrix} A new matrix with the absolute values of all elements in the original matrix.
+     */
     abs() {
         let newArray = [];
         for (let i = 0; i < this.nRows; i++) {
@@ -144,6 +149,10 @@ export class Matrix {
         return new Matrix(newArray);
     }
 
+    /**
+     * Returns the maximum element in the matrix.
+     * @returns {number} The maximum element in the matrix.
+     */
     max() {
         let max = this.array[0][0];
         for (let i = 0; i < this.nRows; i++) {
@@ -158,7 +167,7 @@ export class Matrix {
 
     /**
      * Subs the value
-    //  */
+     */
     sub(otherMatrix) {
         otherMatrix = otherMatrix.mul(NEGONE);
         return this.add(otherMatrix);
@@ -384,10 +393,9 @@ export class Matrix {
     }
 
     getDeterminantUsingGaussElimination() {
-        let [coefMatrix, solMatrix] = gaussElimination(
+        let solMatrix = gaussElimination(
             this,
-            getUnitMatrix(this.nRows),
-            true
+            getUnitMatrix(this.nRows)
         );
         let determinant = solMatrix.getCell(0, 0);
         return determinant;

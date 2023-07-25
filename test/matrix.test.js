@@ -1,5 +1,5 @@
 import { Matrix } from "../src/js/logic/matrix";
-import { Fraction } from "../src/js/logic/fraction";
+import { Fraction, NEGONE } from "../src/js/logic/fraction";
 import { InvalidInputException } from "../src/js/exceptions";
 
 let matrix1;
@@ -47,6 +47,77 @@ test("Matrix clone should work", () => {
     let matrixClone = matrix1.clone();
     expect(matrix1.equals(matrixClone)).toBe(true);
 });
+
+test("empty row present should be detected", () => {
+    let matrix = new Matrix([
+        [new Fraction(1, 1), new Fraction(2, 1), new Fraction(3, 1)],
+        [new Fraction(0, 1), new Fraction(0, 1), new Fraction(0, 1)],
+        [new Fraction(1, 1), new Fraction(2, 1), new Fraction(3, 1)],
+    ]);
+    expect(matrix.hasEmptyRow()).toBe(true);
+});
+
+test("should return the maximum element in the matrix", () => {
+    const matrix = new Matrix([
+        [new Fraction(1, 1), new Fraction(2, 1)],
+        [new Fraction(3, 1), new Fraction(4, 1)],
+    ]);
+    const result = matrix.max();
+    expect(result.equals(new Fraction(4, 1))).toBe(true);
+});
+test("should return a new matrix with absolute values of all elements", () => {
+    const matrix = new Matrix([
+        [new Fraction(-1, 1), new Fraction(-2, 1)],
+        [new Fraction(-3, 1), new Fraction(-4, 1)],
+    ]);
+    const result = matrix.abs();
+    expect(result.getCell(0, 0).equals(new Fraction(1, 1))).toBe(true);
+    expect(result.getCell(0, 1).equals(new Fraction(2, 1))).toBe(true);
+    expect(result.getCell(1, 0).equals(new Fraction(3, 1))).toBe(true);
+    expect(result.getCell(1, 1).equals(new Fraction(4, 1))).toBe(true);
+});
+
+test('should return a new matrix with the specified row and column excluded', () => {
+    const matrix = new Matrix([
+        [new Fraction(1, 1), new Fraction(2, 1), new Fraction(3, 1)],
+        [new Fraction(4, 1), new Fraction(5, 1), new Fraction(6, 1)],
+        [new Fraction(7, 1), new Fraction(8, 1), new Fraction(9, 1)],
+    ]);
+    const result = matrix.getSubMatrix(1, 1);
+    expect(result.getCell(0, 0).equals(new Fraction(1, 1))).toBe(true);
+    expect(result.getCell(0, 1).equals(new Fraction(3, 1))).toBe(true);
+    expect(result.getCell(1, 0).equals(new Fraction(7, 1))).toBe(true);
+    expect(result.getCell(1, 1).equals(new Fraction(9, 1))).toBe(true);
+  });
+
+test("should return the maximum element in the matrix", () => {
+    const matrix = new Matrix([
+        [new Fraction(-1, 1), new Fraction(-2, 1)],
+        [new Fraction(-3, 1), new Fraction(-4, 1)],
+    ]);
+    const result = matrix.max();
+    expect(result.equals(NEGONE)).toBe(true);
+});
+
+it('should return the determinant of the matrix', () => {
+    const matrix = new Matrix([
+        [new Fraction(1, 1), new Fraction(2, 1)],
+        [new Fraction(3, 1), new Fraction(4, 1)],
+    ]);
+
+    const result = matrix.getDeterminant();
+    expect(result.equals(new Fraction(-2, 1))).toBe(true);
+  });
+
+  it('should return the determinant of the matrix using gauß', () => {
+    const matrix = new Matrix([
+        [new Fraction(1, 1), new Fraction(2, 1)],
+        [new Fraction(3, 1), new Fraction(4, 1)],
+    ]);
+
+    const result = matrix.getDeterminantUsingGaussElimination();
+    expect(result.equals(new Fraction(-2, 1))).toBe(true);
+  });
 
 test("get Column", () => {
     expect(
@@ -181,10 +252,10 @@ test("sub matrix should work", () => {
     ).toBe(true);
 });
 
-test("set row should work", () => {             
+test("set row should work", () => {
     let row = new Matrix([
-                [new Fraction(7, 4), new Fraction(2, 4), new Fraction(0, 1)],
-            ]);
+        [new Fraction(7, 4), new Fraction(2, 4), new Fraction(0, 1)],
+    ]);
 
     expect(
         matrix1.setRow(1, row).equals(

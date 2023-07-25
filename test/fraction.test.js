@@ -1,4 +1,7 @@
-import { DivByZeroException, InvalidInputException } from "../src/js/exceptions";
+import {
+    DivByZeroException,
+    InvalidInputException,
+} from "../src/js/exceptions";
 import { Fraction, stringToFraction } from "../src/js/logic/fraction";
 import { Matrix } from "../src/js/logic/matrix";
 
@@ -70,7 +73,9 @@ test("Fraction equality, denom=1", () => {
 test("Mul Fraction by Matrix", () => {
     let matrix = new Matrix([[new Fraction(1, 2), new Fraction(1, 2)]]);
     let result = a.mul(matrix);
-    expect(result).toEqual(new Matrix([[new Fraction(1, 4), new Fraction(1, 4)]]));
+    expect(result).toEqual(
+        new Matrix([[new Fraction(1, 4), new Fraction(1, 4)]])
+    );
 });
 
 test("Fraction to decimal", () => {

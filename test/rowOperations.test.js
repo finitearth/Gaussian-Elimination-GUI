@@ -1,10 +1,46 @@
-import { RowOperation } from '../src/js/intermediate/rowOperation.js';
+// import { RowOperation } from "../src/js/intermediate/rowOperation.js";
+// import { Fraction } from "../src/js/logic/fraction.js";
+// import { Matrix } from "../src/js/logic/matrix.js";
+// import JSDOM from "jsdom";
 
-describe('RowOperation', () => {
-  test('wenn der durchgeht hat nick dicke eier', () => {
-    expect(true).toBe(true);
-  });
+describe("RowOperation", () => {
+    test("wenn der durchgeht hat nick dicke eier", () => {
+        expect(true).toBe(true);
+    });
 });
+
+// describe("RowOperation", () => {
+//     let rowOperation;
+//     let matrix;
+
+//     beforeEach(() => {
+//         // set up jsdom
+//         const dom = new JSDOM.JSDOM(
+//             '<!DOCTYPE html><html><head></head><body><div id="rowOperationPlaceholder"></div></body></html>'
+//         );
+//         global.document = dom.window.document;
+//         global.window = dom.window;
+//         global.navigator = dom.window.navigator;
+
+//         matrix = new Matrix([
+//           [new Fraction(1, 1), new Fraction(2, 1)],
+//           [new Fraction(3, 1), new Fraction(4, 1)]
+//         ]);
+//         rowOperation = new RowOperation(0, null);
+//     });
+
+//     describe("apply", () => {
+//         it("should apply the row operation to the matrix", () => {
+//             rowOperation.firstTextFieldValue = "2";
+//             rowOperation.secondTextFieldValue = "3";
+//             rowOperation.apply(matrix);
+//             expect(matrix.get(0, 0)).toBe(7);
+//             expect(matrix.get(0, 1)).toBe(10);
+//             expect(matrix.get(1, 0)).toBe(3);
+//             expect(matrix.get(1, 1)).toBe(4);
+//         });
+//     });
+// });
 
 //   test('should create a new RowOperation object', () => {
 //     expect(rowOperation).toBeDefined();
