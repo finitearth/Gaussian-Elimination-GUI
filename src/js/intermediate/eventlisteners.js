@@ -98,3 +98,15 @@ export function listenTableDimension(
         });
     });
 }
+
+
+export function validate(validPattern) {
+    let focused = document.activeElement;
+    let valid = focused.value.match(validPattern);
+
+    if (!valid) {
+        focused.classList.add("invalid");
+    } else {
+        focused.classList.remove("invalid");
+    }
+}

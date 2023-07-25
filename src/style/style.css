@@ -123,75 +123,12 @@ select {
     object-position: center;
 }
 
-/* Matrizenrechnung */
-.matrix-overflow-box {
-    height: 33vh;
-    width: 50%;
-    min-width: 20em;
-    overflow: auto;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 0.5em;
-    position: relative;
-    margin-right: 0;
-}
-
-.container-button-matrixrechnung {
-    margin-top: 0.5em;
-}
-
-/* .button-box-add-remove-matrix {
-    overflow: hidden;
-    position: relative;
-    padding-left: 1em;
-} */
-
-.equation-input {
-    border: None;
-    border-radius: 5px;
-    height: 1.75em;
-    width: 12.5em;
-    text-align: left;
-}
-
-.matrix-box {
-    overflow: hidden;
-}
-
-.matrix-name {
-    vertical-align: middle;
-    font-weight: bold;
-    font-size: 16pt;
-}
-
-.button-matrixrechnung {
-    float: right;
-}
-
-.equation {
-    overflow: hidden;
-}
-
-.equation-leftside {
-    float: left;
-}
-
-.equation-rightside {
-    float: right;
-}
-
 /* Layout */
 
 .align-center {
     align-items: center;
     justify-content: center;
     display: flex;
-}
-
-.align-40 {
-    left: 40%;
-    position: relative;
-
 }
 
 .nav {
@@ -378,17 +315,15 @@ button.secondary:active {
 }
 
 .invalid {
-    border-color: red;
+    background-color: lightcoral;
 }
 
-
-/* Vlt schmutz, gerne löschen, aber is für todecimal*/
 .switch {
     position: relative;
-    display: inline-block;
     margin: 1em;
     width: 60px;
     height: 34px;
+    float: right;
 }
 
 /* Hide default HTML checkbox */
@@ -396,9 +331,9 @@ button.secondary:active {
     opacity: 0;
     width: 0;
     height: 0;
-}
 
-/*  */
+}
+ 
 .slider {
     position: absolute;
     cursor: pointer;
@@ -427,21 +362,27 @@ input:checked+.slider {
     background-color: var(--primary-color);
 }
 
-input:focus+.slider {
-    box-shadow: 0 0 1px var(--primary-color);
-}
-
 input:checked+.slider:before {
-    vertical-align: middle;
-    content: "0.75";
-    font-size: 9pt;
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
 
-input:not(checked)+.slider:before {
-    content: "¾";
+input:not(checked)+.slider {
+    background-image: url("../images/icon_toggle.png");
+    background-repeat: no-repeat;
+    background-size: 4em 2em;
+    vertical-align: middle;
+}
+
+
+.button-clear {
+    background-image: url("../images/icon_clear.png");
+    background-repeat: no-repeat;
+    background-size: 3em 3em;
+    vertical-align: middle;
+    padding-left: 3em;
+    width: 7em;
 }
 
 
@@ -506,6 +447,7 @@ input:not(checked)+.slider:before {
     vertical-align: middle;
     padding-left: 1.5em;
 }
+
 
 .button-float-right {
     float: right;
