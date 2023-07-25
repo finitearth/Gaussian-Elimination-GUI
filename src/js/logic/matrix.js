@@ -24,8 +24,9 @@ export class Matrix {
     hasLinearDependencies() {
         return (
             this.isSquare() &&
-            this.getRank() < this.nRows &&
-            !this.hasEmptyRow()
+            !this.hasEmptyRow() &&
+            this.getDeterminant().equals(ZERO) &&
+            this.getRank() < this.nRows
         );
     }
 

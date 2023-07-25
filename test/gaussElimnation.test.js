@@ -1,6 +1,7 @@
 import { gaussElimination } from "../src/js/logic/gaussalgorithm";
 import { getUnitMatrix, Matrix } from "../src/js/logic/matrix";
 import { Fraction } from "../src/js/logic/fraction";
+import { UnsolvableMatrixException } from "../src/js/exceptions";
 
 let matrix1;
 let unitMatrix;
@@ -15,6 +16,7 @@ beforeEach(() => {
 
 
 // integration tests
+
 test("Inverting via GaussElimination twice should return orig. matrix", () => {
     let [coefMatrix2, solMatrix2] = gaussElimination(
         matrix1,

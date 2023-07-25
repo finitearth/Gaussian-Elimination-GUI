@@ -110,3 +110,4 @@ export function validate(validPattern) {
         focused.classList.remove("invalid");
     }
 }
+

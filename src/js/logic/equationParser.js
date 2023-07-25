@@ -1,14 +1,6 @@
 import { Fraction } from "./fraction.js";
 import { InvalidInputException } from "../exceptions.js";
 
-// const operators = {
-//     "+": (a, b) => a.add(b),
-//     "-": (a, b) => a.sub(b),
-//     "*": (a, b) => a.mul(b),
-//     "^": a => a.transpose(),
-//     "|": a => a.getDeterminant(),
-// };
-
 export function calculate(equationString, tables) {
     // check that only allowed characters are used (a-z, 0-9 and +, -, *, /), also check no operands and operators come twice after each other.
     if (

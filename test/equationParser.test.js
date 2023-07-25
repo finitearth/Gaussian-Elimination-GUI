@@ -1,6 +1,6 @@
 import { calculate } from "../src/js/logic/equationParser.js";
 import { Matrix } from "../src/js/logic/matrix.js";
-import { Fraction } from "../src/js/logic/fraction.js";
+import { Fraction, NEGONE } from "../src/js/logic/fraction.js";
 import { InvalidInputException } from "../src/js/exceptions.js";
 import { Table } from "../src/js/intermediate/table.js";
 import { JSDOM } from "jsdom";
@@ -36,7 +36,6 @@ beforeEach(() => {
     table2.setData(matrix2);
 
     tables = [table1, table2];
-
 });
 
 test("should calculate a simple equation", () => {
@@ -65,5 +64,21 @@ test("defining a fraction should work", () => {
 });
 
 test("operation order should be correct, including paranthasis", () => {
-    expect(calculate("2+(2+3)*2")).toEqual(new Fraction(12, 1));
+    expect(calculate("2+(2-3)*2")).toEqual(new Fraction(0, 1));
 });
+
+test("lower case letters should be accepted", () => {
+    expect(calculate("a+b", tables)).toEqual(new Fraction(2, 1).mul(matrix1));
+});
+
+test("determinant calculation should work", () => {
+    expect(calculate("|A|", tables)).toEqual(new Fraction(0, 1));
+})
+
+test("inverse calculation should work", () => {
+    expect(calculate("A^T", tables)).toEqual(matrix1);
+})
+
+// test("subtraction should work with matrices", () => {
+//     expect(calculate("2-3", tables)).toEqual(NEGONE);
+// });

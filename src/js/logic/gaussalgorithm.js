@@ -7,11 +7,11 @@ import { UnsolvableMatrixException } from "../exceptions.js";
  * @param {Matrix} solMatrix - The matrix representing the solutions of the system of linear equations.
  * @returns {Matrix} - The matrix representing the solutions to the system of linear equations after elimination.
  */
-export function gaussElimination(coefMatrix, solMatrix, returnCoefMatrix = false) {
-    if (coefMatrix.hasLinearDependencies()) {
-        throw new UnsolvableMatrixException();
-    }
-
+export function gaussElimination(
+    coefMatrix,
+    solMatrix,
+    returnCoefMatrix = false
+) {
     for (let i = 0; i < coefMatrix.nRows; i++) {
         let [pivotIndex, pivotElement] = coefMatrix.getPivot(i);
 

@@ -2,6 +2,7 @@ import {
     modifyDimListener,
     setEventListenerFunction,
     listenTableDimension,
+    validate
 } from "../src/js/intermediate/eventlisteners.js";
 import { getById } from "../src/js/intermediate/getElement.js";
 import { JSDOM } from "jsdom";
@@ -200,6 +201,19 @@ describe("listenTableDimension", () => {
                 .innerText
         ).toEqual(desCharacter);
     });
+
+    test("errors in the function are not thrown, but alerted", () => {
+        const fn = () => {
+            throw new Error("test");
+        };
+        listenTableDimension("input", tables, [], "cols", false, null, false);
+        expect(() => {
+            input.dispatchEvent(new dom.window.Event("input"));
+        }).not.toThrow();
+    });
+
+
+    
 
     afterEach(() => {
         global.document = undefined;

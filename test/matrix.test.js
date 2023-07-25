@@ -267,3 +267,21 @@ test("set row should work", () => {
         )
     ).toBe(true);
 });
+
+test("number of solutions should be 1", () => {
+    let matrix = new Matrix([
+        [new Fraction(1, 1), new Fraction(2, 1), new Fraction(3, 1)],
+        [new Fraction(4, 1), new Fraction(3, 1), new Fraction(2, 1)],
+        [new Fraction(1, 1), new Fraction(2, 1), new Fraction(4, 1)],
+    ]);
+    expect(matrix.getNumberOfSolutions()).toBe(1);
+});
+
+test("number of solutions should be 0", () => {
+    let matrix = new Matrix([
+        [new Fraction(1, 1), new Fraction(2, 1), new Fraction(3, 1)],
+        [new Fraction(0, 1), new Fraction(0, 1), new Fraction(0, 1)],
+        [new Fraction(1, 1), new Fraction(2, 1), new Fraction(4, 1)],
+    ]);
+    expect(matrix.getNumberOfSolutions()).toBe(0);
+});
