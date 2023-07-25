@@ -41,3 +41,19 @@ module.exports = {
   presets: [['@babel/preset-env', {targets: {node: 'current'}}]],
 };
 ```
+
+in package.json:
+```
+{
+    "scripts": {
+        "test": "jest"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.22.9",
+        "@babel/preset-env": "^7.22.9",
+        "babel-jest": "^29.6.1",
+        "jest-environment-jsdom": "^29.6.1",
+        "text-encoding": "^0.7.0"
+    }
+}
+```
