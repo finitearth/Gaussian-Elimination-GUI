@@ -96,12 +96,5 @@ tables.forEach(table => {
 });
 
 
-let validPatternEqu = /^[-+]?[\d]*[.,\/]?[\d]*$/;
-
-getById("input-equation").addEventListener("keydown", () => {
-    validate(validPatternEqu)
-});
-
-
 
 
