@@ -23,23 +23,23 @@ function createHTMLForNavbar() {
     let navbarElements = [
         {
             ref: `matrizenrechnung.html`,
-            text: "Matrizenrechnung",
+            text: "Matrizenrechnung ",
         },
         {
             ref: `matrixoperationen.html`,
-            text: "Matrixoperationen",
+            text: "Matrixoperationen ",
         },
         {
             ref: `gleichungssystem.html`,
-            text: "GL-System",
+            text: "GL System ",
         },
         {
             ref: `matrixinversion.html`,
-            text: "Inversenberechnung",
+            text: "Inversenberechnung ",
         },
         {
             ref: `simplex.html`,
-            text: "Simplex",
+            text: "Simplex ",
         },
         {
             ref: `info.html`,
