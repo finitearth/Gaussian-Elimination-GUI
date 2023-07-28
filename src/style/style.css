@@ -395,68 +395,6 @@ input:not(checked)+.slider {
     border-radius: 50%;
 }
 
-/* GL-System / Inversenberechnung */
-
-.combobox-dropdown,
-.combobox-input-field {
-    margin: 0 0.25em;
-    width: 2.5em;
-    height: 1.75em;
-    -ms-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
-    background-color: #fff;
-}
-
-.combobox-field {
-    height: min(1.75em, 3.5vmin);
-    width: min(2.5em, 5vmin);
-    min-width: 2em;
-    min-height: 1.25em;
-    margin-right: 0.5em;
-    text-align: left;
-}
-
-.button-gl-inv {
-    width: 9em;
-    padding: 0;
-}
-
-.button-berechnen-down {
-    background-image: url("../images/icon_arrow_down.png");
-    background-repeat: no-repeat;
-    background-size: 2.5em 2.5em;
-    vertical-align: middle;
-    padding-left: 1.5em;
-}
-
-
-.button-hoch-up {
-    background-image: url("../images/icon_arrow_up.png");
-    background-repeat: no-repeat;
-    background-size: 2.5em 2.5em;
-    vertical-align: middle;
-    padding-left: 1.5em;
-}
-
-.button-solve {
-    background-image: url("../images/icon_magic_wand.png");
-    background-repeat: no-repeat;
-    background-size: 2.5em 2.5em;
-    vertical-align: middle;
-    padding-left: 1.5em;
-}
-
-
-.button-float-right {
-    float: right;
-    margin: 0;
-}
-
-.operations {
-    width: 18em;
-}
 
 
 /* Guide-Page */

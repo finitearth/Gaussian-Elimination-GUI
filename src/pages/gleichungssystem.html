@@ -1,151 +1,130 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Gleichungssystem Lösen</title>
-        <link rel="stylesheet" href="../style/style.css" type="text/css" />
-        <link rel="icon" href="../images/icon_logo.png" />
-    </head>
 
-    <body>
-        <nav id="navbar"></nav>
-        <header>
-            <h1>Gleichungssystem lösen</h1>
-            <button id="button-help-modal" class="button-help">Hilfe</button>
-        </header>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <main>
-            <div id="help-modal" class="modal">
-                <div class="modal-content">
-                    <span id="span-close" class="close">&times;</span>
-                    <h2>Hilfe - Gleichungssystem Lösen</h2>
-                    <h3 class="subheading-help">Bedienungsanleitung & Tipps</h3>
-                    <div class="help-content">
-                        Diese Seite kann genutzt werden, um ein Gleichungssystem zu lösen. 
-                        Dabei kann ein Gleichungssystem flexibler Größe angegeben werden. Die Anzahl der Gleichungen, der Variablen und rechten Seiten können über die entsprechenden Eingabefelder oben auf der Seite spezifiziert werden. Nun können entweder eigene Werte für das Gleichungssystem eingegeben werden, oder eine zufällige Aufgabe über den Button "Aufgabe erstellen" kreiert werden (oben rechts). <br><br>
-                        Dieses Gleichungssystem kann nun entweder vom System gelöst werden oder schrittweise selbst durch entsprechende Zeilenoperationen. Zur Lösung durch das System muss lediglich der Button "Lösen" betätigt werden, der das Gleichungssystem über den Gauß-Algorithmus löst und die Lösung in der unteren Kachel der Seite darstellt.<br><br>
-                        Zur eigenen schrittweisen Lösung müssen Zeilenoperationen verwendet werden, um das Gleichungssystem gemäß dem Gauß-Algorithmus in die Stufenform zu bringen. Für die Stufenform müssen Nullen so erzeugt werden, dass die Matrix unter der Hauptdiagonalen überall Null ist. Die untenstehende Grafik veranschaulicht dies. Nun kann durch Rückwärtseinsetzen die Lösung berechenet werden. Das heißt, es wird mit der letzten Zeile begonnen und diese nach der Unbekannten aufgelöst. Diese Lösung wird in die vorherige Zeile eingesetzt, die wiederum nach der nächsten Unbekannten aufgelöst wird. Dies wird solange wiederholt, bis alle unbekannten bestimmt sind.<br><br>
+    <title>Gleichungssystem Lösen</title>
 
-                        <img src="../images/stufenform_lgs.png"><br>
+    <link rel="stylesheet" href="../style/style.css" type="text/css" />
+    <link rel="stylesheet" href="../style/gleichungssystem-matrixinversion-style.css" type="text/css" />
+    <link rel="icon" href="../images/icon_logo.png" />
+</head>
 
-                        - Verwendung von Zeilenoperationen
+<body>
+    <nav id="navbar"></nav>
 
-                        - Funktionsweise von "Berechne" und "Hoch" Buttons
+    <header>
+        <h1>Gleichungssystem lösen</h1>
+        <button id="button-help-modal" class="button-help">Hilfe</button>
+    </header>
 
-                        - Eine, keine oder unendlich viele Lösungen.
-                    </div>
-                    <button id="button-close" class="secondary">
-                        Schließen
-                    </button>
+    <main>
+        <div id="help-modal" class="modal">
+            <div class="modal-content">
+                <span id="span-close" class="close">&times;</span>
+                <h2>Hilfe - Gleichungssystem Lösen</h2>
+                <h3 class="subheading-help">Bedienungsanleitung & Tipps</h3>
+                <div class="help-content">
+                    Diese Seite kann genutzt werden, um ein Gleichungssystem zu lösen.
+                    Dabei kann ein Gleichungssystem flexibler Größe angegeben werden. Die Anzahl der Gleichungen, der
+                    Variablen und rechten Seiten können über die entsprechenden Eingabefelder oben auf der Seite
+                    spezifiziert werden. Nun können entweder eigene Werte für das Gleichungssystem eingegeben werden,
+                    oder eine zufällige Aufgabe über den Button "Aufgabe erstellen" kreiert werden (oben rechts).
+                    <br><br>
+                    Dieses Gleichungssystem kann nun entweder vom System gelöst werden oder schrittweise selbst durch
+                    entsprechende Zeilenoperationen. Zur Lösung durch das System muss lediglich der Button "Lösen"
+                    betätigt werden, der das Gleichungssystem über den Gauß-Algorithmus löst und die Lösung in der
+                    unteren Kachel der Seite darstellt.<br><br>
+                    Zur eigenen schrittweisen Lösung müssen Zeilenoperationen verwendet werden, um das Gleichungssystem
+                    gemäß dem Gauß-Algorithmus in die Stufenform zu bringen. Für die Stufenform müssen Nullen so erzeugt
+                    werden, dass die Matrix unter der Hauptdiagonalen überall Null ist. Die untenstehende Grafik
+                    veranschaulicht dies. Nun kann durch Rückwärtseinsetzen die Lösung berechenet werden. Das heißt, es
+                    wird mit der letzten Zeile begonnen und diese nach der Unbekannten aufgelöst. Diese Lösung wird in
+                    die vorherige Zeile eingesetzt, die wiederum nach der nächsten Unbekannten aufgelöst wird. Dies wird
+                    solange wiederholt, bis alle unbekannten bestimmt sind.<br><br>
+
+                    <img src="../images/stufenform_lgs.png"><br>
+
+                    - Verwendung von Zeilenoperationen
+
+                    - Funktionsweise von "Berechne" und "Hoch" Buttons
+
+                    - Eine, keine oder unendlich viele Lösungen.
                 </div>
-            </div>
-
-            <div class="gl-setup page-divider">
-                <label for="input-nr-eq">Anzahl Gleichungen:</label>
-                <input
-                    type="number"
-                    id="input-nr-eq"
-                    value="3"
-                    min="2"
-                    max="9"
-                    name="input-nr-eq"
-                />
-                <label for="input-nr-var">Anzahl Variablen:</label>
-                <input
-                    type="number"
-                    id="input-nr-var"
-                    value="3"
-                    min="2"
-                    max="9"
-                    name="input-nr-var"
-                />
-                <label for="input-nr-b">Anzahl rechte Seiten:</label>
-                <input
-                    type="number"
-                    id="input-nr-b"
-                    value="1"
-                    min="1"
-                    max="9"
-                    name="input-nr-b"
-                />
-                <button id="button-generate-excercise" class="button-float-right">Aufgabe erstellen</button>
-            </div>
-
-            <div id="matrixBox" class="page-divider align-center">
-                <table id="table" class="table">
-                    <tr id="table_row">
-                        <td id="table-coef"></td>
-                        <td id="table_vertical_1" class="vertical"></td>
-                        <td id="table-sol"></td>
-                        <td id="table_vertical_2" class="vertical"></td>
-                        <td id="table_vertical_3" class="vertical"></td>
-                        <td id="Operation" class="operations">
-                            <table id="operations-table"></table>
-                        </td>
-                    </tr>
-                </table>
-                
-            </div>
-
-            <div class="container-button">
-                <button id="button-clear">
-                    🗑
-                </button>
-                <button
-                    class="button-gl-inv button-berechnen-down"
-                    id="button-calculate"
-                >
-                    Berechnen
-                </button>
-                <button 
-                    class="button-gl-inv button-solve" 
-                    id="button-solve"
-                >
-                    Lösen
-                </button>
-                <button
-                    class="button-gl-inv button-hoch-up"
-                    id="button-adapt-result"
-                >
-                    Hoch
+                <button id="button-close" class="secondary">
+                    Schließen
                 </button>
             </div>
+        </div>
 
-            <div class="page-divider align-center">
-                <table>
-                    <tr id="table_row">
-                        <td id="table-res-coef"></td>
-                        <td id="table_vertical_4" class="vertical"></td>
-                        <td id="table-res-sol"></td>
-                        <!-- button for conversion to decimal -->
-                        <td class="operations">
-                            <!-- Rounded switch -->
-                            <label class="switch">
-                                <input
-                                    type="checkbox"
-                                    id="button-representation-conversion"
-                                />
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <script src="../js/ui/navbar.js"></script>
-            <script src="../js/ui/gleichungssystem.js" type="module"></script>
-        </main>
+        <div class="page-divider">
+            <label for="input-nr-eq">Anzahl Gleichungen:</label>
+            <input type="number" id="input-nr-eq" value="3" min="2" max="9" name="input-nr-eq" />
+            <label for="input-nr-var">Anzahl Variablen:</label>
+            <input type="number" id="input-nr-var" value="3" min="2" max="9" name="input-nr-var" />
+            <label for="input-nr-b">Anzahl rechte Seiten:</label>
+            <input type="number" id="input-nr-b" value="1" min="1" max="9" name="input-nr-b" />
+            <button id="button-generate-excercise" class="button-generate-exercise button-bar">
+                Aufgabe erstellen
+            </button>
+            <button id="button-clear" class="button-clear button-bar">
+                Leeren
+            </button>
+            <label class="switch button-bar">
+                <input type="checkbox" id="button-representation-conversion" />
+                <span class="slider round"></span>
+            </label>
+        </div>
 
-        <footer>
-            <div class="impressum">
-                <a
-                    class="impressum-text"
-                    ,
-                    href="http://www.kirchbergnet.de/impressum.php"
-                    >Impressum</a
-                >
-            </div>
-        </footer>
-    </body>
-    <script src="../js/ui/modal.js"></script>
+        <div class="page-divider align-center">
+            <table id="table" class="table">
+                <tr id="table_row">
+                    <td id="table-coef"></td>
+                    <td class="vertical"></td>
+                    <td id="table-sol"></td>
+                    <td class="vertical"></td>
+                    <td class="vertical"></td>
+                    <td id="Operation" class="operations">
+                        <table id="operations-table"></table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="container-button">
+            <button class="button-gl-inv button-berechnen-down" id="button-calculate">
+                Berechnen
+            </button>
+            <button class="button-gl-inv button-solve" id="button-solve">
+                Lösen
+            </button>
+            <button class="button-gl-inv button-hoch-up" id="button-adapt-result">
+                Hoch
+            </button>
+        </div>
+
+        <div class="page-divider align-center">
+            <table>
+                <tr id="table_row">
+                    <td id="table-res-coef"></td>
+                    <td id="table_vertical_4" class="vertical"></td>
+                    <td id="table-res-sol"></td>
+                </tr>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <div class="impressum">
+            <a class="impressum-text" , href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
+        </div>
+    </footer>
+</body>
+
+<script src="../js/ui/modal.js"></script>
+<script src="../js/ui/navbar.js"></script>
+<script src="../js/ui/gleichungssystem.js" type="module"></script>
+
 </html>

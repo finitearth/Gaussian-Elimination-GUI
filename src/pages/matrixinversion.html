@@ -1,90 +1,95 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Matrixinversion</title>
-        <link rel="stylesheet" href="../style/style.css" type="text/css" />
-        <link rel="icon" href="../images/icon_logo.png" />
-    </head>
-    
-    <body>
-        <nav id="navbar"></nav>
-        
-        <header>
-            <h1>Matrixinversion - Matrizengleichung</h1>
-            <button id="button-help-modal" class="button-help">Hilfe</button>
-        </header>
-        
-        <main>
-            <div id="help-modal" class="modal">
-                <div class="modal-content">
-                    <span id="span-close" class="close">&times;</span>
-                    <h2>Hilfe - Matrixinversion / Matrizengleichung</h2>
-                    <h3 class="subheading-help">Bedienungsanleitung & Tipps</h3>
-                    <div class="help-content">
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                	    ta sanctus est Lorem ipsum dolor sit amet.
-                    </div>
-                    <button id="button-close" class="secondary">Schließen</button>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Matrixinversion</title>
+
+    <link rel="stylesheet" href="../style/style.css" type="text/css" />
+    <link rel="stylesheet" href="../style/gleichungssystem-matrixinversion-style.css" type="text/css" />
+    <link rel="icon" href="../images/icon_logo.png" />
+</head>
+
+<body>
+    <nav id="navbar"></nav>
+
+    <header>
+        <h1>Matrixinversion - Matrizengleichung</h1>
+        <button id="button-help-modal" class="button-help">Hilfe</button>
+    </header>
+
+    <main>
+        <div id="help-modal" class="modal">
+            <div class="modal-content">
+                <span id="span-close" class="close">&times;</span>
+                <h2>Hilfe - Matrixinversion / Matrizengleichung</h2>
+                <h3 class="subheading-help">Bedienungsanleitung & Tipps</h3>
+                <div class="help-content">
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    ta sanctus est Lorem ipsum dolor sit amet.
                 </div>
+                <button id="button-close" class="secondary">Schließen</button>
             </div>
-            
-            <div class="page-divider">
-                <label for="button-dimension">Dimensionen:</label>
-                <input id="button-dimension" type="number" min="2" max="9" defaultValue="3" value="3" size="1">
-                <button id="button-generate-excercise" class="button-float-right">Aufgabe erstellen</button>
-            </div>
-            
-            <div id="matrixBox" class="page-divider align-center">
-                <table id="table">
-                    <tr id="table_row">
-                        <td id="table-element-1"></td>
-                        <td id="table_vertical_1" class="vertical"></td>
-                        <td id="table-element-2"></td>
-                        <td id="table_vertical_2" class="vertical"></td>
-                        <td id="table_vertical_3" class="vertical"></td>
-                        <td id="Operation" class="operations">
-                            <table id="operations-table"></table>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div id="mainButtonContainer" class="container-button">
-                <button id="button-calculate" class="button-gl-inv button-berechnen-down">Berechnen</button>
-                <button id="button-solve-solution" class="button-gl-inv button-solve">Lösen</button>
-                <button id="button-adapt-result" class="button-gl-inv button-hoch-up">Hoch</button>
-                <button id="button-clear">
-                    🗑
-                </button>
-            </div>
-            <div id="resultContainer" class="page-divider align-center">
-                <table id="resultContainerTable">
-                        <td id="resultContainerTableRowCol1"></td>
-                        <td id="table_vertical_1" class="vertical"></td>
-                        <td id="resultContainerTableRowCol2"></td>
-                        <td class="operations">
-                            <label class="switch">
-                                <input type="checkbox" id="button-representation-conversion">
-                                <span class="slider round"></span>
-                            </label>
-                        </td>
-                    </table>
-                </div>
-        </main>
-        <footer>
-            <div class="impressum">
-                <a
-                class="impressum-text"
-                ,
-                href="http://www.kirchbergnet.de/impressum.php"
-                >Impressum</a
-                >
-            </div>
-        </footer>
-    </body>
-    <script src="../js/ui/navbar.js"></script>
-    <script src="../js/ui/matrixinversion.js" type="module"></script>
-    <script src="../js/ui/modal.js"></script>
-    </html>
+        </div>
+
+        <div class="page-divider">
+            <label for="button-dimension">Dimensionen:</label>
+            <input id="button-dimension" type="number" min="2" max="9" defaultValue="3" value="3" size="1">
+            <button id="button-generate-excercise" class="button-generate-exercise button-bar">Aufgabe
+                erstellen</button>
+            <button id="button-clear" class="button-clear button-bar">Leeren</button>
+            <label class="switch button-bar">
+                <input type="checkbox" id="button-representation-conversion">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="page-divider align-center">
+            <table id="table">
+                <tr id="table_row">
+                    <td id="table-element-1"></td>
+                    <td class="vertical"></td>
+                    <td id="table-element-2"></td>
+                    <td class="vertical"></td>
+                    <td class="vertical"></td>
+                    <td id="Operation" class="operations">
+                        <table id="operations-table"></table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="container-button">
+            <button id="button-calculate" class="button-gl-inv button-berechnen-down">Berechnen</button>
+            <button id="button-solve-solution" class="button-gl-inv button-solve">Lösen</button>
+            <button id="button-adapt-result" class="button-gl-inv button-hoch-up">Hoch</button>
+        </div>
+
+        <div class="page-divider align-center">
+            <table id="resultContainerTable">
+                <td id="resultContainerTableRowCol1"></td>
+                <td class="vertical"></td>
+                <td id="resultContainerTableRowCol2"></td>
+            </table>
+        </div>
+    </main>
     
+    <footer>
+        <div class="impressum">
+            <a class="impressum-text" , href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
+        </div>
+    </footer>
+</body>
+
+<script src="../js/ui/navbar.js"></script>
+<script src="../js/ui/matrixinversion.js" type="module"></script>
+<script src="../js/ui/modal.js"></script>
+
+</html>
