@@ -447,3 +447,10 @@ input:not(checked)+.slider {
     text-decoration: none;
     cursor: pointer;
 }
+
+/* Misc */
+.button-bar {
+    float: right;
+    margin-top: 0;
+    margin-bottom: 0;
+}

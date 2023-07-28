@@ -66,12 +66,6 @@
 
 /* Formatting */
 
-.button-bar {
-    float: right;
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
 .operations {
     width: 18em;
     vertical-align: bottom;

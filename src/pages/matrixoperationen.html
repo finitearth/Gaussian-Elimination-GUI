@@ -4,14 +4,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Matrixoperationen</title>
+
     <link rel="stylesheet" href="../style/style.css" type="text/css" />
-    <link rel="stylesheet" href="../style/matrixoperationen-style.css" type="text/css" />
     <link rel="icon" href="../images/icon_logo.png" />
 </head>
 
 <body>
     <nav id="navbar"></nav>
+
     <header>
         <h1>Matrixoperationen</h1>
         <button id="button-help-modal" class="button-help">Hilfe</button>
@@ -94,35 +96,35 @@
             <input type="number" id="input-nr-rows" min="2" max="9" value="3" />
             <label for="input-nr-cols">Anzahl Spalten:</label>
             <input type="number" id="input-nr-cols" min="2" max="9" value="3" />
+            <button id="button-clear" class="button-clear button-bar">Leeren</button>
+            <label class="switch button-bar">
+                <input type="checkbox" id="button-representation-conversion" />
+                <span class="slider round"></span>
+            </label>
         </form>
 
-        <div class="page-divider">
-            <table class="matrix-align" id="input-table-placeholder"></table>
-            <div class="container-button-right">
-                <button id="button-clear" class="button-clear">Leeren</button><br>
-                <label class="switch">
-                    <input type="checkbox" id="button-representation-conversion" />
-                    <span class="slider round"></span>
-                </label>
-            </div>
+        <div class="page-divider align-center">
+            <table id="input-table-placeholder"></table>
         </div>
+
         <div class="container-button">
             <button id="button-inverse">M⁻¹</button>
             <button id="button-determinant">|M|</button>
             <button id="button-transpose">Mᵀ</button>
         </div>
-        <div class="page-divider">
-            <div class="matrix-align">
-                <table id="output-table-placeholder"></table>
-            </div>
+
+        <div class="page-divider align-center">
+            <table id="output-table-placeholder"></table>
         </div>
     </main>
+
     <footer>
         <div class="impressum">
             <a class="impressum-text" , href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
         </div>
     </footer>
 </body>
+
 <script src="../js/ui/navbar.js"></script>
 <script src="../js/ui/matrixoperationen.js" type="module"></script>
 <script src="../js/ui/modal.js"></script>
