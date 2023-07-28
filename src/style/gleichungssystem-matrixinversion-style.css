@@ -52,6 +52,7 @@
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     background-color: #fff;
+    border: 1px solid rgb(154, 157, 160);
 }
 
 .combobox-field {

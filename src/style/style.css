@@ -95,10 +95,6 @@ input[type="number"]::-webkit-outer-spin-button {
     height: 30px;
 }
 
-.combobox-input-field {
-    border: 1px solid rgb(154, 157, 160);
-}
-
 input:disabled {
     background-color: var(--input-background-color-dark);
 }
@@ -298,6 +294,15 @@ button.secondary:active {
     transform: translateY(1px);
 }
 
+.button-clear {
+    background-image: url("../images/icon_clear.png");
+    background-repeat: no-repeat;
+    background-size: 3em 3em;
+    vertical-align: middle;
+    padding-left: 3em;
+    width: 7em;
+}
+
 .result {
     left: 0;
     float: left;
@@ -375,17 +380,6 @@ input:not(checked)+.slider {
     vertical-align: middle;
 }
 
-
-.button-clear {
-    background-image: url("../images/icon_clear.png");
-    background-repeat: no-repeat;
-    background-size: 3em 3em;
-    vertical-align: middle;
-    padding-left: 3em;
-    width: 7em;
-}
-
-
 /* Rounded sliders */
 .slider.round {
     border-radius: 34px;
@@ -393,40 +387,6 @@ input:not(checked)+.slider {
 
 .slider.round:before {
     border-radius: 50%;
-}
-
-
-
-/* Guide-Page */
-
-.guide-container {
-    height: 66vh;
-    overflow: auto;
-}
-
-.guide-container p {
-    font-size: 12pt;
-}
-
-.guide-outline {
-    padding: 0 0 0.25em 0.5em;
-    margin-bottom: 0.5em;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 20em;
-}
-
-.guide-outline-list {
-    list-style-type: none;
-    font-size: 14pt;
-    margin-top: 0;
-}
-
-.guide-outline-list>li:before {
-    content: "❱";
-    padding-right: 0.25em;
-    text-align: right;
-    color: var(--primary-color);
 }
 
 /* Hilfe-Modal */
