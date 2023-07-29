@@ -454,3 +454,25 @@ input:not(checked)+.slider {
     margin-top: 0;
     margin-bottom: 0;
 }
+
+.matrix-bracket {
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 1.5em;
+  height: 100%;
+  padding: 0;
+}
+
+.open {
+    background-image: url('../images/matrix_bracket_open.png');
+}
+
+.closed {
+    background-image: url('../images/matrix_bracket_close.png');
+}
+
+.matrix, .cell-container-matrix {
+    padding: 0;
+    border-spacing: 0;
+}
