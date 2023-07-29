@@ -42,9 +42,6 @@
 }
 
 .equation-input {
-    border: None;
-    border-radius: 5px;
-    height: 1.75em;
     width: 12.5em;
     text-align: left;
 }

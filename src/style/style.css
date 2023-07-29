@@ -70,12 +70,10 @@ td {
 
 input {
     background-color: var(--input-background-color-light);
-    border: None;
+    border: 1px solid #ddd;
     border-radius: 3.5px;
-    height: min(1.75em, 3.5vmin);
-    width: min(2.5em, 5vmin);
-    min-width: 2em;
-    min-height: 1.25em;
+    height: 1.75em;
+    width: 2.5em;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -83,6 +81,7 @@ input {
 
 input[type="number"] {
     border: 1px solid rgb(154, 157, 160);
+    background-color: #fff;
     width: 3em;
     height: 1.75em;
     margin: 0.25em 1.75em 0.25em 0.25em;
@@ -97,10 +96,10 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input:disabled {
     background-color: var(--input-background-color-dark);
+    border: 1px solid rgb(154, 157, 160);
 }
 
 select {
-    border: 1px solid rgb(154, 157, 160);
     border-radius: 3.5px;
     height: 2em;
     width: 2.5em;
