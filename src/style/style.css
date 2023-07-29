@@ -35,7 +35,7 @@ header {
 }
 
 main {
-    padding: 3.5em 2em 1em 2em;
+    padding: 3.5em 2em 4em 2em;
 }
 
 footer {
@@ -44,6 +44,10 @@ footer {
     right: 0;
     bottom: 0;
     padding: 1em 2em;
+    height: 5em;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 h1 {
@@ -171,7 +175,6 @@ select {
 }
 
 .impressum-text {
-    float: right;
     padding-top: 1em;
 }
 
