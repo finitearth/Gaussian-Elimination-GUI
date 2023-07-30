@@ -23,7 +23,8 @@
 }
 
 /* Special buttons */
-.button-matrix { /* buttons to add/remove a matrix */
+.button-matrix {
+    /* buttons to add/remove a matrix */
     width: 8.5em;
     background-repeat: no-repeat;
     background-size: 3em 3em;

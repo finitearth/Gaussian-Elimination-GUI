@@ -141,20 +141,23 @@ select {
     display: flex;
 }
 
-.container-button { /* Container for buttons in the center */
+.container-button {
+    /* Container for buttons in the center */
     margin-bottom: 1em;
     align-items: center;
     justify-content: center;
     display: flex;
 }
 
-.button-bar { /* Align buttons in top bar */
+.button-bar {
+    /* Align buttons in top bar */
     float: right;
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.page-divider { /* White div elements with shadow */
+.page-divider {
+    /* White div elements with shadow */
     background: #fff;
     box-shadow: 0 4px 8px var(--shadow-color-transparent);
     border-radius: 0.5em;
@@ -211,7 +214,8 @@ select {
     width: 7em;
 }
 
-.button-matrixsize { /* Size of matrix size buttons */
+.button-matrixsize {
+    /* Size of matrix size buttons */
     width: 1.25em;
     height: 1.25em;
     margin: 0;
@@ -229,12 +233,14 @@ select {
     margin-right: 0.1em;
 }
 
-.vertical-align-sizebuttons { /* Align matrix size buttons */
+.vertical-align-sizebuttons {
+    /* Align matrix size buttons */
     vertical-align: top;
     padding-top: 0.3em;
 }
 
-.horizontal-align-sizebuttons { /* Align matrix size buttons */
+.horizontal-align-sizebuttons {
+    /* Align matrix size buttons */
     text-align: left;
     padding-left: 0.3em;
 }
@@ -248,12 +254,13 @@ select {
     float: right;
 }
 
-.switch input { /* Hide default HTML checkbox */
+.switch input {
+    /* Hide default HTML checkbox */
     opacity: 0;
     width: 0;
     height: 0;
 }
- 
+
 .slider {
     position: absolute;
     cursor: pointer;
@@ -351,7 +358,8 @@ input:checked+.slider:before {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* darken background */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* darken background */
 }
 
 .modal-content {
@@ -400,12 +408,12 @@ input:checked+.slider:before {
 
 /* Matrix brackets */
 .matrix-bracket {
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 1.5em;
-  height: 100%;
-  padding: 0;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 1.5em;
+    height: 100%;
+    padding: 0;
 }
 
 .open {
@@ -416,7 +424,8 @@ input:checked+.slider:before {
     background-image: url('../images/matrix_bracket_close.png');
 }
 
-.matrix, .cell-container-matrix {
+.matrix,
+.cell-container-matrix {
     padding: 0;
     border-spacing: 0;
 }

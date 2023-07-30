@@ -28,8 +28,9 @@
 
 .page-link-element {
     font-size: 14pt;
-    padding: 0.5em 1em;
-    margin: 1em 0;
+    padding: 0.25em 1em;
+    height: 2.25em;
+    margin: 0.75em 0;
     width: 12.5em;
     display: block;
     text-align: left;

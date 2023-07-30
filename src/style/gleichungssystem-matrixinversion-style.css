@@ -46,8 +46,7 @@
     padding: 0;
 }
 
-/* Combobox Style */
-
+/* Style comboboxes */
 .combobox-dropdown,
 .combobox-input-field {
     margin: 0.05em 0.25em;
@@ -58,12 +57,14 @@
 }
 
 /* Formatting */
-.operations { /* fixed space for row operations */
+.operations {
+    /* fixed space for row operations */
     width: 18em;
     vertical-align: bottom;
 }
 
-.vertical { /* vertical line */
+.vertical {
+    /* vertical line */
     background-image: url('../images/vertical.png');
     background-size: 100% 100%;
     background-position: center;
