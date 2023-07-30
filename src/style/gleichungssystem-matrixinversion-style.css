@@ -1,13 +1,12 @@
-/* CSS for GL-System and Inversenberechnung */
+/* Style for GL-System and Inversenberechnung */
 
 /* Button styling and special buttons */
-
 .button-gl-inv {
     width: 10em;
     padding: 0;
 }
 
-.button-berechnen-down {
+.button-down {
     background-image: url("../images/icon_arrow_down.png");
     background-repeat: no-repeat;
     background-size: 3em 3em;
@@ -15,7 +14,7 @@
     padding-left: 1.5em;
 }
 
-.button-hoch-up {
+.button-up {
     background-image: url("../images/icon_arrow_up.png");
     background-repeat: no-repeat;
     background-size: 3em 3em;
@@ -43,7 +42,7 @@
 .button-combobox {
     height: 2em;
     width: 2em;
-    margin: 0;
+    margin: 0.06em 0;
     padding: 0;
 }
 
@@ -51,34 +50,20 @@
 
 .combobox-dropdown,
 .combobox-input-field {
-    margin: 0 0.25em;
+    margin: 0.05em 0.25em;
     width: 2.5em;
     height: 1.75em;
-    -ms-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
     background-color: #fff;
-    border: 1px solid rgb(154, 157, 160);
-}
-
-.combobox-field {
-    height: min(1.75em, 3.5vmin);
-    width: min(2.5em, 5vmin);
-    min-width: 2em;
-    min-height: 1.25em;
-    margin-right: 0.5em;
-    text-align: left;
+    border: 1px solid var(--input-border-color-dark);
 }
 
 /* Formatting */
-
-.operations {
+.operations { /* fixed space for row operations */
     width: 18em;
     vertical-align: bottom;
 }
 
-.vertical {
+.vertical { /* vertical line */
     background-image: url('../images/vertical.png');
     background-size: 100% 100%;
     background-position: center;

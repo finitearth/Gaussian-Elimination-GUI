@@ -10,8 +10,8 @@
     --input-background-color-dark: #D1D2D3;
     --input-border-color-dark: #9A9DA0;
     --input-border-color-light: #D9DBDD;
-    --shadow-color: #135E6866;
-    --shadow-color-transparent: #135E681A;
+    --shadow-color: #74747466;
+    --shadow-color-transparent: #7474741a;
     --navigation-link: #9A9DA0;
     --color-invalid: lightcoral;
 }
@@ -242,7 +242,7 @@ select {
 /* Style toggle switch */
 .switch {
     position: relative;
-    margin: 1em;
+    margin: 0.33em;
     width: 60px;
     height: 34px;
     float: right;

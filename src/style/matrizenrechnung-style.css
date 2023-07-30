@@ -1,5 +1,34 @@
-.button-clear {
+/* Style for page Matrizenrechnung */
+
+/* Layout */
+.matrix-overflow-box {
+    height: 33vh;
+    width: 50%;
+    min-width: 20em;
+    overflow: auto;
+    border: 1px solid var(--input-border-color-light);
+    border-radius: 5px;
+    padding: 0.5em;
+    position: relative;
+    float: left;
+}
+
+.container-button-left {
+    margin-left: 0.5em;
+    float: left;
+}
+
+.container-button-right {
     float: right;
+}
+
+/* Special buttons */
+.button-matrix { /* buttons to add/remove a matrix */
+    width: 8.5em;
+    background-repeat: no-repeat;
+    background-size: 3em 3em;
+    vertical-align: middle;
+    padding-left: 3em;
 }
 
 .add {
@@ -8,52 +37,6 @@
 
 .remove {
     background-image: url("../images/icon_minus.png");
-}
-
-.button-matrix {
-    width: 8.5em;
-    background-repeat: no-repeat;
-    background-size: 3em 3em;
-    vertical-align: middle;
-    padding-left: 3em;
-}
-
-.matrix-overflow-box {
-    height: 33vh;
-    width: 50%;
-    min-width: 20em;
-    overflow: auto;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 0.5em;
-    position: relative;
-    margin-right: 0;
-    float: left;
-}
-
-.container-button-left {
-    margin-top: 0.5em;
-    float: left;
-}
-
-.container-button-right {
-    margin-top: 0.5em;
-    float: right;
-}
-
-.equation-input {
-    width: 12.5em;
-    text-align: left;
-}
-
-.matrix-box {
-    overflow: hidden;
-}
-
-.matrix-name {
-    vertical-align: middle;
-    font-weight: bold;
-    font-size: 16pt;
 }
 
 .button-calculate {
@@ -66,14 +49,9 @@
     float: right;
 }
 
-.equation {
-    overflow: hidden;
-}
-
-.equation-leftside {
-    float: left;
-}
-
-.equation-rightside {
-    float: right;
+/* Style equation */
+.equation-input {
+    width: 12.5em;
+    text-align: left;
+    padding: 0 0.5em;
 }
