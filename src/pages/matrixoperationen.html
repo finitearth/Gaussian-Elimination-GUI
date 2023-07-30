@@ -16,7 +16,7 @@
 
     <header>
         <h1>Matrixoperationen</h1>
-        <button id="button-help-modal" class="button-help">Hilfe</button>
+        <button id="button-help-modal" class="button-outline button-help">Hilfe</button>
     </header>
 
     <main>
@@ -85,9 +85,6 @@
                         Die Größe der Eingabematrix wird auf 3x3 zurückgesetzt.
                     </p> 
                 </div>
-                <button id="button-close" class="secondary">
-                    Schließen
-                </button>
             </div>
         </div>
 
@@ -96,7 +93,7 @@
             <input type="number" id="input-nr-rows" min="2" max="9" value="3" />
             <label for="input-nr-cols">Anzahl Spalten:</label>
             <input type="number" id="input-nr-cols" min="2" max="9" value="3" />
-            <button id="button-clear" class="button-clear button-bar">Leeren</button>
+            <button id="button-clear" class="button-primary button-clear button-bar">Leeren</button>
             <label class="switch button-bar">
                 <input type="checkbox" id="button-representation-conversion" />
                 <span class="slider round"></span>
@@ -114,9 +111,9 @@
         </div>
 
         <div class="container-button">
-            <button id="button-inverse">M⁻¹</button>
-            <button id="button-determinant">|M|</button>
-            <button id="button-transpose">Mᵀ</button>
+            <button class="button-primary" id="button-inverse">M⁻¹</button>
+            <button class="button-primary" id="button-determinant">|M|</button>
+            <button class="button-primary" id="button-transpose">Mᵀ</button>
         </div>
 
         <div class="page-divider align-center">
@@ -131,9 +128,7 @@
     </main>
 
     <footer>
-        <div class="impressum">
-            <a class="impressum-text" , href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
-        </div>
+            <a href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
     </footer>
 </body>
 

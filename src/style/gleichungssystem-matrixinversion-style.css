@@ -40,6 +40,13 @@
     width: 8em;
 }
 
+.button-combobox {
+    height: 2em;
+    width: 2em;
+    margin: 0;
+    padding: 0;
+}
+
 /* Combobox Style */
 
 .combobox-dropdown,
@@ -69,4 +76,14 @@
 .operations {
     width: 18em;
     vertical-align: bottom;
+}
+
+.vertical {
+    background-image: url('../images/vertical.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 0.33em;
+    height: 100%;
+    padding: 0;
 }
