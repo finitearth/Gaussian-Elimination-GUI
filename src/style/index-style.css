@@ -45,16 +45,16 @@
 .start-divider {
     width: 40%;
     min-width: 17.5em;
-    min-height: 15em;
-    position: absolute;
+    height: max(75vh, 35em);
+    position: relative;
     top: 50%;
-    transform: translateY(-50%);
     margin-left: 3em;
     padding: 2em;
     z-index: 1;
+    overflow: auto;
 }
 
 .start-text {
-    font-size: 16pt;
+    font-size: 14pt;
     padding-top: 1em;
 }
