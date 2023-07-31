@@ -16,7 +16,7 @@ export class RowOperation {
         this.secondTextField = "secondText" + this.id;
         this.secondTextFieldValue = "0";
         this.enabled = false;
-
+        
         this.comboBoxElement.id = this.id;
         this.comboboxButton = document.createElement("button");
         this.comboboxButton.innerHTML = "❱";
@@ -224,6 +224,7 @@ export function addCombobox(id, rowOperations, table) {
     getById("operations-table").appendChild(
         rowOperations[rowOperations.length - 1].comboBoxElement
     );
+    rowOperations[rowOperations.length - 1].handleComboboxButtons();
 
     return rowOperations;
 }
