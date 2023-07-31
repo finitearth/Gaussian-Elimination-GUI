@@ -75,6 +75,10 @@ a {
     color: var(--primary-color);
 }
 
+p {
+    margin-top: 0;
+}
+
 button {
     border: none;
     border-radius: 0.3em;
@@ -365,13 +369,12 @@ input:checked+.slider:before {
 .modal-content {
     background-color: #fff;
     box-shadow: 0 4px 8px var(--shadow-color-transparent);
-    height: max(66%, 30em);
+    height: 66vh;
     width: max(50%, 25em);
     border-radius: 0.5em;
     margin: auto;
     padding: 1.25em;
-    border: 1px solid #888;
-
+    border: 1px solid var(--input-border-color-light);
 }
 
 .subheading-help {
@@ -382,14 +385,22 @@ input:checked+.slider:before {
     font-weight: lighter;
 }
 
-.help-content {
+.help-content-box {
     overflow: auto;
     border: 1px solid var(--input-border-color-light);
     border-radius: 5px;
     font-size: 12pt;
-    padding: 0.25em 0.5em;
     margin-top: 2em;
-    height: 80%;
+    height: 50vh;
+    width: 100%;
+}
+
+.help-content {
+    padding: 0.5em 1em 0.25em 0.5em;
+}
+
+.help-body {
+    background-color: #fff;
 }
 
 .close {

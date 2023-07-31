@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hilfe - Matrizenrechnung</title>
+
+    <link rel="stylesheet" href="../../style/style.css" type="text/css" />
+    <link rel="icon" href="../images/icon_logo.png" />
+</head>
+
+<body class="help-body">
+    <div class="help-content">
+        <p>
+            Diese Seite ermöglicht, einfache bis komplexe Matrizenrechnungen durchzuführen. Dazu werden im
+            ersten Schritt die
+            Matrizen, auf denen die Berechnungen durchgeführt werden sollen, ausgefüllt. Die Matrizen sind
+            mit den Buchstaben
+            des Alphabets von A bis Z bezeichnet. Zu Beginn steht die Mindestanzahl an Matrizen (2) zur
+            Verfügung. Für
+            umfangreichere und komplexere Berechnungen können bis zu 24 weitere Matrizen hinzugefügt werden.
+            Sollte eine Matrix
+            zu viel hinzugefügt worden sein, kann die Anzahl an Matrizen über den Button "Matrix entfernen"
+            wieder gelöscht werden.
+            Es wird immer die zuletzt hinzugefügte Matrix entfernt. Wurden die Zellen der Matrix bereits
+            befüllt wird auch deren
+            Inhalt gelöscht. Eventuell bereits ausgefüllte Zellen werden dabei gelöscht. Wenn die Matrix
+            also wieder hinzugefügt
+            wird, wird eine leere Matrix angeführt. Auch rechnen mit der entfernten Matrix ist nicht mehr
+            möglich.
+        </p>
+        <p>
+            Die Dimensionen, also die Anzahl an Zeilen und Spalten können bei jeder einzelnen Matrix
+            flexibel angepasst werden,
+            wobei auch hier die Unter- und Obergrenzen von 2 bzw. 9 gelten. Zur Anpassung der Dimension
+            müssen die "+"- und
+            "-"-Buttons am oberen linken Eck einer jeden Matrix genutzt werden.
+        </p>
+        <p>
+            Nach Erfassung der Matrizen muss die durchzuführende Berechnung angegeben werden. Hierfür gibt
+            es ein Textfeld im
+            Seitenabschnitt "Berechnung". Folgende Objekte und Operationen können im Testfeld verwendet
+            werden:
+        <ul>
+            <li>
+                A bis Z : die Matrizen werden über ihren Buchstaben in der Berechnung angegeben
+            </li>
+            <li>+ : Matrizen können dann miteinander addiert werden, wenn sie die gleiche Größe haben, also
+                die gleiche
+                Anzahl an Zeilen und Spalten
+            </li>
+            <li>
+                - : wie bei der Addition der Matrizen gilt auch bei der Subtraktion von Matrizen, dass sie
+                hierfür die
+                gleiche Größe haben müssen
+            </li>
+            <li>
+                * : um zwei Matrizen miteinander multiplizieren zu können, muss die Spaltenanzahl der ersten
+                Matrix der
+                Zeilenanzahl der zweiten Matrix entsprechen. Bei der Multiplikation wird nacheinander jede
+                Zeile der ersten
+                Matrix mit jeder Spalte der zweiten Matrix multipliziert. Die einzelnen Elemente, die sich
+                aus der
+                Multiplikation ergeben, werden dann miteinander addiert. Die Anzahl an Zeilen der
+                Ergebnismatrix entspricht
+                der Anzahl der Zeilen der zweiten Matrix und die Anzahl an Spalten der Ergebnismatrix
+                entspricht der Anzahl
+                der Spalten der ersten Matrix.
+            </li>
+            <li>
+                Skalar : eine Matrix kann mit einem Skalar, also einer reellen Zahl, multipliziert werden.
+                Dabei wird
+                jedes Element mit dem Skalar multipliziert.
+            </li>
+            <li>
+                x : mit dem x wird das Kreuzprodukt zweier Matrizen berechnet. Hierfür müssen die Matrizen
+                die gleiche Größe
+                haben. Das Ergebnis ist ein Vektor.
+            </li>
+            <li>
+                () : um die Reihenfolge der Berechnungen zu definieren, können Klammern genutzt werden. Die
+                Reihenfolge der
+                Rechenoperationen entspricht Klammer vor Punkt vor Strich.
+            </li>
+        </ul>
+        </p>
+        <p>
+            Nach Eingabe der durchzuführenden Rechnung kann die Berechnung über den Button "Berechnen"
+            durchgeführt werden. Das
+            Ergebnis wird in der Matrix neben dem Textfeld ausgegeben. Sollte die im Textfeld angegebene
+            Berechnung nicht korrekt
+            sein, ist die Nutzung des Buttons und damit auch die Durchführung der Berechnung nicht möglich.
+            Bei der Eingabe sollte
+            daher auf eine korrekte Angabe der Objekte und Operatoren geachtet werden.
+        </p>
+        <p>
+            Sollte ein unerwartetes Ergebnis ausgegeben werden sollten die Matrizen und die angegebene
+            Berechnung überprüft werden.
+            Die Eingabematrizen, das Textfeld für die Berechnung und die Ausgabematrix können über den
+            Button 'Leeren' geleert werden.
+            Die Anzahl an Matrizen und deren Dimensionen werden dabei zurückgesetzt.
+        </p>
+    </div>
+</body>
+
+</html>

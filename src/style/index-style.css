@@ -45,7 +45,7 @@
 .start-divider {
     width: 40%;
     min-width: 17.5em;
-    min-height: 15em;
+    height: max(75vh, 35em);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -55,6 +55,6 @@
 }
 
 .start-text {
-    font-size: 16pt;
+    font-size: 14pt;
     padding-top: 1em;
 }
