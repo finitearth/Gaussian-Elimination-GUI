@@ -61,6 +61,7 @@
     /* fixed space for row operations */
     width: 20em;
     vertical-align: bottom;
+    text-align: left;
 }
 
 .vertical {
