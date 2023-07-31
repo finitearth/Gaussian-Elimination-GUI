@@ -264,6 +264,14 @@ export function updateRowOperations(rowOperations, dimension, n) {
     for (let i = 0; i < rowOperations.length; i++) {
         if (rowOperations[i].enabled) {
             rowOperations[i].setNRowDropdownSelectOptions(dimension, n);
+
+            let rowOperationNumber = parseInt(rowOperations[i].id.charAt(rowOperations[i].id.length-1));
+            if (rowOperationNumber < rowOperations[i].table.rows.length-1) {
+                document.getElementById(rowOperations[i].rowDropdownID).selectedIndex = rowOperationNumber+1;
+            }
+            else {
+                document.getElementById(rowOperations[i].rowDropdownID).selectedIndex = 0;
+            }
         }
     }
 
