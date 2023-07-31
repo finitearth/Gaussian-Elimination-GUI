@@ -3,7 +3,8 @@
  */
 
 import { getById } from "../src/js/intermediate/getElement.js";
-import { RowOperation, addCombobox } from "../src/js/intermediate/rowoperation.js";
+import { RowOperation, removeCombobox, adaptComboboxes, updateRowOperations } from "../src/js/intermediate/rowoperation.js";
+import { addCombobox as addCombobox } from "../src/js/intermediate/rowoperation.js";
 import { Table, addKeyDownListener } from "../src/js/intermediate/table.js";
 import { Fraction } from "../src/js/logic/fraction.js";
 import { Matrix } from "../src/js/logic/matrix.js";
@@ -167,20 +168,105 @@ test("setNRowDropdownSelectOptions should work if the number of rows is reduced"
     document.getElementById("operations-table").appendChild(rowOperation.comboBoxElement);
 
     // spy on removeRowDropdownSelectOption
+    let spyRemoveRowDropdownSelectOption = jest
+        .spyOn(rowOperation, "removeRowDropdownSelectOption")
+        .mockImplementation(() => {
+            
+        });
 
-    // click display combobox button
-    fireEvent.click(document.getElementById("combobox_0_displayCombobox"))
-  
-    let combobox_1 = document.getElementById("combobox_0");
+    rowOperation.setNRowDropdownSelectOptions(3, 1)
+    expect(spyRemoveRowDropdownSelectOption).toBeCalledTimes(2);
+});
 
-    expect(combobox_1.children.length).toBe(7);
-    expect(combobox_1.children[6].children.length).toBe(3);
+test("setNRowDropdownSelectOptions should work if the number of rows is increased", () => {
+    let table = new Table("test-id");
+    let rowOperation = new RowOperation("combobox_0", table);
+    document.getElementById("operations-table").appendChild(rowOperation.comboBoxElement);
 
-    // call removeRowDropdownSelectOption
-    rowOperation.removeRowDropdownSelectOption(2);
+    // spy on removeRowDropdownSelectOption
+    let spyCreateSelectOption = jest
+        .spyOn(rowOperation, "createSelectOption")
+        .mockImplementation(() => {
+            
+        });
 
-    expect(combobox_1.children.length).toBe(7);
-    expect(combobox_1.children[6].children.length).toBe(2);
+    rowOperation.setNRowDropdownSelectOptions(3, 5)
+    expect(spyCreateSelectOption).toBeCalledTimes(2);
+});
+
+test("addCombobox should work", () => {
+    let table = new Table("test-id");
+
+    let rowOperations = [];
+    for (let i = 0; i < table.nRows; i++) {
+        rowOperations = addCombobox("combobox_" + i, rowOperations, table);
+    }
+
+    expect(rowOperations.length).toBe(table.nRows);
+    expect(document.getElementById("operations-table").children.length).toBe(3);
+});
+
+test("removeCombobox should work", () => {
+    let table = new Table("test-id");
+
+    let rowOperations = [];
+    for (let i = 0; i < table.nRows; i++) {
+        rowOperations = addCombobox("combobox_" + i, rowOperations, table);
+    }
+
+    rowOperations = removeCombobox("", rowOperations);
+
+    expect(rowOperations.length).toBe(table.nRows-1);
+    expect(document.getElementById("operations-table").children.length).toBe(2);
+});
+
+test("adaptComboboxes should work if the number of RowOperations is increased", () => {
+    let table = new Table("test-id");
+
+    let rowOperations = [];
+    for (let i = 0; i < table.nRows; i++) {
+        rowOperations = addCombobox("combobox_" + i, rowOperations, table);
+    }
+
+    rowOperations = adaptComboboxes(rowOperations, table, 5);
+
+    expect(rowOperations.length).toBe(5);
+    expect(document.getElementById("operations-table").children.length).toBe(5);
+});
+
+test("adaptComboboxes should work if the number of RowOperations is reduced", () => {
+    let table = new Table("test-id");
+
+    let rowOperations = [];
+    for (let i = 0; i < table.nRows; i++) {
+        rowOperations = addCombobox("combobox_" + i, rowOperations, table);
+    }
+
+    rowOperations = adaptComboboxes(rowOperations, table, 1);
+
+    expect(rowOperations.length).toBe(1);
+    expect(document.getElementById("operations-table").children.length).toBe(1);
+});
+
+test("updateRowOperations should work", () => {
+    let table = new Table("test-id");
+
+    let rowOperations = [];
+    for (let i = 0; i < table.nRows; i++) {
+        rowOperations = addCombobox("combobox_" + i, rowOperations, table);
+    }
+
+    let spySetNRowDropdownSelectOptions = jest
+        .spyOn(rowOperations[0], "setNRowDropdownSelectOptions")
+        .mockImplementation(() => {
+            
+        });
+
+    // enable only one row operation
+    fireEvent.click(document.getElementById("combobox_0_displayCombobox"));
+    rowOperations = updateRowOperations(rowOperations, 3, 3);
+    
+    expect(spySetNRowDropdownSelectOptions).toBeCalledTimes(1);
 });
 
 // describe("RowOperation", () => {
