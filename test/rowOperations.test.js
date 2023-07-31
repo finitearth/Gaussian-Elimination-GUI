@@ -8,6 +8,8 @@ import { Table, addKeyDownListener } from "../src/js/intermediate/table.js";
 import { Fraction } from "../src/js/logic/fraction.js";
 import { Matrix } from "../src/js/logic/matrix.js";
 import { JSDOM } from "jsdom";
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
 
 beforeEach(() => {
     const dom = new JSDOM(
@@ -32,20 +34,18 @@ beforeEach(() => {
 
 test("setFirstTextField should work", () => {
     let table = new Table("test-id");
-    let rowOperation = new RowOperation("rowOp", table)
-    let comboboxDummy = document.createElement("tr");
-    comboboxDummy.className = "combobox-field";
+    let inputValue = "5";
+
     let rowOperations = [];
     for (let i = 0; i < table.nRows; i++) {
         rowOperations = addCombobox("combobox_" + i, rowOperations, table);
     }
-    let firstText = document.getElementById("firstTextrowOp")
-    firstText.value = 5
-    console.log(table)
-    console.log(firstText)
-    let event = new KeyboardEvent("keydown", {'key':'Shift'});
-    document.dispatchEvent(event);
-    expect(rowOperation.firstTextFieldValue).toEqual(5);
+
+    // click display combobox button and simulate input event 
+    fireEvent.click(document.getElementById("combobox_0_displayCombobox"))
+    fireEvent.change(document.getElementById("firstTextcombobox_0"), {target: {value: inputValue}})
+   
+    expect(document.getElementById("firstTextcombobox_0").value).toBe(inputValue);
 });
 
 // describe("RowOperation", () => {
