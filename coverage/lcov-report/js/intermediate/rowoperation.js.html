@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/100</span>
+                <span class='fraction'>23/100</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">13.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/15</span>
+                <span class='fraction'>2/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">23.46% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/98</span>
+                <span class='fraction'>23/98</span>
             </div>
         
             
@@ -343,29 +343,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -559,13 +559,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -617,30 +617,30 @@
 import { getById } from "./getElement.js";
 &nbsp;
 export class RowOperation {
-<span class="fstat-no" title="function not covered" >    co</span>nstructor(id, table) {
-<span class="cstat-no" title="statement not covered" >        this.id = id;</span>
-<span class="cstat-no" title="statement not covered" >        this.table = table;</span>
+    constructor(id, table) {
+        this.id = id;
+        this.table = table;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        this.comboBoxElement = document.createElement("tr");</span>
-<span class="cstat-no" title="statement not covered" >        this.firstOperatorDropdownID = "firstOperator" + this.id;</span>
-<span class="cstat-no" title="statement not covered" >        this.firstTextFieldID = "firstText" + this.id;</span>
-<span class="cstat-no" title="statement not covered" >        this.firstTextFieldValue = "0";</span>
-<span class="cstat-no" title="statement not covered" >        this.secondOperatorDropdownID = "secondOperator" + this.id;</span>
-<span class="cstat-no" title="statement not covered" >        this.rowDropdownID = "rowDropdown" + this.id;</span>
-<span class="cstat-no" title="statement not covered" >        this.thirdOperatorDropdownID = "thirdOperator" + this.id;</span>
-<span class="cstat-no" title="statement not covered" >        this.secondTextField = "secondText" + this.id;</span>
-<span class="cstat-no" title="statement not covered" >        this.secondTextFieldValue = "0";</span>
-<span class="cstat-no" title="statement not covered" >        this.enabled = false;</span>
+        this.comboBoxElement = document.createElement("tr");
+        this.firstOperatorDropdownID = "firstOperator" + this.id;
+        this.firstTextFieldID = "firstText" + this.id;
+        this.firstTextFieldValue = "0";
+        this.secondOperatorDropdownID = "secondOperator" + this.id;
+        this.rowDropdownID = "rowDropdown" + this.id;
+        this.thirdOperatorDropdownID = "thirdOperator" + this.id;
+        this.secondTextField = "secondText" + this.id;
+        this.secondTextFieldValue = "0";
+        this.enabled = false;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        this.comboBoxElement.id = this.id;</span>
-<span class="cstat-no" title="statement not covered" >        this.comboboxButton = document.createElement("button");</span>
-<span class="cstat-no" title="statement not covered" >        this.comboboxButton.innerHTML = "❱";</span>
-<span class="cstat-no" title="statement not covered" >        this.comboboxButton.id = this.id + "_displayCombobox";</span>
-<span class="cstat-no" title="statement not covered" >        this.comboboxButton.className = "button-combobox";</span>
-<span class="cstat-no" title="statement not covered" >        this.comboBoxElement.className = "combobox-field";</span>
-<span class="cstat-no" title="statement not covered" >        this.comboBoxElement.appendChild(this.comboboxButton);</span>
+        this.comboBoxElement.id = this.id;
+        this.comboboxButton = document.createElement("button");
+        this.comboboxButton.innerHTML = "❱";
+        this.comboboxButton.id = this.id + "_displayCombobox";
+        this.comboboxButton.className = "button-combobox";
+        this.comboBoxElement.className = "combobox-field";
+        this.comboBoxElement.appendChild(this.comboboxButton);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        this.comboboxButton.addEventListener(</span>
+        this.comboboxButton.addEventListener(
             "click",
             this.handleComboboxButtons.bind(this)
         );
@@ -833,14 +833,14 @@ export class RowOperation {
     }
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >addCombobox(</span>id, rowOperations, table) {
-<span class="cstat-no" title="statement not covered" >    rowOperations.push(new RowOperation(id, table));</span>
+export function addCombobox(id, rowOperations, table) {
+    rowOperations.push(new RowOperation(id, table));
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    getById("operations-table").appendChild(</span>
+    getById("operations-table").appendChild(
         rowOperations[rowOperations.length - 1].comboBoxElement
     );
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return rowOperations;</span>
+    return rowOperations;
 }
 &nbsp;
 export function <span class="fstat-no" title="function not covered" >removeCombobox(</span>id, rowOperations) {
@@ -895,7 +895,7 @@ export function <span class="fstat-no" title="function not covered" >applyRowOpe
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-25T16:40:11.202Z
+                at 2023-07-29T21:49:52.879Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

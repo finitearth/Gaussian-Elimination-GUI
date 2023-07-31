@@ -2,7 +2,7 @@ import {
     modifyDimListener,
     setEventListenerFunction,
     listenTableDimension,
-    validate
+    validate,
 } from "../src/js/intermediate/eventlisteners.js";
 import { getById } from "../src/js/intermediate/getElement.js";
 import { JSDOM } from "jsdom";
@@ -116,11 +116,6 @@ describe("setEventListenerFunction()", () => {
     });
 });
 
-// const jsdom = require("jsdom");
-// const { JSDOM } = jsdom;
-
-// const { listenTableDimension } = require("./eventlisteners");
-
 describe("listenTableDimension", () => {
     let dom;
     let input;
@@ -211,9 +206,6 @@ describe("listenTableDimension", () => {
             input.dispatchEvent(new dom.window.Event("input"));
         }).not.toThrow();
     });
-
-
-    
 
     afterEach(() => {
         global.document = undefined;

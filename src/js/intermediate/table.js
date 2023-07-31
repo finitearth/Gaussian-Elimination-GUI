@@ -52,7 +52,6 @@ export class Table {
     }
 
     /**
-
     Sets the number of rows in the table.
     @method
     @param {number} nRows - The number of rows to set in the table.
@@ -82,12 +81,12 @@ export class Table {
     }
 
     /**
-    Adds a cell to the specified row and column in the table.
-    @method
-    @param {number} rowId - The row index to add the cell to.
-    @param {number} columnId - The column index to add the cell to.
-    @returns {HTMLTableCellElement} - The newly created cell.
-    */
+     * Adds a cell to the specified row and column in the table.
+     * @method
+     * @param {number} rowId - The row index to add the cell to.
+     * @param {number} columnId - The column index to add the cell to.
+     * @returns {HTMLTableCellElement} - The newly created cell.
+     */
     addCell(rowId, columnId) {
         const cell = document.createElement("td");
         const input = document.createElement("input");
@@ -161,7 +160,6 @@ export class Table {
     }
 
     /**
-
     Adds a row to the table.
     @method
     @param {boolean} [force=false] - Optional parameter to force adding a row even if the current number of rows is equal to the maximum number of rows allowed in the design config.
