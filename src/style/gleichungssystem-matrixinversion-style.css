@@ -50,7 +50,7 @@
 .combobox-dropdown,
 .combobox-input-field {
     margin: 0.05em 0.25em;
-    width: 2.5em;
+    width: 3em;
     height: 1.75em;
     background-color: #fff;
     border: 1px solid var(--input-border-color-dark);

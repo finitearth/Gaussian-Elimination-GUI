@@ -128,7 +128,7 @@ export class RowOperation {
                     for (let i = 0; i < this.table.rows.length; i++) {
                         this.createSelectOption(
                             "Option_" + i + this.id + elem.id,
-                            i + 1,
+                            "(" + ( i + 1 ) + ")",
                             elem.id
                         );
                     }
@@ -175,7 +175,7 @@ export class RowOperation {
             dimension++;
             this.createSelectOption(
                 "Option_" + (dimension - 1) + this.id + this.rowDropdownID,
-                dimension,
+                "(" + dimension + ")",
                 this.rowDropdownID
             );
         }
