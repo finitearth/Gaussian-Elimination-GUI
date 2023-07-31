@@ -21,7 +21,7 @@ export class RowOperation {
         this.comboboxButton = document.createElement("button");
         this.comboboxButton.innerHTML = "❱";
         this.comboboxButton.id = this.id + "_displayCombobox";
-        this.comboboxButton.className = "button-combobox";
+        this.comboboxButton.className = "button-primary button-combobox";
         this.comboBoxElement.className = "combobox-field";
         this.comboBoxElement.appendChild(this.comboboxButton);
 

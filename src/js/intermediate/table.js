@@ -198,7 +198,7 @@ export class Table {
         const buttons = [
             {
                 name: "+",
-                class: "button-matrixsize button-addrow",
+                class: "button-primary button-matrixsize button-addrow",
                 pos: "top",
                 function: e => {
                     if (this.rows.length < designConfig.maxRows) {
@@ -208,7 +208,7 @@ export class Table {
             },
             {
                 name: "-",
-                class: "button-matrixsize button-removerow",
+                class: "button-primary button-matrixsize button-removerow",
                 pos: "top",
                 function: e => {
                     if (this.rows.length > designConfig.minRows) {
@@ -218,7 +218,7 @@ export class Table {
             },
             {
                 name: "+",
-                class: "button-matrixsize button-addcol",
+                class: "button-primary button-matrixsize button-addcol",
                 pos: "left",
                 function: e => {
                     if (this.nColumns < designConfig.maxColumns) {
@@ -228,7 +228,7 @@ export class Table {
             },
             {
                 name: "-",
-                class: "button-matrixsize button-removecol",
+                class: "button-primary button-matrixsize button-removecol",
                 pos: "left",
                 function: e => {
                     if (this.nColumns > designConfig.minColumns) {
