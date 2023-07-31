@@ -74,11 +74,113 @@ test("createSelectOption should work", () => {
    expect(document.getElementById("select-test-id").children[0].id).toBe("option-1");
 });
 
-test("handleComboboxButtons should work scenario 1", () => {
+test("handleComboboxButtons should work if the combobox is created the first time", () => {
     let table = new Table("test-id");
-    let rowOperation = new RowOperation("rowOp", table)
 
+    let rowOperations = [];
+    for (let i = 0; i < table.nRows; i++) {
+        rowOperations = addCombobox("combobox_" + i, rowOperations, table);
+    }
 
+    // click display combobox button
+    fireEvent.click(document.getElementById("combobox_0_displayCombobox"))
+
+    let combobox_1 = document.getElementById("combobox_0");
+
+    // check whether everything has been created correctly
+    expect(combobox_1.children.length).toBe(7)
+    // check number of select options in the first dropdown
+    expect(combobox_1.children[1].children.length).toBe(2);
+    expect(combobox_1.children[3].children.length).toBe(2);
+    expect(combobox_1.children[5].children.length).toBe(2);
+    expect(combobox_1.children[6].children.length).toBe(table.nRows);
+});
+
+test("handleComboboxButtons should save user inputs after the user collapsed the combobox", () => {
+    let table = new Table("test-id");
+
+    let rowOperations = [];
+    for (let i = 0; i < table.nRows; i++) {
+        rowOperations = addCombobox("combobox_" + i, rowOperations, table);
+    }
+
+    // click display combobox button
+    fireEvent.click(document.getElementById("combobox_0_displayCombobox"))
+
+    //inputs
+    fireEvent.change(document.getElementById("firstTextcombobox_0"), {target: {value: "1"}})
+    fireEvent.change(document.getElementById("secondTextcombobox_0"), {target: {value: "2"}})
+
+    // dropdowns
+    fireEvent.change(document.getElementById("firstOperatorcombobox_0"), {target: {value: "/"}})
+    fireEvent.change(document.getElementById("secondOperatorcombobox_0"), {target: {value: "-"}})
+    fireEvent.change(document.getElementById("thirdOperatorcombobox_0"), {target: {value: "/"}})
+    fireEvent.change(document.getElementById("rowDropdowncombobox_0"), {target: {value: "2"}})
+
+    // collapse combobox and show it again
+    fireEvent.click(document.getElementById("combobox_0_displayCombobox"))
+    fireEvent.click(document.getElementById("combobox_0_displayCombobox"))
+    let combobox_1 = document.getElementById("combobox_0");
+
+    // check whether everything has been created correctly
+    expect(combobox_1.children.length).toBe(7)
+    // check number of select options in the first dropdown
+    expect(combobox_1.children[1].children.length).toBe(2);
+    expect(combobox_1.children[3].children.length).toBe(2);
+    expect(combobox_1.children[5].children.length).toBe(2);
+    expect(combobox_1.children[6].children.length).toBe(table.nRows);
+
+    // check the text fields
+    expect(combobox_1.children[2].value).toBe("1");
+    expect(combobox_1.children[4].value).toBe("2");
+
+    // check the dropdowns
+    expect(combobox_1.children[1].value).toBe("/");
+    expect(combobox_1.children[3].value).toBe("-");
+    expect(combobox_1.children[5].value).toBe("/");
+    expect(combobox_1.children[6].value).toBe("2");
+});
+
+test("removeRowDropdownSelectOption should work", () => {
+    let table = new Table("test-id");
+    let rowOperation = new RowOperation("combobox_0", table);
+    document.getElementById("operations-table").appendChild(rowOperation.comboBoxElement);
+
+    // click display combobox button
+    fireEvent.click(document.getElementById("combobox_0_displayCombobox"))
+  
+    let combobox_1 = document.getElementById("combobox_0");
+
+    expect(combobox_1.children.length).toBe(7);
+    expect(combobox_1.children[6].children.length).toBe(3);
+
+    // call removeRowDropdownSelectOption
+    rowOperation.removeRowDropdownSelectOption(2);
+
+    expect(combobox_1.children.length).toBe(7);
+    expect(combobox_1.children[6].children.length).toBe(2);
+});
+
+test("setNRowDropdownSelectOptions should work if the number of rows is reduced", () => {
+    let table = new Table("test-id");
+    let rowOperation = new RowOperation("combobox_0", table);
+    document.getElementById("operations-table").appendChild(rowOperation.comboBoxElement);
+
+    // spy on removeRowDropdownSelectOption
+
+    // click display combobox button
+    fireEvent.click(document.getElementById("combobox_0_displayCombobox"))
+  
+    let combobox_1 = document.getElementById("combobox_0");
+
+    expect(combobox_1.children.length).toBe(7);
+    expect(combobox_1.children[6].children.length).toBe(3);
+
+    // call removeRowDropdownSelectOption
+    rowOperation.removeRowDropdownSelectOption(2);
+
+    expect(combobox_1.children.length).toBe(7);
+    expect(combobox_1.children[6].children.length).toBe(2);
 });
 
 // describe("RowOperation", () => {
