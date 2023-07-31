@@ -16,12 +16,12 @@ export class RowOperation {
         this.secondTextField = "secondText" + this.id;
         this.secondTextFieldValue = "0";
         this.enabled = false;
-
+        
         this.comboBoxElement.id = this.id;
         this.comboboxButton = document.createElement("button");
         this.comboboxButton.innerHTML = "❱";
         this.comboboxButton.id = this.id + "_displayCombobox";
-        this.comboboxButton.className = "button-combobox";
+        this.comboboxButton.className = "button-primary button-combobox";
         this.comboBoxElement.className = "combobox-field";
         this.comboBoxElement.appendChild(this.comboboxButton);
 
@@ -128,7 +128,7 @@ export class RowOperation {
                     for (let i = 0; i < this.table.rows.length; i++) {
                         this.createSelectOption(
                             "Option_" + i + this.id + elem.id,
-                            i + 1,
+                            "(" + ( i + 1 ) + ")",
                             elem.id
                         );
                     }
@@ -175,7 +175,7 @@ export class RowOperation {
             dimension++;
             this.createSelectOption(
                 "Option_" + (dimension - 1) + this.id + this.rowDropdownID,
-                dimension,
+                "(" + dimension + ")",
                 this.rowDropdownID
             );
         }
@@ -224,6 +224,7 @@ export function addCombobox(id, rowOperations, table) {
     getById("operations-table").appendChild(
         rowOperations[rowOperations.length - 1].comboBoxElement
     );
+    rowOperations[rowOperations.length - 1].handleComboboxButtons();
 
     return rowOperations;
 }

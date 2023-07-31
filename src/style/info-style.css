@@ -1,7 +1,7 @@
 /* Info-Page */
 
 .guide-container {
-    height: 66vh;
+    height: 62.5vh;
     overflow: auto;
 }
 
@@ -13,7 +13,7 @@
 .guide-outline {
     padding: 0 0 0.25em 0.5em;
     margin-bottom: 0.5em;
-    border: 1px solid #ddd;
+    border: 1px solid var(--input-border-color-light);
     border-radius: 5px;
     width: 20em;
 }

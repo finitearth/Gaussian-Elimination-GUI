@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hilfe - Gleichungssystem lösen</title>
+
+    <link rel="stylesheet" href="../../style/style.css" type="text/css" />
+    <link rel="icon" href="../images/icon_logo.png" />
+</head>
+
+<body class="help-body">
+    <div class="help-content">
+        <p>
+            Der Gauß-Algorithmus, auch bekannt als Gaußsches Eliminationsverfahren, ist ein Verfahren zur
+            Lösung linearer
+            Gleichungssysteme. Dabei wird das Additionsverfahren auf die erweiterte Koeffizientenmatrix
+            angewendet. Die
+            Koeffizientenmatrix ist eine Matrix, die aus den Koeffizienten, also den Zahlen vor den
+            Unbekannten, eines
+            linearen Gleichungssystems besteht. Sie ist ein Hilfsmittel, um lineare Gleichungssysteme unter
+            anderem mit dem
+            Gauß-Algorithmus zu lösen. Die Koeffizientenmatrix fasst die Koeffizienten auf den linken Seiten
+            der Gleichungen
+            zu einer Matrix zusammen. Das Additionsverfahren ist ein Verfahren, bei dem die Gleichungen so
+            addiert werden, dass
+            Variablen wegfallen bzw. die Koeffizienten Null werden. Ziel der Additionsverfahrens ist es,
+            eine Gleichung mit einer
+            Variablen zu erhalten, die dann gelöst werden kann. Das Additionsverfahren basiert auf der
+            Erkenntnis, dass die Summe
+            der linken Seiten der Gleichungen gleich der Summe der rechten Seiten ist. Um das
+            Gleichungssystem zu lösen, muss die
+            Koeffizientenmatrix so umgeformt werden, dass unter der Diagonalen nur noch Nullen stehen, dies
+            wird auch Stufenform
+            genannt. Die Stufenform ist in folgendem Bild zu erkennen:<br>
+            <img src="../../images/stufenform_lgs.png"><br>
+        </p>
+        <p>
+            Diese Seite kann genutzt werden, um ein Gleichungssystem schrittweise mit Hilfe von
+            Zeilenoperationen mit dem
+            Gauß-Algorithmus zu lösen. Zuerst wird die Anzahl Gleichungen, die Anzahl Variablen und die
+            Anzahl der rechte
+            Seiten spezifiziert. Die Anzahl Gleichungen bestimmt die Anzahl an Zeilen und die Anzahl
+            Variablen bestimmt die
+            Anzahl an Spalten. Danach können die entsprechenden Werte in die Koeffizientenmatrix und die
+            rechte Seite eingegeben
+            werden.
+        </p>
+        </p>
+            Um die Stufenform zu erreichen, müssen Zeilenoperationen durchgeführt werden. Über den Pfeil neben
+            den rechten Seiten
+            können die entsprechenden Buttons und Textfelder ein- und ausgeklappt werden, um die
+            Zeilenoperationen einzugeben. Alle
+            Koeffizienten einer Zeile können mit einem Skalar multipliziert, dividiert, addiert oder subtrahiert
+            werden. Die
+            entsprechenden Operatoren können im ersten und zweiten Dropdown ausgewählt werden. Für die Felder
+            der Zeilenoperationen
+            gilt ebenfalls, dass ein leeres Feld eine Null bedeutet. Wenn die Koeffizienten also nicht mit einem
+            Skalar multipliziert
+            oder dividiert werden sollen, kann das erste Textfeld leer bleiben. Das gleiche gilt für das
+            Addieren und Subtrahieren
+            von Werten im zweiten Textfeld. Über die letzten beiden Dropdowns kann eine Verrechnung der Zeile
+            mit einer anderen
+            Zeile durchgeführt werden, wobei die Zahlen den Beschriftungen der Zeilen auf der Seite entsprechen.
+            Sobald alle Werte
+            eingegeben wurden, kann die Berechnung über den Button "Berechnen" durchgeführt werden. Das Ergebnis
+            der Berechnung
+            wird in der unteren Matrix ausgegeben. Liefert das Ergebnis der Berechnung ein zufriedenstellendes
+            Ergebnis, können die
+            Werte mit dem Button "Hoch" nach oben übertragen werden, sodass mit dem Ergebnis weitergerechnet
+            werden kann. Sollte
+            das Ergebnis nicht den Erwartungen entsprechen, können die zuvor eingegebenen Werte abgeändert und
+            das Ergebnis neu
+            berechnet werden, so lange bis das gewünschte Ergebnis herauskommt.
+        </p>
+        <p>
+            Sobald die Stufenform erreicht ist, kann durch Rückwärtseinsetzten die Lösung berechnet werden.
+            Das heißt, es wird mit
+            der letzten Zeile begonnen und diese nach der Unbekannten aufgelöst. Diese Lösung wird in die
+            vorherige Zeile eingesetzt,
+            die wiederum nach der nächsten Unbekannten aufgelöst wird. Dies wird so lange wiederholt, bis
+            alle Unbekannten bestimmt
+            sind. Ein lineares Gleichungssystem kann entweder keine, eine oder unendlich viele Lösungen
+            haben. Eine Lösung bedeutet,
+            dass sich die Graphen in einem Punk schneiden, der entsprechend berechenbar ist. Wenn die
+            Graphen sich nicht schneiden,
+            zum Beispiel weil sie parallel sind, dann hat das lineare Gleichungssystem keine Lösung.
+            Unendlich viele Lösungen hat
+            es dann, wenn die Graphen identisch verlaufen.
+        </p>
+        <p>
+            Sollte es Probleme beim schrittweisen Lösen des Gleichungssystems geben, kann die Lösung
+            stattdessen auch vom System
+            berechnet werden. Dazu wird der Button "Lösen" verwendet. Die Lösung wird dann direkt in der
+            unteren Matrix ausgegeben.
+            Um das lösen linearen Gleichungssysteme zu übern kann über den Button "Aufgabe erstellen" eine
+            zufällige Aufgabe
+            kreiert werden. Die Aufgabe wird automatisch an die angegebene Anzahl Gleichungen, Variablen und
+            rechte Seiten
+            angepasst. Auch auf dieser Seite kann über den Toggle-Button zwischen Dezimalzahlen und
+            Bruchzahlen gewechselt werden.
+            Sollten bereits Werte in den Matrizen oder dem Vektor stehen, werden diese automatisch
+            umgerechnet und abgeändert.
+            Um die Werte auf Null und die Matrizen zurückzusetzen kann der Button "Leeren" verwendet werden.
+        </p>
+    </div>
+</body>
+
+</html>

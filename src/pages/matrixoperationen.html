@@ -16,7 +16,7 @@
 
     <header>
         <h1>Matrixoperationen</h1>
-        <button id="button-help-modal" class="button-help">Hilfe</button>
+        <button id="button-help-modal" class="button-outline button-help">Hilfe</button>
     </header>
 
     <main>
@@ -25,69 +25,8 @@
                 <span id="span-close" class="close">&times;</span>
                 <h2>Hilfe - Matrixoperationen</h2>
                 <h3 class="subheading-help">Bedienungsanleitung & Tipps</h3>
-                <div class="help-content">
-                    <p>
-                        Auf dieser Seite können verschiedene
-                        Matrixoperationen berechnet werden.
-                    </p>
-                    <ul>
-                        <li>M⁻¹ zur Matrixinversion</li>
-                        <li>|M| zur Ausgabe der Determinante</li>
-                        <li>Mᵀ zum Transponieren der Matrix</li>
-                    </ul>
-                    <p>
-                        Hierzu muss zuerst die Input-Matrix eingegeben
-                        werden, auf der die Operationen durchgeführt werden
-                        sollen. Diese Matrix ist die obere der beiden
-                        Matrizen auf der Seite. Bei Klick auf einen der
-                        Buttons wird die entsprechende Operation
-                        durchgeführt und berechnet. Das Ergebnis der
-                        Berechnung wird in der unteren Matrix im Tab
-                        'Ergebnis' ausgegeben.
-                    </p>
-                    <p>
-                        Wichtig zu beachten ist, dass die Berechnung der
-                        Matrixinversion und der Determinante nur bei
-                        quadratischen Matrizen möglich ist. Eine
-                        quadratische Matrize ist eine Matrize, bei der die
-                        Anzahl an Zeilen und Spalten identisch ist.
-                    </p>
-                    <p>
-                        Das Ergebnis der Matrixinversion ist die
-                        quadratische inverse Matrix. Das Ergebnis einer
-                        Multiplikation einer Matrix mit ihrer Inversen ist
-                        die Einheitsmatrix. Es gibt jedoch nicht für jede
-                        Matrix eine Inverse. Ein Beispiel hierfür ist eine
-                        Matrix, die in einer Zeile oder eine Spalte
-                        ausschließlich aus Nullen besteht oder auch eine
-                        Matrix linearen Abhängigkeiten.
-                    </p>
-                    <p>
-                        Die Determinante ist eine Zahl bzw. ein Skalar und
-                        wird einer quadratischen Matrix zugeordnet. Sie wird
-                        aus den Einträgen der Matrix berechnet. Die
-                        Berechnung der Determinante kann als Hilfsmittel für
-                        die Lösung des linearen Gleichungssystems genutzt
-                        werden.
-                    </p>
-                    <p>
-                        Das Ergebnis des Transponierens ist die
-                        transponierte oder auch gespiegelte Matrix. Beim
-                        Transponieren werden die Zeilen und Spalten
-                        vertauscht. Die erste Zeile entspricht bei der
-                        transponierten Matrix der ersten Spalte, die zweite
-                        Zeile entspricht bei der transponierten Matrix der
-                        zweiten Spalte, usw.
-                    </p>
-                    <p>
-                        Die Matrizen können über den Button 'Leeren' geleert 
-                        werden, die Werte der Zellen werden dabei auf 0 gesetzt.
-                        Die Größe der Eingabematrix wird auf 3x3 zurückgesetzt.
-                    </p> 
-                </div>
-                <button id="button-close" class="secondary">
-                    Schließen
-                </button>
+                <iframe src="help-pages/help-matrixoperationen.html" title="Hilfe - Matrixoperationen"
+                    class="help-content-box"></iframe>
             </div>
         </div>
 
@@ -96,7 +35,7 @@
             <input type="number" id="input-nr-rows" min="2" max="9" value="3" />
             <label for="input-nr-cols">Anzahl Spalten:</label>
             <input type="number" id="input-nr-cols" min="2" max="9" value="3" />
-            <button id="button-clear" class="button-clear button-bar">Leeren</button>
+            <button id="button-clear" class="button-primary button-clear button-bar">Leeren</button>
             <label class="switch button-bar">
                 <input type="checkbox" id="button-representation-conversion" />
                 <span class="slider round"></span>
@@ -110,13 +49,13 @@
                     <table class="matrix" id="input-table-placeholder"></table>
                 </td>
                 <td class="matrix-bracket closed"></td>
-            </table> 
+            </table>
         </div>
 
         <div class="container-button">
-            <button id="button-inverse">M⁻¹</button>
-            <button id="button-determinant">|M|</button>
-            <button id="button-transpose">Mᵀ</button>
+            <button class="button-primary" id="button-inverse">M⁻¹</button>
+            <button class="button-primary" id="button-determinant">|M|</button>
+            <button class="button-primary" id="button-transpose">Mᵀ</button>
         </div>
 
         <div class="page-divider align-center">
@@ -126,14 +65,12 @@
                     <table class="matrix" id="output-table-placeholder"></table>
                 </td>
                 <td class="matrix-bracket closed"></td>
-            </table> 
+            </table>
         </div>
     </main>
 
     <footer>
-        <div class="impressum">
-            <a class="impressum-text" , href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
-        </div>
+        <a href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
     </footer>
 </body>
 

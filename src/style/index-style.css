@@ -1,3 +1,5 @@
+/* Style for start page */
+
 .header-start {
     position: fixed;
     top: 0;
@@ -5,7 +7,7 @@
     width: 100%;
     height: 50%;
     background-color: var(--header-color);
-    box-shadow: 0px -24px 20px 26px rgba(19, 41, 104, 0.4);
+    box-shadow: 0px -24px 20px 26px var(--shadow-color);
     z-index: -1;
 }
 
@@ -26,8 +28,9 @@
 
 .page-link-element {
     font-size: 14pt;
-    padding: 0.5em 1em;
-    margin: 1em 0;
+    padding: 0.25em 1em;
+    height: 2.25em;
+    margin: 0.75em 0;
     width: 12.5em;
     display: block;
     text-align: left;
@@ -42,16 +45,16 @@
 .start-divider {
     width: 40%;
     min-width: 17.5em;
-    min-height: 15em;
-    position: absolute;
+    height: max(75vh, 35em);
+    position: relative;
     top: 50%;
-    transform: translateY(-50%);
     margin-left: 3em;
     padding: 2em;
     z-index: 1;
+    overflow: auto;
 }
 
 .start-text {
-    font-size: 16pt;
+    font-size: 14pt;
     padding-top: 1em;
 }
