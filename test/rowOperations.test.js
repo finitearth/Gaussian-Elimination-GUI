@@ -25,12 +25,6 @@ beforeEach(() => {
 });
 
 
-// describe("RowOperation", () => {
-//     test("wenn der durchgeht hat nick dicke eier", () => {
-//         expect(true).toBe(true);
-//     });
-// });
-
 
 test("setFirstTextField should work", () => {
     let table = new Table("test-id");
@@ -46,6 +40,45 @@ test("setFirstTextField should work", () => {
     fireEvent.change(document.getElementById("firstTextcombobox_0"), {target: {value: inputValue}})
    
     expect(document.getElementById("firstTextcombobox_0").value).toBe(inputValue);
+});
+
+test("setSecondTextField should work", () => {
+    let table = new Table("test-id");
+    let inputValue = "5";
+
+    let rowOperations = [];
+    for (let i = 0; i < table.nRows; i++) {
+        rowOperations = addCombobox("combobox_" + i, rowOperations, table);
+    }
+
+    // click display combobox button and simulate input event 
+    fireEvent.click(document.getElementById("combobox_0_displayCombobox"))
+    fireEvent.change(document.getElementById("secondTextcombobox_0"), {target: {value: inputValue}})
+   
+    expect(document.getElementById("secondTextcombobox_0").value).toBe(inputValue);
+});
+
+test("createSelectOption should work", () => {
+   let dummySelect = document.createElement("select");
+   dummySelect.id = "select-test-id";
+   document.getElementById("test-id").appendChild(dummySelect);
+
+   let table = new Table("test-id");
+   let rowOperation = new RowOperation("rowOp", table)
+
+   rowOperation.createSelectOption("option-1", "1", "select-test-id");
+
+   // expected result
+   expect(document.getElementById("select-test-id").children[0]).not.toBeNull();
+   expect(document.getElementById("select-test-id").children[0].innerText).toBe("1");
+   expect(document.getElementById("select-test-id").children[0].id).toBe("option-1");
+});
+
+test("handleComboboxButtons should work scenario 1", () => {
+    let table = new Table("test-id");
+    let rowOperation = new RowOperation("rowOp", table)
+
+
 });
 
 // describe("RowOperation", () => {
