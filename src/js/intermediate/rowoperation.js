@@ -97,6 +97,7 @@ export class RowOperation {
                 const htmlElement = document.createElement(elem.element_name);
                 htmlElement.textContent = elem.name;
                 htmlElement.id = elem.id;
+                htmlElement.value = "1";
                 htmlElement.className = elem.class;
                 document
                     .getElementById(this.id)
@@ -131,6 +132,14 @@ export class RowOperation {
                             "(" + ( i + 1 ) + ")",
                             elem.id
                         );
+                    }
+
+                    let rowOperationNumber = parseInt(this.id.charAt(this.id.length-1));
+                    if (rowOperationNumber < this.table.rows.length-1) {
+                        document.getElementById(elem.id).selectedIndex = rowOperationNumber+1;
+                    }
+                    else {
+                        document.getElementById(elem.id).selectedIndex = 0;
                     }
                 }
             } else {
@@ -255,6 +264,14 @@ export function updateRowOperations(rowOperations, dimension, n) {
     for (let i = 0; i < rowOperations.length; i++) {
         if (rowOperations[i].enabled) {
             rowOperations[i].setNRowDropdownSelectOptions(dimension, n);
+
+            let rowOperationNumber = parseInt(rowOperations[i].id.charAt(rowOperations[i].id.length-1));
+            if (rowOperationNumber < rowOperations[i].table.rows.length-1) {
+                document.getElementById(rowOperations[i].rowDropdownID).selectedIndex = rowOperationNumber+1;
+            }
+            else {
+                document.getElementById(rowOperations[i].rowDropdownID).selectedIndex = 0;
+            }
         }
     }
 
