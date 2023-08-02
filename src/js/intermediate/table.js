@@ -197,16 +197,18 @@ export class Table {
     addButtons() {
         const buttons = [
             {
+                id: "addrow",
                 name: "+",
                 class: "button-primary button-matrixsize button-addrow",
                 pos: "top",
                 function: e => {
                     if (this.rows.length < designConfig.maxRows) {
-                        this.addRow();
+                        this.addRow();                        
                     }
                 },
             },
             {
+                id: "removerow",
                 name: "-",
                 class: "button-primary button-matrixsize button-removerow",
                 pos: "top",
@@ -217,6 +219,7 @@ export class Table {
                 },
             },
             {
+                id: "addcol",
                 name: "+",
                 class: "button-primary button-matrixsize button-addcol",
                 pos: "left",
@@ -227,6 +230,7 @@ export class Table {
                 },
             },
             {
+                id: "removecol",
                 name: "-",
                 class: "button-primary button-matrixsize button-removecol",
                 pos: "left",
@@ -240,6 +244,7 @@ export class Table {
 
         buttons.forEach(button => {
             const buttonElement = document.createElement("button");
+            buttonElement.id = button.id;
             buttonElement.className = button.class;
             buttonElement.textContent = button.name;
             buttonElement.addEventListener("click", button.function.bind(this));

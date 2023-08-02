@@ -69,7 +69,7 @@ addKeyDownListener([inputTable], true);
 //     "click"
 // );
 
-// modifyDimListener([inputTable, outputTable]);
+modifyDimListener([inputTable, outputTable]);
 
 let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
 
