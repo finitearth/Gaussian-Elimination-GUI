@@ -98,6 +98,10 @@ export class Table {
         input.style.textAlign = "center";
         input.disabled = !this.enabled;
         cell.appendChild(input);
+        // adjust input font size automatically by large inputs
+        input.addEventListener("input", () => {
+            adjustInputFontSize(input);
+        });
         return cell;
     }
 
@@ -108,16 +112,15 @@ export class Table {
             this.tableElement.childNodes.forEach(row => {
                 if (row.id != this.describtionRowId) {
                     counter = counter + 1;
-                    
+
                     if (row.firstChild.id === this.descriptionColumnId) {
                         row.firstChild.remove();
                     }
-                    
+
                     let rowDes = document.createElement("td");
-                    rowDes.id = this.descriptionColumnId + "." + (counter - 1) ;
+                    rowDes.id = this.descriptionColumnId + "." + (counter - 1);
                     rowDes.innerText = "(" + counter + ")";
                     row.insertBefore(rowDes, row.firstChild);
-                    
                 }
             });
         }
@@ -168,12 +171,12 @@ export class Table {
         // const rowId = this.rows.length;
         const row = document.createElement("tr");
         // row.id = this.nRows;
-        
+
         for (let i = 0; i < this.nColumns; i++) {
             const cell = this.addCell(this.nRows.toString(), i);
             row.appendChild(cell);
         }
-        
+
         this.rows.push(row);
         this.tableElement.appendChild(row);
         this.nRows += 1;
@@ -202,7 +205,7 @@ export class Table {
                 pos: "top",
                 function: e => {
                     if (this.rows.length < designConfig.maxRows) {
-                        this.addRow();                        
+                        this.addRow();
                     }
                 },
             },
@@ -410,6 +413,18 @@ export class Table {
 
         this.setData(this.fractionArray);
     }
+}
+
+function adjustInputFontSize(inputElement) {
+    let newFontSize;
+    if (inputElement.scrollWidth - inputElement.offsetWidth < 0) {
+        newFontSize = "16px";
+    } else if (inputElement.scrollWidth - inputElement.offsetWidth > 0) {
+        newFontSize = "14px";
+    } else if (inputElement.scrollWidth - inputElement.offsetWidth > 10) {
+        newFontSize = "12px";
+    }
+    inputElement.style.fontSize = newFontSize;
 }
 
 /**
