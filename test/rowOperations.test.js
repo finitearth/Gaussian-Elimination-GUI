@@ -2,15 +2,15 @@
  * @jest-environment node
  */
 
-import { getById } from "../src/js/intermediate/getElement.js";
+// import { getById } from "../src/js/intermediate/getElement.js";
 import { RowOperation, removeCombobox, adaptComboboxes, updateRowOperations } from "../src/js/intermediate/rowoperation.js";
 import { addCombobox as addCombobox } from "../src/js/intermediate/rowoperation.js";
 import { Table, addKeyDownListener } from "../src/js/intermediate/table.js";
-import { Fraction } from "../src/js/logic/fraction.js";
-import { Matrix } from "../src/js/logic/matrix.js";
+// import { Fraction } from "../src/js/logic/fraction.js";
+// import { Matrix } from "../src/js/logic/matrix.js";
 import { JSDOM } from "jsdom";
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+// import React from 'react';
+import { fireEvent } from '@testing-library/react'; //render
 
 beforeEach(() => {
     const dom = new JSDOM(
@@ -42,6 +42,7 @@ test("setFirstTextField should work", () => {
    
     expect(document.getElementById("firstTextcombobox_0").value).toBe(inputValue);
 });
+
 
 test("setSecondTextField should work", () => {
     let table = new Table("test-id");

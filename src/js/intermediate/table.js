@@ -165,6 +165,7 @@ export class Table {
     @param {boolean} [force=false] - Optional parameter to force adding a row even if the current number of rows is equal to the maximum number of rows allowed in the design config.
     */
     addRow() {
+        this.nRows += 1;
         const rowId = this.rows.length;
         const row = document.createElement("tr");
         row.id = rowId;
@@ -255,6 +256,7 @@ export class Table {
     @param {boolean} [force=false] - Optional parameter to force removing a row even if the current number of rows is equal to the minimum number of rows allowed in the design config.
     */
     removeRow() {
+        this.nRows -= 1;
         this.rows.pop();
         this.tableElement.removeChild(this.tableElement.lastChild);
     }

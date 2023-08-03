@@ -8,5 +8,8 @@
         "babel-jest": "^29.6.1",
         "jest-environment-jsdom": "^29.6.1",
         "text-encoding": "^0.7.0"
+    },
+    "dependencies": {
+        "@testing-library/react": "^14.0.0"
     }
 }
