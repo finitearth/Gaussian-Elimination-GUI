@@ -19,9 +19,9 @@ export class Table {
         this.tableElement.id = id;
 
         this.nColumns = initCols || designConfig.nInitColumns;
-        this.nRows = designConfig.nInitRows;
+        this.nRows = 0;
         this.rows = [];
-        for (let i = 0; i < this.nRows; i++) {
+        for (let i = 0; i < designConfig.nInitRows; i++) {
             this.addRow();
         }
 
@@ -47,8 +47,8 @@ export class Table {
         this.tableContainer.appendChild(this.row1);
         this.tableContainer.appendChild(this.row2);
 
-        this.descriptionColumnId = "description-column";
-        this.describtionRowId = "description-row";
+        this.descriptionColumnId = id + ".description-column";
+        this.describtionRowId = id + ".description-row";
     }
 
     /**
@@ -108,16 +108,16 @@ export class Table {
             this.tableElement.childNodes.forEach(row => {
                 if (row.id != this.describtionRowId) {
                     counter = counter + 1;
-
+                    
                     if (row.firstChild.id === this.descriptionColumnId) {
                         row.firstChild.remove();
                     }
-
+                    
                     let rowDes = document.createElement("td");
-                    rowDes.id = this.descriptionColumnId;
+                    rowDes.id = this.descriptionColumnId + "." + (counter - 1) ;
                     rowDes.innerText = "(" + counter + ")";
-
                     row.insertBefore(rowDes, row.firstChild);
+                    
                 }
             });
         }
@@ -165,18 +165,18 @@ export class Table {
     @param {boolean} [force=false] - Optional parameter to force adding a row even if the current number of rows is equal to the maximum number of rows allowed in the design config.
     */
     addRow() {
-        this.nRows += 1;
-        const rowId = this.rows.length;
+        // const rowId = this.rows.length;
         const row = document.createElement("tr");
-        row.id = rowId;
-
+        // row.id = this.nRows;
+        
         for (let i = 0; i < this.nColumns; i++) {
-            const cell = this.addCell(rowId, i);
+            const cell = this.addCell(this.nRows.toString(), i);
             row.appendChild(cell);
         }
-
+        
         this.rows.push(row);
         this.tableElement.appendChild(row);
+        this.nRows += 1;
     }
 
     /**
@@ -261,9 +261,9 @@ export class Table {
     @param {boolean} [force=false] - Optional parameter to force removing a row even if the current number of rows is equal to the minimum number of rows allowed in the design config.
     */
     removeRow() {
-        this.nRows -= 1;
         this.rows.pop();
         this.tableElement.removeChild(this.tableElement.lastChild);
+        this.nRows -= 1;
     }
 
     /**

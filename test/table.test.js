@@ -6,6 +6,7 @@ import { Table, addKeyDownListener } from "../src/js/intermediate/table.js";
 import { Matrix } from "../src/js/logic/matrix.js";
 import { Fraction } from "../src/js/logic/fraction.js";
 import { JSDOM } from "jsdom";
+import { getById } from "../src/js/intermediate/getElement.js";
 
 beforeEach(() => {
     const dom = new JSDOM(
@@ -236,7 +237,7 @@ test("add cell should work", () => {
     expect(cell1Child.id).toEqual(table.id + ".0.2");
     expect(cell2Child.id).toEqual(table.id + ".1.2");
 
-    console.log(table.tableContainer.innerHTML);
+    // console.log(table.tableContainer.innerHTML);
 });
 
 test("add row description should work", () => {
@@ -248,9 +249,9 @@ test("add row description should work", () => {
     table.setData(data);
     table.addRowDescription(true);
 
-    for (let i = 0; i < table.nRows - 1; i++) {
-        let row = document.getElementById(i.toString());
-        let firstElement = row.firstChild;
+    for (let i = 0; i < table.nRows - 2; i++) { //??
+        // get first cell (description row)
+        let firstElement = document.getElementById("table-coef.description-column." + i); // TODO passt das?
         expect(firstElement.innerText).toEqual("(" + (i + 1) + ")");
     }
 });
@@ -282,9 +283,8 @@ test("add row should work", () => {
     table.setData(data);
     table.addRow();
 
-    let newRow = document.getElementById("3");
-
-    expect(newRow).toBeTruthy();
+    let newCell = getById(table.id + ".3.0");
+    expect(newCell).toBeTruthy();
     expect(table.nRows).toEqual(4);
 });
 
@@ -386,7 +386,6 @@ test("convertRepresentation false should work", () => {
     expect(spyToFraction).toHaveBeenCalled();
 });
 
-
 test("add keydown listener arrow up within one table should work", () => {
     let table = new Table("test-id");
     let data = new Matrix([
@@ -406,7 +405,6 @@ test("add keydown listener arrow up within one table should work", () => {
     let newId = selectedCell.id;
     expect(id).not.toEqual(newId);
 });
-
 
 test("add keydown listener arrow left within one table should work", () => {
     let table = new Table("test-id");
