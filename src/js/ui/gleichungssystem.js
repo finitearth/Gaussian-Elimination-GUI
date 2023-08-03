@@ -16,6 +16,7 @@ import {
     validate,
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
+import { designConfig } from "../config.js";
 
 // =========== Tables ===========
 function createTable(
@@ -141,7 +142,8 @@ listenTableDimension(
     "rows",
     false,
     "",
-    true
+    true,
+    designConfig.nInitRows
 ); // number of rows
 listenTableDimension(
     "input-nr-eq",
@@ -150,7 +152,8 @@ listenTableDimension(
     "rows",
     false,
     "",
-    false
+    false,
+    designConfig.nInitRows
 );
 listenTableDimension(
     "input-nr-var",
@@ -158,7 +161,9 @@ listenTableDimension(
     rowOperations,
     "cols",
     false,
-    "x"
+    "x",
+    true,
+    designConfig.nInitColumns
 ); // number of cols in coeff matrix
 listenTableDimension(
     "input-nr-b",
@@ -166,7 +171,9 @@ listenTableDimension(
     rowOperations,
     "cols",
     true,
-    "b"
+    "b",
+    false,
+    1
 ); // number of cols solution matrix
 addKeyDownListener(tables, true);
 

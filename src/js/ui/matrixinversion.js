@@ -16,6 +16,7 @@ import {
     validate,
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
+import { designConfig } from "../config.js";
 
 // =========== Tables ===========
 
@@ -56,7 +57,8 @@ listenTableDimension(
     "rows",
     false,
     "",
-    true
+    true,
+    designConfig.nInitRows
 );
 listenTableDimension(
     "button-dimension",

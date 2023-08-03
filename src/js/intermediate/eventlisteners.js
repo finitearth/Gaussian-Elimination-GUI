@@ -62,9 +62,13 @@ export function listenTableDimension(
     rowsOrCols,
     allowSmaller = false,
     desCharacter = null,
-    rowDescription = false
+    rowDescription = false,
+    defaultValue = null
 ) {
-    let input = document.getElementById(inputId);
+    let input = getById(inputId);
+    if (defaultValue) {
+        input.value = defaultValue;
+    }
     input.addEventListener("input", e => {
         e.target.value = Math.min(e.target.value, designConfig.maxRows);
         let min = allowSmaller ? 1 : designConfig.minRows;
