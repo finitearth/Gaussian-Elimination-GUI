@@ -19,6 +19,7 @@ function addTable() {
     let letterCell = document.createElement("td");
     let letter = String.fromCharCode(65 + tables.length);
     letterCell.innerHTML = `${letter} =`;
+    letterCell.className = "letter";
     tableRow.appendChild(letterCell);
     
     let contentCell = document.createElement("td");

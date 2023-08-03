@@ -417,12 +417,16 @@ export class Table {
 
 function adjustInputFontSize(inputElement) {
     let newFontSize;
-    if (inputElement.scrollWidth - inputElement.offsetWidth < 0) {
-        newFontSize = "16px";
-    } else if (inputElement.scrollWidth - inputElement.offsetWidth > 0) {
-        newFontSize = "14px";
-    } else if (inputElement.scrollWidth - inputElement.offsetWidth > 10) {
-        newFontSize = "12px";
+    if (inputElement.value.length < 4) {
+      newFontSize = '16pt'
+    } else if (inputElement.value.length == 4) {
+      newFontSize = '14pt';
+    } else if (inputElement.value.length == 5) {
+      newFontSize = '12pt';
+    } else if (inputElement.value.length == 6) {
+      newFontSize = '10pt';
+    } else if (inputElement.value.length == 7) {
+      newFontSize = '8pt';
     }
     inputElement.style.fontSize = newFontSize;
 }

@@ -50,6 +50,12 @@
     float: right;
 }
 
+/* Style matrix names */
+.letter {
+    font-size: 16pt;
+    font-weight: bold;
+}
+
 /* Style equation */
 .equation-input {
     width: 12.5em;
