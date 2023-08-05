@@ -300,6 +300,7 @@ export class Table {
         for (let i = 0; i < data.length; i++) {
             for (let j = 0; j < data[0].length; j++) {
                 let input = getById(`${this.id}.${i}.${j}`);
+                adjustInputFontSize(input);
                 input.value = data[i][j].stringify();
             }
         }
@@ -417,16 +418,12 @@ export class Table {
 
 function adjustInputFontSize(inputElement) {
     let newFontSize;
-    if (inputElement.value.length < 4) {
-      newFontSize = '16pt'
-    } else if (inputElement.value.length == 4) {
-      newFontSize = '14pt';
-    } else if (inputElement.value.length == 5) {
-      newFontSize = '12pt';
-    } else if (inputElement.value.length == 6) {
-      newFontSize = '10pt';
-    } else if (inputElement.value.length == 7) {
-      newFontSize = '8pt';
+    if (inputElement.scrollWidth - inputElement.offsetWidth < 0) {
+        newFontSize = "16px";
+    } else if (inputElement.scrollWidth - inputElement.offsetWidth > 0) {
+        newFontSize = "14px";
+    } else if (inputElement.scrollWidth - inputElement.offsetWidth > 10) {
+        newFontSize = "12px";
     }
     inputElement.style.fontSize = newFontSize;
 }
