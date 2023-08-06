@@ -108,14 +108,14 @@ setEventListenerFunction(
     [coefTable, identityTable],
     [solIdentityTable, solCoefTable],
     (coefMatrix, solMatrix) => {
-        if (coefMatrix.getNumberOfSolutions() === 0) {
-            alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG");
-        }
-        if (coefMatrix.getNumberOfSolutions() === -1) {
-            alert(
-                "UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN"
-            );
-        }
+        // if (coefMatrix.getNumberOfSolutions() === 0) {
+        //     alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG");
+        // }
+        // if (coefMatrix.getNumberOfSolutions() === -1) {
+        //     alert(
+        //         "UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN"
+        //     );
+        // }
         coefMatrix = applyRowOperations(coefMatrix, rowOperations);
         solMatrix = applyRowOperations(solMatrix, rowOperations);
 
@@ -153,9 +153,9 @@ for (let i = 0; i < tables.length; i++) {
 let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
 
 getById("table-element-1").addEventListener("keydown", () => {
-    validate(validPattern)
+    validate(validPattern);
 });
 
 getById("table-element-2").addEventListener("keydown", () => {
-    validate(validPattern)
+    validate(validPattern);
 });

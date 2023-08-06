@@ -31,6 +31,7 @@ export class InvalidRowOperationException extends Error {
 }
 
 export function alertError(error) {
+    console.log(error);
     let alertBox = getById("alert");
     alertBox.classList.remove("hidden");
     alertBox.innerHTML = error;
