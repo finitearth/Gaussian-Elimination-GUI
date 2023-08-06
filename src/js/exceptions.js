@@ -30,6 +30,13 @@ export class InvalidRowOperationException extends Error {
     }
 }
 
+
+export class InvalidMatrixDimension extends error {
+    constructor() {
+        super("Operation nicht möglich - Matrizen haben unvereinbare Dimensionen.");
+    }
+}
+
 export function alertError(error) {
     console.log(error);
     let alertBox = getById("alert");
