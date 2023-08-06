@@ -2,31 +2,31 @@ import { getById } from "./intermediate/getElement.js";
 
 export class DivByZeroException extends Error {
     constructor() {
-        super("Divide by zero");
+        super("Teilen durch Null nicht möglich.");
     }
 }
 
 export class UnsolvableMatrixException extends Error {
     constructor() {
-        super("Matrix is unsolvable");
+        super("Matrix ist nicht Lösbar");
     }
 }
 
-export class LinearDependentMatrixException extends Error {
-    constructor() {
-        super("Matrix is linear dependent");
-    }
-}
+// export class LinearDependentMatrixException extends Error {
+//     constructor() {
+//         super("Matrix is linear dependent");
+//     }
+// }
 
 export class InvalidInputException extends Error {
     constructor() {
-        super("Invalid input");
+        super("Invalider Input!");
     }
 }
 
 export class InvalidRowOperationException extends Error {
     constructor() {
-        super("Invalid row operation");
+        super("Invalide Zeilenoperation!");
     }
 }
 
