@@ -115,8 +115,8 @@ input {
 input[type="number"] {
     background-color: #fff;
     border: 1px solid var(--input-border-color-dark);
-    width: 3em;
-    height: 1.75em;
+    height: 28px;
+    width: 45px;
     margin: 0.25em 1.75em 0.25em 0.25em;
 }
 
@@ -124,7 +124,7 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     opacity: 0.8;
     width: 1em;
-    height: 2em;
+    height: 2.5em;
 }
 
 input:disabled {
@@ -136,8 +136,8 @@ select {
     background-color: #fff;
     border: 1px solid var(--input-border-color-dark);
     border-radius: 0.25em;
-    height: 2em;
-    width: 2.5em;
+    height: 28px;
+    width: 40px;
     padding: 0;
     text-align: center;
 }
