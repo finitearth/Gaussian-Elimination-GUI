@@ -12,6 +12,10 @@ export function gaussElimination(
     solMatrix,
     returnCoefMatrix = false
 ) {
+    let nSols = coefMatrix.getNumberOfSolutions();
+    if (nSols === 0) throw new UnsolvableMatrixException();
+    if (nSols === -1) throw new UnsolvableMatrixException();
+    
     for (let i = 0; i < coefMatrix.nRows; i++) {
         let [pivotIndex, pivotElement] = coefMatrix.getPivot(i);
 
