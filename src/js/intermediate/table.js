@@ -113,7 +113,7 @@ export class Table {
                 if (row.id != this.describtionRowId) {
                     counter = counter + 1;
 
-                    if (row.firstChild.id === this.descriptionColumnId) {
+                    if (row.firstChild.id === this.descriptionColumnId + "." + (counter - 1)) {
                         row.firstChild.remove();
                     }
 

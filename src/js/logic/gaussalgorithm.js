@@ -26,17 +26,13 @@ export function gaussElimination(
 
         // Use the pivot element to eliminate the variables above and below it
         for (let j = 0; j < coefMatrix.nColumns; j++) {
-            if (i === j) {
-                continue; // skip
-            }
+            if (i === j) continue; // skip
             let factor = coefMatrix.getCell(j, i).mul(-1);
             coefMatrix = coefMatrix.addRow(j, coefMatrix.getRow(i).mul(factor));
             solMatrix = solMatrix.addRow(j, solMatrix.getRow(i).mul(factor));
         }
     }
 
-    if (returnCoefMatrix) {
-        return [coefMatrix, solMatrix];
-    }
+    if (returnCoefMatrix) return [coefMatrix, solMatrix];
     return solMatrix;
 }
