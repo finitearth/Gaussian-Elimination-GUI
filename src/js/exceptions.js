@@ -1,4 +1,4 @@
-import { getById } from "./intermediate/getElement";
+import { getById } from "./intermediate/getElement.js";
 
 export class DivByZeroException extends Error {
     constructor() {
