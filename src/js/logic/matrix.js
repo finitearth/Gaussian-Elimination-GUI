@@ -1,4 +1,4 @@
-import { InvalidInputException } from "../exceptions.js";
+import { InvalidInputException, InvalidMatrixDimension } from "../exceptions.js";
 import { Fraction, NEGONE, ZERO } from "./fraction.js";
 import { gaussElimination } from "./gaussalgorithm.js";
 
@@ -33,7 +33,7 @@ export class Matrix {
     getNumberOfSolutions() {
         if (this.hasLinearDependencies()) {
             return -1; //infinitly many
-        } else if (this.getRank() < this.nRows || this.hasEmptyRow()) {
+        } else if (this.getRank() !== this.nRows || this.hasEmptyRow()) {
             return 0; //no solution
         } else {
             return 1; //one solution
@@ -123,7 +123,7 @@ export class Matrix {
             this.nRows != otherMatrix.nRows ||
             this.nColumns != otherMatrix.nColumns
         ) {
-            throw new InvalidInputException();
+            throw new InvalidMatrixDimension();
         }
         let newArray = [];
         for (let i = 0; i < this.nRows; i++) {
@@ -229,7 +229,7 @@ export class Matrix {
     multiplyByMatrix(other) {
         if (this.nColumns != other.nRows) {
             // || this.nRows != other.nColumns) {
-            throw new InvalidInputException();
+            throw new InvalidMatrixDimension();
         }
         let newArray = [];
         for (let i = 0; i < this.nRows; i++) {
