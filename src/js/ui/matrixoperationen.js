@@ -12,6 +12,7 @@ import {
     validate,
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
+import { designConfig } from "../config.js";
 
 // =========== Tables ===========
 let inputTable = new Table("input-table-placeholder");
@@ -24,8 +25,8 @@ outputTable.disableInput();
 
 // getById("output-matrix").appendChild(outputTable.tableContainer);
 // =========== Event Listeners ===========
-listenTableDimension("input-nr-rows", [inputTable], [], "rows");
-listenTableDimension("input-nr-cols", [inputTable], [], "cols");
+listenTableDimension("input-nr-rows", [inputTable], [], "rows", false, null, false, designConfig.nInitRows);
+listenTableDimension("input-nr-cols", [inputTable], [], "cols", false, null, false, designConfig.nInitColumns);
 
 addKeyDownListener([inputTable], true);
 
