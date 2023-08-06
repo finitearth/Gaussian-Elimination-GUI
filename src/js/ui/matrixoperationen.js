@@ -54,16 +54,11 @@ addKeyDownListener([inputTable], true);
     {
         id: "button-inverse",
         func: matrix => {
-            try {
-                let [coefMatrix, solMatrix] = gaussElimination(
-                    matrix,
-                    getUnitMatrix(matrix.nRows),
-                    true
-                );
-                return [solMatrix];
-            } catch (error) {
-                alertError(error);
-            }
+            let [coefMatrix, solMatrix] = gaussElimination(
+                matrix,
+                getUnitMatrix(matrix.nRows),
+                true
+            );
         },
     },
     {

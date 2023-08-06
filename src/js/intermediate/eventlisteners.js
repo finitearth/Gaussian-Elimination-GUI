@@ -1,6 +1,7 @@
 import { adaptComboboxes, updateRowOperations } from "./rowoperation.js";
 import { designConfig } from "../config.js";
 import { getById } from "./getElement.js";
+import { alertError } from "../exceptions.js";
 
 export function modifyDimListener(tables) {
     ["addrow", "addcol", "removerow", "removecol"].forEach(b => {
@@ -46,10 +47,7 @@ export function setEventListenerFunction(
                 table.setData(outputMatrices[index])
             );
         } catch (error) {
-            if (alertOnError) {
-                alert(error);
-                console.error(error);
-            }
+            if (alertOnError) alertError(error);
             else throw error;
         }
     });
@@ -103,7 +101,6 @@ export function listenTableDimension(
     });
 }
 
-
 export function validate(validPattern) {
     let focused = document.activeElement;
     let valid = focused.value.match(validPattern);
@@ -114,5 +111,3 @@ export function validate(validPattern) {
         focused.classList.remove("invalid");
     }
 }
-
-

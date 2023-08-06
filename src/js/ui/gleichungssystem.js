@@ -59,14 +59,14 @@ for (let i = 0; i < coefTable.nRows; i++) {
         inputTables: [coefTable, solTable],
         outputTables: [resCoefTable, resSolTable],
         func: (coefMatrix, solMatrix) => {
-            if (coefMatrix.getNumberOfSolutions() === 0) {
-                alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG");
-            }
-            if (coefMatrix.getNumberOfSolutions() === -1) {
-                alert(
-                    "UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN"
-                );
-            }
+            // if (coefMatrix.getNumberOfSolutions() === 0) {
+            // alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG");
+            // }
+            // if (coefMatrix.getNumberOfSolutions() === -1) {
+            // alert(
+            // "UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN"
+            // );
+            // }
             let unitMatrix = getUnitMatrix(coefMatrix.nRows);
             let outputMatrix = gaussElimination(coefMatrix, solMatrix);
             return [unitMatrix, outputMatrix];
@@ -181,13 +181,12 @@ getById("button-clear").addEventListener("click", () => {
     clearTables(tables);
 });
 
-
 let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
 
 getById("table-coef").addEventListener("keydown", () => {
-    validate(validPattern)
+    validate(validPattern);
 });
 
 getById("table-sol").addEventListener("keydown", () => {
-    validate(validPattern)
+    validate(validPattern);
 });

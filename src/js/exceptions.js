@@ -36,5 +36,5 @@ export function alertError(error) {
     alertBox.innerHTML = error;
     setTimeout(() => {
         alertBox.classList.add("hidden");
-    }, 3000);
+    }, 7000);
 }
