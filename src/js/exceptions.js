@@ -1,3 +1,5 @@
+import { getById } from "./intermediate/getElement";
+
 export class DivByZeroException extends Error {
     constructor() {
         super("Divide by zero");
@@ -26,4 +28,13 @@ export class InvalidRowOperationException extends Error {
     constructor() {
         super("Invalid row operation");
     }
+}
+
+export function alertError(error) {
+    let alertBox = getById("alert");
+    alertBox.classList.remove("hidden");
+    alertBox.innerHTML = error;
+    setTimeout(() => {
+        alertBox.classList.add("hidden");
+    }, 3000);
 }

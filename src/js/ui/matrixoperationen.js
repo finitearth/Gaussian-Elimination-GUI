@@ -13,20 +13,36 @@ import {
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 import { designConfig } from "../config.js";
+import { alertError } from "../exceptions.js";
 
 // =========== Tables ===========
 let inputTable = new Table("input-table-placeholder");
 inputTable.addButtons();
 
-// getById("input-table-placeholder").appendChild(inputTable.tableContainer);
-
 let outputTable = new Table("output-table-placeholder");
 outputTable.disableInput();
 
-// getById("output-matrix").appendChild(outputTable.tableContainer);
 // =========== Event Listeners ===========
-listenTableDimension("input-nr-rows", [inputTable], [], "rows", false, null, false, designConfig.nInitRows);
-listenTableDimension("input-nr-cols", [inputTable], [], "cols", false, null, false, designConfig.nInitColumns);
+listenTableDimension(
+    "input-nr-rows",
+    [inputTable],
+    [],
+    "rows",
+    false,
+    null,
+    false,
+    designConfig.nInitRows
+);
+listenTableDimension(
+    "input-nr-cols",
+    [inputTable],
+    [],
+    "cols",
+    false,
+    null,
+    false,
+    designConfig.nInitColumns
+);
 
 addKeyDownListener([inputTable], true);
 
@@ -38,12 +54,16 @@ addKeyDownListener([inputTable], true);
     {
         id: "button-inverse",
         func: matrix => {
-            let [coefMatrix, solMatrix] = gaussElimination(
-                matrix,
-                getUnitMatrix(matrix.nRows),
-                true
-            );
-            return [solMatrix];
+            try {
+                let [coefMatrix, solMatrix] = gaussElimination(
+                    matrix,
+                    getUnitMatrix(matrix.nRows),
+                    true
+                );
+                return [solMatrix];
+            } catch (error) {
+                alertError(error);
+            }
         },
     },
     {
@@ -59,23 +79,11 @@ addKeyDownListener([inputTable], true);
     );
 });
 
-// listenTableDimension(
-//     "addrow",
-//     [inputTable],
-//     [],
-//     "rows",
-//     false,
-//     null,
-//     false,
-//     "click"
-// );
-
 modifyDimListener([inputTable, outputTable]);
 
 let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
-
 getById("input-table-placeholder").addEventListener("keydown", () => {
-    validate(validPattern)
+    validate(validPattern);
 });
 
 let conversionButtonchecked = false;
