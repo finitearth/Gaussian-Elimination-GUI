@@ -8,7 +8,7 @@ export class DivByZeroException extends Error {
 
 export class UnsolvableMatrixException extends Error {
     constructor() {
-        super("Matrix ist nicht Lösbar");
+        super("Matrix ist nicht lösbar");
     }
 }
 
@@ -34,7 +34,6 @@ export function alertError(error) {
     console.log(error);
     let alertBox = getById("alert");
     alertBox.classList.remove("hidden");
-    // cut error: from error message with regex
     error = error.toString().replace(/^Error: /, "");
     alertBox.innerHTML = error;
     setTimeout(() => {
