@@ -34,6 +34,8 @@ export function alertError(error) {
     console.log(error);
     let alertBox = getById("alert");
     alertBox.classList.remove("hidden");
+    // cut error: from error message with regex
+    error = error.toString().replace(/^Error: /, "");
     alertBox.innerHTML = error;
     setTimeout(() => {
         alertBox.classList.add("hidden");
