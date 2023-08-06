@@ -13,8 +13,9 @@
     --shadow-color: #74747466;
     --shadow-color-transparent: #7474741a;
     --navigation-link: #9A9DA0;
-    --color-invalid: #F8D7DA;
-    --color-invalid-dark: #F5C2C7;
+    --color-invalid-light: #F8D7DA;
+    --color-invalid: #F5C2C7;
+    --color-invalid-dark: #842029;
 }
 
 /* Style semantic tags */
@@ -425,7 +426,12 @@ input:checked+.slider:before {
 
 /* Alert */
 .alert {
-    background-color: var(--color-invalid);
+    background-color: var(--color-invalid-light);
+    border: 1px solid var(--color-invalid);
+    border-radius: 5px;
+    color: var(--color-invalid-dark);
+    margin-bottom: 1em;
+    padding: 1em;
 }
 
 .hidden {
