@@ -13,7 +13,8 @@
     --shadow-color: #74747466;
     --shadow-color-transparent: #7474741a;
     --navigation-link: #9A9DA0;
-    --color-invalid: lightcoral;
+    --color-invalid: #F8D7DA;
+    --color-invalid-dark: #F5C2C7;
 }
 
 /* Style semantic tags */
@@ -420,6 +421,15 @@ input:checked+.slider:before {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* Alert */
+.alert {
+    background-color: var(--color-invalid);
+}
+
+.hidden {
+    display: none;
 }
 
 /* Matrix brackets */
