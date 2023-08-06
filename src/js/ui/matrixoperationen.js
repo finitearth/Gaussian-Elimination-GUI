@@ -63,7 +63,7 @@ addKeyDownListener([inputTable], true);
     },
     {
         id: "button-determinant",
-        func: matrix => [matrix.getDeterminant()],
+        func: matrix => [matrix.getDeterminantUsingGaussElimination()],
     },
 ].forEach(listener => {
     setEventListenerFunction(

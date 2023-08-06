@@ -33,7 +33,7 @@ export class Matrix {
     getNumberOfSolutions() {
         if (this.hasLinearDependencies()) {
             return -1; //infinitly many
-        } else if (this.getRank() < this.nRows || this.hasEmptyRow()) {
+        } else if (this.getRank() !== this.nRows || this.hasEmptyRow()) {
             return 0; //no solution
         } else {
             return 1; //one solution
