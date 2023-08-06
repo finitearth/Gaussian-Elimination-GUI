@@ -40,9 +40,9 @@
 }
 
 .button-combobox {
-    height: 2em;
-    width: 2em;
-    margin: 0.06em 0;
+    height: 28px;
+    width: 28px;
+    margin: 0.08em 0;
     padding: 0;
 }
 
@@ -50,8 +50,8 @@
 .combobox-dropdown,
 .combobox-input-field {
     margin: 0.05em 0.25em;
-    width: 3em;
-    height: 1.75em;
+    height: 28px;
+    width: 40px;
     background-color: #fff;
     border: 1px solid var(--input-border-color-dark);
 }
