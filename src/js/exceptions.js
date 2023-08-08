@@ -31,7 +31,7 @@ export class InvalidRowOperationException extends Error {
 }
 
 
-export class InvalidMatrixDimension extends error {
+export class InvalidMatrixDimension extends Error {
     constructor() {
         super("Operation nicht möglich - Matrizen haben unvereinbare Dimensionen.");
     }

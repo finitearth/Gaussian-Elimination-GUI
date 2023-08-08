@@ -129,7 +129,7 @@ export class Matrix {
         for (let i = 0; i < this.nRows; i++) {
             newArray[i] = [];
             for (let j = 0; j < this.nColumns; j++) {
-                newArray[i][j] = this.array[i][j].add(otherMatrix.array[i][j]);
+                newArray[i][j] = this.getCell(i, j).add(otherMatrix.getCell(i, j));
             }
         }
         return new Matrix(newArray);
@@ -144,7 +144,7 @@ export class Matrix {
         for (let i = 0; i < this.nRows; i++) {
             newArray[i] = [];
             for (let j = 0; j < this.nColumns; j++) {
-                newArray[i][j] = this.array[i][j].abs();
+                newArray[i][j] = this.getCell(i, j).abs();
             }
         }
         return new Matrix(newArray);
@@ -158,7 +158,7 @@ export class Matrix {
         let max = this.array[0][0];
         for (let i = 0; i < this.nRows; i++) {
             for (let j = 0; j < this.nColumns; j++) {
-                if (this.array[i][j].greater(max)) {
+                if (this.getCell(i, j).greater(max)) {
                     max = this.array[i][j];
                 }
             }
@@ -256,7 +256,7 @@ export class Matrix {
         for (let i = 0; i < this.nColumns; i++) {
             newArray.push([]);
             for (let j = 0; j < this.nRows; j++) {
-                newArray[i].push(this.array[j][i]);
+                newArray[i].push(getCell(j, i));
             }
         }
 
