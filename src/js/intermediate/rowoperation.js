@@ -259,12 +259,10 @@ export function adaptComboboxes(rowOperations, table, n) {
 
 export function updateRowOperations(rowOperations, dimension, n) {
     for (let i = 0; i < rowOperations.length; i++) {
-        if (rowOperations[i].enabled) {
-            rowOperations[i].setNRowDropdownSelectOptions(dimension, n);
+        rowOperations[i].setNRowDropdownSelectOptions(dimension, n);
 
-            let rowOperationNumber = parseInt(rowOperations[i].id.charAt(rowOperations[i].id.length-1));
-            document.getElementById(rowOperations[i].rowDropdownID).selectedIndex = rowOperationNumber;
-        }
+        let rowOperationNumber = parseInt(rowOperations[i].id.charAt(rowOperations[i].id.length-1));
+        document.getElementById(rowOperations[i].rowDropdownID).selectedIndex = rowOperationNumber;
     }
 
     return rowOperations;
