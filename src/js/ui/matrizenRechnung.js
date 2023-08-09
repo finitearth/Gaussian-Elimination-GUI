@@ -6,7 +6,6 @@ import {
 import { calculate } from "../logic/equationParser.js";
 import {
     setEventListenerFunction,
-    validate,
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 
@@ -87,10 +86,7 @@ getById("button-clear").addEventListener("click", () => {
     getById("input-equation").value = "";
 });
 
-let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
 
-tables.forEach(table => {
-    getById(table.id).addEventListener("keydown", () => {
-        validate(validPattern);
-    });
-});
+
+
+

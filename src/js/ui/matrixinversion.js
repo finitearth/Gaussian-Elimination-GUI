@@ -13,7 +13,6 @@ import {
 import {
     setEventListenerFunction,
     listenTableDimension,
-    validate,
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 import { designConfig } from "../config.js";
@@ -150,12 +149,3 @@ for (let i = 0; i < tables.length; i++) {
     tables[i].addRowDescription();
 }
 
-let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
-
-getById("table-element-1").addEventListener("keydown", () => {
-    validate(validPattern);
-});
-
-getById("table-element-2").addEventListener("keydown", () => {
-    validate(validPattern);
-});

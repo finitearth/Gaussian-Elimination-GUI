@@ -261,7 +261,7 @@ export class Matrix {
         for (let i = 0; i < this.nColumns; i++) {
             newArray.push([]);
             for (let j = 0; j < this.nRows; j++) {
-                newArray[i].push(getCell(j, i));
+                newArray[i].push(this.getCell(j, i));
             }
         }
 

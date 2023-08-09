@@ -12,7 +12,6 @@ function closeModal() {
 }
 
 spanClose.addEventListener("click", closeModal);
-buttonClose.addEventListener("click", closeModal);
 
 // add eventlistener for esc-press
 document.addEventListener("keydown", function (event) {

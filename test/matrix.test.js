@@ -1,6 +1,6 @@
 import { Matrix } from "../src/js/logic/matrix";
 import { Fraction, NEGONE } from "../src/js/logic/fraction";
-import { InvalidInputException } from "../src/js/exceptions";
+import { InvalidMatrixDimension } from "../src/js/exceptions";
 
 let matrix1;
 let matrix2;
@@ -219,7 +219,7 @@ test("mul matrix by string, should throw error", () => {
 test("mul matrix should throw invalid input error", () => {
     expect(() => {
         matrix1.mul(matrixSmall);
-    }).toThrow(InvalidInputException);
+    }).toThrow(InvalidMatrixDimension);
 });
 
 test("transpose matrix", () => {
@@ -237,7 +237,7 @@ test("transpose matrix", () => {
 test("add matrix should throw invalid input error", () => {
     expect(() => {
         matrix1.add(matrixSmall);
-    }).toThrow(InvalidInputException);
+    }).toThrow(InvalidMatrixDimension);
 });
 
 test("sub matrix should work", () => {

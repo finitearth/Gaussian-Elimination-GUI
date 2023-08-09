@@ -23,7 +23,6 @@ In order to run the webpage, you need to allow the imports inside of the js-file
 ```
 cd C:\Program Files\Google\Chrome\Application
 chrome.exe --allow-file-access-from-files
-
 ```
 - install module "http-server" via `npm install http-server`; than run `http-server --cors` and open the displayed localhost page.
 
