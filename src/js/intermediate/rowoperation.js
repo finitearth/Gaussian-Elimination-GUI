@@ -9,7 +9,7 @@ export class RowOperation {
         this.comboBoxElement = document.createElement("tr");
         this.firstOperatorDropdownID = "firstOperator" + this.id;
         this.firstTextFieldID = "firstText" + this.id;
-        this.firstTextFieldValue = "0";
+        this.firstTextFieldValue = "1";
         this.secondOperatorDropdownID = "secondOperator" + this.id;
         this.rowDropdownID = "rowDropdown" + this.id;
         this.thirdOperatorDropdownID = "thirdOperator" + this.id;
@@ -191,15 +191,17 @@ export class RowOperation {
 
     apply(matrix) {
         let matrixCopy = matrix.clone();
-
+    
         // subj = Row to be modified, obj = row subj is modified with
         let subjIdx = Number(this.id.substr(9));
         let subjMultiplier = stringToFraction(this.firstTextFieldValue);
+        
         let mulOrDivSubj = getById(this.firstOperatorDropdownID).value;
 
         let operation = getById(this.secondOperatorDropdownID).value;
 
-        let objIdx = Number(getById(this.rowDropdownID).value) - 1;
+        let objIdx = Number(getById(this.rowDropdownID).value.replace("(", "").replace(")", "")) - 1;
+      
         let objMultiplier = stringToFraction(this.secondTextFieldValue);
         let mulOrDivObj = getById(this.thirdOperatorDropdownID).value;
 
@@ -212,8 +214,9 @@ export class RowOperation {
         if (operation === "-") {
             objMultiplier = objMultiplier.mul(NEGONE);
         }
-
+    
         matrix = matrix.multiplyRowByScalar(subjIdx, subjMultiplier);
+        
         matrixCopy = matrixCopy.multiplyRowByScalar(objIdx, objMultiplier);
 
         matrix = matrix.addRow(subjIdx, matrixCopy.getRow(objIdx));
@@ -270,14 +273,12 @@ export function updateRowOperations(rowOperations, dimension, n) {
 
 export function applyRowOperations(matrix, rowOperations) {
     let matrixCopy = matrix.clone();
-
+    
     rowOperations
         // .filter(r => r.enabled)
-        .forEach((r, i) => {
-            if (r.enabled) {
-                let newMatrix = r.apply(matrix);
-                matrixCopy = matrixCopy.setRow(i, newMatrix.getRow(i));
-            }
+        .forEach((rowOperation, i) => {
+            let newMatrix = rowOperation.apply(matrix);
+            matrixCopy = matrixCopy.setRow(i, newMatrix.getRow(i));
         });
     return matrixCopy;
 }
