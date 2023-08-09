@@ -19,6 +19,12 @@
     height: auto;
     position: relative;
     z-index: 99;
+    transition: transform 0.3s;
+
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
 }
 
 .page-links {

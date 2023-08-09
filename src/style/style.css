@@ -356,7 +356,13 @@ input:checked+.slider:before {
     height: 2.5em;
     margin: 0 2em 0 2em;
     float: left;
+    transition: transform 0.3s;
 }
+
+.nav-logo:hover {
+    transform: rotate(360deg);
+}
+
 
 /* Style help modal */
 .modal {
