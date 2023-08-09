@@ -43,9 +43,16 @@ export function setEventListenerFunction(
         try {
             let inputMatrices = inputTables.map(table => table.getData());
             let outputMatrices = operation(...inputMatrices);
-            outputTables.forEach((table, index) =>
-                table.setData(outputMatrices[index])
-            );
+
+            if (buttonId == "button-inverse") {
+                outputTables.forEach((table, index) =>
+                    table.setData(outputMatrices[index][index])
+                );
+            } else {
+                outputTables.forEach((table, index) =>
+                    table.setData(outputMatrices[index])
+                );
+            }
         } catch (error) {
             if (alertOnError) alertError(error);
             else throw error;
@@ -101,13 +108,3 @@ export function listenTableDimension(
     });
 }
 
-export function validate(validPattern) {
-    let focused = document.activeElement;
-    let valid = focused.value.match(validPattern);
-
-    if (!valid) {
-        focused.classList.add("invalid");
-    } else {
-        focused.classList.remove("invalid");
-    }
-}
