@@ -449,11 +449,11 @@ input:checked+.slider:before {
 }
 
 .open {
-    background-image: url('../images/matrix_bracket_open.png');
+    background-image: url('../images/matrix_square_bracket_open.png');
 }
 
 .closed {
-    background-image: url('../images/matrix_bracket_close.png');
+    background-image: url('../images/matrix_square_bracket_close.png');
 }
 
 .matrix,
