@@ -28,6 +28,7 @@ setEventListenerFunction(
         let constMatrix = rightSideTable.getData();
         let objCoef = objectiveCoefTable.getData();
         let result = simplexAlgorithm(coefMatrix, constMatrix, objCoef);
+        throw Error("Funktionalität noch nicht implementiert.");
         return [result];
     }
 );
