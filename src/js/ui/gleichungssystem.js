@@ -13,7 +13,6 @@ import {
 import {
     setEventListenerFunction,
     listenTableDimension,
-    validate,
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 import { designConfig } from "../config.js";
@@ -181,12 +180,3 @@ getById("button-clear").addEventListener("click", () => {
     clearTables(tables);
 });
 
-let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
-
-getById("table-coef").addEventListener("keydown", () => {
-    validate(validPattern);
-});
-
-getById("table-sol").addEventListener("keydown", () => {
-    validate(validPattern);
-});

@@ -9,7 +9,6 @@ import {
     modifyDimListener,
     listenTableDimension,
     setEventListenerFunction,
-    validate,
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 import { designConfig } from "../config.js";
@@ -75,11 +74,6 @@ addKeyDownListener([inputTable], true);
 });
 
 modifyDimListener([inputTable, outputTable]);
-
-let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
-getById("input-table-placeholder").addEventListener("keydown", () => {
-    validate(validPattern);
-});
 
 let conversionButtonchecked = false;
 getById("button-representation-conversion").addEventListener("click", () => {

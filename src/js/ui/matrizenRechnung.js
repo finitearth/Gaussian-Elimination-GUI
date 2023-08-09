@@ -2,7 +2,6 @@ import { Table, addKeyDownListener, clearTables } from "../intermediate/table.js
 import { calculate } from "../logic/equationParser.js";
 import { 
     setEventListenerFunction,
-    validate,
  } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 
@@ -88,13 +87,6 @@ getById("button-clear").addEventListener("click", () => {
 
 });
 
-let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
-
-tables.forEach(table => {
-   getById(table.id).addEventListener("keydown", () => {
-   validate(validPattern)
-   });
-});
 
 
 

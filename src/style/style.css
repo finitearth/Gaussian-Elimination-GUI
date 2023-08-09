@@ -463,6 +463,6 @@ input:checked+.slider:before {
 }
 
 /* Infield validation */
-.invalid {
+input:invalid {
     background-color: var(--color-invalid);
 }

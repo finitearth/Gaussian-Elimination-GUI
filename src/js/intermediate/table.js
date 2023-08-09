@@ -94,6 +94,7 @@ export class Table {
         input.size = designConfig.inputFieldSize;
         input.width = designConfig.inputFieldSize;
         input.id = `${this.id}.${rowId}.${columnId}`;
+        input.pattern = "\^[\\-\\+]{0,1}[\\d]*[.,\\/]{0,1}[\\d]*$"
         // center cell input
         input.style.textAlign = "center";
         input.disabled = !this.enabled;
