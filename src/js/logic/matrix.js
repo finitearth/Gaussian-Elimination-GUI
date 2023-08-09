@@ -444,21 +444,21 @@ export class Matrix {
      * @param {boolean} decimal - Whether to display decimal values instead of fractions.
      * @returns {string} - The string representation of the matrix.
      */
-    //     stringify(decimal = false) {
-    //         let string = ";
-    //         for (let i = 0; i < this.nRows; i++) {
-    //             for (let j = 0; j < this.nColumns; j++) {
-    //                 if (decimal) {
-    //                     string += this.array[i][j].toDecimal();
-    //                 } else {
-    //                     string += this.array[i][j].stringify();
-    //                 }
-    //                 string += " ";
-    //             }
-    //             string += "<br>";
-    //         }
-    //         return string;
-    //     }
+    stringify(decimal = false) {
+        let string = '';
+        for (let i = 0; i < this.nRows; i++) {
+            for (let j = 0; j < this.nColumns; j++) {
+                if (decimal) {
+                    string += this.array[i][j].toDecimal();
+                } else {
+                    string += this.array[i][j].stringify();
+                }
+                string += " ";
+            }
+            string += "<br>";
+        }
+        return string;
+    }
 }
 
 /**
