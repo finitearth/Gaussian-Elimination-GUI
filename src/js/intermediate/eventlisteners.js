@@ -44,15 +44,10 @@ export function setEventListenerFunction(
             let inputMatrices = inputTables.map(table => table.getData());
             let outputMatrices = operation(...inputMatrices);
 
-            if (buttonId == "button-inverse") {
-                outputTables.forEach((table, index) =>
-                    table.setData(outputMatrices[index][index])
-                );
-            } else {
-                outputTables.forEach((table, index) =>
-                    table.setData(outputMatrices[index])
-                );
-            }
+            outputTables.forEach((table, index) =>
+                table.setData(outputMatrices[index])
+            );
+            
         } catch (error) {
             if (alertOnError) alertError(error);
             else throw error;
@@ -107,4 +102,3 @@ export function listenTableDimension(
         });
     });
 }
-

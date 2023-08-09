@@ -51,14 +51,13 @@ addKeyDownListener([inputTable], true);
     },
     {
         id: "button-inverse",
-        func: matrix => [gaussElimination(matrix, getUnitMatrix(matrix.nRows), true)],
-        // func: matrix => {
-        //     let [coefMatrix, solMatrix] = gaussElimination(
-        //         matrix,
-        //         getUnitMatrix(matrix.nRows),
-        //         true
-        //     );
-        // },
+        func: matrix => {
+            let solMatrix = gaussElimination(
+                matrix,
+                getUnitMatrix(matrix.nRows)
+            );
+            return [solMatrix];
+        },
     },
     {
         id: "button-determinant",
