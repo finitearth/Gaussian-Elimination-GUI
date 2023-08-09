@@ -13,7 +13,6 @@ import {
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 import { designConfig } from "../config.js";
-import { alertError } from "../exceptions.js";
 
 // =========== Tables ===========
 let inputTable = new Table("input-table-placeholder");

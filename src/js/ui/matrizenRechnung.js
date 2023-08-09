@@ -1,27 +1,30 @@
-import { Table, addKeyDownListener, clearTables } from "../intermediate/table.js";
+import {
+    Table,
+    addKeyDownListener,
+    clearTables,
+} from "../intermediate/table.js";
 import { calculate } from "../logic/equationParser.js";
-import { 
+import {
     setEventListenerFunction,
     validate,
- } from "../intermediate/eventlisteners.js";
+} from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 
 // =========== Tables ===========
 function addTable() {
-    if (tables.length > 25)
-        return;
-        
+    if (tables.length > 25) return;
+
     let tableRow = document.createElement("tr");
-    
+
     let tableContainer = document.createElement("table");
     getById("table").appendChild(tableContainer);
-    
+
     let letterCell = document.createElement("td");
     let letter = String.fromCharCode(65 + tables.length);
     letterCell.innerHTML = `${letter} =`;
     letterCell.className = "letter";
     tableRow.appendChild(letterCell);
-    
+
     let contentCell = document.createElement("td");
     contentCell.id = `table-${tables.length}`;
     tableRow.appendChild(contentCell);
@@ -34,16 +37,14 @@ function addTable() {
     tables.push(newTable);
 }
 
-
 function removeTable() {
     if (tables.length <= 2) {
         return;
     }
     tables.pop();
     getById("table").removeChild(getById("table").lastChild);
-    
-    tableContainers.pop();
 
+    tableContainers.pop();
 }
 
 let tables = [];
@@ -70,7 +71,6 @@ getById("button-representation-conversion").addEventListener("click", () => {
     resultTable.convertRepresentation(conversionButtonchecked);
 });
 
-
 addKeyDownListener(tables);
 getById("button-representation-conversion").addEventListener("click", () => {
     resultTable.convertRepresentation(conversionButtonchecked);
@@ -78,24 +78,19 @@ getById("button-representation-conversion").addEventListener("click", () => {
 
 getById("button-clear").addEventListener("click", () => {
     clearTables(tables);
-    clearTables([resultTable])
+    clearTables([resultTable]);
     let l = tables.length - 2;
     for (let i = 0; i < l; i++) {
         removeTable();
     }
 
     getById("input-equation").value = "";
-
 });
 
 let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
 
 tables.forEach(table => {
-   getById(table.id).addEventListener("keydown", () => {
-   validate(validPattern)
-   });
+    getById(table.id).addEventListener("keydown", () => {
+        validate(validPattern);
+    });
 });
-
-
-
-

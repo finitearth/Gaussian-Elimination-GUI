@@ -3,26 +3,41 @@ import {
     setEventListenerFunction,
     validate,
 } from "../intermediate/eventlisteners.js";
-import { getById } from "../intermediate/getElement.js";
 import { simplexAlgorithm } from "../logic/simplexAlgorithm.js";
+import { listenTableDimension } from "../intermediate/eventlisteners.js";
 
 // =========== Tables ===========
 let constraintCoefTable = new Table("constraint-coef-table-placeholder");
+constraintCoefTable.addButtons();
+constraintCoefTable.setNRows(2);
+constraintCoefTable.setNColumns(2);
 let rightSideTable = new Table("right-side-table-placeholder", 1);
-let objectiveCoefTable = new Table("objective-coef-table-placeholder", 1);
+rightSideTable.addButtons();
+rightSideTable.setNRows(2);
+let objectiveCoefTable = new Table("objective-coef-table-placeholder", 3);
+objectiveCoefTable.addButtons();
+objectiveCoefTable.setNRows(2);
+objectiveCoefTable.setNColumns(1);
 
 let outTable = new Table("output-table-placeholder", 1);
 
 // =========== Event listeners ===========
-setEventListenerFunction("button-calculate", [inTable], [outTable], () => {
-    let coefMatrix = inTable.getData();
-    let constMatrix = inTable.getConstants();
-    let result = simplexAlgorithm(coefMatrix, constMatrix);
+setEventListenerFunction("button-calculate", [constraintCoefTable, rightSideTable], [outTable], () => {
+    let coefMatrix = constraintCoefTable.getData();
+    let constMatrix = rightSideTable.getData();
+    let objCoef = objectiveCoefTable.getData();
+    let result = simplexAlgorithm(coefMatrix, constMatrix, objCoef);
     return [result];
 });
 
-let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
+listenTableDimension("input-nr-rows", [constraintCoefTable, rightSideTable], [], "rows", false, null, false, 2);
+listenTableDimension("input-nr-cols", [constraintCoefTable, rightSideTable], [], "cols", false, null, false, 2);
+listenTableDimension("input-nr-cols", [], [], "cols", false, null, false, 1);
+listenTableDimension("input-nr-cols", [], [], "cols", false, null, false, 2);
 
-getById("input-table-placeholder").addEventListener("keydown", () => {
-    validate(validPattern)
-});
+
+// let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
+
+// getById("input-table-placeholder").addEventListener("keydown", () => {
+//     validate(validPattern)
+// });

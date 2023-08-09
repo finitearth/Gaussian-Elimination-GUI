@@ -1,173 +1,142 @@
-/**
- * Perform the simplex algorithm on a linear programming problem represented by coefficient and constant matrices.
- * Throws an UnsolvableMatrixException if the coefficient matrix is not in standard form.
- * @param {Matrix} coefMatrix - The matrix representing the coefficients of the linear programming problem in standard form.
- * @param {Matrix} constMatrix - The matrix representing the constants of the linear programming problem.
- * @returns {Matrix} - The matrix representing the optimal solution to the linear programming problem.
- */
+import { UnsolvableMatrixException } from "../exceptions.js";
+import { Matrix, getEmptyMatrix } from "../logic/matrix.js";
+import { ZERO, Fraction, NEGONE, ONE } from "./fraction.js";
+
 export function simplexAlgorithm(coefMatrix, constMatrix) {
-  // Check if the coefficient matrix is in standard form
-  if (!isStandardForm(coefMatrix)) {
-    throw new UnsolvableMatrixException("Coefficient matrix is not in standard form.");
-  }
-
-  // Initialize the tableau
-  let tableau = augment(coefMatrix, constMatrix);
-
-  // Perform the simplex algorithm
-  while (!isOptimal(tableau)) {
+    if (!isStandardForm(coefMatrix)) {
+        throw new UnsolvableMatrixException(
+            "Coefficient matrix is not in standard form."
+        );
+    }
+    let tableau = augment(coefMatrix, constMatrix);
     let pivotColumn = findPivotColumn(tableau);
-    let pivotRow = findPivotRow(tableau, pivotColumn);
-    tableau = pivot(tableau, pivotRow, pivotColumn);
-  }
-
-  // Return the optimal solution
-  return extractSolution(tableau);
-}
-
-/**
- * Returns true if the given matrix is in standard form for the simplex algorithm, false otherwise.
- * @param {Matrix} matrix - The matrix to check.
- * @returns {boolean} - True if the matrix is in standard form, false otherwise.
- */
-function isStandardForm(matrix) {
-  let numVars = matrix.numCols() - 1;
-  for (let i = 0; i < matrix.numRows(); i++) {
-    let numNonzero = 0;
-    let pivotCol = -1;
-    for (let j = 0; j < matrix.numCols(); j++) {
-      if (matrix.get(i, j) !== 0) {
-        numNonzero++;
-        if (matrix.get(i, j) === 1) {
-          if (pivotCol !== -1) {
-            return false;
-          }
-          pivotCol = j;
-        } else if (matrix.get(i, j) !== 0) {
-          return false;
+    let count = 0;
+    while (!isOptimal(tableau)) {
+        count += 1;
+        if (count > 100) {
+            throw new Error(
+                "Too many iterations. The problem might be unbounded."
+            );
         }
-      }
+        pivotColumn = findPivotColumn(tableau);
+        if (pivotColumn === -1) {
+            break; // The solution is optimal
+        }
+        let pivotRow = findPivotRow(tableau, pivotColumn);
+        if (pivotRow === -1) {
+            throw new Error(
+                "No valid pivot row. The problem might be unbounded."
+            );
+        }
+        tableau = pivot(tableau, pivotRow, pivotColumn);
+        checkNonNegativity(tableau);
     }
-    if (numNonzero !== 1 || pivotCol !== i + numVars) {
-      return false;
-    }
-  }
-  return true;
+
+    return extractSolution(tableau);
 }
 
-/**
- * Returns a new matrix that is the result of augmenting the given coefficient matrix with the given constant matrix.
- * @param {Matrix} coefMatrix - The coefficient matrix.
- * @param {Matrix} constMatrix - The constant matrix.
- * @returns {Matrix} - The augmented matrix.
- */
+// TODO: allow for other boundaries
+
+function checkNonNegativity(tableau) {
+    let nVars = tableau.nColumns - 1;
+    for (let j = 0; j < nVars; j++) {
+        for (let i = 0; i < tableau.nRows; i++) {
+            let cellVal = tableau.getCell(i, j);
+            if (ZERO.greater(cellVal)) {
+                throw new Error(`Variable at column ${j} became negative.`);
+            }
+        }
+    }
+}
+
+function isStandardForm(matrix) {
+    for (let i = 0; i < matrix.nRows; i++) {
+        if (matrix.getCell(i, 0) < 0) return false;
+    }
+    return true;
+}
+
 function augment(coefMatrix, constMatrix) {
-  let result = new Matrix(coefMatrix.numRows(), coefMatrix.numCols() + constMatrix.numCols());
-  for (let i = 0; i < coefMatrix.numRows(); i++) {
-    for (let j = 0; j < coefMatrix.numCols(); j++) {
-      result.set(i, j, coefMatrix.get(i, j));
+    let result = getEmptyMatrix(coefMatrix.nRows, coefMatrix.nColumns + 1);
+    for (let i = 0; i < coefMatrix.nRows; i++) {
+        for (let j = 0; j < coefMatrix.nColumns; j++) {
+            result = result.setCell(i, j, coefMatrix.getCell(i, j));
+        }
+        result = result.setCell(
+            i,
+            coefMatrix.nColumns,
+            constMatrix.getCell(i, 0)
+        );
     }
-    for (let j = 0; j < constMatrix.numCols(); j++) {
-      result.set(i, coefMatrix.numCols() + j, constMatrix.get(i, j));
-    }
-  }
-  return result;
+
+    return result;
 }
 
-/**
- * Returns true if the given tableau is in optimal form for the simplex algorithm, false otherwise.
- * @param {Matrix} tableau - The tableau to check.
- * @returns {boolean} - True if the tableau is in optimal form, false otherwise.
- */
 function isOptimal(tableau) {
-  for (let j = 0; j < tableau.numCols() - 1; j++) {
-    if (tableau.get(tableau.numRows() - 1, j) < 0) {
-      return false;
+    for (let j = 0; j < tableau.nColumns - 1; j++) {
+        if (ZERO.greater(tableau.getCell(tableau.nRows - 1, j))) {
+            return false;
+        }
     }
-  }
-  return true;
+    return true;
 }
 
-/**
- * Returns the index of the pivot column for the given tableau.
- * @param {Matrix} tableau - The tableau to find the pivot column for.
- * @returns {number} - The index of the pivot column.
- */
 function findPivotColumn(tableau) {
-  let minVal = Number.MAX_VALUE;
-  let minIndex = -1;
-  for (let j = 0; j < tableau.numCols() - 1; j++) {
-    if (tableau.get(tableau.numRows() - 1, j) < minVal) {
-      minVal = tableau.get(tableau.numRows() - 1, j);
-      minIndex = j;
+    let minVal = new Fraction(Number.MAX_VALUE, 1);
+    let minIndex = -1;
+    for (let j = 0; j < tableau.nColumns - 1; j++) {
+        if (minVal.greater(tableau.getCell(tableau.nRows - 1, j))) {
+            minVal = tableau.getCell(tableau.nRows - 1, j);
+            minIndex = j;
+        }
     }
-  }
-  return minIndex;
+    return minIndex;
 }
 
-/**
- * Returns the index of the pivot row for the given tableau and pivot column.
- * @param {Matrix} tableau - The tableau to find the pivot row for.
- * @param {number} pivotColumn - The index of the pivot column.
- * @returns {number} - The index of the pivot row.
- */
 function findPivotRow(tableau, pivotColumn) {
-  let minRatio = Number.MAX_VALUE;
-  let minIndex = -1;
-  for (let i = 0; i < tableau.numRows() - 1; i++) {
-    if (tableau.get(i, pivotColumn) > 0) {
-      let ratio = tableau.get(i, tableau.numCols() - 1) / tableau.get(i, pivotColumn);
-      if (ratio < minRatio) {
-        minRatio = ratio;
-        minIndex = i;
-      }
+    let minRatio = new Fraction(Number.MAX_VALUE, 1);
+    let minIndex = -1;
+    for (let i = 0; i < tableau.nRows - 1; i++) {
+        let cellVal = tableau.getCell(i, pivotColumn);
+        if (cellVal.greater(ZERO)) {
+            let ratio = tableau.getCell(i, tableau.nColumns - 1).div(cellVal);
+            if (minRatio.greater(ratio)) {
+                minRatio = ratio;
+                minIndex = i;
+            }
+        }
     }
-  }
-  return minIndex;
+    return minIndex;
 }
 
-/**
- * Returns a new matrix that is the result of performing a pivot operation on the given tableau with the given pivot row and pivot column.
- * @param {Matrix} tableau - The tableau to perform the pivot operation on.
- * @param {number} pivotRow - The index of the pivot row.
- * @param {number} pivotColumn - The index of the pivot column.
- * @returns {Matrix} - The new tableau after the pivot operation.
- */
 function pivot(tableau, pivotRow, pivotColumn) {
-  let result = new Matrix(tableau.numRows(), tableau.numCols());
-  let pivotVal = tableau.get(pivotRow, pivotColumn);
-  for (let j = 0; j < tableau.numCols(); j++) {
-    result.set(pivotRow, j, tableau.get(pivotRow, j) / pivotVal);
-  }
-  for (let i = 0; i < tableau.numRows(); i++) {
-    if (i !== pivotRow) {
-      let rowVal = tableau.get(i, pivotColumn);
-      for (let j = 0; j < tableau.numCols(); j++) {
-        result.set(i, j, tableau.get(i, j) - rowVal * result.get(pivotRow, j));
-      }
+    let result = tableau.clone();
+    let pivotVal = tableau.getCell(pivotRow, pivotColumn);
+
+    if (pivotVal.equals(ZERO)) {
+        throw new Error("Invalid pivot value of 0.");
     }
-  }
-  return result;
+
+    let normalizedPivotRow = tableau.getRow(pivotRow).mul(pivotVal.inverse());
+    result = result.setRow(pivotRow, normalizedPivotRow);
+
+    for (let i = 0; i < tableau.nRows; i++) {
+        if (i !== pivotRow) {
+            let factor = tableau.getCell(i, pivotColumn);
+            let newRow = tableau
+                .getRow(i)
+                .subtract(normalizedPivotRow.mul(factor));
+            result = result.setRow(i, newRow);
+        }
+    }
+
+    return result;
 }
 
-/**
- * Returns a new matrix that represents the optimal solution to the linear programming problem represented by the given tableau.
- * @param {Matrix} tableau - The tableau representing the linear programming problem.
- * @returns {Matrix} - The matrix representing the optimal solution.
- */
 function extractSolution(tableau) {
-  let numVars = tableau.numCols() - 1;
-  let result = new Matrix(1, numVars);
-  for (let j = 0; j < numVars; j++) {
-    let found = false;
-    for (let i = 0; i < tableau.numRows() - 1; i++) {
-      if (tableau.get(i, j) === 1 && !found) {
-        result.set(0, j, tableau.get(i, tableau.numCols() - 1));
-        found = true;
-      } else if (tableau.get(i, j) !== 0) {
-        found = false;
-      }
+    let result = getEmptyMatrix(tableau.nRows - 1, 1);
+    for (let i = 0; i < tableau.nRows - 1; i++) {
+        result = result.setCell(i, 0, tableau.getCell(i, tableau.nColumns - 1));
     }
-  }
-  return result;
+    return result;
 }

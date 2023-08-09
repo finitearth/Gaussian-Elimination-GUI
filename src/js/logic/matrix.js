@@ -113,6 +113,11 @@ export class Matrix {
         return this.array[rowIndex][colIndex];
     }
 
+    setCell(rowIndex, colIndex, value) {
+        this.array[rowIndex][colIndex] = value;
+        return this
+    }
+
     /**
      * Adds the values of each corresponding cell in the input matrix to this matrix and returns a new Matrix object representing the result.
      * @param {Matrix} otherMatrix - The input matrix to be added to this matrix.
@@ -476,6 +481,17 @@ export function getUnitMatrix(n) {
             } else {
                 matrix[i].push(new Fraction(0, 1));
             }
+        }
+    }
+    return new Matrix(matrix);
+}
+
+export function getEmptyMatrix(nRows, nColumns) {
+    let matrix = [];
+    for (let i = 0; i < nRows; i++) {
+        matrix.push([]);
+        for (let j = 0; j < nColumns; j++) {
+            matrix[i].push(ZERO);
         }
     }
     return new Matrix(matrix);
