@@ -297,12 +297,11 @@ export class Table {
         this.setNRows(matrix.nRows, true);
         this.setNColumns(matrix.nColumns, true);
 
-        let data = matrix.array;
-        for (let i = 0; i < data.length; i++) {
-            for (let j = 0; j < data[0].length; j++) {
+        for (let i = 0; i < matrix.nRows; i++) {
+            for (let j = 0; j < matrix.nColumns; j++) {
                 let input = getById(`${this.id}.${i}.${j}`);
+                input.value = matrix.getCell(i, j).stringify();
                 adjustInputFontSize(input);
-                input.value = data[i][j].stringify();
             }
         }
     }
@@ -418,6 +417,7 @@ export class Table {
 }
 
 function adjustInputFontSize(inputElement) {
+    console.log("HIER")
     let newFontSize;
     if (inputElement.value.length < 4) {
       newFontSize = '14pt'
@@ -427,7 +427,7 @@ function adjustInputFontSize(inputElement) {
       newFontSize = '11pt';
     } else if (inputElement.value.length == 6) {
       newFontSize = '9pt';
-    } else if (inputElement.value.length == 7) {
+    } else if (inputElement.value.length >= 7) {
       newFontSize = '8pt';
     }
     inputElement.style.fontSize = newFontSize;

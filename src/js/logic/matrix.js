@@ -399,17 +399,11 @@ export class Matrix {
     }
 
     getDeterminantUsingGaussElimination() {
-        // TODO: Do what the name says
-        // let identityMatrix = getUnitMatrix(this.nRows);
-        // let upperTriangularMatrix = gaussElimination(this, identityMatrix);
-        // let determinant = ONE;
-        // for (let i = 0; i < upperTriangularMatrix.nRows; i++) {
-        //     determinant = determinant.mul(upperTriangularMatrix.getCell(i, i));
-        //     console.log(determinant)
-        // }
+        let identityMatrix = getUnitMatrix(this.nRows);
+        let lambda = gaussElimination(this, identityMatrix, false, true);
+        let determinant = lambda.inverse().reduce();
     
-        // return determinant;
-        return this.getDeterminant();
+        return determinant;
     }
     
     /**
