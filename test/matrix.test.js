@@ -100,24 +100,15 @@ test("should return the maximum element in the matrix", () => {
 });
 
 it('should return the determinant of the matrix', () => {
-    const matrix = new Matrix([
-        [new Fraction(1, 1), new Fraction(2, 1)],
-        [new Fraction(3, 1), new Fraction(4, 1)],
-    ]);
-
-    const result = matrix.getDeterminant();
-    expect(result.equals(new Fraction(-2, 1))).toBe(true);
+    const result = matrix1.getDeterminant();
+    expect(result).toEqual(new Fraction(-33, 64))
   });
 
   it('should return the determinant of the matrix using gauß', () => {
-    const matrix = new Matrix([
-        [new Fraction(1, 1), new Fraction(2, 1)],
-        [new Fraction(3, 1), new Fraction(4, 1)],
-    ]);
-
-    const result = matrix.getDeterminantUsingGaussElimination();
-    expect(result.equals(new Fraction(-2, 1))).toBe(true);
+    const result = matrix1.getDeterminantUsingGaussElimination();
+    expect(result).toEqual(new Fraction(-33, 64))
   });
+
 
 test("get Column", () => {
     expect(

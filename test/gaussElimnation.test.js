@@ -32,6 +32,16 @@ test("Inverting via GaussElimination twice should return orig. matrix", () => {
     expect(solMatrix3).toEqual(unitMatrix);
 });
 
+test("getting determinant using gauß and not should be equal", () => {
+    let [coefMatrix2, solMatrix2] = gaussElimination(
+        matrix1,
+        unitMatrix,
+        true
+    );
+    let det = coefMatrix2.getDeterminant();
+    expect(det).toEqual(matrix1.getDeterminant());
+});
+
 test("matrix with linearly dependent rows should throw error", () => {
     let coefMatrix = new Matrix([
         [new Fraction(1, 4), new Fraction(3, 4), new Fraction(5, 4)],

@@ -1,5 +1,5 @@
 import { InvalidInputException, InvalidMatrixDimension } from "../exceptions.js";
-import { Fraction, NEGONE, ZERO } from "./fraction.js";
+import { Fraction, NEGONE, ZERO, ONE } from "./fraction.js";
 import { gaussElimination } from "./gaussalgorithm.js";
 
 /**
@@ -399,14 +399,19 @@ export class Matrix {
     }
 
     getDeterminantUsingGaussElimination() {
-        let solMatrix = gaussElimination(
-            this,
-            getUnitMatrix(this.nRows)
-        );
-        let determinant = solMatrix.getCell(0, 0);
-        return determinant;
+        // TODO: Do what the name says
+        // let identityMatrix = getUnitMatrix(this.nRows);
+        // let upperTriangularMatrix = gaussElimination(this, identityMatrix);
+        // let determinant = ONE;
+        // for (let i = 0; i < upperTriangularMatrix.nRows; i++) {
+        //     determinant = determinant.mul(upperTriangularMatrix.getCell(i, i));
+        //     console.log(determinant)
+        // }
+    
+        // return determinant;
+        return this.getDeterminant();
     }
-
+    
     /**
      * Returns a new matrix that is a submatrix of the current matrix,
      * where the specified row and column are excluded.

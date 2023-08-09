@@ -16,7 +16,7 @@ export class RowOperation {
         this.secondTextField = "secondText" + this.id;
         this.secondTextFieldValue = "0";
         this.enabled = false;
-        
+
         this.comboBoxElement.id = this.id;
         this.comboboxButton = document.createElement("button");
         this.comboboxButton.innerHTML = "❱";
@@ -129,13 +129,16 @@ export class RowOperation {
                     for (let i = 0; i < this.table.rows.length; i++) {
                         this.createSelectOption(
                             "Option_" + i + this.id + elem.id,
-                            "(" + ( i + 1 ) + ")",
+                            "(" + (i + 1) + ")",
                             elem.id
                         );
                     }
 
-                    let rowOperationNumber = parseInt(this.id.charAt(this.id.length-1));
-                    document.getElementById(elem.id).selectedIndex = rowOperationNumber;
+                    let rowOperationNumber = parseInt(
+                        this.id.charAt(this.id.length - 1)
+                    );
+                    document.getElementById(elem.id).selectedIndex =
+                        rowOperationNumber;
                 }
             } else {
                 if (document.getElementById(elem.id).style.display == "none") {
@@ -191,17 +194,22 @@ export class RowOperation {
 
     apply(matrix) {
         let matrixCopy = matrix.clone();
-    
+
         // subj = Row to be modified, obj = row subj is modified with
         let subjIdx = Number(this.id.substr(9));
         let subjMultiplier = stringToFraction(this.firstTextFieldValue);
-        
+
         let mulOrDivSubj = getById(this.firstOperatorDropdownID).value;
 
         let operation = getById(this.secondOperatorDropdownID).value;
 
-        let objIdx = Number(getById(this.rowDropdownID).value.replace("(", "").replace(")", "")) - 1;
-      
+        let objIdx =
+            Number(
+                getById(this.rowDropdownID)
+                    .value.replace("(", "")
+                    .replace(")", "")
+            ) - 1;
+
         let objMultiplier = stringToFraction(this.secondTextFieldValue);
         let mulOrDivObj = getById(this.thirdOperatorDropdownID).value;
 
@@ -214,9 +222,9 @@ export class RowOperation {
         if (operation === "-") {
             objMultiplier = objMultiplier.mul(NEGONE);
         }
-    
+
         matrix = matrix.multiplyRowByScalar(subjIdx, subjMultiplier);
-        
+
         matrixCopy = matrixCopy.multiplyRowByScalar(objIdx, objMultiplier);
 
         matrix = matrix.addRow(subjIdx, matrixCopy.getRow(objIdx));
@@ -232,14 +240,18 @@ export function addCombobox(id, rowOperations, table) {
         rowOperations[rowOperations.length - 1].comboBoxElement
     );
     rowOperations[rowOperations.length - 1].handleComboboxButtons();
-    document.getElementById(rowOperations[rowOperations.length - 1].firstTextFieldID).value = "1";
-    document.getElementById(rowOperations[rowOperations.length - 1].secondTextField).value = "0";
+    document.getElementById(
+        rowOperations[rowOperations.length - 1].firstTextFieldID
+    ).value = "1";
+    document.getElementById(
+        rowOperations[rowOperations.length - 1].secondTextField
+    ).value = "0";
 
     return rowOperations;
 }
 
 export function removeCombobox(id, rowOperations) {
-    document.getElementById("combobox_" + (rowOperations.length-1)).remove();
+    document.getElementById("combobox_" + (rowOperations.length - 1)).remove();
     rowOperations.pop();
 
     return rowOperations;
@@ -264,8 +276,11 @@ export function updateRowOperations(rowOperations, dimension, n) {
     for (let i = 0; i < rowOperations.length; i++) {
         rowOperations[i].setNRowDropdownSelectOptions(dimension, n);
 
-        let rowOperationNumber = parseInt(rowOperations[i].id.charAt(rowOperations[i].id.length-1));
-        document.getElementById(rowOperations[i].rowDropdownID).selectedIndex = rowOperationNumber;
+        let rowOperationNumber = parseInt(
+            rowOperations[i].id.charAt(rowOperations[i].id.length - 1)
+        );
+        document.getElementById(rowOperations[i].rowDropdownID).selectedIndex =
+            rowOperationNumber;
     }
 
     return rowOperations;
@@ -273,12 +288,12 @@ export function updateRowOperations(rowOperations, dimension, n) {
 
 export function applyRowOperations(matrix, rowOperations) {
     let matrixCopy = matrix.clone();
-    
-    rowOperations
-        // .filter(r => r.enabled)
-        .forEach((rowOperation, i) => {
+
+    rowOperations.forEach((rowOperation, i) => {
+        if (rowOperation.enabled) {
             let newMatrix = rowOperation.apply(matrix);
             matrixCopy = matrixCopy.setRow(i, newMatrix.getRow(i));
-        });
+        }
+    });
     return matrixCopy;
 }
