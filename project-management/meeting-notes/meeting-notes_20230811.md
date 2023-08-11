@@ -40,11 +40,11 @@ Folgende Punkte wurden im Meeting besprochen:
     - wenn erfolgreicher Abnahmetest: Kunde erteilt Abnahmebestätigung
 
 ## Aktionen:
-Projektteam: 	
+- Projektteam: 	
     - Simplex nach besprochenen Vorgaben implementieren
     - ggf. Kann-Anforderungen implementieren
     - neue Stände auf FTP-Server laden und Kunden entsprechend benachrichtigen
     - Projekt- und Produktdokumentation nach besprochenen Vorgaben erstellen
-Kunde:
+- Kunde:
     - Testen des aktuellen Standes und Rückmeldung an Projektteam
 
