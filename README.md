@@ -4,6 +4,12 @@
 
 [Roadmap](https://studdhbwravensburgde-my.sharepoint.com/:x:/g/personal/zehle_stud_dhbw-ravensburg_de/EUKGem-HioxGrjMDwSRo-_IBsFOJlwYDM2RfY3tRczElTw?e=QmkJxQ)
 
+[Pflichtenheft](https://1drv.ms/w/s!AhK81gm731ir0hlTKhvvPQOeoOEg?e=RnXUFw)
+
+[Produktdokumentation](https://1drv.ms/w/s!AhK81gm731irgbRUTIgN8IJKMfr8Dg?e=pjXc5w)
+
+[Projektdokumentation](https://1drv.ms/w/s!AhK81gm731irgbRWVJYBbCt_Es0K2g?e=7feFQI)
+
 ## Aufgabenstellung
 ### Problemstellung:
 In der linearen Algebra wird Gauß-Algorithmus beispielsweise zur Lösung linearer Gleichungssysteme, für Matrizengleichungen und zur Determinantenberechnung eingesetzt. Der Algorithmus arbeitet iterativ auf Matrizendarstellungen, an denen sich in jedem Schritt nur wenig ändert, aber viel zu schreiben ist. Dies lässt sich über eine
