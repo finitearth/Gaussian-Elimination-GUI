@@ -2,7 +2,13 @@
 
 [Projekt-Management-Erfassung](https://studdhbwravensburgde-my.sharepoint.com/:x:/g/personal/zehle_stud_dhbw-ravensburg_de/EXdnNVqxOzZCrMk2JGXxkzEBhl5z2LFMcxcc-FJXPtnsGg?e=dXEflv)
 
-[Roadmap](https://studdhbwravensburgde-my.sharepoint.com/:x:/g/personal/zehle_stud_dhbw-ravensburg_de/EUKGem-HioxGrjMDwSRo-_IBsFOJlwYDM2RfY3tRczElTw?e=QmkJxQ)
+[Roadmap](https://studdhbwravensburgde-my.sharepoint.com/:x:/g/personal/zehle_stud_dhbw-ravensburg_de/EUKGem-HioxGrjMDwSRo-_IBsFOJlwYDM2RfY3tRczElTw?e=QmkJxQ) bzw. [Neuer Zeitplan](https://1drv.ms/x/s!AhK81gm731irgbRaTP1bJrRHCT7c9w?e=e8CbIj)
+
+[Pflichtenheft](https://1drv.ms/w/s!AhK81gm731ir0hlTKhvvPQOeoOEg?e=RnXUFw)
+
+[Produktdokumentation](https://1drv.ms/w/s!AhK81gm731irgbRUTIgN8IJKMfr8Dg?e=pjXc5w)
+
+[Projektdokumentation](https://1drv.ms/w/s!AhK81gm731irgbRWVJYBbCt_Es0K2g?e=7feFQI)
 
 ## Aufgabenstellung
 ### Problemstellung:
