@@ -42,6 +42,8 @@ let resCoefTable = createTable("table-res-coef", true, 3, "x", true);
 let resSolTable = createTable("table-res-sol", true, 1, "b");
 let tables = [coefTable, solTable, resCoefTable, resSolTable];
 
+tables.forEach((table) => table.removeBrackets());
+
 let comboboxDummy = document.createElement("tr");
 comboboxDummy.className = "combobox-field";
 // document.getElementById("operations-table").appendChild(comboboxDummy);

@@ -72,23 +72,14 @@ addKeyDownListener([inputTable], true);
     );
 });
 
-function switchBracketsShow(show=true) {
-    if (show) {
-        getById("solution-bracket-open").classList.remove("hidden");
-        getById("solution-bracket-close").classList.remove("hidden");
-    } else {
-        getById("solution-bracket-open").classList.add("hidden");
-        getById("solution-bracket-close").classList.add("hidden");
-    }
-}
 getById("button-determinant").addEventListener("click", () => {
-    switchBracketsShow(false);
+    outputTable.removeBrackets();
 });
 getById("button-inverse").addEventListener("click", () => {
-    switchBracketsShow(true);
+    outputTable.addBrackets();
 });
 getById("button-transpose").addEventListener("click", () => {
-    switchBracketsShow(true);
+    outputTable.addBrackets();
 });
 
 

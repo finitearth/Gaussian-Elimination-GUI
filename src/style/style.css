@@ -449,7 +449,7 @@ input:checked+.slider:before {
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
-    width: 1.5em;
+    width: 1em;
     height: 100%;
     padding: 0;
 }
@@ -460,12 +460,6 @@ input:checked+.slider:before {
 
 .closed {
     background-image: url('../images/matrix_square_bracket_close.png');
-}
-
-.matrix,
-.cell-container-matrix {
-    padding: 0;
-    border-spacing: 0;
 }
 
 /* Infield validation */

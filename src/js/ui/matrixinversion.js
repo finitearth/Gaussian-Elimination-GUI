@@ -24,10 +24,11 @@ import { designConfig } from "../config.js";
  * @paramenter {parentId} ID of the parent node.
  */
 function addTable(id, disableInput, rowDescription = false) {
-    let table = new Table(id, false);
+    let table = new Table(id);
     if (disableInput) {
         table.disableInput();
     }
+    table.removeBrackets();
     table.addRowDescription(rowDescription);
     return table;
 }
