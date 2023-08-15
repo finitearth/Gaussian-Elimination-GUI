@@ -132,7 +132,7 @@ getById("button-representation-conversion").addEventListener("click", () => {
 });
 
 setEventListenerFunction("button-generate-excercise", [], [coefTable], () => [
-    generateMatrix(dimension, dimension),
+    generateMatrix(solCoefTable.nRows, solCoefTable.nColumns),
 ]);
 
 getById("button-generate-excercise").addEventListener("click", () => {
