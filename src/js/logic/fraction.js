@@ -99,6 +99,10 @@ export class Fraction {
             other.numerator * this.denominator
         );
     }
+    
+    lower(other) {
+        return other.greater(this);
+    }
 
     /**
      * Returns true if the current fraction is equal to another fraction object, and false otherwise.

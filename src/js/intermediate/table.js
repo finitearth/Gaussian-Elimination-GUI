@@ -121,7 +121,7 @@ export class Table {
             var counter = 0;
             this.tableElement.childNodes.forEach(row => {
                 if (row.id != this.describtionRowId) {
-                    counter = counter + 1;
+                    counter += 1;
                     if (
                         row.firstChild.id ===
                         this.descriptionColumnId + "." + (counter - 1)

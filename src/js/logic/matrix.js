@@ -443,6 +443,16 @@ export class Matrix {
         return this;
     }
 
+    iterateElements() {
+        let elements = [];
+        for (let i = 0; i < this.nRows; i++) {
+            for (let j = 0; j < this.nColumns; j++) {
+                elements.push([i, j, this.getCell(i, j)]);
+            }
+        }
+        return elements;
+    }
+
     /**
      * Returns a string representation of the matrix.
      * @param {boolean} decimal - Whether to display decimal values instead of fractions.

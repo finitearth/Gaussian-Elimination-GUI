@@ -1,142 +1,77 @@
-import { UnsolvableMatrixException } from "../exceptions.js";
-import { Matrix, getEmptyMatrix } from "../logic/matrix.js";
-import { ZERO, Fraction, NEGONE, ONE } from "./fraction.js";
+import { Fraction, ZERO } from "./fraction";
+import { getEmptyMatrix } from "./matrix";
 
-export function simplexAlgorithm(coefMatrix, constMatrix) {
-    if (!isStandardForm(coefMatrix)) {
-        throw new UnsolvableMatrixException(
-            "Coefficient matrix is not in standard form."
-        );
-    }
-    let tableau = augment(coefMatrix, constMatrix);
-    let pivotColumn = findPivotColumn(tableau);
-    let count = 0;
-    while (!isOptimal(tableau)) {
-        count += 1;
-        if (count > 100) {
-            throw new Error(
-                "Too many iterations. The problem might be unbounded."
-            );
-        }
-        pivotColumn = findPivotColumn(tableau);
-        if (pivotColumn === -1) {
-            break; // The solution is optimal
-        }
-        let pivotRow = findPivotRow(tableau, pivotColumn);
-        if (pivotRow === -1) {
-            throw new Error(
-                "No valid pivot row. The problem might be unbounded."
-            );
-        }
-        tableau = pivot(tableau, pivotRow, pivotColumn);
-        checkNonNegativity(tableau);
-    }
-
-    return extractSolution(tableau);
-}
-
-// TODO: allow for other boundaries
-
-function checkNonNegativity(tableau) {
-    let nVars = tableau.nColumns - 1;
-    for (let j = 0; j < nVars; j++) {
-        for (let i = 0; i < tableau.nRows; i++) {
-            let cellVal = tableau.getCell(i, j);
-            if (ZERO.greater(cellVal)) {
-                throw new Error(`Variable at column ${j} became negative.`);
+/**  function for simplex algorithm. follows the following steps:
+ * 1. check if lowest negative value is in the last row
+ * 2. choose pivotcolumn by taking the most negative value
+ * 3. choose pivotrow (the row where b/pivotcolumn is lowest)
+ * 4. generate 1 in pivotelement and 0s every where else in pivot column
+ * 5. go to 1
+ */
+export function simplexAlgorithm(
+    coefMatrix,
+    bMatrix,
+    objectiveMatrix,
+    objectiveBMatrix
+) {
+    let cMatrix = getEmptyMatrix(coefMatrix.nRows + 1, coefMatrix.nColumns);
+    cMatrix = cMatrix.addRow(objectiveMatrix);
+    coefMatrix = coefMatrix.addRow;
+    let finished = false;
+    while (!finished) {
+        // check for lowest negative value
+        for ([i, j, value] in coefMatrix.iterateElements()) {
+            if (value.greater(ZERO) && (i == coefMatrix.nRows - 1)) {
+                finished = true;
+                break;
             }
         }
-    }
-}
 
-function isStandardForm(matrix) {
-    for (let i = 0; i < matrix.nRows; i++) {
-        if (matrix.getCell(i, 0) < 0) return false;
-    }
-    return true;
-}
-
-function augment(coefMatrix, constMatrix) {
-    let result = getEmptyMatrix(coefMatrix.nRows, coefMatrix.nColumns + 1);
-    for (let i = 0; i < coefMatrix.nRows; i++) {
-        for (let j = 0; j < coefMatrix.nColumns; j++) {
-            result = result.setCell(i, j, coefMatrix.getCell(i, j));
-        }
-        result = result.setCell(
-            i,
-            coefMatrix.nColumns,
-            constMatrix.getCell(i, 0)
-        );
-    }
-
-    return result;
-}
-
-function isOptimal(tableau) {
-    for (let j = 0; j < tableau.nColumns - 1; j++) {
-        if (ZERO.greater(tableau.getCell(tableau.nRows - 1, j))) {
-            return false;
-        }
-    }
-    return true;
-}
-
-function findPivotColumn(tableau) {
-    let minVal = new Fraction(Number.MAX_VALUE, 1);
-    let minIndex = -1;
-    for (let j = 0; j < tableau.nColumns - 1; j++) {
-        if (minVal.greater(tableau.getCell(tableau.nRows - 1, j))) {
-            minVal = tableau.getCell(tableau.nRows - 1, j);
-            minIndex = j;
-        }
-    }
-    return minIndex;
-}
-
-function findPivotRow(tableau, pivotColumn) {
-    let minRatio = new Fraction(Number.MAX_VALUE, 1);
-    let minIndex = -1;
-    for (let i = 0; i < tableau.nRows - 1; i++) {
-        let cellVal = tableau.getCell(i, pivotColumn);
-        if (cellVal.greater(ZERO)) {
-            let ratio = tableau.getCell(i, tableau.nColumns - 1).div(cellVal);
-            if (minRatio.greater(ratio)) {
-                minRatio = ratio;
-                minIndex = i;
+        // choose pivotcolumn
+        let pivotColumn = 0;
+        let pivotColumnValue = 0;
+        for ([i, j, value] in coefMatrix.iterateElements()) {
+            if (value.less(pivotColumnValue)) {
+                pivotColumn = j;
+                pivotColumnValue = value;
             }
         }
-    }
-    return minIndex;
-}
 
-function pivot(tableau, pivotRow, pivotColumn) {
-    let result = tableau.clone();
-    let pivotVal = tableau.getCell(pivotRow, pivotColumn);
+        // choose pivotrow
+        let pivotRow = new Fraction(9999, 1); // TODO max fracs
+        let pivotRowValue = 0;
+        for (let i = 0; i < coefMatrix.nRows; i++) {
+            let value = coefMatrix.getElement(i, pivotColumn);
+            let bValue = bMatrix.getElement(i, 0);
+            if (bValue.div(value).less(pivotRowValue)) {
+                pivotRow = i;
+                pivotRowValue = bValue.div(value);
+            }
+        }
+        
+        // generate 1 in pivotelement and 0s every where else in pivot column
+        let pivotElement = coefMatrix.getElement(pivotRow, pivotColumn);
+        coefMatrix = coefMatrix.multiplyRow(pivotRow, pivotElement.inverse());
+        bMatrix = bMatrix.multiplyRow(pivotRow, pivotElement.inverse());
 
-    if (pivotVal.equals(ZERO)) {
-        throw new Error("Invalid pivot value of 0.");
-    }
+        for (let i = 0; i < coefMatrix.nRows; i++) {
+            if (i != pivotRow) {
+                let value = coefMatrix.getElement(i, pivotColumn);
+                coefMatrix = coefMatrix.addRow(
+                    i,
+                    coefMatrix.getRow(pivotRow).multiply(value).subtract(
+                        coefMatrix.getRow(i)
+                    )
+                );
+                bMatrix = bMatrix.addRow(
+                    i,
+                    bMatrix.getRow(pivotRow).multiply(value).subtract(
+                        bMatrix.getRow(i)
+                    )
+                );
+            }
 
-    let normalizedPivotRow = tableau.getRow(pivotRow).mul(pivotVal.inverse());
-    result = result.setRow(pivotRow, normalizedPivotRow);
-
-    for (let i = 0; i < tableau.nRows; i++) {
-        if (i !== pivotRow) {
-            let factor = tableau.getCell(i, pivotColumn);
-            let newRow = tableau
-                .getRow(i)
-                .subtract(normalizedPivotRow.mul(factor));
-            result = result.setRow(i, newRow);
         }
     }
-
-    return result;
-}
-
-function extractSolution(tableau) {
-    let result = getEmptyMatrix(tableau.nRows - 1, 1);
-    for (let i = 0; i < tableau.nRows - 1; i++) {
-        result = result.setCell(i, 0, tableau.getCell(i, tableau.nColumns - 1));
-    }
-    return result;
+    return [coefMatrix, bMatrix];
 }

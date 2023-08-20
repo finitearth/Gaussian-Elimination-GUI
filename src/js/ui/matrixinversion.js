@@ -29,7 +29,9 @@ function addTable(id, disableInput, rowDescription = false) {
         table.disableInput();
     }
     table.removeBrackets();
-    table.addRowDescription(rowDescription);
+    if (rowDescription) {
+        table.addRowDescription();
+    }
     return table;
 }
 
@@ -145,8 +147,4 @@ addKeyDownListener(tables, true);
 getById("button-clear").addEventListener("click", () => {
     clearTables(tables);
 });
-
-for (let i = 0; i < tables.length; i++) {
-    tables[i].addRowDescription();
-}
 

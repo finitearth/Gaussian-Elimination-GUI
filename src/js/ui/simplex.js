@@ -17,14 +17,21 @@ let objectiveCoefTable = new Table("objective-coef-table", 3);
 objectiveCoefTable.setNRows(1);
 objectiveCoefTable.removeBrackets();
 objectiveCoefTable.addRowDescription("f");
+objectiveCoefTable.addColumnDescription("0*");
 
 let objectiveResultTable = new Table("objective-b-table", 1);
 objectiveResultTable.setNRows(1);
 objectiveResultTable.removeBrackets();
 
 
-let outTable = new Table("output-table", 1);
+let outTable = new Table("output-table", 3);
+outTable.setNRows(1);
 outTable.disableInput();
+
+let outBTable = new Table("output-b-table", 1);
+outBTable.setNRows(1);
+outBTable.disableInput();
+
 
 // =========== Event listeners ===========
 setEventListenerFunction(
@@ -61,8 +68,8 @@ listenTableDimension(
     false,
     2
 );
-listenTableDimension("input-nr-cols", [], [], "cols", false, null, false, 1);
-listenTableDimension("input-nr-cols", [], [], "cols", false, null, false, 2);
+// listenTableDimension("input-nr-cols", [], [], "cols", false, null, false, 1);
+// listenTableDimension("input-nr-cols", [], [], "cols", false, null, false, 2);
 
 // let validPattern = /^[-+]?[\d]*[.,\/]?[\d]*$/;
 

@@ -22,16 +22,19 @@ function createTable(
     id,
     disableInput,
     initCols = 3,
-    desCharacter,
-    rowDescription
+    rowDescription,
+    addDescription
 ) {
     let table = new Table(id, initCols);
     if (disableInput) {
         table.disableInput();
     }
     // getById(id).appendChild(table.tableContainer);
-    table.addRowDescription(rowDescription);
-    table.addColumnDescription(desCharacter);
+
+    if (addDescription) {
+        table.addRowDescription();
+    }
+    table.addColumnDescription(rowDescription);
 
     return table;
 }
@@ -42,7 +45,7 @@ let resCoefTable = createTable("table-res-coef", true, 3, "x", true);
 let resSolTable = createTable("table-res-sol", true, 1, "b");
 let tables = [coefTable, solTable, resCoefTable, resSolTable];
 
-tables.forEach((table) => table.removeBrackets());
+tables.forEach(table => table.removeBrackets());
 
 let comboboxDummy = document.createElement("tr");
 comboboxDummy.className = "combobox-field";
@@ -181,4 +184,3 @@ addKeyDownListener(tables, true);
 getById("button-clear").addEventListener("click", () => {
     clearTables(tables);
 });
-
