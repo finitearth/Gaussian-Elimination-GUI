@@ -8,7 +8,6 @@ import { getById } from "./getElement.js";
  * @class
  * @constructor
  * @param {string} id - The id of the table to be created.
- * @param {boolean} [showButtons=true] - Optional parameter to determine whether to display buttons to add/remove rows and columns.
  */
 export class Table {
     constructor(id, initCols) {
@@ -27,7 +26,6 @@ export class Table {
 
         this.tableContainer = getById(id);
 
-        // append to table container two rows and two columns
         this.row1 = document.createElement("tr");
         this.row2 = document.createElement("tr");
         this.emptyCell = document.createElement("td");
@@ -37,7 +35,6 @@ export class Table {
         this.buttonsRowCell.classList.add("vertical-align-sizebuttons");
         this.tableCell = document.createElement("td");
 
-        // append
         this.row1.appendChild(this.emptyCell);
         this.row1.appendChild(this.buttonsColCell);
         this.row2.appendChild(this.buttonsRowCell);
@@ -198,7 +195,7 @@ export class Table {
     }
 
     addButtons() {
-        const buttons = [
+        [
             {
                 id: "addrow",
                 name: "+",
@@ -243,9 +240,7 @@ export class Table {
                     }
                 },
             },
-        ];
-
-        buttons.forEach(button => {
+        ].forEach(button => {
             const buttonElement = document.createElement("button");
             buttonElement.id = button.id;
             buttonElement.className = button.class;
