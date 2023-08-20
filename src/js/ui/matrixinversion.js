@@ -72,6 +72,7 @@ listenTableDimension(
     false
 );
 listenTableDimension("button-dimension", tables, rowOperations, "cols");
+
 setEventListenerFunction(
     "button-dimension",
     [identityTable],

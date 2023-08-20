@@ -62,7 +62,7 @@ export function listenTableDimension(
     rowsOrCols,
     allowSmaller = false,
     desCharacter = null,
-    rowDescription = false,
+    rowDescription = null,
     defaultValue = null
 ) {
     let input = getById(inputId);
@@ -90,7 +90,7 @@ export function listenTableDimension(
                         numberEquations
                     );
                     if (rowDescription) {
-                        table.addRowDescription(rowDescription);
+                        table.addRowDescription();
                     }
                 }
             } else if (rowsOrCols === "cols") {

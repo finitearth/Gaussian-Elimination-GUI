@@ -120,7 +120,7 @@ export class Table {
             // if no rowDescription provided, enumerate rows
             var counter = 0;
             this.tableElement.childNodes.forEach(row => {
-                if (row.id != this.describtionRowId) {
+                if (row.id !== this.describtionRowId) {
                     counter += 1;
                     if (
                         row.firstChild.id ===
@@ -139,8 +139,8 @@ export class Table {
             // if rowDescription provided, prepend character to each row
             var counter = 0;
             this.tableElement.childNodes.forEach(row => {
-                if (row.id != this.describtionRowId) {
-                    counter = counter + 1;
+                if (row.id !== this.describtionRowId) {
+                    counter += 1;
                     if (
                         row.firstChild.id ===
                         this.descriptionColumnId + "." + (counter - 1)
