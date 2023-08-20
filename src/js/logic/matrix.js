@@ -110,6 +110,9 @@ export class Matrix {
      * @returns {Fraction} The Fraction object at the specified row and column indices in the matrix.
      */
     getCell(rowIndex, colIndex) {
+        if (rowIndex < 0 || rowIndex >= this.nRows || colIndex < 0 || colIndex >= this.nColumns) {
+            throw new Error("Trying to access invalid cell!🥲");
+        }
         return this.array[rowIndex][colIndex];
     }
 
@@ -331,15 +334,9 @@ export class Matrix {
      * @returns {Matrix} - The updated matrix.
      * @throws {Error} - If the number of columns in the input matrix does not match the number of columns in this matrix.
      */
-    // substractRow(iRow, otherRow) {
-    //     for (let i = 0; i < this.nColumns; i++) {
-    //         this.array[iRow][i] = this.array[iRow][i].add(
-    //             otherRow.getCell(0, i).mul(-1)
-    //         );
-    //     }
-
-    //     return this;
-    // }
+    substractRow(iRow, otherRow) {
+        return this.addRow(iRow, otherRow.mul(NEGONE));
+    }
 
     /**
      * Multiply a row by a scalar.
@@ -467,9 +464,9 @@ export class Matrix {
                 } else {
                     string += this.array[i][j].stringify();
                 }
-                string += " ";
+                string += "    |    ";
             }
-            string += "<br>";
+            string += "\n";
         }
         return string;
     }

@@ -1,5 +1,4 @@
-import { Fraction, ZERO } from "./fraction";
-import { getEmptyMatrix } from "./matrix";
+import { Fraction, NEGONE, ZERO } from "./fraction.js";
 
 /**  function for simplex algorithm. follows the following steps:
  * 1. check if lowest negative value is in the last row
@@ -8,69 +7,75 @@ import { getEmptyMatrix } from "./matrix";
  * 4. generate 1 in pivotelement and 0s every where else in pivot column
  * 5. go to 1
  */
-export function simplexAlgorithm(
-    coefMatrix,
-    bMatrix,
-    objectiveMatrix,
-    objectiveBMatrix
-) {
-    let cMatrix = getEmptyMatrix(coefMatrix.nRows + 1, coefMatrix.nColumns);
-    cMatrix = cMatrix.addRow(objectiveMatrix);
-    coefMatrix = coefMatrix.addRow;
+export function simplexAlgorithm(coefMatrix, bMatrix) {
     let finished = false;
+    let count = 0;
     while (!finished) {
+        count += 1;
+        if (count > 100) {
+            throw new Error("na");
+        }
         // check for lowest negative value
-        for ([i, j, value] in coefMatrix.iterateElements()) {
-            if (value.greater(ZERO) && (i == coefMatrix.nRows - 1)) {
-                finished = true;
-                break;
-            }
+        finished = true;
+        coefMatrix
+            .getRow(coefMatrix.nRows - 1)
+            .iterateElements()
+            .forEach(([i, j, value]) => {
+                if (value.lower(ZERO)) {
+                    finished = false;
+                }
+            });
+        if (finished) {
+            break;
         }
 
         // choose pivotcolumn
         let pivotColumn = 0;
-        let pivotColumnValue = 0;
-        for ([i, j, value] in coefMatrix.iterateElements()) {
-            if (value.less(pivotColumnValue)) {
-                pivotColumn = j;
-                pivotColumnValue = value;
-            }
-        }
+        let pivotColumnValue = ZERO;
+        coefMatrix
+            .getRow(coefMatrix.nRows - 1)
+            .iterateElements()
+            .forEach(([i, j, value]) => {
+                if (value.lower(pivotColumnValue)) {
+                    pivotColumn = j;
+                    pivotColumnValue = value;
+                }
+            });
 
         // choose pivotrow
-        let pivotRow = new Fraction(9999, 1); // TODO max fracs
-        let pivotRowValue = 0;
-        for (let i = 0; i < coefMatrix.nRows; i++) {
-            let value = coefMatrix.getElement(i, pivotColumn);
-            let bValue = bMatrix.getElement(i, 0);
-            if (bValue.div(value).less(pivotRowValue)) {
+        let pivotRow = 0;
+        let pivotRowValue = new Fraction(999999, 1); // TODO max fracs
+        coefMatrix.iterateElements().forEach(([i, j, value]) => {
+            if (j !== pivotColumn || i === coefMatrix.nRows - 1) {
+                return;
+            }
+            value = coefMatrix.getCell(i, pivotColumn);
+            let bValue = bMatrix.getCell(i, 0);
+            if (bValue.div(value).lower(pivotRowValue)) {
                 pivotRow = i;
                 pivotRowValue = bValue.div(value);
             }
-        }
-        
+        });
+        console.log(pivotRow);
         // generate 1 in pivotelement and 0s every where else in pivot column
-        let pivotElement = coefMatrix.getElement(pivotRow, pivotColumn);
-        coefMatrix = coefMatrix.multiplyRow(pivotRow, pivotElement.inverse());
-        bMatrix = bMatrix.multiplyRow(pivotRow, pivotElement.inverse());
+        let pivotElement = coefMatrix.getCell(pivotRow, pivotColumn);
+        coefMatrix = coefMatrix.multiplyRowByScalar(
+            pivotRow,
+            pivotElement.inverse()
+        );
+        bMatrix = bMatrix.multiplyRowByScalar(pivotRow, pivotElement.inverse());
 
         for (let i = 0; i < coefMatrix.nRows; i++) {
-            if (i != pivotRow) {
-                let value = coefMatrix.getElement(i, pivotColumn);
-                coefMatrix = coefMatrix.addRow(
-                    i,
-                    coefMatrix.getRow(pivotRow).multiply(value).subtract(
-                        coefMatrix.getRow(i)
-                    )
-                );
-                bMatrix = bMatrix.addRow(
-                    i,
-                    bMatrix.getRow(pivotRow).multiply(value).subtract(
-                        bMatrix.getRow(i)
-                    )
-                );
+            if (i === pivotRow) {
+                continue;
             }
 
+            let value = coefMatrix.getCell(i, pivotColumn).mul(NEGONE);
+            coefMatrix = coefMatrix.addRow(
+                i,
+                coefMatrix.getRow(pivotRow).mul(value)
+            );
+            bMatrix = bMatrix.addRow(i, bMatrix.getRow(pivotRow).mul(value));
         }
     }
     return [coefMatrix, bMatrix];
