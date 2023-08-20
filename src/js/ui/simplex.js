@@ -3,11 +3,13 @@ import { setEventListenerFunction } from "../intermediate/eventlisteners.js";
 import { simplexAlgorithm } from "../logic/simplexAlgorithm.js";
 import { listenTableDimension } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
+import { designConfig } from "../config.js";
 
 // =========== Tables ===========
 let coefTable = new Table("coef-table", 3);
-coefTable.addColumnDescription("x");
 coefTable.removeBrackets();
+coefTable.addRowDescription();
+coefTable.addColumnDescription("x");
 
 let rhsTable = new Table("rhs-table", 1);
 rhsTable.addColumnDescription("b");
@@ -16,10 +18,13 @@ rhsTable.removeBrackets();
 let outTable = new Table("output-table", 3);
 outTable.disableInput();
 outTable.removeBrackets();
+outTable.addRowDescription();
+outTable.addColumnDescription("x");
 
 let outBTable = new Table("output-b-table", 1);
 outBTable.disableInput();
 outBTable.removeBrackets();
+outBTable.addColumnDescription("b");
 
 // coefTable.setData(
 //     new Matrix([
@@ -61,21 +66,21 @@ setEventListenerFunction(
 
 listenTableDimension(
     "input-nr-rows",
-    [coefTable, rhsTable],
+    [coefTable, rhsTable, outTable, outBTable],
     [],
     "rows",
     false,
-    null,
-    false,
-    3
+    "x",
+    true,
+    designConfig.nInitRows
 );
 listenTableDimension(
     "input-nr-cols",
-    [coefTable],
+    [coefTable, outTable],
     [],
     "cols",
     false,
-    null,
-    false,
-    3
+    "x",
+    true,
+    designConfig.nInitColumns
 );
