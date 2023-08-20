@@ -14,6 +14,8 @@
 
 [Arbeitspaketliste](https://1drv.ms/x/s!AhK81gm731irgbYpLyxtBh6B7oAthg?e=TLrZGx)
 
+[Meilensteintrendanalyse](https://1drv.ms/x/s!AhK81gm731irgbZM7OiW7hp9tRZoXQ?e=HXE8t5)
+
 ## Aufgabenstellung
 ### Problemstellung:
 In der linearen Algebra wird Gauß-Algorithmus beispielsweise zur Lösung linearer Gleichungssysteme, für Matrizengleichungen und zur Determinantenberechnung eingesetzt. Der Algorithmus arbeitet iterativ auf Matrizendarstellungen, an denen sich in jedem Schritt nur wenig ändert, aber viel zu schreiben ist. Dies lässt sich über eine
