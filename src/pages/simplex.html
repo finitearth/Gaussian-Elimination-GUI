@@ -50,13 +50,19 @@
                 </label>
             </form>
 
-            <div class="page-divider">
-                <h2>Zielfunktion Koeffizienten</h2>
-                <table id="objective-coef-table-placeholder"></table>
-                <h2>Nebenbedingungen</h2>
-                <table id="constraint-coef-table-placeholder"></table>
-                <h2>NBD rechte Seite</h2>
-                <table id="right-side-table-placeholder"></table>
+            <div class="page-divider align-center">
+                <table id="table" class="table">
+                    <tr id="table_row">
+                        <td id="constraint-coef-table"></td>
+                        <td class="vertical"></td>
+                        <td id="right-side-table"></td>
+                    </tr>
+                    <tr>
+                        <td id="objective-coef-table"></td>
+                        <td class="vertical"></td>
+                        <td id="objective-b-table"></td>
+                    </tr>
+                </table>
             </div>
 
             <div class="container-button">
@@ -67,7 +73,7 @@
 
             <div class="page-divider">
                 <h2>Lösung</h2>
-                <table id="output-table-placeholder"></table>
+                <table id="output-table"></table>
             </div>
         </main>
 

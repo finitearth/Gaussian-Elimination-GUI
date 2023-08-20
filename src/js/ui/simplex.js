@@ -4,19 +4,27 @@ import { simplexAlgorithm } from "../logic/simplexAlgorithm.js";
 import { listenTableDimension } from "../intermediate/eventlisteners.js";
 
 // =========== Tables ===========
-let constraintCoefTable = new Table("constraint-coef-table-placeholder");
-constraintCoefTable.addButtons();
-constraintCoefTable.setNRows(2);
-constraintCoefTable.setNColumns(2);
-let rightSideTable = new Table("right-side-table-placeholder", 1);
-rightSideTable.addButtons();
-rightSideTable.setNRows(2);
-let objectiveCoefTable = new Table("objective-coef-table-placeholder", 3);
-objectiveCoefTable.addButtons();
-objectiveCoefTable.setNRows(2);
-objectiveCoefTable.setNColumns(1);
+let rightSideTable = new Table("right-side-table", 1);
+rightSideTable.addColumnDescription("b");
+rightSideTable.removeBrackets();
 
-let outTable = new Table("output-table-placeholder", 1);
+let constraintCoefTable = new Table("constraint-coef-table");
+constraintCoefTable.removeBrackets();
+constraintCoefTable.addRowDescription();
+constraintCoefTable.addColumnDescription("x");
+
+let objectiveCoefTable = new Table("objective-coef-table", 3);
+objectiveCoefTable.setNRows(1);
+objectiveCoefTable.removeBrackets();
+objectiveCoefTable.addRowDescription("f");
+
+let objectiveResultTable = new Table("objective-b-table", 1);
+objectiveResultTable.setNRows(1);
+objectiveResultTable.removeBrackets();
+
+
+let outTable = new Table("output-table", 1);
+outTable.disableInput();
 
 // =========== Event listeners ===========
 setEventListenerFunction(

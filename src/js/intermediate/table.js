@@ -103,7 +103,7 @@ export class Table {
         input.size = designConfig.inputFieldSize;
         input.width = designConfig.inputFieldSize;
         input.id = `${this.id}.${rowId}.${columnId}`;
-        input.pattern = "\^[\\-\\+]{0,1}[\\d]*[.,\\/]{0,1}[\\d]*$"
+        input.pattern = "^[\\-\\+]{0,1}[\\d]*[.,\\/]{0,1}[\\d]*$";
         // center cell input
         input.style.textAlign = "center";
         input.disabled = !this.enabled;
@@ -116,20 +116,41 @@ export class Table {
     }
 
     addRowDescription(rowDescription) {
-        if (rowDescription) {
-            // don't use i => bugs
+        if (!rowDescription) {
+            // if no rowDescription provided, enumerate rows
             var counter = 0;
             this.tableElement.childNodes.forEach(row => {
                 if (row.id != this.describtionRowId) {
                     counter = counter + 1;
-
-                    if (row.firstChild.id === this.descriptionColumnId + "." + (counter - 1)) {
+                    if (
+                        row.firstChild.id ===
+                        this.descriptionColumnId + "." + (counter - 1)
+                    ) {
                         row.firstChild.remove();
                     }
 
                     let rowDes = document.createElement("td");
                     rowDes.id = this.descriptionColumnId + "." + (counter - 1);
                     rowDes.innerText = "(" + counter + ")";
+                    row.insertBefore(rowDes, row.firstChild);
+                }
+            });
+        } else {
+            // if rowDescription provided, prepend character to each row
+            var counter = 0;
+            this.tableElement.childNodes.forEach(row => {
+                if (row.id != this.describtionRowId) {
+                    counter = counter + 1;
+                    if (
+                        row.firstChild.id ===
+                        this.descriptionColumnId + "." + (counter - 1)
+                    ) {
+                        row.firstChild.remove();
+                    }
+
+                    let rowDes = document.createElement("td");
+                    rowDes.id = this.descriptionColumnId + "." + (counter - 1);
+                    rowDes.innerText = rowDescription;
                     row.insertBefore(rowDes, row.firstChild);
                 }
             });
@@ -280,11 +301,12 @@ export class Table {
      * Adds the brackets around the matrix.
      */
     addBrackets() {
-        if (this.bracketCloseCell.classList.contains("hidden")
-                && this.bracketCloseCell.classList.contains("hidden")
-                && this.emptyCell2.classList.contains("hidden")
-                && this.emptyCell3.classList.contains("hidden")
-            ){
+        if (
+            this.bracketCloseCell.classList.contains("hidden") &&
+            this.bracketCloseCell.classList.contains("hidden") &&
+            this.emptyCell2.classList.contains("hidden") &&
+            this.emptyCell3.classList.contains("hidden")
+        ) {
             this.bracketCloseCell.classList.remove("hidden");
             this.bracketOpenCell.classList.remove("hidden");
             this.emptyCell2.classList.remove("hidden");
@@ -293,10 +315,10 @@ export class Table {
     }
 
     /**
-    * Removes the last row from the table.
-    * @method
-    * @param {boolean} [force=false] - Optional parameter to force removing a row even if the current number of rows is equal to the minimum number of rows allowed in the design config.
-    */
+     * Removes the last row from the table.
+     * @method
+     * @param {boolean} [force=false] - Optional parameter to force removing a row even if the current number of rows is equal to the minimum number of rows allowed in the design config.
+     */
     removeRow() {
         this.rows.pop();
         this.tableElement.removeChild(this.tableElement.lastChild);
@@ -452,15 +474,15 @@ export class Table {
 function adjustInputFontSize(inputElement) {
     let newFontSize;
     if (inputElement.value.length < 4) {
-        newFontSize = '14pt'
+        newFontSize = "14pt";
     } else if (inputElement.value.length == 4) {
-        newFontSize = '12pt';
+        newFontSize = "12pt";
     } else if (inputElement.value.length == 5) {
-        newFontSize = '11pt';
+        newFontSize = "11pt";
     } else if (inputElement.value.length == 6) {
-        newFontSize = '9pt';
+        newFontSize = "9pt";
     } else if (inputElement.value.length >= 7) {
-        newFontSize = '8pt';
+        newFontSize = "8pt";
     }
     inputElement.style.fontSize = newFontSize;
 }
