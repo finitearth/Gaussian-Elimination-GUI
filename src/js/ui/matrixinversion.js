@@ -24,10 +24,11 @@ import { designConfig } from "../config.js";
  * @paramenter {parentId} ID of the parent node.
  */
 function addTable(id, disableInput, rowDescription = false) {
-    let table = new Table(id, false);
+    let table = new Table(id);
     if (disableInput) {
         table.disableInput();
     }
+    table.removeBrackets();
     table.addRowDescription(rowDescription);
     return table;
 }
@@ -132,7 +133,7 @@ getById("button-representation-conversion").addEventListener("click", () => {
 });
 
 setEventListenerFunction("button-generate-excercise", [], [coefTable], () => [
-    generateMatrix(dimension, dimension),
+    generateMatrix(solCoefTable.nRows, solCoefTable.nColumns),
 ]);
 
 getById("button-generate-excercise").addEventListener("click", () => {

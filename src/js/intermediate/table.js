@@ -29,16 +29,28 @@ export class Table {
         this.row1 = document.createElement("tr");
         this.row2 = document.createElement("tr");
         this.emptyCell = document.createElement("td");
-        this.buttonsColCell = document.createElement("td");
+        this.emptyCell2 = document.createElement("td");
+        this.emptyCell3 = document.createElement("td");
+        this.buttonsColCell = document.createElement("td"); // td for buttons
         this.buttonsColCell.classList.add("horizontal-align-sizebuttons");
-        this.buttonsRowCell = document.createElement("td");
+        this.buttonsRowCell = document.createElement("td"); // td for buttons
         this.buttonsRowCell.classList.add("vertical-align-sizebuttons");
         this.tableCell = document.createElement("td");
+        this.bracketOpenCell = document.createElement("td"); // td for bracket open
+        this.bracketOpenCell.classList.add("matrix-bracket");
+        this.bracketOpenCell.classList.add("open");
+        this.bracketCloseCell = document.createElement("td"); // td for bracket close
+        this.bracketCloseCell.classList.add("matrix-bracket");
+        this.bracketCloseCell.classList.add("closed");
 
         this.row1.appendChild(this.emptyCell);
+        this.row1.appendChild(this.emptyCell2);
         this.row1.appendChild(this.buttonsColCell);
+        this.row1.appendChild(this.emptyCell3);
         this.row2.appendChild(this.buttonsRowCell);
+        this.row2.appendChild(this.bracketOpenCell);
         this.row2.appendChild(this.tableCell);
+        this.row2.appendChild(this.bracketCloseCell);
         this.tableCell.appendChild(this.tableElement);
 
         this.tableContainer.appendChild(this.row1);
@@ -255,9 +267,35 @@ export class Table {
     }
 
     /**
-    Removes the last row from the table.
-    @method
-    @param {boolean} [force=false] - Optional parameter to force removing a row even if the current number of rows is equal to the minimum number of rows allowed in the design config.
+     * Removes the brackets around the matrix.
+     */
+    removeBrackets() {
+        this.bracketCloseCell.classList.add("hidden");
+        this.bracketOpenCell.classList.add("hidden");
+        this.emptyCell2.classList.add("hidden");
+        this.emptyCell3.classList.add("hidden");
+    }
+
+    /**
+     * Adds the brackets around the matrix.
+     */
+    addBrackets() {
+        if (this.bracketCloseCell.classList.contains("hidden")
+                && this.bracketCloseCell.classList.contains("hidden")
+                && this.emptyCell2.classList.contains("hidden")
+                && this.emptyCell3.classList.contains("hidden")
+            ){
+            this.bracketCloseCell.classList.remove("hidden");
+            this.bracketOpenCell.classList.remove("hidden");
+            this.emptyCell2.classList.remove("hidden");
+            this.emptyCell3.classList.remove("hidden");
+        }
+    }
+
+    /**
+    * Removes the last row from the table.
+    * @method
+    * @param {boolean} [force=false] - Optional parameter to force removing a row even if the current number of rows is equal to the minimum number of rows allowed in the design config.
     */
     removeRow() {
         this.rows.pop();
@@ -412,18 +450,17 @@ export class Table {
 }
 
 function adjustInputFontSize(inputElement) {
-    console.log("HIER")
     let newFontSize;
     if (inputElement.value.length < 4) {
-      newFontSize = '14pt'
+        newFontSize = '14pt'
     } else if (inputElement.value.length == 4) {
-      newFontSize = '12pt';
+        newFontSize = '12pt';
     } else if (inputElement.value.length == 5) {
-      newFontSize = '11pt';
+        newFontSize = '11pt';
     } else if (inputElement.value.length == 6) {
-      newFontSize = '9pt';
+        newFontSize = '9pt';
     } else if (inputElement.value.length >= 7) {
-      newFontSize = '8pt';
+        newFontSize = '8pt';
     }
     inputElement.style.fontSize = newFontSize;
 }
