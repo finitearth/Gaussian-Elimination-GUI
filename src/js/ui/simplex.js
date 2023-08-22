@@ -4,7 +4,8 @@ import { simplexAlgorithm } from "../logic/simplexAlgorithm.js";
 import { listenTableDimension } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 import { designConfig } from "../config.js";
-
+import { Matrix } from "../logic/matrix.js";
+import { Fraction, ONE, ZERO, NEGONE } from "../logic/fraction.js";
 // =========== Tables ===========
 let coefTable = new Table("coef-table", 3);
 coefTable.removeBrackets();
@@ -26,23 +27,23 @@ outBTable.disableInput();
 outBTable.removeBrackets();
 outBTable.addColumnDescription("b");
 
-// coefTable.setData(
-//     new Matrix([
-//         [new Fraction(4, 10), new Fraction(3, 5), ONE, ZERO, ZERO],
-//         [new Fraction(3, 1), ONE, ZERO, ONE, ZERO],
-//         [new Fraction(3, 1), new Fraction(6, 1), ZERO, ZERO, ONE],
-//         [new Fraction(-990, 1), new Fraction(-900, 1), ZERO, ZERO, ZERO],
-//     ])
-// );
+coefTable.setData(
+    new Matrix([
+        [new Fraction(4, 10), new Fraction(3, 5), ONE, ZERO, ZERO],
+        [new Fraction(3, 1), ONE, ZERO, ONE, ZERO],
+        [new Fraction(3, 1), new Fraction(6, 1), ZERO, ZERO, ONE],
+        [new Fraction(-990, 1), new Fraction(-900, 1), ZERO, ZERO, ZERO],
+    ])
+);
 
-// rhsTable.setData(
-//     new Matrix([
-//         [new Fraction(17, 2)],
-//         [new Fraction(25, 1)],
-//         [new Fraction(70, 1)],
-//         [ZERO],
-//     ])
-// );
+rhsTable.setData(
+    new Matrix([
+        [new Fraction(17, 2)],
+        [new Fraction(25, 1)],
+        [new Fraction(70, 1)],
+        [ZERO],
+    ])
+);
 
 
 
