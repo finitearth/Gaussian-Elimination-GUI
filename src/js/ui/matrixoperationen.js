@@ -23,7 +23,7 @@ outputTable.disableInput();
 // =========== Event Listeners ===========
 listenTableDimension(
     "input-nr-rows",
-    [inputTable],
+    [inputTable, outputTable],
     [],
     "rows",
     false,
@@ -33,7 +33,7 @@ listenTableDimension(
 );
 listenTableDimension(
     "input-nr-cols",
-    [inputTable],
+    [inputTable, outputTable],
     [],
     "cols",
     false,
