@@ -116,7 +116,6 @@ export class Table {
     }
 
     addRowDescription(rowDescription, specialLastRow) {
-        console.log(rowDescription, specialLastRow);
         if (!rowDescription) {
             // if no rowDescription provided, enumerate rows
             var counter = 0;

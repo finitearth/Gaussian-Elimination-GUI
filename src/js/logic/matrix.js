@@ -212,9 +212,9 @@ export class Matrix {
      *
      */
     getPivot(colIndex) {
-        let pivot = this.getCell(0, colIndex);
+        let pivot = this.getCell(colIndex, colIndex);
         let pivotIndex = colIndex;
-        for (let j = 0; j < this.nRows; j++) {
+        for (let j = colIndex + 1; j < this.nRows; j++) {
             let element = this.getCell(j, colIndex);
             if (element.abs().greater(pivot.abs())) {
                 pivot = element;
