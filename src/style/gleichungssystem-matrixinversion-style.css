@@ -40,9 +40,9 @@
 }
 
 .button-combobox {
-    height: 28px;
-    width: 28px;
-    margin: 0.08em 0;
+    height: 30px;
+    width: 30px;
+    margin: 0;
     padding: 0;
 }
 
@@ -56,10 +56,16 @@
     border: 1px solid var(--input-border-color-dark);
 }
 
+.combobox-field {
+    height: 32px;
+    padding: 1px;
+}
+
 /* Formatting */
 .operations {
     /* fixed space for row operations */
     width: 20em;
+    padding: 1px;
     vertical-align: bottom;
     text-align: left;
 }

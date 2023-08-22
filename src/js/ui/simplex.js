@@ -9,7 +9,7 @@ import { Fraction, ONE, ZERO, NEGONE } from "../logic/fraction.js";
 // =========== Tables ===========
 let coefTable = new Table("coef-table", 3);
 coefTable.removeBrackets();
-coefTable.addRowDescription();
+coefTable.addRowDescription(false,"f(<b>x</b>)");
 coefTable.addColumnDescription("x");
 
 let rhsTable = new Table("rhs-table", 1);
@@ -19,7 +19,7 @@ rhsTable.removeBrackets();
 let outTable = new Table("output-table", 3);
 outTable.disableInput();
 outTable.removeBrackets();
-outTable.addRowDescription();
+outTable.addRowDescription(false,"f(<b>x</b>)");
 outTable.addColumnDescription("x");
 
 let outBTable = new Table("output-b-table", 1);
@@ -67,14 +67,26 @@ setEventListenerFunction(
 
 listenTableDimension(
     "input-nr-rows",
-    [coefTable, rhsTable, outTable, outBTable],
+    [coefTable, outTable],
     [],
     "rows",
     false,
     "x",
-    true,
+    [true, [false, "f(<b>x</b>)"]],
     designConfig.nInitRows
 );
+
+listenTableDimension(
+    "input-nr-rows",
+    [rhsTable, outBTable],
+    [],
+    "rows",
+    false,
+    "b",
+    [false, null],
+    designConfig.nInitRows
+);
+
 listenTableDimension(
     "input-nr-cols",
     [coefTable, outTable],
@@ -82,6 +94,6 @@ listenTableDimension(
     "cols",
     false,
     "x",
-    true,
+    [true, [false, "f(<b>x</b>)"]],
     designConfig.nInitColumns
 );
