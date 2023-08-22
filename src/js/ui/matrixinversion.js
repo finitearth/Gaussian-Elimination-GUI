@@ -59,7 +59,7 @@ listenTableDimension(
     "rows",
     false,
     "",
-    true,
+    [true, [false, null]],
     designConfig.nInitRows
 );
 listenTableDimension(
@@ -69,7 +69,7 @@ listenTableDimension(
     "rows",
     false,
     "",
-    false
+    [false, null],
 );
 listenTableDimension("button-dimension", tables, rowOperations, "cols");
 

@@ -146,7 +146,7 @@ listenTableDimension(
     "rows",
     false,
     "",
-    true,
+    [true, [false, null]],
     designConfig.nInitRows
 ); // number of rows
 listenTableDimension(
@@ -166,7 +166,7 @@ listenTableDimension(
     "cols",
     false,
     "x",
-    true,
+    [true, [false, null]],
     designConfig.nInitColumns
 ); // number of cols in coeff matrix
 listenTableDimension(

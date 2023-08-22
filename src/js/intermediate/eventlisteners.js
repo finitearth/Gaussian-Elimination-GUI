@@ -89,10 +89,14 @@ export function listenTableDimension(
                         table,
                         numberEquations
                     );
-                    if (rowDescription) {
-                        table.addRowDescription();
-                    }
+
                 }
+
+                if (rowDescription[0]) {
+                    console.log(rowDescription[1][0], rowDescription[1][1]);
+                    table.addRowDescription(rowDescription[1][0], rowDescription[1][1]);
+                }
+
             } else if (rowsOrCols === "cols") {
                 table.setNColumns(numberEquations);
                 if (desCharacter) {
