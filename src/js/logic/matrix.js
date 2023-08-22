@@ -5,7 +5,6 @@ import { gaussElimination } from "./gaussalgorithm.js";
 /**
  * Class for a matrix consisting of a 2-dimensional array of Fraction objects.
  * @class
- * @param {Array<Array<Fraction>>} array - A 2-dimensional array of Fraction objects representing the matrix.
  * @property {Array<Array<Fraction>>} array - The 2-dimensional array representing the matrix.
  * @property {number} nRows - The number of rows in the matrix.
  * @property {number} nColumns - The number of columns in the matrix.
