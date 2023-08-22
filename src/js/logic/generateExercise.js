@@ -7,6 +7,8 @@ export function generateMatrix(rows, cols) {
     let solvable = false;
     while (!solvable) {
         matrix = getRandomMatrix(rows, cols);
+
+        console.log(rows, cols);
         solvable = matrix.getNumberOfSolutions() === 1;
     }
     return matrix;
