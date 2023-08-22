@@ -115,7 +115,8 @@ export class Table {
         return cell;
     }
 
-    addRowDescription(rowDescription) {
+    addRowDescription(rowDescription, specialLastRow) {
+        console.log(rowDescription, specialLastRow);
         if (!rowDescription) {
             // if no rowDescription provided, enumerate rows
             var counter = 0;
@@ -132,9 +133,19 @@ export class Table {
                     let rowDes = document.createElement("td");
                     rowDes.id = this.descriptionColumnId + "." + (counter - 1);
                     rowDes.innerText = "(" + counter + ")";
+
+                    if (specialLastRow && counter == this.tableElement.childNodes.length-(document.getElementById(this.describtionRowId) != null)) {
+                        rowDes.innerHTML = specialLastRow;
+                        console.log("here");
+                    }
+                    else {
+                        rowDes.innerText = "(" + counter + ")";
+                    }
+
                     row.insertBefore(rowDes, row.firstChild);
                 }
-            });
+            });     
+
         } else {
             // if rowDescription provided, prepend character to each row
             var counter = 0;
