@@ -85,7 +85,7 @@ export class RowOperation {
                 id: this.secondTextField,
                 element_name: "input",
                 class: "combobox-input-field",
-            }
+            },
         ];
 
         elements.forEach(elem => {
@@ -192,7 +192,7 @@ export class RowOperation {
         }
     }
 
-    apply(matrix, allowDeletion=false) {
+    apply(matrix, allowDeletion = false) {
         let matrixCopy = matrix.clone();
 
         // subj = Row to be modified, obj = row subj is modified with
@@ -287,41 +287,46 @@ export function updateRowOperations(rowOperations, dimension, n) {
 
 function checkValidity(rowOperations) {
     let rowOperationsMultipliedByZero = [];
-    
 
     rowOperations.forEach((rowOperation, i) => {
-         if (stringToFraction(rowOperation.firstTextFieldValue).equals(ZERO)) {
+        if (stringToFraction(rowOperation.firstTextFieldValue).equals(ZERO)) {
             rowOperationsMultipliedByZero.push(rowOperation);
-         }
+        }
     });
-    let rowOperationsNotAccountedFor = []
+    let rowOperationsNotAccountedFor = [];
     console.log(rowOperationsMultipliedByZero);
-    rowOperationsMultipliedByZero.forEach(r => {rowOperationsNotAccountedFor.push(Number(r.id.substr(9)))});
-    
-    console.log(rowOperationsMultipliedByZero);
-    console.log(rowOperationsNotAccountedFor)
+    rowOperationsMultipliedByZero.forEach(r => {
+        rowOperationsNotAccountedFor.push(Number(r.id.substr(9)));
+    });
 
     rowOperationsMultipliedByZero.forEach((rowOperation, i) => {
-        console.log("wind drin")
-        let currentRowDropdownValue = Number(getById(rowOperation.rowDropdownID).value.replace("(", "").replace(")", ""))-1
-        rowOperationsNotAccountedFor = rowOperationsNotAccountedFor.filter(id => id == currentRowDropdownValue)
-    })
-    // console.log(rowOperationsNotAccountedFor)
-    return rowOperationsNotAccountedFor.length == 0
+        let currentRowDropdownValue =
+            Number(
+                getById(rowOperation.rowDropdownID)
+                    .value.replace("(", "")
+                    .replace(")", "")
+            ) - 1;
+        rowOperationsNotAccountedFor = rowOperationsNotAccountedFor.filter(
+            id =>
+                id == currentRowDropdownValue &&
+                stringToFraction(rowOperation.secondTextFieldValue).equals(ZERO)
+        );
+    });
+    return rowOperationsNotAccountedFor.length == 0;
 }
-
 
 export function applyRowOperations(matrix, rowOperations) {
     let matrixCopy = matrix.clone();
     console.log("KREBS");
 
-    if (checkValidity(rowOperations)==false) {
+    if (checkValidity(rowOperations) == false) {
         throw Error("Operation not valid");
     }
     rowOperations.forEach((rowOperation, i) => {
         if (rowOperation.enabled) {
             let newMatrix = rowOperation.apply(matrix);
             matrixCopy = matrixCopy.setRow(i, newMatrix.getRow(i));
-        }});
+        }
+    });
     return matrixCopy;
 }
