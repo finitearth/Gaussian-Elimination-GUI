@@ -1,4 +1,4 @@
-import { NEGONE, stringToFraction } from "../logic/fraction.js";
+import { NEGONE, ZERO, stringToFraction } from "../logic/fraction.js";
 import { getById } from "./getElement.js";
 
 export class RowOperation {
@@ -70,9 +70,9 @@ export class RowOperation {
                 option_2: "-",
             },
             {
-                id: this.secondTextField,
-                element_name: "input",
-                class: "combobox-input-field",
+                id: this.rowDropdownID,
+                element_name: "select",
+                class: "combobox-dropdown",
             },
             {
                 id: this.thirdOperatorDropdownID,
@@ -82,10 +82,10 @@ export class RowOperation {
                 option_2: "/",
             },
             {
-                id: this.rowDropdownID,
-                element_name: "select",
-                class: "combobox-dropdown",
-            },
+                id: this.secondTextField,
+                element_name: "input",
+                class: "combobox-input-field",
+            }
         ];
 
         elements.forEach(elem => {
@@ -192,13 +192,12 @@ export class RowOperation {
         }
     }
 
-    apply(matrix) {
+    apply(matrix, allowDeletion=false) {
         let matrixCopy = matrix.clone();
 
         // subj = Row to be modified, obj = row subj is modified with
         let subjIdx = Number(this.id.substr(9));
         let subjMultiplier = stringToFraction(this.firstTextFieldValue);
-
         let mulOrDivSubj = getById(this.firstOperatorDropdownID).value;
 
         let operation = getById(this.secondOperatorDropdownID).value;
@@ -286,14 +285,43 @@ export function updateRowOperations(rowOperations, dimension, n) {
     return rowOperations;
 }
 
+function checkValidity(rowOperations) {
+    let rowOperationsMultipliedByZero = [];
+    
+
+    rowOperations.forEach((rowOperation, i) => {
+         if (stringToFraction(rowOperation.firstTextFieldValue).equals(ZERO)) {
+            rowOperationsMultipliedByZero.push(rowOperation);
+         }
+    });
+    let rowOperationsNotAccountedFor = []
+    console.log(rowOperationsMultipliedByZero);
+    rowOperationsMultipliedByZero.forEach(r => {rowOperationsNotAccountedFor.push(Number(r.id.substr(9)))});
+    
+    console.log(rowOperationsMultipliedByZero);
+    console.log(rowOperationsNotAccountedFor)
+
+    rowOperationsMultipliedByZero.forEach((rowOperation, i) => {
+        console.log("wind drin")
+        let currentRowDropdownValue = Number(getById(rowOperation.rowDropdownID).value.replace("(", "").replace(")", ""))-1
+        rowOperationsNotAccountedFor = rowOperationsNotAccountedFor.filter(id => id == currentRowDropdownValue)
+    })
+    // console.log(rowOperationsNotAccountedFor)
+    return rowOperationsNotAccountedFor.length == 0
+}
+
+
 export function applyRowOperations(matrix, rowOperations) {
     let matrixCopy = matrix.clone();
+    console.log("KREBS");
 
+    if (checkValidity(rowOperations)==false) {
+        throw Error("Operation not valid");
+    }
     rowOperations.forEach((rowOperation, i) => {
         if (rowOperation.enabled) {
             let newMatrix = rowOperation.apply(matrix);
             matrixCopy = matrixCopy.setRow(i, newMatrix.getRow(i));
-        }
-    });
+        }});
     return matrixCopy;
 }
