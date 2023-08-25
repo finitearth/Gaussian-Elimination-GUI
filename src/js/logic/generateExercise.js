@@ -1,16 +1,9 @@
 import { Matrix } from "./matrix.js";
 import { Fraction } from "./fraction.js";
 
-
-let matrix; 
+let matrix;
 export function generateMatrix(rows, cols) {
-    let solvable = false;
-    while (!solvable) {
-        matrix = getRandomMatrix(rows, cols);
-
-        console.log(rows, cols);
-        solvable = matrix.getNumberOfSolutions() === 1;
-    }
+    matrix = getRandomMatrix(rows, cols);
     return matrix;
 }
 

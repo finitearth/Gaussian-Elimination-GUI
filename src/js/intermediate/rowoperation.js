@@ -321,7 +321,7 @@ function checkValidity(rowOperations) {
 export function applyRowOperations(matrix, rowOperations) {
     let matrixCopy = matrix.clone();
     if (!checkValidity(rowOperations)) {
-        throw Error("du kleiner elendiger Hurensohn");
+        throw Error("Invalide Zeilenoperationen!");
     }
     rowOperations.forEach((rowOperation, i) => {
         if (rowOperation.enabled) {

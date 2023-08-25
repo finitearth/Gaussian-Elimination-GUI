@@ -105,14 +105,6 @@ for (let i = 0; i < coefTable.nRows; i++) {
         inputTables: [coefTable, solTable],
         outputTables: [resCoefTable, resSolTable],
         func: (coefMatrix, solMatrix) => {
-            if (coefMatrix.getNumberOfSolutions() === 0) {
-                alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG");
-            }
-            if (coefMatrix.getNumberOfSolutions() === -1) {
-                alert(
-                    "UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN"
-                );
-            }
             coefMatrix = applyRowOperations(coefMatrix, rowOperations);
             solMatrix = applyRowOperations(solMatrix, rowOperations);
             return [coefMatrix, solMatrix];

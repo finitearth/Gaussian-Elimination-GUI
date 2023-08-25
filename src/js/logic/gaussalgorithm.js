@@ -1,4 +1,3 @@
-import { UnsolvableMatrixException } from "../exceptions.js";
 import { ONE } from "./fraction.js";
 
 /**
@@ -16,11 +15,8 @@ export function gaussElimination(
     returnCoefMatrix = false,
     returnLambda = false
 ) {
-    let nSols = coefMatrix.getNumberOfSolutions();
-    if (nSols === 0) throw new UnsolvableMatrixException();
-    if (nSols === -1) throw new UnsolvableMatrixException();
     let lambda = ONE;
-    for (let i = 0; i < coefMatrix.nRows; i++) {
+    for (let i = 0; i < coefMatrix.nColumns; i++) {
         let [pivotIndex, pivotElement] = coefMatrix.getPivot(i);
 
         // Swap rows so that pivot element is on the diagonal
@@ -34,7 +30,7 @@ export function gaussElimination(
         solMatrix = solMatrix.multiplyRowByScalar(i, invPivot);
 
         // Use the pivot element to eliminate the variables above and below it
-        for (let j = 0; j < coefMatrix.nColumns; j++) {
+        for (let j = 0; j < coefMatrix.nRows; j++) {
             if (i === j) continue; // skip
             let factor = coefMatrix.getCell(j, i).mul(-1);
             coefMatrix = coefMatrix.addRow(j, coefMatrix.getRow(i).mul(factor));
