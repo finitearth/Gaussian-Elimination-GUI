@@ -213,6 +213,13 @@ export class Matrix {
     getPivot(colIndex) {
         let pivot = this.getCell(colIndex, colIndex);
         let pivotIndex = colIndex;
+    
+        // Check if you are within the bounds of the matrix
+        if (colIndex >= this.nRows) {
+            return [pivotIndex, pivot]; // Return current pivot details if out of bounds
+        }
+    
+        // Loop through the rows below the current row
         for (let j = colIndex + 1; j < this.nRows; j++) {
             let element = this.getCell(j, colIndex);
             if (element.abs().greater(pivot.abs())) {
@@ -220,9 +227,10 @@ export class Matrix {
                 pivotIndex = j;
             }
         }
-
+    
         return [pivotIndex, pivot];
     }
+    
 
     /**
      * Multiplies this matrix with another matrix.
