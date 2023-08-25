@@ -1,4 +1,3 @@
-import { UnsolvableMatrixException } from "../exceptions.js";
 import { ONE } from "./fraction.js";
 
 /**
