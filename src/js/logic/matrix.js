@@ -30,9 +30,10 @@ export class Matrix {
     }
 
     getNumberOfSolutions() {
-        if (this.hasLinearDependencies()) {
+        let matrixCopy = this.clone()
+        if (matrixCopy.hasLinearDependencies()) {
             return -1; //infinitly many
-        } else if (this.getRank() !== this.nRows || this.hasEmptyRow()) {
+        } else if (matrixCopy.getRank() !== matrixCopy.nRows || matrixCopy.hasEmptyRow()) {
             return 0; //no solution
         } else {
             return 1; //one solution
@@ -40,30 +41,29 @@ export class Matrix {
     }
 
     hasEmptyRow() {
+        return this.countEmptyRows > 0
+    }
+
+    countEmptyRows(){
+        let count = 0;
+        let empty;
         for (let i = 0; i < this.nRows; i++) {
-            let empty = true;
             for (let j = 0; j < this.nColumns; j++) {
                 if (!this.getCell(i, j).equals(ZERO)) {
                     empty = false;
                 }
             }
             if (empty) {
-                return true;
+                count += 1;
             }
         }
-        return false;
+        return count;
     }
 
     getRank() {
-        let rank = this.nRows;
-        let matrix = this.clone();
-        for (let i = 0; i < this.nColumns; i++) {
-            let pivot = matrix.getPivot(i);
-            if (pivot[1].equals(ZERO)) {
-                rank--;
-            }
-        }
-        return rank;
+        let solvedGauss = gaussElimination(this, getEmptyMatrix(this.nRows));
+        let nEmpty =  solvedGauss.countEmptyRows();
+        return this.nRows-nEmpty;
     }
 
     isSquare() {
