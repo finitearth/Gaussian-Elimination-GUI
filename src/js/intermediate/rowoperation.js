@@ -192,9 +192,9 @@ export class RowOperation {
         }
     }
 
-    apply(matrix, allowDeletion = false) {
+    apply(matrix) {
         let matrixCopy = matrix.clone();
-
+        let matrixCopy2 = matrix.clone();
         // subj = Row to be modified, obj = row subj is modified with
         let subjIdx = Number(this.id.substr(9));
         let subjMultiplier = stringToFraction(this.firstTextFieldValue);
@@ -207,8 +207,7 @@ export class RowOperation {
                 getById(this.rowDropdownID)
                     .value.replace("(", "")
                     .replace(")", "")
-            ) - 1;
-
+            ) - 1;
         let objMultiplier = stringToFraction(this.secondTextFieldValue);
         let mulOrDivObj = getById(this.thirdOperatorDropdownID).value;
 
@@ -222,13 +221,12 @@ export class RowOperation {
             objMultiplier = objMultiplier.mul(NEGONE);
         }
 
-        matrix = matrix.multiplyRowByScalar(subjIdx, subjMultiplier);
-
+        matrixCopy2 = matrixCopy2.multiplyRowByScalar(subjIdx, subjMultiplier);
         matrixCopy = matrixCopy.multiplyRowByScalar(objIdx, objMultiplier);
 
-        matrix = matrix.addRow(subjIdx, matrixCopy.getRow(objIdx));
+        matrixCopy2 = matrixCopy2.addRow(subjIdx, matrixCopy.getRow(objIdx));
 
-        return matrix;
+        return matrixCopy2;
     }
 }
 
@@ -294,11 +292,9 @@ function checkValidity(rowOperations) {
         }
     });
     let rowOperationsNotAccountedFor = [];
-    console.log(rowOperationsMultipliedByZero);
     rowOperationsMultipliedByZero.forEach(r => {
         rowOperationsNotAccountedFor.push(Number(r.id.substr(9)));
     });
-
     rowOperationsMultipliedByZero.forEach((rowOperation, i) => {
         let currentRowDropdownValue =
             Number(
@@ -306,21 +302,26 @@ function checkValidity(rowOperations) {
                     .value.replace("(", "")
                     .replace(")", "")
             ) - 1;
-        rowOperationsNotAccountedFor = rowOperationsNotAccountedFor.filter(
-            id =>
-                id == currentRowDropdownValue &&
-                stringToFraction(rowOperation.secondTextFieldValue).equals(ZERO)
-        );
+
+        // check if the current dropdown selected a row that was not accounted for, and does not multiply it by zero
+        // if so than remove that referenced row from rowOperationsNotAccountedFor
+        if (
+            rowOperationsNotAccountedFor.includes(currentRowDropdownValue) &&
+            !stringToFraction(rowOperation.secondTextFieldValue).equals(ZERO)
+        ) {
+            rowOperationsNotAccountedFor.splice(
+                rowOperationsNotAccountedFor.indexOf(currentRowDropdownValue),
+                1
+            );
+        }
     });
     return rowOperationsNotAccountedFor.length == 0;
 }
 
 export function applyRowOperations(matrix, rowOperations) {
     let matrixCopy = matrix.clone();
-    console.log("KREBS");
-
-    if (checkValidity(rowOperations) == false) {
-        throw Error("Operation not valid");
+    if (!checkValidity(rowOperations)) {
+        throw Error("du kleiner elendiger Hurensohn");
     }
     rowOperations.forEach((rowOperation, i) => {
         if (rowOperation.enabled) {
