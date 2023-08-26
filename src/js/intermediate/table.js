@@ -468,7 +468,6 @@ export class Table {
         for (let i = 0; i < this.rows.length; i++) {
             for (let j = 0; j < this.nColumns; j++) {
                 if (diff.array[i][j].greater(maxDiff)) {
-                    console.log(diff.array[i][j].stringify());
                     let input = getById(`${this.id}.${i}.${j}`);
                     let val = input.value;
                     val = stringToFraction(val);

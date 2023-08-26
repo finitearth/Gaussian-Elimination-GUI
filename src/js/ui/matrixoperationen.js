@@ -12,6 +12,7 @@ import {
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 import { designConfig } from "../config.js";
+import { InvalidInputException } from "../exceptions.js";
 
 // =========== Tables ===========
 let inputTable = new Table("input-table-placeholder");
@@ -61,7 +62,12 @@ addKeyDownListener([inputTable], true);
     },
     {
         id: "button-determinant",
-        func: matrix => [matrix.getDeterminantUsingGaussElimination()],
+        func: matrix => {
+            if (matrix.nRows !== matrix.nCols) {
+                throw new InvalidInputException("Matrix ist nicht quadratisch.");
+            }
+            return [matrix.getDeterminantUsingGaussElimination()]
+        },
     },
 ].forEach(listener => {
     setEventListenerFunction(
