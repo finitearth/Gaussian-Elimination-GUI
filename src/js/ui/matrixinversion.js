@@ -85,14 +85,6 @@ setEventListenerFunction(
     [coefTable, identityTable],
     [solIdentityTable, solCoefTable],
     (coefMatrix, solMatrix) => {
-        // if (coefMatrix.getNumberOfSolutions() === 0) {
-        //     alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG");
-        // }
-        // if (coefMatrix.getNumberOfSolutions() === -1) {
-        //     alert(
-        //         "UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN"
-        //     );
-        // }
         let outputMatrix = gaussElimination(coefMatrix, solMatrix);
         let unitMatrix = getUnitMatrix(coefMatrix.nRows);
         return [unitMatrix, outputMatrix];

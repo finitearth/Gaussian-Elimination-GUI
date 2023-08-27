@@ -61,7 +61,8 @@ getById("remove-table").addEventListener("click", removeTable);
 
 setEventListenerFunction("button-calculate", tables, [resultTable], () => {
     let equation = getById("input-equation").value;
-    return [calculate(equation, tables)];
+    let result = calculate(equation, tables);
+    return [result];
 });
 
 let conversionButtonchecked = false;

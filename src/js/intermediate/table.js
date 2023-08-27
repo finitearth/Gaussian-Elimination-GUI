@@ -135,7 +135,6 @@ export class Table {
 
                     if (specialLastRow && counter == this.tableElement.childNodes.length-(document.getElementById(this.describtionRowId) != null)) {
                         rowDes.innerHTML = specialLastRow;
-                        console.log("here");
                     }
                     else {
                         rowDes.innerText = "(" + counter + ")";
@@ -453,6 +452,7 @@ export class Table {
                 let val = input.value;
                 val = stringToFraction(val);
                 input.value = val.toDecimal();
+                adjustInputFontSize(input);
             }
         }
     }
@@ -472,6 +472,8 @@ export class Table {
                     let val = input.value;
                     val = stringToFraction(val);
                     this.fractionArray.array[i][j] = val;
+                    adjustInputFontSize(input);
+
                 }
             }
         }

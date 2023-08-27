@@ -127,7 +127,7 @@ function evaluate(equation) {
         }
     }
     if (equation.length != 1) {
-        throw new InvalidInputException();
+        throw new InvalidInputException("Invalide Rechenoperationen!");
     }
 
     return equation[0];

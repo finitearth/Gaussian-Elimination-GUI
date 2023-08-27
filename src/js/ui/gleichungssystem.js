@@ -49,7 +49,6 @@ tables.forEach(table => table.removeBrackets());
 
 let comboboxDummy = document.createElement("tr");
 comboboxDummy.className = "combobox-field";
-// document.getElementById("operations-table").appendChild(comboboxDummy);
 
 let rowOperations = [];
 for (let i = 0; i < coefTable.nRows; i++) {
@@ -63,16 +62,11 @@ for (let i = 0; i < coefTable.nRows; i++) {
         inputTables: [coefTable, solTable],
         outputTables: [resCoefTable, resSolTable],
         func: (coefMatrix, solMatrix) => {
-            // if (coefMatrix.getNumberOfSolutions() === 0) {
-            // alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG");
-            // }
-            // if (coefMatrix.getNumberOfSolutions() === -1) {
-            // alert(
-            // "UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN"
-            // );
-            // }
+                        
+            let t_0 = performance.now();    
             let unitMatrix = getUnitMatrix(coefMatrix.nRows);
             let outputMatrix = gaussElimination(coefMatrix, solMatrix);
+            console.log(performance.now() - t_0);
             return [unitMatrix, outputMatrix];
         },
     },

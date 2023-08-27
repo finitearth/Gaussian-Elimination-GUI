@@ -8,6 +8,7 @@ import { Fraction, NEGONE, ZERO } from "./fraction.js";
  * 5. go to 1
  */
 export function simplexAlgorithm(coefMatrix, bMatrix) {
+    let t_0 = performance.now();
     let finished = false;
     let count = 0;
     while (!finished) {
@@ -78,5 +79,6 @@ export function simplexAlgorithm(coefMatrix, bMatrix) {
             bMatrix = bMatrix.addRow(i, bMatrix.getRow(pivotRow).mul(value));
         }
     }
+    console.log(performance.now() - t_0);
     return [coefMatrix, bMatrix];
 }

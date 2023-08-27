@@ -48,7 +48,10 @@ addKeyDownListener([inputTable], true);
 [
     {
         id: "button-transpose",
-        func: matrix => [matrix.transpose()],
+        func: matrix => {
+
+            let result = matrix.transpose();
+            return [result]},
     },
     {
         id: "button-inverse",
@@ -64,7 +67,7 @@ addKeyDownListener([inputTable], true);
         id: "button-determinant",
         func: matrix => {
             if (matrix.nRows !== matrix.nColumns) {
-                throw new InvalidInputException("Matrix ist nicht quadratisch.");
+                throw new InvalidInputException("Determinante ist für nicht-quadratische Matrizen nicht definiert.");
             }
             return [matrix.getDeterminantUsingGaussElimination()]
         },
