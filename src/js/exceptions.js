@@ -1,39 +1,33 @@
 import { getById } from "./intermediate/getElement.js";
 
 export class DivByZeroException extends Error {
-    constructor() {
-        super("Teilen durch Null nicht möglich.");
+    constructor(message = "Teilen durch Null nicht möglich.") {
+        super(message);
     }
 }
 
 export class UnsolvableMatrixException extends Error {
-    constructor() {
-        super("Matrix ist nicht lösbar");
+    constructor(message="Matrix ist nicht lösbar.") {
+        super(message);
     }
 }
 
-// export class LinearDependentMatrixException extends Error {
-//     constructor() {
-//         super("Matrix is linear dependent");
-//     }
-// }
-
 export class InvalidInputException extends Error {
-    constructor() {
-        super("Invalider Input!");
+    constructor(message="Invalider Input!") {
+        super(message);
     }
 }
 
 export class InvalidRowOperationException extends Error {
-    constructor() {
-        super("Invalide Zeilenoperation!");
+    constructor(message="Invalide Zeilenoperation!") {
+        super(message);
     }
 }
 
 
 export class InvalidMatrixDimension extends Error {
-    constructor() {
-        super("Operation nicht möglich - Matrizen haben unvereinbare Dimensionen.");
+    constructor(message="Operation nicht möglich - Matrizen haben unvereinbare Dimensionen.") {
+        super(message);
     }
 }
 

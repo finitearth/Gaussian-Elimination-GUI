@@ -63,7 +63,7 @@ addKeyDownListener([inputTable], true);
     {
         id: "button-determinant",
         func: matrix => {
-            if (matrix.nRows !== matrix.nCols) {
+            if (matrix.nRows !== matrix.nColumns) {
                 throw new InvalidInputException("Matrix ist nicht quadratisch.");
             }
             return [matrix.getDeterminantUsingGaussElimination()]

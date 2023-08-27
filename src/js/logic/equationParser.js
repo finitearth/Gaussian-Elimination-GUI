@@ -126,6 +126,9 @@ function evaluate(equation) {
             i -= 2;
         }
     }
+    if (equation.length != 1) {
+        throw new InvalidInputException();
+    }
 
     return equation[0];
 }
