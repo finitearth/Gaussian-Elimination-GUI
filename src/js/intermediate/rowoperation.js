@@ -50,42 +50,12 @@ export class RowOperation {
 
     handleComboboxButtons() {
         const elements = [
-            {
-                id: this.firstOperatorDropdownID,
-                element_name: "select",
-                class: "combobox-dropdown",
-                option_1: "*",
-                option_2: "/",
-            },
-            {
-                id: this.firstTextFieldID,
-                element_name: "input",
-                class: "combobox-input-field",
-            },
-            {
-                id: this.secondOperatorDropdownID,
-                element_name: "select",
-                class: "combobox-dropdown",
-                option_1: "+",
-                option_2: "-",
-            },
-            {
-                id: this.rowDropdownID,
-                element_name: "select",
-                class: "combobox-dropdown",
-            },
-            {
-                id: this.thirdOperatorDropdownID,
-                element_name: "select",
-                class: "combobox-dropdown",
-                option_1: "*",
-                option_2: "/",
-            },
-            {
-                id: this.secondTextField,
-                element_name: "input",
-                class: "combobox-input-field",
-            },
+            { id: this.firstOperatorDropdownID,  element_name: "select", class: "combobox-dropdown", option_1: "*", option_2: "/", },
+            { id: this.firstTextFieldID,         element_name: "input",  class: "combobox-input-field", },
+            { id: this.secondOperatorDropdownID, element_name: "select", class: "combobox-dropdown", option_1: "+", option_2: "-", },
+            { id: this.rowDropdownID,            element_name: "select", class: "combobox-dropdown", },
+            { id: this.thirdOperatorDropdownID,  element_name: "select", class: "combobox-dropdown", option_1: "*", option_2: "/", },
+            { id: this.secondTextField,          element_name: "input",  class: "combobox-input-field", },
         ];
 
         elements.forEach(elem => {
