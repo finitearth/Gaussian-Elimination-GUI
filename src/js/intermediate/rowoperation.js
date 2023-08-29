@@ -3,26 +3,27 @@ import { getById } from "./getElement.js";
 
 export class RowOperation {
     constructor(id, table) {
-        this.id = id;
+        this.id    = id;
         this.table = table;
 
-        this.comboBoxElement = document.createElement("tr");
-        this.firstOperatorDropdownID = "firstOperator" + this.id;
-        this.firstTextFieldID = "firstText" + this.id;
-        this.firstTextFieldValue = "1";
+        this.comboBoxElement          = document.createElement("tr");
+        this.firstOperatorDropdownID  = "firstOperator" + this.id;
+        this.firstTextFieldID         = "firstText"     + this.id;
+        this.firstTextFieldValue      = "1";
         this.secondOperatorDropdownID = "secondOperator" + this.id;
-        this.rowDropdownID = "rowDropdown" + this.id;
-        this.thirdOperatorDropdownID = "thirdOperator" + this.id;
-        this.secondTextField = "secondText" + this.id;
-        this.secondTextFieldValue = "0";
+        this.rowDropdownID            = "rowDropdown"    + this.id;
+        this.thirdOperatorDropdownID  = "thirdOperator"  + this.id;
+        this.secondTextField          = "secondText"     + this.id;
+        this.secondTextFieldValue     = "0";
         this.enabled = false;
 
-        this.comboBoxElement.id = this.id;
-        this.comboboxButton = document.createElement("button");
-        this.comboboxButton.innerHTML = "❱";
-        this.comboboxButton.id = this.id + "_displayCombobox";
-        this.comboboxButton.className = "button-primary button-combobox";
+        this.comboBoxElement.id        = this.id;
+        this.comboboxButton            = document.createElement("button");
+        this.comboboxButton.innerHTML  = "❱";
+        this.comboboxButton.id         = this.id + "_displayCombobox";
+        this.comboboxButton.className  = "button-primary button-combobox";
         this.comboBoxElement.className = "combobox-field";
+
         this.comboBoxElement.appendChild(this.comboboxButton);
 
         this.comboboxButton.addEventListener(
@@ -49,56 +50,29 @@ export class RowOperation {
     }
 
     handleComboboxButtons() {
+        let rowDropdownOptions = [];
+
+        for (let i = 1; i < this.table.rows.length+1; i++) {
+            rowDropdownOptions.push("("+i+")");
+        }
+
         const elements = [
-            {
-                id: this.firstOperatorDropdownID,
-                element_name: "select",
-                class: "combobox-dropdown",
-                option_1: "*",
-                option_2: "/",
-            },
-            {
-                id: this.firstTextFieldID,
-                element_name: "input",
-                class: "combobox-input-field",
-            },
-            {
-                id: this.secondOperatorDropdownID,
-                element_name: "select",
-                class: "combobox-dropdown",
-                option_1: "+",
-                option_2: "-",
-            },
-            {
-                id: this.rowDropdownID,
-                element_name: "select",
-                class: "combobox-dropdown",
-            },
-            {
-                id: this.thirdOperatorDropdownID,
-                element_name: "select",
-                class: "combobox-dropdown",
-                option_1: "*",
-                option_2: "/",
-            },
-            {
-                id: this.secondTextField,
-                element_name: "input",
-                class: "combobox-input-field",
-            },
+            { id: this.firstOperatorDropdownID,  element_name: "select", class: "combobox-dropdown", options: ["*", "/"], },
+            { id: this.firstTextFieldID,         element_name: "input",  class: "combobox-input-field", },
+            { id: this.secondOperatorDropdownID, element_name: "select", class: "combobox-dropdown", options: ["+", "-"], },
+            { id: this.rowDropdownID,            element_name: "select", class: "combobox-dropdown", options: rowDropdownOptions, },
+            { id: this.thirdOperatorDropdownID,  element_name: "select", class: "combobox-dropdown", options: ["*", "/"], },
+            { id: this.secondTextField,          element_name: "input",  class: "combobox-input-field", },
         ];
 
         elements.forEach(elem => {
             if (document.getElementById(this.id).childElementCount < 7) {
-                document.getElementById(
-                    this.id + "_displayCombobox"
-                ).innerHTML = "❰";
+                document.getElementById(this.id + "_displayCombobox").innerHTML = "❰";
 
-                const htmlElement = document.createElement(elem.element_name);
+                const htmlElement       = document.createElement(elem.element_name);
                 htmlElement.textContent = elem.name;
-                htmlElement.id = elem.id;
-                // htmlElement.value = "1";
-                htmlElement.className = elem.class;
+                htmlElement.id          = elem.id;
+                htmlElement.className   = elem.class;
                 document
                     .getElementById(this.id)
                     .appendChild(
@@ -109,53 +83,34 @@ export class RowOperation {
                 this.enabled = true;
 
                 if (
-                    elem.element_name == "select" &&
-                    elem.id != this.rowDropdownID
+                    elem.element_name == "select" 
                 ) {
-                    this.createSelectOption(
-                        "Option_1" + this.id + elem.id,
-                        elem.option_1,
-                        elem.id
-                    );
-                    this.createSelectOption(
-                        "Option_2" + this.id + elem.id,
-                        elem.option_2,
-                        elem.id
-                    );
-                } else if (
-                    elem.element_name == "select" &&
-                    elem.id == this.rowDropdownID
-                ) {
-                    for (let i = 0; i < this.table.rows.length; i++) {
+                    let options = [];
+                    options = elem.options
+                    for (let i = 0; i < options.length; i++) {
                         this.createSelectOption(
                             "Option_" + i + this.id + elem.id,
-                            "(" + (i + 1) + ")",
+                            options[i],
                             elem.id
                         );
                     }
-
-                    let rowOperationNumber = parseInt(
-                        this.id.charAt(this.id.length - 1)
-                    );
-                    document.getElementById(elem.id).selectedIndex =
-                        rowOperationNumber;
-                }
+                } 
             } else {
+                
                 if (document.getElementById(elem.id).style.display == "none") {
                     document.getElementById(elem.id).style.display = "inline";
                     this.enabled = true;
-                    document.getElementById(
-                        this.id + "_displayCombobox"
-                    ).innerHTML = "❰";
+                    document.getElementById(this.id + "_displayCombobox").innerHTML = "❰";
                 } else {
                     document.getElementById(elem.id).style.display = "none";
                     this.enabled = false;
-                    document.getElementById(
-                        this.id + "_displayCombobox"
-                    ).innerHTML = "❱";
+                    document.getElementById(this.id + "_displayCombobox").innerHTML = "❱";
                 }
             }
         });
+
+        document.getElementById(this.rowDropdownID).selectedIndex = parseInt(this.id.charAt(this.id.length - 1));
+
         document
             .getElementById(this.firstTextFieldID)
             .addEventListener("input", this.setFirstTextField.bind(this));
