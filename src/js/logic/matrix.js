@@ -1,4 +1,7 @@
-import { InvalidInputException, InvalidMatrixDimension } from "../exceptions.js";
+import {
+    InvalidInputException,
+    InvalidMatrixDimension,
+} from "../exceptions.js";
 import { Fraction, NEGONE, ZERO, ONE } from "./fraction.js";
 import { gaussElimination } from "./gaussalgorithm.js";
 
@@ -20,40 +23,86 @@ export class Matrix {
         this.nColumns = array[0].length;
     }
 
-    hasLinearDependencies() {
-        return (
-            this.isSquare() &&
-            !this.hasEmptyRow() &&
-            this.getDeterminant().equals(ZERO) &&
-            this.getRank() < this.nRows
-        );
+    /**
+     * Does not check for 0s!
+     * @returns
+     */
+    findLinearDependencies() {
+        let matrixCopy = this.clone();
+        let linearDependencies = [];
+
+        for (let i = 0; i < matrixCopy.nRows; i++) {
+            for (let j = i; j < matrixCopy.nRows; j++) {
+                if (i == j) {
+                    continue;
+                }
+                let row1 = matrixCopy.getRow(i);
+                let row2 = matrixCopy.getRow(j);
+
+                let factor1 = ZERO;
+                let factor2 = ZERO;
+                let c = 0;
+                while (
+                    factor1.equals(ZERO) &&
+                    factor2.equals(ZERO) &&
+                    c <= matrixCopy.nColumns
+                ) {
+                    c++;
+                    factor1 = row1.getCell(0, c);
+                    factor2 = row2.getCell(0, c);
+                }
+
+                // (factor1 == 0) XOR (factor2 == 0)
+                if (
+                    (factor1.equals(ZERO) || factor2.equals(ZERO)) &&
+                    !(factor1.equals(ZERO) && factor2.equals(ZERO))
+                ) {
+                    continue;
+                }
+                let resultingRow = row1.multiplyRowByScalar(
+                    0,
+                    factor2.div(factor1)
+                );
+                if (resultingRow.equals(row2)) {
+                    linearDependencies.push([i, j]);
+                }
+            }
+        }
+        return linearDependencies;
     }
 
     getNumberOfSolutions() {
-        let matrixCopy = this.clone()
-        if (matrixCopy.hasLinearDependencies()) {
-            return -1; //infinitly many
-        } else if (matrixCopy.getRank() !== matrixCopy.nRows || matrixCopy.hasEmptyRow()) {
-            return 0; //no solution
-        } else {
-            return 1; //one solution
+        let matrixCopy = this.clone();
+        let rank = matrixCopy.getRank();
+        if (rank < Math.min(matrixCopy.nColumns, matrixCopy.nRows)) {
+            return 0;
         }
+        // if whole row is zero
+        if (matrixCopy.hasEmptyRow() || matrixCopy.transpose().hasEmptyRow()) {
+            return 0;
+        }
+        if (matrixCopy.nRows < matrixCopy.nColumns) {
+            return -1;
+        }
+
+        return 1;
     }
 
     hasEmptyRow() {
-        return this.countEmptyRows > 0
+        return this.countEmptyRows() > 0;
     }
 
-    countEmptyRows(){
+    countEmptyRows() {
         let count = 0;
-        let empty;
         for (let i = 0; i < this.nRows; i++) {
+            let rowEmpty = true;
             for (let j = 0; j < this.nColumns; j++) {
                 if (!this.getCell(i, j).equals(ZERO)) {
-                    empty = false;
+                    rowEmpty = false;
+                    break;
                 }
             }
-            if (empty) {
+            if (rowEmpty) {
                 count += 1;
             }
         }
@@ -61,9 +110,18 @@ export class Matrix {
     }
 
     getRank() {
-        let solvedGauss = gaussElimination(this, getEmptyMatrix(this.nRows));
-        let nEmpty =  solvedGauss.countEmptyRows();
-        return this.nRows-nEmpty;
+        let matrixCopy = this.clone();
+        // rows
+        let linearDependencies = this.findLinearDependencies();
+        // columns
+        let linearDependencies2 = matrixCopy
+            .transpose()
+            .findLinearDependencies();
+        return (
+            matrixCopy.nRows -
+            linearDependencies.length -
+            linearDependencies2.length
+        );
     }
 
     isSquare() {
@@ -109,7 +167,12 @@ export class Matrix {
      * @returns {Fraction} The Fraction object at the specified row and column indices in the matrix.
      */
     getCell(rowIndex, colIndex) {
-        if (rowIndex < 0 || rowIndex >= this.nRows || colIndex < 0 || colIndex >= this.nColumns) {
+        if (
+            rowIndex < 0 ||
+            rowIndex >= this.nRows ||
+            colIndex < 0 ||
+            colIndex >= this.nColumns
+        ) {
             throw new Error("Trying to access invalid cell!🥲");
         }
         return this.array[rowIndex][colIndex];
@@ -117,7 +180,7 @@ export class Matrix {
 
     setCell(rowIndex, colIndex, value) {
         this.array[rowIndex][colIndex] = value;
-        return this
+        return this;
     }
 
     /**
@@ -136,7 +199,9 @@ export class Matrix {
         for (let i = 0; i < this.nRows; i++) {
             newArray[i] = [];
             for (let j = 0; j < this.nColumns; j++) {
-                newArray[i][j] = this.getCell(i, j).add(otherMatrix.getCell(i, j));
+                newArray[i][j] = this.getCell(i, j).add(
+                    otherMatrix.getCell(i, j)
+                );
             }
         }
         return new Matrix(newArray);
@@ -213,12 +278,12 @@ export class Matrix {
     getPivot(colIndex) {
         let pivot = this.getCell(colIndex, colIndex);
         let pivotIndex = colIndex;
-    
+
         // Check if you are within the bounds of the matrix
         if (colIndex >= this.nRows) {
             return [pivotIndex, pivot]; // Return current pivot details if out of bounds
         }
-    
+
         // Loop through the rows below the current row
         for (let j = colIndex + 1; j < this.nRows; j++) {
             let element = this.getCell(j, colIndex);
@@ -227,10 +292,9 @@ export class Matrix {
                 pivotIndex = j;
             }
         }
-    
+
         return [pivotIndex, pivot];
     }
-    
 
     /**
      * Multiplies this matrix with another matrix.
@@ -353,7 +417,7 @@ export class Matrix {
      */
     multiplyRowByScalar(iRow, scalar) {
         for (let i = 0; i < this.nColumns; i++) {
-            this.array[iRow][i] = this.array[iRow][i].mul(scalar);
+            this.array[iRow][i] = this.getCell(iRow, i).mul(scalar);
         }
         return this;
     }
@@ -406,10 +470,10 @@ export class Matrix {
         let identityMatrix = getUnitMatrix(this.nRows);
         let lambda = gaussElimination(this, identityMatrix, false, true);
         let determinant = lambda.inverse().reduce();
-    
+
         return determinant;
     }
-    
+
     /**
      * Returns a new matrix that is a submatrix of the current matrix,
      * where the specified row and column are excluded.
@@ -463,7 +527,7 @@ export class Matrix {
      * @returns {string} - The string representation of the matrix.
      */
     stringify(decimal = false) {
-        let string = '';
+        let string = "";
         for (let i = 0; i < this.nRows; i++) {
             for (let j = 0; j < this.nColumns; j++) {
                 if (decimal) {

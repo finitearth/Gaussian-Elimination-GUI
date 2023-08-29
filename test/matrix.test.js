@@ -276,3 +276,29 @@ test("number of solutions should be 0", () => {
     ]);
     expect(matrix.getNumberOfSolutions()).toBe(0);
 });
+
+test("matrix is linearly dependent", () => {
+    let matrix1Copy = matrix1.clone();
+    matrix1Copy.setRow(1, matrix1.getRow(0).mul(new Fraction(2, 1)));
+    expect(matrix1Copy.findLinearDependencies().length).toBe(1);
+});
+
+ test("matrix is linearly dependent", () => {
+    let matrix = new Matrix([
+        [new Fraction(1, 1), new Fraction(2, 1), new Fraction(3, 1)],
+        [new Fraction(0, 1), new Fraction(0, 1), new Fraction(0, 1)],
+        [new Fraction(1, 1), new Fraction(2, 1), new Fraction(4, 1)],
+    ]);
+    expect(matrix.findLinearDependencies().length).toBe(0);
+});
+
+
+test("matrix is linearly dependent", () => {
+    let matrix = new Matrix([
+        [new Fraction(1, 1), new Fraction(2, 1), new Fraction(3, 1)],
+        [new Fraction(0, 1), new Fraction(0, 1), new Fraction(0, 1)],
+        [new Fraction(1, 1), new Fraction(2, 1), new Fraction(4, 1)],
+    ]);
+    expect(matrix.findLinearDependencies().length).toBe(0);
+});
+
