@@ -30,6 +30,14 @@ outBTable.addColumnDescription("b");
 
 
 // =========== Event listeners ===========
+setEventListenerFunction(
+    "button-calculate",
+    [coefTable, rhsTable],
+    [outTable, outBTable],
+    simplexAlgorithm
+);
+
+
 addKeyDownListener([coefTable, rhsTable], true);
 
 let conversionButtonchecked = false;
@@ -39,13 +47,6 @@ getById("button-representation-conversion").addEventListener("click", () => {
         table.convertRepresentation(conversionButtonchecked);
     });
 });
-
-setEventListenerFunction(
-    "button-calculate",
-    [coefTable, rhsTable],
-    [outTable, outBTable],
-    simplexAlgorithm
-);
 
 listenTableDimension(
     "input-nr-rows",

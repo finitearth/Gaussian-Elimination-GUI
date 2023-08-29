@@ -57,7 +57,6 @@ export function simplexAlgorithm(coefMatrix, bMatrix) {
                 pivotRowValue = bValue.div(value);
             }
         });
-        console.log(pivotRow);
         // generate 1 in pivotelement and 0s every where else in pivot column
         let pivotElement = coefMatrix.getCell(pivotRow, pivotColumn);
         coefMatrix = coefMatrix.multiplyRowByScalar(
