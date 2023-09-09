@@ -4,8 +4,8 @@ import { simplexAlgorithm } from "../logic/simplexAlgorithm.js";
 import { listenTableDimension } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 import { designConfig } from "../config.js";
-import { Matrix } from "../logic/matrix.js";
-import { Fraction, ONE, ZERO, NEGONE } from "../logic/fraction.js";
+import { clearTables } from "../intermediate/table.js";
+
 // =========== Tables ===========
 let coefTable = new Table("coef-table", 3);
 coefTable.removeBrackets();
@@ -47,6 +47,11 @@ getById("button-representation-conversion").addEventListener("click", () => {
         table.convertRepresentation(conversionButtonchecked);
     });
 });
+
+getById("button-clear").addEventListener("click", () => {
+    clearTables([coefTable, rhsTable, outTable, outBTable]);
+});
+
 
 listenTableDimension(
     "input-nr-rows",

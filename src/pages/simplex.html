@@ -7,7 +7,11 @@
         <title>Simplex</title>
 
         <link rel="stylesheet" href="../style/style.css" type="text/css" />
-        <link rel="stylesheet" href="../style/gleichungssystem-matrixinversion-style.css" type="text/css" />
+        <link
+            rel="stylesheet"
+            href="../style/gleichungssystem-matrixinversion-style.css"
+            type="text/css"
+        />
         <link rel="icon" href="../images/icon_logo.png" />
     </head>
 
@@ -42,6 +46,12 @@
                 <input type="number" id="input-nr-rows" />
                 <label for="input-nr-cols">Anzahl Spalten:</label>
                 <input type="number" id="input-nr-cols" />
+                <button
+                    id="button-clear"
+                    class="button-primary button-clear button-bar"
+                >
+                    Leeren
+                </button>
                 <label class="switch">
                     <input
                         type="checkbox"
@@ -62,17 +72,19 @@
             </div>
 
             <div class="container-button">
-                <button id="button-calculate" class="button-primary button-solve button-gl-inv">
+                <button
+                    id="button-calculate"
+                    class="button-primary button-solve button-gl-inv"
+                >
                     Lösen
                 </button>
             </div>
 
             <div class="page-divider align-center">
-                <table >
+                <table>
                     <td id="output-table"></td>
                     <td class="vertical"></td>
                     <td id="output-b-table"></td>
-
                 </table>
             </div>
         </main>

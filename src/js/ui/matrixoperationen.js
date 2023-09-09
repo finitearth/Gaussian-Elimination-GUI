@@ -22,6 +22,7 @@ let outputTable = new Table("output-table-placeholder");
 outputTable.disableInput();
 
 // =========== Event Listeners ===========
+
 listenTableDimension(
     "input-nr-rows",
     [inputTable, outputTable],
