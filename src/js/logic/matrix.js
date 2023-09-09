@@ -24,8 +24,9 @@ export class Matrix {
     }
 
     /**
-     * Does not check for 0s!
-     * @returns
+     * Identifies linearly dependent rows in the matrix.
+     * Returns an array containing pairs of row indices that are linearly dependent.
+     * @returns {Array<Array<number>>} - Array of pairs of row indices.
      */
     findLinearDependencies() {
         let matrixCopy = this.clone();
@@ -71,6 +72,11 @@ export class Matrix {
         return linearDependencies;
     }
 
+    /**
+     * Calculates the number of solutions for the system of equations represented by the matrix.
+     * Returns 0, 1, or -1 (=inf), based on the conditions met.
+     * @returns {number} - Number of solutions.
+     */
     getNumberOfSolutions() {
         let matrixCopy = this.clone();
         let rank = matrixCopy.getRank();
@@ -88,10 +94,18 @@ export class Matrix {
         return 1;
     }
 
+    /**
+     * Checks for the presence of rows containing only zero elements in the matrix.
+     * @returns {boolean} - True if such rows exist, false otherwise.
+     */
     hasEmptyRow() {
         return this.countEmptyRows() > 0;
     }
 
+        /**
+     * Counts the number of rows in the matrix that contain only zero elements.
+     * @returns {number} - Count of empty rows.
+     */
     countEmptyRows() {
         let count = 0;
         for (let i = 0; i < this.nRows; i++) {
@@ -109,6 +123,11 @@ export class Matrix {
         return count;
     }
 
+        /**
+     * Calculates the rank of the matrix.
+     * Takes into account linearly dependent rows and columns.
+     * @returns {number} - Rank of the matrix.
+     */
     getRank() {
         let matrixCopy = this.clone();
         // rows
@@ -124,10 +143,20 @@ export class Matrix {
         );
     }
 
+        /**
+     * Checks if the matrix is square, i.e., if the number of rows equals the number of columns.
+     * @returns {boolean} - True if the matrix is square, false otherwise.
+     */
     isSquare() {
         return this.nRows == this.nColumns;
     }
 
+        /**
+     * Checks for equality between two Matrix objects.
+     * Compares dimensions and individual elements.
+     * @param {Matrix} otherMatrix - The other Matrix object to compare.
+     * @returns {boolean} - True if matrices are equal, false otherwise.
+     */
     equals(otherMatrix) {
         if (
             this.nRows != otherMatrix.nRows ||
@@ -178,6 +207,13 @@ export class Matrix {
         return this.array[rowIndex][colIndex];
     }
 
+        /**
+     * Sets the value of a specific cell in the matrix.
+     * @param {number} rowIndex - The row index of the cell.
+     * @param {number} colIndex - The column index of the cell.
+     * @param {Fraction} value - The new value to set.
+     * @returns {Matrix} - A reference to this matrix with the updated cell value.
+     */
     setCell(rowIndex, colIndex, value) {
         this.array[rowIndex][colIndex] = value;
         return this;
@@ -269,11 +305,10 @@ export class Matrix {
     }
 
     /**
-     * Returns the pivot element of a matrix column and its index.
-     * The pivot is the largest absolute value element in the column.
-     *
-     * @param {number} colIndex - The column index to search for the pivot element.
-     *
+     * Retrieves the pivot element and its index within a given column.
+     * The pivot is the largest absolute value in the column.
+     * @param {number} colIndex - The column index to find the pivot in.
+     * @returns {Array} An array containing the pivot index and the pivot value.
      */
     getPivot(colIndex) {
         let pivot = this.getCell(colIndex, colIndex);
@@ -297,13 +332,10 @@ export class Matrix {
     }
 
     /**
-     * Multiplies this matrix with another matrix.
-     * Returns a new Matrix instance that is the product of the two matrices.
-     *
-     * @param {Matrix} other - The matrix to multiply with this matrix.
-     * @returns {Matrix} A new matrix that is the product of this matrix and the given matrix.
-     * @throws {Error} If the number of columns in this matrix does not match the number of rows in the other matrix.
-     * @throws {Error} If the number of rows in this matrix does not match the number of columns in the other matrix.
+     * Multiplies this matrix with another matrix and returns a new one.
+     * @param {Matrix} other - The other matrix.
+     * @returns {Matrix} - A new matrix that is the product of the two matrices.
+     * @throws {Error} - If the matrices are incompatible for multiplication.
      */
     multiplyByMatrix(other) {
         if (this.nColumns != other.nRows) {
@@ -325,9 +357,8 @@ export class Matrix {
     }
 
     /**
-     * Returns a new matrix that is the transpose of the original matrix.
-     *
-     * @returns {Matrix} A new matrix that is the transpose of the original matrix.
+     * Transposes the matrix and returns a new one.
+     * @returns {Matrix} - A new matrix that is the transpose of the original.
      */
     transpose() {
         let newArray = [];
@@ -343,11 +374,10 @@ export class Matrix {
     }
 
     /**
-     * Swap two rows of the matrix.
-     *
+     * Swaps two rows in the matrix.
      * @param {number} iRow1 - The index of the first row to swap.
      * @param {number} iRow2 - The index of the second row to swap.
-     * @returns {Matrix} A reference to this matrix with the rows swapped.
+     * @returns {Matrix} - A reference to this matrix with the rows swapped.
      */
     swapRows(iRow1, iRow2) {
         let temp = this.array[iRow1];
@@ -466,6 +496,11 @@ export class Matrix {
         return determinant;
     }
 
+    /**
+ * Computes the determinant of the matrix using Gauss Elimination.
+ *
+ * @returns {Fraction} - The determinant of the matrix.
+ */
     getDeterminantUsingGaussElimination() {
         let identityMatrix = getUnitMatrix(this.nRows);
         let lambda = gaussElimination(this, identityMatrix, false, true);
@@ -511,6 +546,11 @@ export class Matrix {
         return this;
     }
 
+    /**
+ * Iterates through each element of the matrix, capturing row and column indices and the element itself.
+ *
+ * @returns {Array} - An array of triplets [rowIndex, columnIndex, cellValue], where rowIndex and columnIndex represent the row and column indices, and cellValue is the value of the cell.
+ */
     iterateElements() {
         let elements = [];
         for (let i = 0; i < this.nRows; i++) {
@@ -521,11 +561,12 @@ export class Matrix {
         return elements;
     }
 
-    /**
-     * Returns a string representation of the matrix.
-     * @param {boolean} decimal - Whether to display decimal values instead of fractions.
-     * @returns {string} - The string representation of the matrix.
-     */
+/**
+ * Converts the matrix to its string representation.
+ *
+ * @param {boolean} [decimal=false] - Optional flag to represent values as decimals instead of fractions.
+ * @returns {string} - The string representation of the matrix.
+ */
     stringify(decimal = false) {
         let string = "";
         for (let i = 0; i < this.nRows; i++) {
@@ -563,6 +604,14 @@ export function getUnitMatrix(n) {
     return new Matrix(matrix);
 }
 
+
+/**
+ * Creates and returns an empty matrix with the given number of rows and columns, initialized with zeros.
+ *
+ * @param {number} nRows - The number of rows for the empty matrix.
+ * @param {number} nColumns - The number of columns for the empty matrix.
+ * @returns {Matrix} - The newly created matrix with all values initialized to zero.
+ */
 export function getEmptyMatrix(nRows, nColumns) {
     let matrix = [];
     for (let i = 0; i < nRows; i++) {

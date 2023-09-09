@@ -3,6 +3,15 @@ import { InvalidInputException } from "../exceptions.js";
 import { gaussElimination } from "./gaussalgorithm.js";
 import { getUnitMatrix } from "./matrix.js";
 
+/**
+ * Parses and evaluates an equation string containing mathematical operations and matrices.
+ * The function replaces alphabetic characters with matrices found in a given table.
+ *
+ * @param {string} equationString - The equation string to be parsed and evaluated.
+ * @param {Array} tables - An array of matrices used to replace alphabetic characters in the equation.
+ * @throws {InvalidInputException} Throws an exception if the equation string is invalid.
+ * @returns {*} The result of the evaluated equation, which could be a number, a matrix, or a fraction.
+ */
 export function calculate(equationString, tables) {
     // check that only allowed characters are used (a-z, 0-9 and +, -, *, /), also check no operands and operators come twice after each other.
     if (
@@ -64,7 +73,15 @@ export function calculate(equationString, tables) {
     return res;
 }
 
-// Evaluate the equation using operator precedence and grouping
+/**
+ * Evaluates a parsed equation represented as an array of elements.
+ * Handles operations like addition, subtraction, multiplication, determinant, and transpose.
+ * Operator precedence and grouping are considered.
+ *
+ * @param {Array} equation - The parsed equation as an array of elements like numbers, matrices, and operators.
+ * @throws {InvalidInputException} Throws an exception if invalid operations are encountered.
+ * @returns {*} The result of the evaluated equation, which could be a number, a matrix, or a fraction.
+ */
 function evaluate(equation) {
     // Handle grouping: find innermost parentheses and evaluate them first
     let openParenIndex = equation.lastIndexOf("(");

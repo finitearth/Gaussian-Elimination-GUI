@@ -83,6 +83,12 @@ export class Fraction {
         return this.add(other.mul(new Fraction(-1, 1)));
     }
 
+    /**
+     * Alias for the `subtract` method.
+     * This method performs subtraction in the same way as the `subtract` method does.
+     * @param {Fraction} other - The other fraction object to subtract from the current fraction.
+     * @returns {Fraction} A new fraction object representing the result of the subtraction.
+     */
     sub(other) {
         return this.subtract(other);
     }
@@ -100,6 +106,12 @@ export class Fraction {
         );
     }
     
+    /**
+     * Determines if the current fraction is less than another fraction object.
+     * This method utilizes the `greater` method of the other fraction to determine the result.
+     * @param {Fraction} other - The other fraction object to compare to the current fraction.
+     * @returns {boolean} True if the current fraction is less than the other fraction, and false otherwise.
+     */
     lower(other) {
         return other.greater(this);
     }
