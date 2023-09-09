@@ -42,22 +42,27 @@
 .button-combobox {
     height: 30px;
     width: 30px;
-    margin: 0;
+    margin: 0.075em 0.1em 0.075em 0;
     padding: 0;
 }
 
 /* Style comboboxes */
-.combobox-dropdown,
 .combobox-input-field {
-    margin: 0.05em 0.25em;
-    height: 28px;
+    margin: 0em 0.15em;
+    background-color: #fff;
+    border: 1px solid var(--input-border-color-dark);
+}
+
+.combobox-dropdown {
+    margin: 0 0.15em;
+    height: 30px;
     width: 40px;
     background-color: #fff;
     border: 1px solid var(--input-border-color-dark);
 }
 
 .combobox-field {
-    height: 32px;
+    height: 28px;
     padding: 1px;
 }
 
@@ -65,7 +70,7 @@
 .operations {
     /* fixed space for row operations */
     width: 20em;
-    padding: 1px;
+    padding: 2px;
     vertical-align: bottom;
     text-align: left;
 }
