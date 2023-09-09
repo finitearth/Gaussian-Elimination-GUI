@@ -84,7 +84,7 @@ export class Matrix {
             return 0;
         }
         // if whole row is zero
-        if (matrixCopy.hasEmptyRow() || matrixCopy.transpose().hasEmptyRow()) {
+        if (matrixCopy.hasEmptyRow() || matrixCopy.transpose().hasEmptyRow() || matrixCopy.getDeterminant().equals(ZERO)) {
             return 0;
         }
         if (matrixCopy.nRows < matrixCopy.nColumns) {
