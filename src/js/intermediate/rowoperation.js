@@ -198,7 +198,13 @@ export function addCombobox(id, rowOperations, table) {
     document.getElementById(
         rowOperations[rowOperations.length - 1].secondTextField
     ).value = "0";
-
+    document.getElementById(
+        rowOperations[rowOperations.length - 1].firstTextFieldID
+    ).pattern = "^[\\-\\+]{0,1}[\\d]*[.,\\/]{0,1}[\\d]*$";
+    document.getElementById(
+        rowOperations[rowOperations.length - 1].secondTextField
+    ).pattern = "^[\\-\\+]{0,1}[\\d]*[.,\\/]{0,1}[\\d]*$";
+    
     return rowOperations;
 }
 
