@@ -32,6 +32,16 @@ export class RowOperation {
         );
     }
 
+    setToDefaults() {
+        this.firstTextFieldValue      = "1";
+        this.secondTextFieldValue     = "0";
+
+        document.getElementById(this.firstTextFieldID).value = "1";
+        document.getElementById(this.secondTextField).value = "0";
+
+        document.getElementById(this.rowDropdownID).selectedIndex = parseInt(this.id.charAt(this.id.length - 1));
+    }
+
     setFirstTextField(e) {
         this.firstTextFieldValue = e.target.value;
     }
@@ -285,4 +295,10 @@ export function applyRowOperations(matrix, rowOperations) {
         }
     });
     return matrixCopy;
+}
+
+export function clearRowOperations(rowOperations) {
+    rowOperations.forEach((rowOperation, i) => {
+        rowOperation.setToDefaults();
+    });
 }

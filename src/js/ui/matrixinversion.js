@@ -4,6 +4,7 @@ import { generateMatrix } from "../logic/generateExercise.js";
 import {
     addCombobox,
     applyRowOperations,
+    clearRowOperations,
 } from "../intermediate/rowoperation.js";
 import {
     Table,
@@ -139,5 +140,6 @@ addKeyDownListener(tables, true);
 
 getById("button-clear").addEventListener("click", () => {
     clearTables(tables);
+    clearRowOperations(rowOperations);
 });
 

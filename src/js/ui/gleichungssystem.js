@@ -9,6 +9,7 @@ import {
 import {
     addCombobox,
     applyRowOperations,
+    clearRowOperations,
 } from "../intermediate/rowoperation.js";
 import {
     setEventListenerFunction,
@@ -169,4 +170,5 @@ addKeyDownListener(tables, true);
 
 getById("button-clear").addEventListener("click", () => {
     clearTables(tables);
+    clearRowOperations(rowOperations);
 });
