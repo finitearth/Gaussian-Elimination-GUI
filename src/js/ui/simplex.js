@@ -4,8 +4,8 @@ import { simplexAlgorithm } from "../logic/simplexAlgorithm.js";
 import { listenTableDimension } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 import { designConfig } from "../config.js";
-import { Matrix } from "../logic/matrix.js";
-import { Fraction, ONE, ZERO, NEGONE } from "../logic/fraction.js";
+import { clearTables } from "../intermediate/table.js";
+
 // =========== Tables ===========
 let coefTable = new Table("coef-table", 3);
 coefTable.removeBrackets();
@@ -30,6 +30,14 @@ outBTable.addColumnDescription("b");
 
 
 // =========== Event listeners ===========
+setEventListenerFunction(
+    "button-calculate",
+    [coefTable, rhsTable],
+    [outTable, outBTable],
+    simplexAlgorithm
+);
+
+
 addKeyDownListener([coefTable, rhsTable], true);
 
 let conversionButtonchecked = false;
@@ -40,12 +48,10 @@ getById("button-representation-conversion").addEventListener("click", () => {
     });
 });
 
-setEventListenerFunction(
-    "button-calculate",
-    [coefTable, rhsTable],
-    [outTable, outBTable],
-    simplexAlgorithm
-);
+getById("button-clear").addEventListener("click", () => {
+    clearTables([coefTable, rhsTable, outTable, outBTable]);
+});
+
 
 listenTableDimension(
     "input-nr-rows",
