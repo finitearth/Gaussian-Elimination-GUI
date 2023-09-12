@@ -50,7 +50,7 @@ function createHTMLForNavbar() {
         },
         {
             ref: `gleichungssystem.html`,
-            text: "GL System ",
+            text: "GL-System ",
         },
         {
             ref: `matrixinversion.html`,
