@@ -1,11 +1,23 @@
 import { NEGONE, ZERO, stringToFraction } from "../logic/fraction.js";
 import { getById } from "./getElement.js";
 
+/**
+ * Represents a RowOperation class.
+ * @class
+ */
 export class RowOperation {
+    /**
+     * Initializes a new instance of the RowOperation class.
+     * @constructor
+     * @param {string} id - The ID of the row operation.
+     * @param {HTMLElement} table - The table element to which the row operation belongs.
+     */
     constructor(id, table) {
+        // Initialize properties
         this.id    = id;
         this.table = table;
 
+        // Create the main combo box element
         this.comboBoxElement          = document.createElement("tr");
         this.firstOperatorDropdownID  = "firstOperator" + this.id;
         this.firstTextFieldID         = "firstText"     + this.id;
@@ -17,6 +29,7 @@ export class RowOperation {
         this.secondTextFieldValue     = "0";
         this.enabled = false;
 
+        // Set combo box element attributes
         this.comboBoxElement.id        = this.id;
         this.comboboxButton            = document.createElement("button");
         this.comboboxButton.innerHTML  = "❱";
@@ -24,65 +37,91 @@ export class RowOperation {
         this.comboboxButton.className  = "button-primary button-combobox";
         this.comboBoxElement.className = "combobox-field";
 
+        // Append the combo box button to the combo box element
         this.comboBoxElement.appendChild(this.comboboxButton);
 
+        // Add click event listener to the combo box button
         this.comboboxButton.addEventListener(
             "click",
             this.handleComboboxButtons.bind(this)
         );
     }
 
+    /**
+     * Sets the properties of the RowOperation instance to default values.
+     */
     setToDefaults() {
         this.firstTextFieldValue      = "1";
         this.secondTextFieldValue     = "0";
 
+        // Set default values for text fields and row dropdown
         document.getElementById(this.firstTextFieldID).value = "1";
         document.getElementById(this.secondTextField).value = "0";
-
         document.getElementById(this.rowDropdownID).selectedIndex = parseInt(this.id.charAt(this.id.length - 1));
     }
 
+    /**
+     * Sets the value of the first text field.
+     * @param {Event} e - The event object.
+     */
     setFirstTextField(e) {
         this.firstTextFieldValue = e.target.value;
     }
 
+    /**
+     * Sets the value of the second text field.
+     * @param {Event} e - The event object.
+     */
     setSecondTextField(e) {
         this.secondTextFieldValue = e.target.value;
     }
 
+    /**
+     * Creates a select option element and appends it to a select element.
+     * @param {string} id - The ID of the option element.
+     * @param {string} option - The text content of the option.
+     * @param {string} selectID - The ID of the select element.
+     */
     createSelectOption(id, option, selectID) {
         const optionElement = document.createElement("option");
         optionElement.id = id;
         optionElement.innerText = option;
         optionElement.value = option;
 
+        // Append the option element to the select element
         document.getElementById(selectID).appendChild(optionElement);
     }
 
+     /**
+     * Handles the click event for the combo box button.
+     */
     handleComboboxButtons() {
+        // Create an array of row dropdown options
         let rowDropdownOptions = [];
-
-        for (let i = 1; i < this.table.rows.length+1; i++) {
-            rowDropdownOptions.push("("+i+")");
+        for (let i = 1; i < this.table.rows.length + 1; i++) {
+            rowDropdownOptions.push("(" + i + ")");
         }
 
+        // Define elements to be added to the combo box
         const elements = [
-            { id: this.firstOperatorDropdownID,  element_name: "select", class: "combobox-dropdown", options: ["*", "/"], },
-            { id: this.firstTextFieldID,         element_name: "input",  class: "combobox-input-field", },
-            { id: this.secondOperatorDropdownID, element_name: "select", class: "combobox-dropdown", options: ["+", "-"], },
-            { id: this.rowDropdownID,            element_name: "select", class: "combobox-dropdown", options: rowDropdownOptions, },
-            { id: this.thirdOperatorDropdownID,  element_name: "select", class: "combobox-dropdown", options: ["*", "/"], },
-            { id: this.secondTextField,          element_name: "input",  class: "combobox-input-field", },
+            { id: this.firstOperatorDropdownID,  element_name: "select", class: "combobox-dropdown", options: ["*", "/"] },
+            { id: this.firstTextFieldID,         element_name: "input",  class: "combobox-input-field" },
+            { id: this.secondOperatorDropdownID, element_name: "select", class: "combobox-dropdown", options: ["+", "-"] },
+            { id: this.rowDropdownID,            element_name: "select", class: "combobox-dropdown", options: rowDropdownOptions },
+            { id: this.thirdOperatorDropdownID,  element_name: "select", class: "combobox-dropdown", options: ["*", "/"] },
+            { id: this.secondTextField,          element_name: "input",  class: "combobox-input-field" },
         ];
 
         elements.forEach(elem => {
             if (document.getElementById(this.id).childElementCount < 7) {
+                // Set combo box button text
                 document.getElementById(this.id + "_displayCombobox").innerHTML = "❰";
 
-                const htmlElement       = document.createElement(elem.element_name);
+                // Create and append HTML elements
+                const htmlElement = document.createElement(elem.element_name);
                 htmlElement.textContent = elem.name;
-                htmlElement.id          = elem.id;
-                htmlElement.className   = elem.class;
+                htmlElement.id = elem.id;
+                htmlElement.className = elem.class;
                 document
                     .getElementById(this.id)
                     .appendChild(
@@ -90,13 +129,13 @@ export class RowOperation {
                         document.getElementById(this.id + "_displayCombobox")
                     );
 
+                // Enable the combo box
                 this.enabled = true;
 
-                if (
-                    elem.element_name == "select" 
-                ) {
+                if (elem.element_name == "select") {
+                    // Create select options
                     let options = [];
-                    options = elem.options
+                    options = elem.options;
                     for (let i = 0; i < options.length; i++) {
                         this.createSelectOption(
                             "Option_" + i + this.id + elem.id,
@@ -104,14 +143,15 @@ export class RowOperation {
                             elem.id
                         );
                     }
-                } 
+                }
             } else {
-                
                 if (document.getElementById(elem.id).style.display == "none") {
+                    // Show the element
                     document.getElementById(elem.id).style.display = "inline";
                     this.enabled = true;
                     document.getElementById(this.id + "_displayCombobox").innerHTML = "❰";
                 } else {
+                    // Hide the element
                     document.getElementById(elem.id).style.display = "none";
                     this.enabled = false;
                     document.getElementById(this.id + "_displayCombobox").innerHTML = "❱";
@@ -119,8 +159,10 @@ export class RowOperation {
             }
         });
 
+        // Set the selected index of the row dropdown
         document.getElementById(this.rowDropdownID).selectedIndex = parseInt(this.id.charAt(this.id.length - 1));
 
+        // Add input event listeners to text fields
         document
             .getElementById(this.firstTextFieldID)
             .addEventListener("input", this.setFirstTextField.bind(this));
@@ -129,6 +171,10 @@ export class RowOperation {
             .addEventListener("input", this.setSecondTextField.bind(this));
     }
 
+    /**
+     * Removes a select option from the row dropdown.
+     * @param {string} id - The ID of the option to remove.
+     */
     removeRowDropdownSelectOption(id) {
         document
             .getElementById(
@@ -142,6 +188,11 @@ export class RowOperation {
             .remove();
     }
 
+    /**
+     * Sets the options for the row dropdown based on the specified dimension.
+     * @param {number} dimension - The current dimension of the row dropdown.
+     * @param {number} n - The desired number of options for the row dropdown.
+     */
     setNRowDropdownSelectOptions(dimension, n) {
         while (dimension < n) {
             dimension++;
@@ -153,54 +204,70 @@ export class RowOperation {
         }
         while (dimension > n) {
             dimension--;
-            this.removeRowDropdownSelectOption(dimension);
+            removeRowDropdownSelectOption.call(this, dimension);
         }
     }
 
+    /**
+     * Applies a row operation to a matrix and returns the modified matrix.
+     * @param {Matrix} matrix - The input matrix to which the operation is applied.
+     * @returns {Matrix} - The modified matrix after applying the operation.
+     */
     apply(matrix) {
         let matrixCopy = matrix.clone();
         let matrixCopy2 = matrix.clone();
-        // subj = Row to be modified, obj = row subj is modified with
+        
+        // Get the subject row and object row indices
         let subjIdx = Number(this.id.substr(9));
+        let objIdx = Number(getById(this.rowDropdownID).value.replace("(", "").replace(")", "")) - 1;
+        
+        // Get multipliers and operation types
         let subjMultiplier = stringToFraction(this.firstTextFieldValue);
         let mulOrDivSubj = getById(this.firstOperatorDropdownID).value;
-
         let operation = getById(this.secondOperatorDropdownID).value;
-
-        let objIdx =
-            Number(
-                getById(this.rowDropdownID)
-                    .value.replace("(", "")
-                    .replace(")", "")
-            ) - 1;
         let objMultiplier = stringToFraction(this.secondTextFieldValue);
         let mulOrDivObj = getById(this.thirdOperatorDropdownID).value;
-
+        
+        // Handle division operations
         if (mulOrDivSubj === "/") {
             subjMultiplier = subjMultiplier.inverse();
         }
         if (mulOrDivObj === "/") {
             objMultiplier = objMultiplier.inverse();
         }
+        
+        // Handle subtraction operation
         if (operation === "-") {
             objMultiplier = objMultiplier.mul(NEGONE);
         }
-
+        
+        // Apply the operations to the matrix
         matrixCopy2 = matrixCopy2.multiplyRowByScalar(subjIdx, subjMultiplier);
         matrixCopy = matrixCopy.multiplyRowByScalar(objIdx, objMultiplier);
-
         matrixCopy2 = matrixCopy2.addRow(subjIdx, matrixCopy.getRow(objIdx));
-
+        
         return matrixCopy2;
     }
+
 }
 
+
+/**
+ * Adds a combo box for row operations to the specified rowOperations array and table.
+ * @param {string} id - The ID for the new combo box.
+ * @param {RowOperation[]} rowOperations - The array of row operations to which the new combo box is added.
+ * @param {HTMLElement} table - The table element to which the combo box belongs.
+ * @returns {RowOperation[]} - The updated array of row operations.
+ */
 export function addCombobox(id, rowOperations, table) {
     rowOperations.push(new RowOperation(id, table));
 
+    // Append the combo box element to the operations table
     getById("operations-table").appendChild(
         rowOperations[rowOperations.length - 1].comboBoxElement
     );
+
+    // Handle the combo box buttons and set initial values
     rowOperations[rowOperations.length - 1].handleComboboxButtons();
     document.getElementById(
         rowOperations[rowOperations.length - 1].firstTextFieldID
@@ -208,6 +275,8 @@ export function addCombobox(id, rowOperations, table) {
     document.getElementById(
         rowOperations[rowOperations.length - 1].secondTextField
     ).value = "0";
+
+    // Set patterns for text fields
     document.getElementById(
         rowOperations[rowOperations.length - 1].firstTextFieldID
     ).pattern = "^[\\-\\+]{0,1}[\\d]*[.,\\/]{0,1}[\\d]*$";
@@ -218,13 +287,29 @@ export function addCombobox(id, rowOperations, table) {
     return rowOperations;
 }
 
+/**
+ * Removes the last combo box from the specified rowOperations array.
+ * @param {string} id - The ID of the combo box to remove.
+ * @param {RowOperation[]} rowOperations - The array of row operations from which the combo box is removed.
+ * @returns {RowOperation[]} - The updated array of row operations.
+ */
 export function removeCombobox(id, rowOperations) {
+    // Remove the combo box element from the DOM
     document.getElementById("combobox_" + (rowOperations.length - 1)).remove();
+
+    // Remove the last row operation from the array
     rowOperations.pop();
 
     return rowOperations;
 }
 
+/**
+ * Ensures that there are a specific number of combo boxes in the rowOperations array.
+ * @param {RowOperation[]} rowOperations - The array of row operations to adapt.
+ * @param {HTMLElement} table - The table element to which the combo boxes belong.
+ * @param {number} n - The desired number of combo boxes.
+ * @returns {RowOperation[]} - The updated array of row operations.
+ */
 export function adaptComboboxes(rowOperations, table, n) {
     while (rowOperations.length < n) {
         rowOperations = addCombobox(
@@ -240,6 +325,13 @@ export function adaptComboboxes(rowOperations, table, n) {
     return rowOperations;
 }
 
+/**
+ * Updates the options of all row dropdowns in the rowOperations array based on the specified dimension and n.
+ * @param {RowOperation[]} rowOperations - The array of row operations to update.
+ * @param {number} dimension - The current dimension of the row dropdowns.
+ * @param {number} n - The desired number of options for the row dropdowns.
+ * @returns {RowOperation[]} - The updated array of row operations.
+ */
 export function updateRowOperations(rowOperations, dimension, n) {
     for (let i = 0; i < rowOperations.length; i++) {
         rowOperations[i].setNRowDropdownSelectOptions(dimension, n);
@@ -254,18 +346,27 @@ export function updateRowOperations(rowOperations, dimension, n) {
     return rowOperations;
 }
 
+/**
+ * Checks the validity of row operations to ensure they account for all rows.
+ * @param {RowOperation[]} rowOperations - The array of row operations to check.
+ * @returns {boolean} - True if all rows are accounted for, otherwise false.
+ */
 function checkValidity(rowOperations) {
     let rowOperationsMultipliedByZero = [];
 
+    // Find row operations that multiply by zero
     rowOperations.forEach((rowOperation, i) => {
         if (stringToFraction(rowOperation.firstTextFieldValue).equals(ZERO)) {
             rowOperationsMultipliedByZero.push(rowOperation);
         }
     });
+
     let rowOperationsNotAccountedFor = [];
+    // Create a list of row indices not accounted for
     rowOperationsMultipliedByZero.forEach(r => {
         rowOperationsNotAccountedFor.push(Number(r.id.substr(9)));
     });
+
     rowOperationsMultipliedByZero.forEach((rowOperation, i) => {
         let currentRowDropdownValue =
             Number(
@@ -274,8 +375,8 @@ function checkValidity(rowOperations) {
                     .replace(")", "")
             ) - 1;
 
-        // check if the current dropdown selected a row that was not accounted for, and does not multiply it by zero
-        // if so than remove that referenced row from rowOperationsNotAccountedFor
+        // Check if the current dropdown selected a row that was not accounted for and does not multiply it by zero
+        // If so, remove that referenced row from rowOperationsNotAccountedFor
         if (
             rowOperationsNotAccountedFor.includes(currentRowDropdownValue) &&
             !stringToFraction(rowOperation.secondTextFieldValue).equals(ZERO)
@@ -289,11 +390,22 @@ function checkValidity(rowOperations) {
     return rowOperationsNotAccountedFor.length == 0;
 }
 
+/**
+ * Applies a series of row operations to a matrix and returns the modified matrix.
+ * @param {Matrix} matrix - The input matrix to which the operations are applied.
+ * @param {RowOperation[]} rowOperations - The array of row operations to apply.
+ * @returns {Matrix} - The modified matrix after applying the row operations.
+ * @throws {Error} - If the row operations are invalid.
+ */
 export function applyRowOperations(matrix, rowOperations) {
     let matrixCopy = matrix.clone();
+
+    // Check the validity of row operations
     if (!checkValidity(rowOperations)) {
-        throw Error("Invalide Zeilenoperationen!");
+        throw Error("Invalid row operations!");
     }
+
+    // Apply each enabled row operation to the matrix
     rowOperations.forEach((rowOperation, i) => {
         if (rowOperation.enabled) {
             let newMatrix = rowOperation.apply(matrix);
@@ -303,8 +415,14 @@ export function applyRowOperations(matrix, rowOperations) {
     return matrixCopy;
 }
 
+/**
+ * Clears the values of all row operations to their defaults.
+ * @param {RowOperation[]} rowOperations - The array of row operations to clear.
+ */
 export function clearRowOperations(rowOperations) {
+    // Set all row operations to their default values
     rowOperations.forEach((rowOperation, i) => {
         rowOperation.setToDefaults();
     });
 }
+
