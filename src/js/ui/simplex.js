@@ -9,27 +9,34 @@ import { getEmptyMatrix } from "../logic/matrix.js";
 import { InvalidInputException } from "../exceptions.js";
 
 // =========== Tables ===========
+
+// Create a table for coefficients (coefTable)
 let coefTable = new Table("coef-table", 3);
 coefTable.removeBrackets();
 coefTable.addRowDescription(false, "f(<b>x</b>)");
 coefTable.addColumnDescription("x");
 
+// Create a table for right-hand side values (rhsTable)
 let rhsTable = new Table("rhs-table", 1);
 rhsTable.addColumnDescription("b");
 rhsTable.removeBrackets();
 
+// Create an output table for results (outTable)
 let outTable = new Table("output-table", 3);
 outTable.disableInput();
 outTable.removeBrackets();
 outTable.addRowDescription(false, "f(<b>x</b>)");
 outTable.addColumnDescription("x");
 
+// Create an output table for result values (outBTable)
 let outBTable = new Table("output-b-table", 1);
 outBTable.disableInput();
 outBTable.removeBrackets();
 outBTable.addColumnDescription("b");
 
 // =========== Event listeners ===========
+
+// Event listener for the "Calculate" button
 setEventListenerFunction(
     "button-calculate",
     [coefTable, rhsTable],
@@ -45,8 +52,10 @@ setEventListenerFunction(
     }
 );
 
+// Event listener for keyboard input (keydown)
 addKeyDownListener([coefTable, rhsTable], true);
 
+// Event listener for representation conversion button
 let conversionButtonchecked = false;
 getById("button-representation-conversion").addEventListener("click", () => {
     conversionButtonchecked = !conversionButtonchecked;
@@ -55,10 +64,12 @@ getById("button-representation-conversion").addEventListener("click", () => {
     });
 });
 
+// Event listener for the "Clear" button
 getById("button-clear").addEventListener("click", () => {
     clearTables([coefTable, rhsTable, outTable, outBTable]);
 });
 
+// Event listeners to dynamically adjust the dimensions of tables
 listenTableDimension(
     "input-nr-rows",
     [coefTable, outTable],
