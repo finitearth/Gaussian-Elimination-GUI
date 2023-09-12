@@ -8,6 +8,8 @@ import {
     setEventListenerFunction,
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
+import { InvalidInputException } from "../exceptions.js";
+import { getEmptyMatrix } from "../logic/matrix.js";
 
 // =========== Tables ===========
 function addTable() {
@@ -61,7 +63,13 @@ getById("remove-table").addEventListener("click", removeTable);
 
 setEventListenerFunction("button-calculate", tables, [resultTable], () => {
     let equation = getById("input-equation").value;
-    let result = calculate(equation, tables);
+    try {
+        let result = calculate(equation, tables);
+    }
+    catch (e) {
+        let result = getEmptyMatrix(3, 3);
+        throw new InvalidInputException("Invalide Berechnungsoperationen!")
+    }
     return [result];
 });
 

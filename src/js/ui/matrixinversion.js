@@ -48,7 +48,7 @@ let solCoefTable = addTable("resultContainerTableRowCol2", true);
 let tables = [coefTable, identityTable, solIdentityTable, solCoefTable];
 
 // create initial comboboxes
-let rowOperations = []; // rowOperations
+let rowOperations = [];
 for (let i = 0; i < 3; i++) {
     rowOperations = addCombobox("combobox_" + i, rowOperations, coefTable);
 }
@@ -104,14 +104,6 @@ setEventListenerFunction(
     [coefTable, identityTable],
     [solIdentityTable, solCoefTable],
     (coefMatrix, solMatrix) => {
-        // if (coefMatrix.getNumberOfSolutions() === 0) {
-        //     alert("KEINE LÖSUNG WIEDERHOLE: KEINE LÖSUNG");
-        // }
-        // if (coefMatrix.getNumberOfSolutions() === -1) {
-        //     alert(
-        //         "UNENDLICH VIELE LÖSUNGEN WIEDERHOLE: UNENDLICH VIELE LÖSUNGEN"
-        //     );
-        // }
         coefMatrix = applyRowOperations(coefMatrix, rowOperations);
         solMatrix = applyRowOperations(solMatrix, rowOperations);
 

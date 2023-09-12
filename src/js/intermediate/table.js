@@ -1,5 +1,5 @@
 import { designConfig } from "../config.js";
-import { Matrix } from "../logic/matrix.js";
+import { Matrix, getEmptyMatrix } from "../logic/matrix.js";
 import { Fraction, stringToFraction } from "../logic/fraction.js";
 import { getById } from "./getElement.js";
 
@@ -133,17 +133,23 @@ export class Table {
                     rowDes.id = this.descriptionColumnId + "." + (counter - 1);
                     rowDes.innerText = "(" + counter + ")";
 
-                    if (specialLastRow && counter == this.tableElement.childNodes.length-(document.getElementById(this.describtionRowId) != null)) {
+                    if (
+                        specialLastRow &&
+                        counter ==
+                            this.tableElement.childNodes.length -
+                                (document.getElementById(
+                                    this.describtionRowId
+                                ) !=
+                                    null)
+                    ) {
                         rowDes.innerHTML = specialLastRow;
-                    }
-                    else {
+                    } else {
                         rowDes.innerText = "(" + counter + ")";
                     }
 
                     row.insertBefore(rowDes, row.firstChild);
                 }
-            });     
-
+            });
         } else {
             // if rowDescription provided, prepend character to each row
             var counter = 0;
@@ -473,7 +479,6 @@ export class Table {
                     val = stringToFraction(val);
                     this.fractionArray.array[i][j] = val;
                     adjustInputFontSize(input);
-
                 }
             }
         }
@@ -575,14 +580,6 @@ export function addKeyDownListener(tables, nextTableToTheRight = false) {
  */
 export function clearTables(tables) {
     tables.forEach(table => {
-        let emptyArray = [];
-        for (let i = 0; i < table.nRows; i++) {
-            let row = [];
-            for (let j = 0; j < table.nColumns; j++) {
-                row.push(new Fraction(0));
-            }
-            emptyArray.push(row);
-        }
-        table.setData(new Matrix(emptyArray));
+        table.setData(getEmptyMatrix(table.nRows, table.nColumns));
     });
 }

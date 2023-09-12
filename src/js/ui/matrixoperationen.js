@@ -1,5 +1,5 @@
 import { gaussElimination } from "../logic/gaussalgorithm.js";
-import { getUnitMatrix } from "../logic/matrix.js";
+import { getEmptyMatrix, getUnitMatrix } from "../logic/matrix.js";
 import {
     Table,
     addKeyDownListener,
@@ -114,9 +114,9 @@ addKeyDownListener([inputTable], true);
          * @returns {Array<Matrix>} - An array containing the transposed matrix.
          */
         func: matrix => {
-
             let result = matrix.transpose();
-            return [result]},
+            return [result];
+        },
     },
     {
         /**
@@ -131,11 +131,16 @@ addKeyDownListener([inputTable], true);
          * @returns {Array<Matrix>} - An array containing the inverse matrix.
          */
         func: matrix => {
-            let solMatrix = gaussElimination(
-                matrix,
-                getUnitMatrix(matrix.nRows)
-            );
-            return [solMatrix];
+            try {
+                let result = gaussElimination(
+                    matrix,
+                    getUnitMatrix(matrix.nRows)
+                );
+            } catch (e) {
+                let result = getEmptyMatrix(3, 3);
+                throw new InvalidInputException("Invalide Matrix!");
+            }
+            return [result];
         },
     },
     {
@@ -152,10 +157,18 @@ addKeyDownListener([inputTable], true);
          * @throws {InvalidInputException} - If the matrix is not square.
          */
         func: matrix => {
+            let result = getEmptyMatrix(3, 3);;
             if (matrix.nRows !== matrix.nColumns) {
-                throw new InvalidInputException("Determinante ist für nicht-quadratische Matrizen nicht definiert.");
+                throw new InvalidInputException(
+                    "Determinante ist für nicht-quadratische Matrizen nicht definiert."
+                );
             }
-            return [matrix.getDeterminantUsingGaussElimination()]
+            try {
+                result = matrix.getDeterminantUsingGaussElimination();
+            } catch (e) {
+                throw new InvalidInputException("Invalide Matrix!");
+            }
+            return [result];
         },
     },
 ].forEach(listener => {
