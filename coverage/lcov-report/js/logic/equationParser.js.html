@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90% </span>
+                <span class="strong">88.7% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>54/60</span>
+                <span class='fraction'>55/62</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.74% </span>
+                <span class="strong">87.8% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>35/39</span>
+                <span class='fraction'>36/41</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.88% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>48/54</span>
+                <span class='fraction'>49/56</span>
             </div>
         
             
@@ -194,7 +194,36 @@
 <a name='L129'></a><a href='#L129'>129</a>
 <a name='L130'></a><a href='#L130'>130</a>
 <a name='L131'></a><a href='#L131'>131</a>
-<a name='L132'></a><a href='#L132'>132</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -263,6 +292,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -322,6 +359,9 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -330,6 +370,15 @@ import { InvalidInputException } from "../exceptions.js";
 import { gaussElimination } from "./gaussalgorithm.js";
 import { getUnitMatrix } from "./matrix.js";
 &nbsp;
+/**
+ * Parses and evaluates an equation string containing mathematical operations and matrices.
+ * The function replaces alphabetic characters with matrices found in a given table.
+ *
+ * @param {string} equationString - The equation string to be parsed and evaluated.
+ * @param {Array} tables - An array of matrices used to replace alphabetic characters in the equation.
+ * @throws {InvalidInputException} Throws an exception if the equation string is invalid.
+ * @returns {*} The result of the evaluated equation, which could be a number, a matrix, or a fraction.
+ */
 export function calculate(equationString, tables) {
     // check that only allowed characters are used (a-z, 0-9 and +, -, *, /), also check no operands and operators come twice after each other.
     if (
@@ -391,7 +440,15 @@ export function calculate(equationString, tables) {
     return res;
 }
 &nbsp;
-// Evaluate the equation using operator precedence and grouping
+/**
+ * Evaluates a parsed equation represented as an array of elements.
+ * Handles operations like addition, subtraction, multiplication, determinant, and transpose.
+ * Operator precedence and grouping are considered.
+ *
+ * @param {Array} equation - The parsed equation as an array of elements like numbers, matrices, and operators.
+ * @throws {InvalidInputException} Throws an exception if invalid operations are encountered.
+ * @returns {*} The result of the evaluated equation, which could be a number, a matrix, or a fraction.
+ */
 function evaluate(equation) {
     // Handle grouping: find innermost parentheses and evaluate them first
     let openParenIndex = equation.lastIndexOf("(");
@@ -453,6 +510,9 @@ function evaluate(equation) {
             i -= 2;
         }
     }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (equation.length != 1) {
+<span class="cstat-no" title="statement not covered" >        throw new InvalidInputException("Invalide Rechenoperationen!");</span>
+    }
 &nbsp;
     return equation[0];
 }
@@ -463,7 +523,7 @@ function evaluate(equation) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-08-22T20:49:38.724Z
+                at 2023-09-12T15:41:26.665Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

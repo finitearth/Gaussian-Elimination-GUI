@@ -85,12 +85,12 @@ getById("remove-table").addEventListener("click", removeTable);
 
 // Set event listener for the "Calculate" button
 setEventListenerFunction("button-calculate", tables, [resultTable], () => {
+    let result = getEmptyMatrix(3, 3);
     let equation = getById("input-equation").value;
     try {
-        let result = calculate(equation, tables);
+        result = calculate(equation, tables);
     }
     catch (e) {
-        let result = getEmptyMatrix(3, 3);
         throw new InvalidInputException("Invalide Berechnungsoperationen!")
     }
     return [result];

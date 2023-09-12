@@ -131,13 +131,13 @@ addKeyDownListener([inputTable], true);
          * @returns {Array<Matrix>} - An array containing the inverse matrix.
          */
         func: matrix => {
+            let result = getEmptyMatrix(3, 3);
             try {
-                let result = gaussElimination(
+                result = gaussElimination(
                     matrix,
                     getUnitMatrix(matrix.nRows)
                 );
             } catch (e) {
-                let result = getEmptyMatrix(3, 3);
                 throw new InvalidInputException("Invalide Matrix!");
             }
             return [result];

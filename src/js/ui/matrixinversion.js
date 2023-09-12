@@ -1,5 +1,5 @@
 import { gaussElimination } from "../logic/gaussalgorithm.js";
-import { getUnitMatrix } from "../logic/matrix.js";
+import { getEmptyMatrix, getUnitMatrix } from "../logic/matrix.js";
 import { generateMatrix } from "../logic/generateExercise.js";
 import {
     addCombobox,
@@ -17,9 +17,9 @@ import {
 } from "../intermediate/eventlisteners.js";
 import { getById } from "../intermediate/getElement.js";
 import { designConfig } from "../config.js";
+import { InvalidInputException } from "../exceptions.js";
 
 // =========== Tables ===========
-
 /**
  * Adds a Table to a Parent Node and appends it to the tables array.
  * @param {parentId} id - ID of the parent node.
@@ -78,7 +78,7 @@ listenTableDimension(
     "rows",
     false,
     "",
-    [false, null],
+    [false, null]
 );
 
 // Listener for the number of columns in matrices
@@ -98,8 +98,17 @@ setEventListenerFunction(
     [coefTable, identityTable],
     [solIdentityTable, solCoefTable],
     (coefMatrix, solMatrix) => {
-        let outputMatrix = gaussElimination(coefMatrix, solMatrix);
+        let outputMatrix = getEmptyMatrix(
+            coefMatrix.nRows,
+            coefMatrix.nColumns
+        );
         let unitMatrix = getUnitMatrix(coefMatrix.nRows);
+        try {
+            outputMatrix = gaussElimination(coefMatrix, solMatrix);
+            unitMatrix = getUnitMatrix(coefMatrix.nRows);
+        } catch (e) {
+            throw new InvalidInputException("Invalider Input");
+        }
         return [unitMatrix, outputMatrix];
     }
 );
@@ -154,4 +163,3 @@ getById("button-clear").addEventListener("click", () => {
     clearTables(tables);
     clearRowOperations(rowOperations);
 });
-

@@ -73,10 +73,14 @@ for (let i = 0; i < coefTable.nRows; i++) {
         outputTables: [resCoefTable, resSolTable],
         func: (coefMatrix, solMatrix) => {
             // Perform Gauss elimination and measure time            
-            let t_0 = performance.now();    
             let unitMatrix = getUnitMatrix(coefMatrix.nRows);
             let outputMatrix = gaussElimination(coefMatrix, solMatrix);
-            console.log(performance.now() - t_0);
+            try {
+                let unitMatrix = getUnitMatrix(coefMatrix.nRows);
+                let outputMatrix = gaussElimination(coefMatrix, solMatrix);
+            }catch (e) {
+                throw new InvalidInputException("Invalide Matrix!");
+            }
             return [unitMatrix, outputMatrix];
         },
     },
