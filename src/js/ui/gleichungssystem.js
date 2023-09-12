@@ -64,7 +64,6 @@ for (let i = 0; i < coefTable.nRows; i++) {
 
 // =========== Event listeners ===========
 
-
 // Define event listeners with their associated functions
 [
     {
@@ -72,13 +71,12 @@ for (let i = 0; i < coefTable.nRows; i++) {
         inputTables: [coefTable, solTable],
         outputTables: [resCoefTable, resSolTable],
         func: (coefMatrix, solMatrix) => {
-            // Perform Gauss elimination and measure time            
             let unitMatrix = getUnitMatrix(coefMatrix.nRows);
             let outputMatrix = gaussElimination(coefMatrix, solMatrix);
             try {
-                let unitMatrix = getUnitMatrix(coefMatrix.nRows);
-                let outputMatrix = gaussElimination(coefMatrix, solMatrix);
-            }catch (e) {
+                unitMatrix = getUnitMatrix(coefMatrix.nRows);
+                outputMatrix = gaussElimination(coefMatrix, solMatrix);
+            } catch (e) {
                 throw new InvalidInputException("Invalide Matrix!");
             }
             return [unitMatrix, outputMatrix];
@@ -175,7 +173,6 @@ listenTableDimension(
     designConfig.nInitRows
 );
 
-
 // Listener for the number of columns in coefficient matrix
 listenTableDimension(
     "input-nr-var",
@@ -186,7 +183,7 @@ listenTableDimension(
     "x",
     [true, [false, null]],
     designConfig.nInitColumns
-); 
+);
 
 // Listener for the number of columns in solution matrix
 listenTableDimension(
@@ -198,7 +195,7 @@ listenTableDimension(
     "b",
     false,
     1
-); 
+);
 
 // Add a keydown listener to tables for handling special key events
 addKeyDownListener(tables, true);
