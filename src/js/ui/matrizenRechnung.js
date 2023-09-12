@@ -108,11 +108,6 @@ getById("button-representation-conversion").addEventListener("click", () => {
 // Add keydown listener to tables
 addKeyDownListener(tables);
 
-// Add event listener to the "Convert Representation" button for the result table
-getById("button-representation-conversion").addEventListener("click", () => {
-    resultTable.convertRepresentation(conversionButtonchecked);
-});
-
 // Add event listener to the "Clear" button
 getById("button-clear").addEventListener("click", () => {
     clearTables(tables);
