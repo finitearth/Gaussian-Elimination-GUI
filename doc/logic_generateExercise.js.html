@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: logic/generateExercise.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,53 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: logic/generateExercise.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Matrix } from "./matrix.js";
+import { Fraction } from "./fraction.js";
 
+/**
+ * Generates and exports a random matrix with the specified number of rows and columns.
+ *
+ * @param {number} rows - The number of rows the generated matrix should have.
+ * @param {number} cols - The number of columns the generated matrix should have.
+ * @returns {Matrix} The generated random matrix.
+ */
+export function generateMatrix(rows, cols) {
+    let matrix = getRandomMatrix(rows, cols);
+    return matrix;
+}
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+/**
+ * Creates a random matrix with the specified number of rows and columns.
+ * The elements of the matrix are fractions with random numerators between 0 and 9 and a denominator of 4.
+ *
+ * @param {number} rows - The number of rows the random matrix should have.
+ * @param {number} cols - The number of columns the random matrix should have.
+ * @returns {Matrix} The generated random matrix.
+ */
+function getRandomMatrix(rows, cols) {
+    let matrix = [];
+    for (let i = 0; i &lt; rows; i++) {
+        matrix.push([]);
+        for (let j = 0; j &lt; cols; j++) {
+            matrix[i].push(
+                new Fraction(Math.floor(Math.random() * 10), 4).reduce()
+            );
+        }
+    }
+    return new Matrix(matrix);
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

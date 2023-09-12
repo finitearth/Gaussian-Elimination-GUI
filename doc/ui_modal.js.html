@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: ui/modal.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,68 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: ui/modal.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var modal = document.getElementById("help-modal");
+var buttonOpen = document.getElementById("button-help-modal");
+var spanClose = document.getElementById("span-close");
+var buttonClose = document.getElementById("button-close");
+
+/**
+ * adds mouse click EventListener to button
+ * sets the style attribute "display" to "block"
+ * modal shows to user
+ */
+buttonOpen.addEventListener("click", function () {
+    modal.style.display = "block";
+});
+
+/**
+ * sets the style attribute "display" to "none"
+ */
+function closeModal() {
+    modal.style.display = "none";
+}
+
+/**
+ * adds mouse click EventListener to span
+ * calls method "closeModal"
+ * model not shown to user anymore
+ */
+spanClose.addEventListener("click", closeModal);
 
 
-    <h3> </h3>
+/**
+ * adds escape press EventListener to document
+ * calls method "closeModal"
+ * model not shown to user anymore
+ */
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        closeModal();
+    }
+});
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+/**
+ * adds escape press EventListener to document
+ * calls method "closeModal"
+ * model not shown to user anymore
+ */
+window.onclick = function (event) {
+    if (event.target == modal) {
+        closeModal();
+    }
+};
+</code></pre>
+        </article>
+    </section>
 
 
 

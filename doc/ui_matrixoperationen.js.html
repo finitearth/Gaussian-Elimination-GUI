@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: ui/matrixoperationen.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ui/matrixoperationen.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { gaussElimination } from "../logic/gaussalgorithm.js";
+import { getEmptyMatrix, getUnitMatrix } from "../logic/matrix.js";
+import {
+    Table,
+    addKeyDownListener,
+    clearTables,
+} from "../intermediate/table.js";
+import {
+    modifyDimListener,
+    listenTableDimension,
+    setEventListenerFunction,
+} from "../intermediate/eventlisteners.js";
+import { getById } from "../intermediate/getElement.js";
+import { designConfig } from "../config.js";
+import { InvalidInputException } from "../exceptions.js";
+
+// =========== Tables ===========
+/**
+ * Represents the input table for matrix operations.
+ * @type {Table}
+ */
+let inputTable = new Table("input-table-placeholder");
+
+/**
+ * Calling function addButtons from table.
+ * Adds buttons to change the dimension directly by buttons at the matrix.
+ */
+inputTable.addButtons();
+
+/**
+ * Represents the output table for displaying matrix results.
+ * @type {Table}
+ */
+let outputTable = new Table("output-table-placeholder");
+
+/**
+ * Calling function disbaleInput from table.
+ * Disables the input fields of the output table.
+ */
+outputTable.disableInput();
+
+// =========== Event Listeners ===========
+/**
+ * Listen for changes in the number of rows of the tables.
+ * @function
+ * @param {string} inputId - The HTML element ID for the input field.
+ * @param {Array&lt;Table>} tables - An array of table objects to update.
+ * @param {Array&lt;HTMLElement>} rowOperations - An array of rowopertion elements to update.
+ * @param {string} rowsOrCols - The dimension to listen for ("rows" or "cols").
+ * @param {boolean} allowSmaller - Whether to allow smaller dimension.
+ * @param {HTMLElement} desCharacter - The description element to update.
+ * @param {boolean} rowDescription - Indicates if the table has row description elements.
+ * @param {number} initialValue - The initial value for the dimension.
+ */
+listenTableDimension(
+    "input-nr-rows",
+    [inputTable, outputTable],
+    [],
+    "rows",
+    false,
+    null,
+    false,
+    designConfig.nInitRows
+);
+
+/**
+ * Listen for changes in the number of columns in the input table.
+ * @function
+ * @param {string} inputId - The HTML element ID for the input field.
+ * @param {Array&lt;Table>} tables - An array of table objects to update.
+ * @param {Array&lt;HTMLElement>} rowOperations - An array of rowopertion elements to update.
+ * @param {string} rowsOrCols - The dimension to listen for ("rows" or "cols").
+ * @param {boolean} allowSmaller - Whether to allow smaller dimension.
+ * @param {HTMLElement} desCharacter - The description element to update.
+ * @param {boolean} rowDescription - Indicates if the table has row description elements.
+ * @param {number} initialValue - The initial value for the dimension.
+ */
+listenTableDimension(
+    "input-nr-cols",
+    [inputTable, outputTable],
+    [],
+    "cols",
+    false,
+    null,
+    false,
+    designConfig.nInitColumns
+);
+
+/**
+ * Callin function addKeyDownListener from table.
+ * Enables moving from cell to cell with keyboard.
+ * @function
+ * @param {Array&lt;Table>} tables - An array of table objects to apply the listener to.
+ * @param {boolean} nextTableToTheRight - Whether there is more than one input table.
+ */
+addKeyDownListener([inputTable], true);
+
+/**
+ * Array of listener objects for matrix operations.
+ * Adds event listeners for matrix operations.
+ * @type {Array&lt;Object>}
+ */
+[
+    {
+        /**
+         * ID of the "Transpose" button.
+         * @type {string}
+         */
+        id: "button-transpose",
+        /**
+         * Function to transpose a matrix.
+         * @function
+         * @param {Matrix} matrix - The input matrix.
+         * @returns {Array&lt;Matrix>} - An array containing the transposed matrix.
+         */
+        func: matrix => {
+            let result = matrix.transpose();
+            return [result];
+        },
+    },
+    {
+        /**
+         * ID of the "Inverse" button.
+         * @type {string}
+         */
+        id: "button-inverse",
+        /**
+         * Function to calculate the inverse of a matrix.
+         * @function
+         * @param {Matrix} matrix - The input matrix.
+         * @returns {Array&lt;Matrix>} - An array containing the inverse matrix.
+         */
+        func: matrix => {
+            let result = getEmptyMatrix(3, 3);
+            try {
+                result = gaussElimination(
+                    matrix,
+                    getUnitMatrix(matrix.nRows)
+                );
+            } catch (e) {
+                throw new InvalidInputException("Invalide Matrix!");
+            }
+            return [result];
+        },
+    },
+    {
+        /**
+         * ID of the "Determinant" button.
+         * @type {string}
+         */
+        id: "button-determinant",
+        /**
+         * Function to calculate the determinant of a matrix.
+         * @function
+         * @param {Matrix} matrix - The input matrix.
+         * @returns {Array&lt;number>} - An array containing the determinant value.
+         * @throws {InvalidInputException} - If the matrix is not square.
+         */
+        func: matrix => {
+            let result = getEmptyMatrix(3, 3);;
+            if (matrix.nRows !== matrix.nColumns) {
+                throw new InvalidInputException(
+                    "Determinante ist für nicht-quadratische Matrizen nicht definiert."
+                );
+            }
+            try {
+                result = matrix.getDeterminantUsingGaussElimination();
+            } catch (e) {
+                throw new InvalidInputException("Invalide Matrix!");
+            }
+            return [result];
+        },
+    },
+].forEach(listener => {
+    /**
+     * Set event listener functions for matrix operations.
+     * @function
+     * @param {string} listener.id - The ID of the button triggering the event.
+     * @param {Array&lt;Table>} [inputTables] - An array of input table objects.
+     * @param {Array&lt;Table>} [outputTables] - An array of output table objects.
+     * @param {Function} listener.func - The function to execute when the button is clicked.
+     */
+    setEventListenerFunction(
+        listener.id,
+        [inputTable],
+        [outputTable],
+        listener.func
+    );
+});
+
+/**
+ * Add a click event listener to the "button-determinant" to remove brackets from the output table.
+ */
+getById("button-determinant").addEventListener("click", () => {
+    outputTable.removeBrackets();
+});
+/**
+ * Add a click event listener to the "button-inverse" to add brackets to the output table.
+ */
+getById("button-inverse").addEventListener("click", () => {
+    outputTable.addBrackets();
+});
+/**
+ * Add a click event listener to the "button-transpose" to add brackets to the output table.
+ */
+getById("button-transpose").addEventListener("click", () => {
+    outputTable.addBrackets();
+});
+
+/**
+ * Add an event listener to modify table dimensions.
+ * @function
+ * @param {Array&lt;Table>} tables - An array of table objects to apply the listener to.
+ */
+modifyDimListener([inputTable, outputTable]);
+
+/**
+ * Flag indicating whether the conversion toggle button is checked.
+ * @type {boolean}
+ */
+let conversionButtonchecked = false;
+/**
+ * Add a click event listener to the "button-representation-conversion" to toggle matrix representation.
+ */
+getById("button-representation-conversion").addEventListener("click", () => {
+    conversionButtonchecked = !conversionButtonchecked;
+    [inputTable, outputTable].forEach(table => {
+        table.convertRepresentation(conversionButtonchecked);
+    });
+});
+
+/**
+ * Add a click event listener to the "button-clear" to clear the table inputs.
+ */
+getById("button-clear").addEventListener("click", () => {
+    clearTables([inputTable, outputTable]);
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DivByZeroException_DivByZeroException.html">DivByZeroException</a></li><li><a href="Fraction.html">Fraction</a></li><li><a href="InvalidInputException_InvalidInputException.html">InvalidInputException</a></li><li><a href="InvalidMatrixDimension_InvalidMatrixDimension.html">InvalidMatrixDimension</a></li><li><a href="InvalidRowOperationException_InvalidRowOperationException.html">InvalidRowOperationException</a></li><li><a href="Matrix.html">Matrix</a></li><li><a href="RowOperation.html">RowOperation</a></li><li><a href="Table.html">Table</a></li><li><a href="UnsolvableMatrixException_UnsolvableMatrixException.html">UnsolvableMatrixException</a></li></ul><h3>Global</h3><ul><li><a href="global.html#NEGONE">NEGONE</a></li><li><a href="global.html#ONE">ONE</a></li><li><a href="global.html#ZERO">ZERO</a></li><li><a href="global.html#adaptComboboxes">adaptComboboxes</a></li><li><a href="global.html#addCombobox">addCombobox</a></li><li><a href="global.html#addKeyDownListener">addKeyDownListener</a></li><li><a href="global.html#addTable">addTable</a></li><li><a href="global.html#alertError">alertError</a></li><li><a href="global.html#applyRowOperations">applyRowOperations</a></li><li><a href="global.html#calculate">calculate</a></li><li><a href="global.html#checkValidity">checkValidity</a></li><li><a href="global.html#clearRowOperations">clearRowOperations</a></li><li><a href="global.html#clearTables">clearTables</a></li><li><a href="global.html#closeModal">closeModal</a></li><li><a href="global.html#conversionButtonchecked">conversionButtonchecked</a></li><li><a href="global.html#createHTMLForNavbar">createHTMLForNavbar</a></li><li><a href="global.html#evaluate">evaluate</a></li><li><a href="global.html#func">func</a></li><li><a href="global.html#gaussElimination">gaussElimination</a></li><li><a href="global.html#generateMatrix">generateMatrix</a></li><li><a href="global.html#getById">getById</a></li><li><a href="global.html#getEmptyMatrix">getEmptyMatrix</a></li><li><a href="global.html#getRandomMatrix">getRandomMatrix</a></li><li><a href="global.html#getUnitMatrix">getUnitMatrix</a></li><li><a href="global.html#id">id</a></li><li><a href="global.html#inputTable">inputTable</a></li><li><a href="global.html#listenTableDimension">listenTableDimension</a></li><li><a href="global.html#modifyDimListener">modifyDimListener</a></li><li><a href="global.html#outputTable">outputTable</a></li><li><a href="global.html#removeCombobox">removeCombobox</a></li><li><a href="global.html#removeTable">removeTable</a></li><li><a href="global.html#setEventListenerFunction">setEventListenerFunction</a></li><li><a href="global.html#simplexAlgorithm">simplexAlgorithm</a></li><li><a href="global.html#stringToFraction">stringToFraction</a></li><li><a href="global.html#updateRowOperations">updateRowOperations</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Sep 12 2023 21:27:19 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
