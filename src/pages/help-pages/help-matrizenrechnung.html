@@ -71,18 +71,20 @@
             </li>
             <li>
                 Skalar : eine Matrix kann mit einem Skalar, also einer reellen Zahl, multipliziert werden.
-                Dabei wird
-                jedes Element mit dem Skalar multipliziert.
-            </li>
-            <li>
-                x : mit dem x wird das Kreuzprodukt zweier Matrizen berechnet. Hierfür müssen die Matrizen
-                die gleiche Größe
-                haben. Das Ergebnis ist ein Vektor.
+                Dabei wird jedes Element der Matrix mit dem Skalar multipliziert. Zu beachten ist, dass dieser Skalar als Bruch einzugeben ist.
             </li>
             <li>
                 () : um die Reihenfolge der Berechnungen zu definieren, können Klammern genutzt werden. Die
                 Reihenfolge der
                 Rechenoperationen entspricht Klammer vor Punkt vor Strich.
+            </li>
+            <li>
+                ^T: Um die Transponierte einer Matrix zu berechnen, wird der Matrixname mit einem hochgestellten T versehen.
+                Die Transponation einer Matrix entspricht der Spiegelung der Matrix an ihrer Hauptdiagonalen.
+            </li>
+            <li>
+                ^-1: Um die Inverse einer Matrix zu berechnen, wird der Matrixname mit einem hochgestellten -1 versehen.
+                Die Inverse einer Matrix entspricht der Matrix, die mit der ursprünglichen Matrix multipliziert die Einheitsmatrix ergibt.
             </li>
         </ul>
         </p>
@@ -91,13 +93,9 @@
             durchgeführt werden. Das
             Ergebnis wird in der Matrix neben dem Textfeld ausgegeben. Sollte die im Textfeld angegebene
             Berechnung nicht korrekt
-            sein, ist die Nutzung des Buttons und damit auch die Durchführung der Berechnung nicht möglich.
-            Bei der Eingabe sollte
-            daher auf eine korrekte Angabe der Objekte und Operatoren geachtet werden.
+            sein, ist die Nutzung des Buttons und damit auch die Durchführung der Berechnung nicht möglich und es wird eine Fehlermeldung geworfen.
         </p>
         <p>
-            Sollte ein unerwartetes Ergebnis ausgegeben werden sollten die Matrizen und die angegebene
-            Berechnung überprüft werden.
             Die Eingabematrizen, das Textfeld für die Berechnung und die Ausgabematrix können über den
             Button 'Leeren' geleert werden.
             Die Anzahl an Matrizen wird dabei zurückgesetzt.
