@@ -85,5 +85,7 @@ export function simplexAlgorithm(coefMatrix, bMatrix) {
             bMatrix = bMatrix.addRow(i, bMatrix.getRow(pivotRow).mul(value));
         }
     }
+
+
     return [coefMatrix, bMatrix];
 }

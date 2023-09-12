@@ -51,7 +51,7 @@ let solCoefTable = addTable("resultContainerTableRowCol2", true);
 let tables = [coefTable, identityTable, solIdentityTable, solCoefTable];
 
 // create initial comboboxes
-let rowOperations = []; // rowOperations
+let rowOperations = [];
 for (let i = 0; i < 3; i++) {
     rowOperations = addCombobox("combobox_" + i, rowOperations, coefTable);
 }
