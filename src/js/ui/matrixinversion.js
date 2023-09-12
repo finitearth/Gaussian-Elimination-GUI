@@ -22,7 +22,10 @@ import { designConfig } from "../config.js";
 
 /**
  * Adds a Table to a Parent Node and appends it to the tables array.
- * @paramenter {parentId} ID of the parent node.
+ * @param {parentId} id - ID of the parent node.
+ * @param {disableInput} disableInput - Flag to disable input in the table.
+ * @param {rowDescription} rowDescription - Flag to add row descriptions.
+ * @returns {Table} - The created table object.
  */
 function addTable(id, disableInput, rowDescription = false) {
     let table = new Table(id);
@@ -38,7 +41,7 @@ function addTable(id, disableInput, rowDescription = false) {
 
 var dimension = 3;
 
-// creating tables
+// Create tables with specific settings
 let coefTable = addTable("table-element-1", false, true);
 let identityTable = addTable("table-element-2", false);
 identityTable.setData(getUnitMatrix(dimension));
@@ -53,6 +56,9 @@ for (let i = 0; i < 3; i++) {
     rowOperations = addCombobox("combobox_" + i, rowOperations, coefTable);
 }
 
+// Define event listeners for input dimension changes
+
+// Listener for the number of rows in coefficient matrix
 listenTableDimension(
     "button-dimension",
     [coefTable, solIdentityTable],
@@ -63,6 +69,8 @@ listenTableDimension(
     [true, [false, null]],
     designConfig.nInitRows
 );
+
+// Listener for the number of rows in solution matrix
 listenTableDimension(
     "button-dimension",
     [solCoefTable, identityTable],
@@ -72,8 +80,11 @@ listenTableDimension(
     "",
     [false, null],
 );
+
+// Listener for the number of columns in matrices
 listenTableDimension("button-dimension", tables, rowOperations, "cols");
 
+// Set event listener for the "Set Dimension" button
 setEventListenerFunction(
     "button-dimension",
     [identityTable],
@@ -81,6 +92,7 @@ setEventListenerFunction(
     matrix => [getUnitMatrix(matrix.nRows)]
 );
 
+// Set event listener for the "Solve" button
 setEventListenerFunction(
     "button-solve-solution",
     [coefTable, identityTable],
@@ -92,6 +104,7 @@ setEventListenerFunction(
     }
 );
 
+// Set event listener for the "Adapt Result" button
 setEventListenerFunction(
     "button-adapt-result",
     [solIdentityTable, solCoefTable],
@@ -99,6 +112,7 @@ setEventListenerFunction(
     (coefMatrix, solMatrix) => [coefMatrix, solMatrix]
 );
 
+// Set event listener for the "Calculate" button
 setEventListenerFunction(
     "button-calculate",
     [coefTable, identityTable],
@@ -111,25 +125,31 @@ setEventListenerFunction(
     }
 );
 
+// Variable to track if conversion button is checked
 let conversionButtonChecked = false;
 getById("button-representation-conversion").addEventListener("click", () => {
     conversionButtonChecked = !conversionButtonChecked;
 
+    // Iterate through tables and convert their representation based on the button status
     tables.forEach(table => {
         table.convertRepresentation(conversionButtonChecked);
     });
 });
 
+// Set event listener for the "Generate Exercise" button
 setEventListenerFunction("button-generate-excercise", [], [coefTable], () => [
     generateMatrix(solCoefTable.nRows, solCoefTable.nColumns),
 ]);
 
+// Add event listener to clear result tables when generating a new exercise
 getById("button-generate-excercise").addEventListener("click", () => {
     clearTables([solIdentityTable, solCoefTable]);
 });
 
+// Add a keydown listener to tables for handling special key events
 addKeyDownListener(tables, true);
 
+// Add event listener to the "Clear" button to clear tables and row operations
 getById("button-clear").addEventListener("click", () => {
     clearTables(tables);
     clearRowOperations(rowOperations);
