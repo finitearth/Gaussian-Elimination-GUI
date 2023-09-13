@@ -4,7 +4,9 @@ import { Fraction, stringToFraction } from "../logic/fraction.js";
 import { getById } from "./getElement.js";
 
 /**
- *  Represents a table object with functionality to add, remove rows and columns dynamically.
+ * Represents a table object with functionality to add, remove rows and columns dynamically.
+ * A Table is a object visually representing the matrix, enabling the user to input.
+ * 
  * @class
  * @constructor
  * @param {string} id - The id of the table to be created.

@@ -1,3 +1,4 @@
+import { InvalidInputException } from "../exceptions.js";
 import { Fraction, NEGONE, ZERO } from "./fraction.js";
 
 /**
@@ -21,7 +22,7 @@ export function simplexAlgorithm(coefMatrix, bMatrix) {
     while (!finished) {
         count += 1;
         if (count > 100) {
-            throw new Error("na");
+            throw new InvalidInputException("Invalid Matrix");
         }
         // check for lowest negative value
         finished = true;
