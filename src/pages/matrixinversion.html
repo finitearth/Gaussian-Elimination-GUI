@@ -13,14 +13,17 @@
 </head>
 
 <body>
+    <!-- Navigation Bar -->
     <nav id="navbar"></nav>
 
+    <!-- Header and Helpbutton -->
     <header>
         <h1>Inversenberechnung</h1>
         <button id="button-help-modal" class="button-outline button-help">Hilfe</button>
     </header>
 
     <main>
+        <!-- Help modal -->
         <div id="help-modal" class="modal">
             <div class="modal-content">
                 <span id="span-close" class="close">&times;</span>
@@ -31,8 +34,10 @@
             </div>
         </div>
 
+        <!-- Error Alert -->
         <div id="alert" class="alert hidden"></div>
-
+        
+        <!-- Dimension input and Buttons -->
         <div class="page-divider">
             <label for="button-dimension">Dimensionen:</label>
             <input id="button-dimension" type="number">
@@ -48,6 +53,7 @@
             </label>
         </div>
 
+        <!-- Input Tables -->
         <div class="page-divider align-center">
             <table id="table">
                 <tr id="table_row">
@@ -61,14 +67,16 @@
                     </td>
                 </tr>
             </table>
-        </div>
+        </div> 
 
+        <!-- Operation buttons -->
         <div class="container-button">
             <button id="button-calculate" class="button-primary button-gl-inv button-down">Berechnen</button>
             <button id="button-solve-solution" class="button-primary button-gl-inv button-solve">Lösen</button>
             <button id="button-adapt-result" class="button-primary button-gl-inv button-up">Hoch</button>
         </div>
 
+        <!-- Output Tables -->
         <div class="page-divider align-center">
             <table id="resultContainerTable">
                 <td id="resultContainerTableRowCol1"></td>
@@ -78,11 +86,13 @@
         </div>
     </main>
 
+    <!-- Impressum link -->
     <footer>
         <a href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
     </footer>
 </body>
 
+<!-- Script imports -->
 <script src="../js/ui/navbar.js"></script>
 <script src="../js/ui/matrixinversion.js" type="module"></script>
 <script src="../js/ui/modal.js"></script>

@@ -53,7 +53,7 @@ export function simplexAlgorithm(coefMatrix, bMatrix) {
 
         // choose pivotrow
         let pivotRow = 0;
-        let pivotRowValue = new Fraction(999999, 1); // TODO max fracs
+        let pivotRowValue = new Fraction(Number.MAX_VALUE, 1);
         coefMatrix.iterateElements().forEach(([i, j, value]) => {
             if (j !== pivotColumn || i === coefMatrix.nRows - 1) {
                 return;
@@ -86,7 +86,6 @@ export function simplexAlgorithm(coefMatrix, bMatrix) {
             bMatrix = bMatrix.addRow(i, bMatrix.getRow(pivotRow).mul(value));
         }
     }
-
 
     return [coefMatrix, bMatrix];
 }

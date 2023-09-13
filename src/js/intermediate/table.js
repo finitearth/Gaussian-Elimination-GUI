@@ -77,10 +77,9 @@ export class Table {
     }
 
     /**
-
-    Sets the number of columns in the table.
-    @method
-    @param {number} nColumns - The number of columns to set in the table.
+    * Sets the number of columns in the table.
+    * @method
+    * @param {number} nColumns - The number of columns to set in the table.
     */
     setNColumns(nColumns) {
         while (this.nColumns < nColumns) {

@@ -13,14 +13,17 @@
 </head>
 
 <body>
+    <!-- Navigation Bar -->
     <nav id="navbar"></nav>
 
+    <!-- Header and Helpbutton -->
     <header>
         <h1>Matrizenrechnung</h1>
         <button id="button-help-modal" class="button-outline button-help">Hilfe</button>
     </header>
 
     <main>
+        <!-- Help modal -->
         <div id="help-modal" class="modal">
             <div class="modal-content">
                 <span id="span-close" class="close">&times;</span>
@@ -31,8 +34,10 @@
             </div>
         </div>
 
+        <!-- Error Alert -->
         <div id="alert" class="alert hidden"></div>
 
+        <!-- Buttons -->
         <div class="page-divider">
             <div class="matrix-overflow-box">
                 <div id="table"></div>
@@ -51,6 +56,7 @@
             </div>
         </div>
 
+        <!-- Equation input and output table -->
         <div class="page-divider">
             <h2>Berechnung</h2>
             <button id="button-calculate" class="button-primary button-calculate">
@@ -70,11 +76,13 @@
         </div>
     </main>
 
+    <!-- Impressum link -->
     <footer>
         <a href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
     </footer>
 </body>
 
+<!-- Script imports -->
 <script src="../js/ui/navbar.js"></script>
 <script src="../js/ui/matrizenRechnung.js" type="module"></script>
 <script src="../js/ui/modal.js"></script>

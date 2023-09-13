@@ -12,14 +12,17 @@
 </head>
 
 <body>
+    <!-- Navigation Bar -->
     <nav id="navbar"></nav>
 
+    <!-- Header and Helpbutton -->
     <header>
         <h1>Matrixoperationen</h1>
         <button id="button-help-modal" class="button-outline button-help">Hilfe</button>
     </header>
 
     <main>
+        <!-- Help modal -->
         <div id="help-modal" class="modal">
             <div class="modal-content">
                 <span id="span-close" class="close">&times;</span>
@@ -30,8 +33,10 @@
             </div>
         </div>
 
+        <!-- Error Alert -->
         <div id="alert" class="alert hidden"></div>
 
+        <!-- Dimension input and Buttons -->
         <form class="page-divider">
             <label for="input-nr-rows">Anzahl Zeilen:</label>
             <input type="number" id="input-nr-rows" />
@@ -44,26 +49,31 @@
             </label>
         </form>
 
+        <!-- Input Table -->
         <div class="page-divider align-center">
             <table id="input-table-placeholder"></table>
         </div>
 
+        <!-- Operations -->
         <div class="container-button">
             <button class="button-primary" id="button-inverse">M⁻¹</button>
             <button class="button-primary" id="button-determinant">|M|</button>
             <button class="button-primary" id="button-transpose">Mᵀ</button>
         </div>
 
+        <!-- Output Table -->
         <div class="page-divider align-center">
             <table id="output-table-placeholder"></table>
         </div>
     </main>
 
+    <!-- Impressum link -->
     <footer>
         <a href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
     </footer>
 </body>
 
+<!-- Script imports -->
 <script src="../js/ui/navbar.js"></script>
 <script src="../js/ui/matrixoperationen.js" type="module"></script>
 <script src="../js/ui/modal.js"></script>
