@@ -73,6 +73,7 @@
     padding: 2px;
     vertical-align: bottom;
     text-align: left;
+    overflow-x: auto;
 }
 
 .vertical {

@@ -177,6 +177,7 @@ select {
     overflow: hidden;
     object-fit: contain;
     object-position: center;
+    overflow-x: auto;
 }
 
 /* Style buttons */
