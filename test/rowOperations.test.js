@@ -158,11 +158,11 @@ test("handleComboboxButtons should save user inputs after the user collapsed the
     expect(combobox_1.children[1].children.length).toBe(2);
     expect(combobox_1.children[3].children.length).toBe(2);
     expect(combobox_1.children[5].children.length).toBe(2);
-    expect(combobox_1.children[6].children.length).toBe(table.nRows);
+    expect(combobox_1.children[4].children.length).toBe(table.nRows);
 
     // check the text fields
     expect(combobox_1.children[2].value).toBe("1");
-    expect(combobox_1.children[4].value).toBe("2");
+    expect(combobox_1.children[6].value).toBe("2");
 
     // check the dropdowns
     expect(combobox_1.children[1].value).toBe("/");
@@ -184,13 +184,13 @@ test("removeRowDropdownSelectOption should work", () => {
     let combobox_1 = document.getElementById("combobox_0");
 
     expect(combobox_1.children.length).toBe(7);
-    expect(combobox_1.children[6].children.length).toBe(3);
+    expect(combobox_1.children[4].children.length).toBe(3);
 
     // call removeRowDropdownSelectOption
     rowOperation.removeRowDropdownSelectOption(2);
 
     expect(combobox_1.children.length).toBe(7);
-    expect(combobox_1.children[6].children.length).toBe(2);
+    expect(combobox_1.children[4].children.length).toBe(2);
 });
 
 test("setNRowDropdownSelectOptions should work if the number of rows is reduced", () => {
