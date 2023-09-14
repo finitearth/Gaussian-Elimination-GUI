@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: intermediate/eventlisteners.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: intermediate/eventlisteners.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { adaptComboboxes, updateRowOperations } from "./rowoperation.js";
+import { designConfig } from "../config.js";
+import { getById } from "./getElement.js";
+import { alertError } from "../exceptions.js";
+
+/**
+ * Adds event listeners for modifying table dimensions (rows and columns).
+ * @param {Table[]} tables - An array of table objects to be modified.
+ */
+export function modifyDimListener(tables) {
+    // Loop through buttons for adding/removing rows and columns
+    ["addrow", "addcol", "removerow", "removecol"].forEach(b => {
+        // Add event listener for each button click
+        getById(b).addEventListener("click", () => {
+            let nRows = Number(getById("input-nr-rows").value);
+            let nCols = Number(getById("input-nr-cols").value);
+            if (b == "addrow") {
+                nRows++;
+            } else if (b == "addcol") {
+                nCols++;
+            } else if (b == "removerow") {
+                nRows--;
+            } else if (b == "removecol") {
+                nCols--;
+            }
+            // Ensure dimensions stay within configured limits
+            nRows = Math.min(nRows, designConfig.maxRows);
+            nCols = Math.min(nCols, designConfig.maxColumns);
+            nRows = Math.max(nRows, designConfig.minRows);
+            nCols = Math.max(nCols, designConfig.minColumns);
+            getById("input-nr-rows").value = nRows;
+            getById("input-nr-cols").value = nCols;
+            // Update the dimensions of all tables
+            tables.forEach(table => {
+                table.setNRows(nRows);
+                table.setNColumns(nCols);
+            });
+        });
+    });
+}
+
+/**
+ * Sets an event listener for a button element to perform a matrix operation when clicked.
+ * @param {string} buttonId - The ID of the button element.
+ * @param {Table[]} inputTables - An array of input table objects.
+ * @param {Table[]} outputTables - An array of output table objects.
+ * @param {function} operation - The matrix operation function.
+ * @param {boolean} [alertOnError=true] - Indicates whether to display an error alert if an exception occurs.
+ */
+export function setEventListenerFunction(
+    buttonId,
+    inputTables,
+    outputTables,
+    operation,
+    alertOnError = true
+) {
+    let button = getById(buttonId);
+    button.addEventListener("click", () => {
+        try {
+            // Get input matrices from input tables
+            let inputMatrices = inputTables.map(table => table.getData());
+            // Perform the matrix operation
+            let outputMatrices = operation(...inputMatrices);
+
+            // Set the data in output tables with the resulting matrices
+            outputTables.forEach((table, index) =>
+                table.setData(outputMatrices[index])
+            );
+            
+        } catch (error) {
+            // Handle errors, either by displaying an alert or rethrowing the error
+            if (alertOnError) alertError(error);
+            else throw error;
+        }
+    });
+}
+
+/**
+ * Adds an event listener to an input element to dynamically update table dimensions (rows or columns).
+ * @param {string} inputId - The ID of the input element.
+ * @param {Table[]} tables - An array of table objects to be updated.
+ * @param {RowOperation[]} rowOperations - An array of row operation objects.
+ * @param {string} rowsOrCols - Indicates whether to update rows or columns.
+ * @param {boolean} [allowSmaller=false] - Indicates whether to allow a smaller number of rows/columns.
+ * @param {string} [desCharacter=null] - The character to be added in column descriptions.
+ * @param {Array} [rowDescription=null] - An array containing a row description character and description text.
+ * @param {number} [defaultValue=null] - The default value for the input element.
+ */
+export function listenTableDimension(
+    inputId,
+    tables,
+    rowOperations,
+    rowsOrCols,
+    allowSmaller = false,
+    desCharacter = null,
+    rowDescription = null,
+    defaultValue = null
+) {
+    let input = getById(inputId);
+    if (defaultValue) {
+        input.value = defaultValue;
+    }
+    input.addEventListener("input", e => {
+        e.target.value = Math.min(e.target.value, designConfig.maxRows);
+        let min = allowSmaller ? 1 : designConfig.minRows;
+        e.target.value = Math.max(e.target.value, min);
+        let numberEquations = e.target.value;
+        tables.forEach(table => {
+            if (rowsOrCols === "rows") {
+                // Update the number of rows for each table
+                table.setNRows(numberEquations);
+                // Update row operations if applicable
+                if (rowOperations.length > 0) {
+                    rowOperations = updateRowOperations(
+                        rowOperations,
+                        rowOperations.length,
+                        numberEquations
+                    );
+
+                    rowOperations = adaptComboboxes(
+                        rowOperations,
+                        table,
+                        numberEquations
+                    );
+
+                }
+
+                // Add row description if provided
+                if (rowDescription[0]) {
+                    table.addRowDescription(rowDescription[1][0], rowDescription[1][1]);
+                }
+
+            } else if (rowsOrCols === "cols") {
+                // Update the number of columns for each table
+                table.setNColumns(numberEquations);
+                // Add column description if provided
+                if (desCharacter) {
+                    table.addColumnDescription(desCharacter);
+                }
+            }
+        });
+    });
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DivByZeroException_DivByZeroException.html">DivByZeroException</a></li><li><a href="Fraction.html">Fraction</a></li><li><a href="InvalidInputException_InvalidInputException.html">InvalidInputException</a></li><li><a href="InvalidMatrixDimension_InvalidMatrixDimension.html">InvalidMatrixDimension</a></li><li><a href="InvalidRowOperationException_InvalidRowOperationException.html">InvalidRowOperationException</a></li><li><a href="Matrix.html">Matrix</a></li><li><a href="RowOperation.html">RowOperation</a></li><li><a href="Table.html">Table</a></li><li><a href="UnsolvableMatrixException_UnsolvableMatrixException.html">UnsolvableMatrixException</a></li></ul><h3>Global</h3><ul><li><a href="global.html#NEGONE">NEGONE</a></li><li><a href="global.html#ONE">ONE</a></li><li><a href="global.html#ZERO">ZERO</a></li><li><a href="global.html#adaptComboboxes">adaptComboboxes</a></li><li><a href="global.html#addCombobox">addCombobox</a></li><li><a href="global.html#addKeyDownListener">addKeyDownListener</a></li><li><a href="global.html#addTable">addTable</a></li><li><a href="global.html#alertError">alertError</a></li><li><a href="global.html#applyRowOperations">applyRowOperations</a></li><li><a href="global.html#calculate">calculate</a></li><li><a href="global.html#checkValidity">checkValidity</a></li><li><a href="global.html#clearRowOperations">clearRowOperations</a></li><li><a href="global.html#clearTables">clearTables</a></li><li><a href="global.html#closeModal">closeModal</a></li><li><a href="global.html#createHTMLForNavbar">createHTMLForNavbar</a></li><li><a href="global.html#evaluate">evaluate</a></li><li><a href="global.html#gaussElimination">gaussElimination</a></li><li><a href="global.html#generateMatrix">generateMatrix</a></li><li><a href="global.html#getById">getById</a></li><li><a href="global.html#getEmptyMatrix">getEmptyMatrix</a></li><li><a href="global.html#getRandomMatrix">getRandomMatrix</a></li><li><a href="global.html#getUnitMatrix">getUnitMatrix</a></li><li><a href="global.html#listenTableDimension">listenTableDimension</a></li><li><a href="global.html#modifyDimListener">modifyDimListener</a></li><li><a href="global.html#removeCombobox">removeCombobox</a></li><li><a href="global.html#removeTable">removeTable</a></li><li><a href="global.html#setEventListenerFunction">setEventListenerFunction</a></li><li><a href="global.html#simplexAlgorithm">simplexAlgorithm</a></li><li><a href="global.html#stringToFraction">stringToFraction</a></li><li><a href="global.html#updateRowOperations">updateRowOperations</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Sep 14 2023 23:45:06 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

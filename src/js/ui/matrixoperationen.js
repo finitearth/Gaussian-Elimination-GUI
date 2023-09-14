@@ -15,10 +15,7 @@ import { designConfig } from "../config.js";
 import { InvalidInputException } from "../exceptions.js";
 
 // =========== Tables ===========
-/**
- * Represents the input table for matrix operations.
- * @type {Table}
- */
+// Represents the input table for matrix operations.
 let inputTable = new Table("input-table-placeholder");
 
 /**
@@ -27,10 +24,7 @@ let inputTable = new Table("input-table-placeholder");
  */
 inputTable.addButtons();
 
-/**
- * Represents the output table for displaying matrix results.
- * @type {Table}
- */
+// Represents the output table for displaying matrix results.
 let outputTable = new Table("output-table-placeholder");
 
 /**
