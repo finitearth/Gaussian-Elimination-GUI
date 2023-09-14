@@ -18,8 +18,8 @@ describe("modifyDimListener()", () => {
         const dom = new JSDOM(`
       <html>
         <body>
-          <input id="input-nr-rows" value="2">
-          <input id="input-nr-cols" value="2">
+          <input id="input-nr-rows" value="3">
+          <input id="input-nr-cols" value="3">
           <button id="addrow"></button>
           <button id="addcol"></button>
           <button id="removerow"></button>
@@ -55,7 +55,7 @@ describe("modifyDimListener()", () => {
         getById("addrow").click();
 
         // Check that the number of rows has increased
-        expect(getById("input-nr-rows").value).toEqual("3");
+        expect(getById("input-nr-rows").value).toEqual("4");
     });
 
     it("should increase the number of columns when the add column button is clicked", () => {
@@ -66,12 +66,15 @@ describe("modifyDimListener()", () => {
         getById("addcol").click();
 
         // Check that the number of columns has increased
-        expect(getById("input-nr-cols").value).toEqual("3");
+        expect(getById("input-nr-cols").value).toEqual("4");
     });
 
     it("should decrease the number of rows when the remove row button is clicked", () => {
         // Call the function with the mock tables
         modifyDimListener(mockTables);
+
+        console.log("Hier bin ich")
+        console.log(getById("input-nr-rows").value)
 
         // Click the remove row button
         getById("removerow").click();
