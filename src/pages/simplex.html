@@ -1,110 +1,95 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <title>Simplex</title>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link rel="stylesheet" href="../style/style.css" type="text/css" />
-        <link
-            rel="stylesheet"
-            href="../style/gleichungssystem-matrixinversion-style.css"
-            type="text/css"
-        />
-        <link rel="icon" href="../images/icon_logo.png" />
-    </head>
+    <title>Simplex</title>
 
-    <body>
-        <!-- Navigation Bar -->
-        <nav id="navbar"></nav>
+    <link rel="stylesheet" href="../style/style.css" type="text/css" />
+    <link rel="stylesheet" href="../style/gleichungssystem-matrixinversion-style.css" type="text/css" />
+    <link rel="icon" href="../images/icon_logo.png" />
+</head>
 
-        <!-- Header and Helpbutton -->
-        <header>
-            <h1>Simplex</h1>
-            <button id="button-help-modal" class="button-outline button-help">
-                Hilfe
+<body>
+    <!-- Navigation Bar -->
+    <nav id="navbar"></nav>
+
+    <!-- Header and Helpbutton -->
+    <header>
+        <h1>Simplex</h1>
+        <button id="button-help-modal" class="button-outline button-help">
+            Hilfe
+        </button>
+    </header>
+
+    <main>
+        <!-- Help modal -->
+        <div id="help-modal" class="modal">
+            <div class="modal-content">
+                <span id="span-close" class="close">&times;</span>
+                <h2>Hilfe - Simplex</h2>
+                <h3 class="subheading-help">Bedienungsanleitung & Tipps</h3>
+                <iframe src="help-pages/help-simplex.html" title="Hilfe Simplex" class="help-content-box"></iframe>
+            </div>
+        </div>
+
+        <!-- Error Alert -->
+        <div id="alert" class="alert hidden"></div>
+
+        <!-- Dimension input and Buttons -->
+        <form class="page-divider">
+            <label for="input-nr-rows">Anzahl Zeilen:</label>
+            <input type="number" id="input-nr-rows" />
+            <label for="input-nr-cols">Anzahl Spalten:</label>
+            <input type="number" id="input-nr-cols" />
+            <button id="button-clear" class="button-primary button-clear button-bar">
+                Leeren
             </button>
-        </header>
+            <label class="switch">
+                <input type="checkbox" id="button-representation-conversion" />
+                <span class="slider round"></span>
+            </label>
+        </form>
 
-        <main>
-            <!-- Help modal -->
-            <div id="help-modal" class="modal">
-                <div class="modal-content">
-                    <span id="span-close" class="close">&times;</span>
-                    <h2>Hilfe - Simplex</h2>
-                    <h3 class="subheading-help">Bedienungsanleitung & Tipps</h3>
-                    <iframe
-                        src="help-pages/help-simplex.html"
-                        title="Hilfe Simplex"
-                        class="help-content-box"
-                    ></iframe>
-                </div>
-            </div>
-
-            <!-- Error Alert -->
-            <div id="alert" class="alert hidden"></div>
-
-            <!-- Dimension input and Buttons -->
-            <form class="page-divider">
-                <label for="input-nr-rows">Anzahl Zeilen:</label>
-                <input type="number" id="input-nr-rows" />
-                <label for="input-nr-cols">Anzahl Spalten:</label>
-                <input type="number" id="input-nr-cols" />
-                <button
-                    id="button-clear"
-                    class="button-primary button-clear button-bar"
-                >
-                    Leeren
-                </button>
-                <label class="switch">
-                    <input
-                        type="checkbox"
-                        id="button-representation-conversion"
-                    />
-                    <span class="slider round"></span>
-                </label>
-            </form>
-
-            <!-- Input Tables -->
-            <div class="page-divider align-center">
-                <table id="table">
-                    <tr>
-                        <td id="coef-table"></td>
-                        <td class="vertical"></td>
-                        <td id="rhs-table"></td>
-                    </tr>
-                </table>
-            </div>
-
-            <!-- Operation buttons -->
-            <div class="container-button">
-                <button
-                    id="button-calculate"
-                    class="button-primary button-solve button-gl-inv"
-                >
-                    Lösen
-                </button>
-            </div>
-
-            <!-- output table -->
-            <div class="page-divider align-center">
-                <table>
-                    <td id="output-table"></td>
+        <!-- Input system -->
+        <div class="page-divider align-center">
+            <table id="table">
+                <tr>
+                    <td id="coef-table"></td>
                     <td class="vertical"></td>
-                    <td id="output-b-table"></td>
-                </table>
-            </div>
-        </main>
+                    <td id="rhs-table"></td>
+                </tr>
+            </table>
+        </div>
 
-        <!-- Impressum link -->
-        <footer>
-            <a href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
-        </footer>
-    </body>
+        <!-- Operation buttons -->
+        <div class="container-button">
+            <button id="button-calculate" class="button-primary button-solve button-gl-inv">
+                Lösen
+            </button>
+        </div>
 
-    <!-- Script imports -->
-    <script src="../js/ui/navbar.js"></script>
-    <script src="../js/ui/simplex.js" type="module"></script>
-    <script src="../js/ui/modal.js"></script>
+        <!-- output system -->
+        <div class="page-divider align-center">
+            <table>
+                <td id="output-table"></td>
+                <td class="vertical"></td>
+                <td id="output-b-table"></td>
+            </table>
+        </div>
+    </main>
+
+    <!-- Impressum link -->
+    <footer>
+        <a href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
+    </footer>
+</body>
+
+<!-- Script imports -->
+<script src="../js/ui/navbar.js"></script>
+<script src="../js/ui/simplex.js" type="module"></script>
+<script src="../js/ui/modal.js"></script>
+
 </html>

@@ -62,7 +62,7 @@
         <ul>
             <li>
                 Minimierung: Der Simplex-Algorithmus ist in der Regel so formuliert, dass er Minimierungsprobleme löst. Hierzu kann 
-                die Zielfunktion mit (-1) multipliziert werden
+                eine zu maximierende Zielfunktion mit (-1) multipliziert werden
             </li>
             <li>
                 Gleichheitsnebenbedingungen: Ungleichheitsnebenbedingungen müssen in Gleichheitsnebenbedingungen umgewandelt werden. 
@@ -75,24 +75,26 @@
             </li>
             <li>
                 Nur positive rechte Seiten der Nebenbedingungen: Nebenbedingungen mit negativen rechten Seiten können umgeformt werden, 
-                indem beiden Seiten der Gleichung ein positiver Wert addiert wird.
+                indem sie mit (-1) multipliziert werden.
             </li>
         </ul>
         <p>
             Die Umwandlung der Bedingungen in das Standardformat hat keine Auswirkungen auf die Lösbarkeit oder die optimale Lösung 
             des Problems. Wenn alle Bedingungen des Standardformat erfüllt sind, können die Funktion und die Nebenbedingungen in die 
-            obere Matrix geschrieben werden. Hierbei ist darauf zu achten, dass zuerst die Nebenbedingungen aufgeführt werden und in 
+            obere Eingabe-Matrix geschrieben werden. Hierbei ist darauf zu achten, dass zuerst die Nebenbedingungen aufgeführt werden und in 
             der letzten Zeile der Matrix die Funktion. Die Anzahl an Zeilen und Spalten kann flexibel angepasst werden bis zur 
-            Mindest- bzw. Maximalgröße von 2 bzw. 9. Über den Button "Lösen" kann das Ergebnis der linearen Optimierung berechnet 
-            werden. Nach der Durchführung der Berechnung wird das Ergebnis in der unteren Matrix ausgegeben. Für alle Variablen 
-            der Zielfunktion kann der Wert jeweils aus der Zeile abgelesen, bei der ausschließlich eine der Variablen der 
-            Zielfunktion den Wert 1 hat, alle anderen den Wert 0. Slack-Variablen und deren Werte werden hierbei nicht berücksichtigt. 
-            Der optimale Wert kann auf der rechten Seite der Zielfunktion abgelesen werden.
+            Mindest- bzw. Maximalgröße von 2 bzw. 9. Über den Button "Lösen" kann das Ergebnis der linearen Optimierung über den Simplex-Algorithmus
+            durch das System berechnet 
+            werden. Nach der Durchführung der Berechnung wird das Ergebnis in der unteren Matrix ausgegeben. 
+            Für alle Variablen, die in nur in einer Zeile eine 1 aufweisen und in den übrigen
+            eine 0, kann der zugehörige Wert jeweils aus der Zeile mit der 1 auf der rechten Seite abgelesen werden.
+            Die übrigen Variablen haben den Wert 0.
+            Der optimale Wert der Zielfunktion kann durch Einsetzen ermittelt werden.
         </p>
         <p>    
-            Auch auf dieser Seite kann über den Toggle-Button zwischen Dezimalzahlen und Bruchzahlen gewechselt werden. Sollten 
-            bereits Werte in den Matrizen stehen, werden diese automatisch umgerechnet und abgeändert. Um die Werte auf Null 
-            und die Matrizen zurückzusetzen kann der Button "Leeren" verwendet werden.
+            Auch auf dieser Seite kann über den Toggle-Button zwischen Dezimal- und Bruchdarstellung gewechselt werden. 
+            Um die Werte auf Null 
+            und die Matrizen zurückzusetzen, kann der Button "Leeren" verwendet werden.
         </p>
     </div>
 </body>

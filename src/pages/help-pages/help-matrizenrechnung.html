@@ -18,7 +18,7 @@
             ersten Schritt die
             Matrizen, auf denen die Berechnungen durchgeführt werden sollen, ausgefüllt. Die Matrizen sind
             mit den Buchstaben
-            des Alphabets von A bis Z bezeichnet. Zu Beginn steht die Mindestanzahl an Matrizen (2) zur
+            des Alphabets von A bis Z bezeichnet. Zu Beginn steht die Mindestanzahl von zwei Matrizen zur
             Verfügung. Für
             umfangreichere und komplexere Berechnungen können bis zu 24 weitere Matrizen hinzugefügt werden.
             Sollte eine Matrix
@@ -28,36 +28,36 @@
             befüllt wird auch deren
             Inhalt gelöscht. Eventuell bereits ausgefüllte Zellen werden dabei gelöscht. Wenn die Matrix
             also wieder hinzugefügt
-            wird, wird eine leere Matrix erzeugt. Auch rechnen mit der entfernten Matrix ist nicht mehr
+            wird, wird eine leere Matrix erzeugt. Auch Berechnungen mit der entfernten Matrix sind nicht mehr
             möglich.
         </p>
         <p>
-            Die Dimensionen, also die Anzahl an Zeilen und Spalten können bei jeder einzelnen Matrix
+            Die Dimensionen, also die Anzahl an Zeilen und Spalten, können bei jeder einzelnen Matrix
             flexibel angepasst werden,
             wobei hier die Unter- und Obergrenzen von 2 bzw. 9 gelten. Zur Anpassung der Dimension
             müssen die "+"- und
             "-"-Buttons am oberen linken Eck einer jeden Matrix genutzt werden.
         </p>
         <p>
-            Nach Erfassung der Matrizen muss die durchzuführende Berechnung angegeben werden. Hierfür gibt
+            Nach dem Anlegen der Matrizen muss die durchzuführende Berechnung angegeben werden. Hierfür gibt
             es ein Textfeld im
             Seitenabschnitt "Berechnung". Folgende Objekte und Operationen können im Testfeld verwendet
             werden:
         <ul>
             <li>
-                A bis Z: die Matrizen werden über ihren Buchstaben in der Berechnung angegeben
+                A bis Z: Die Matrizen werden über ihren Buchstaben in der Berechnung angegeben.
             </li>
             <li>+: Matrizen können dann miteinander addiert werden, wenn sie die gleiche Größe haben, also
                 die gleiche
-                Anzahl an Zeilen und Spalten
+                Anzahl an Zeilen und Spalten.
             </li>
             <li>
-                -: wie bei der Addition der Matrizen gilt auch bei der Subtraktion von Matrizen, dass sie
+                -: Wie bei der Addition der Matrizen gilt auch bei der Subtraktion von Matrizen, dass sie
                 hierfür die
-                gleiche Größe haben müssen
+                gleiche Größe haben müssen.
             </li>
             <li>
-                *: um zwei Matrizen miteinander multiplizieren zu können, muss die Spaltenanzahl der ersten
+                *: Um zwei Matrizen miteinander multiplizieren zu können, muss die Spaltenanzahl der ersten
                 Matrix der
                 Zeilenanzahl der zweiten Matrix entsprechen. Bei der Multiplikation wird nacheinander jede
                 Zeile der ersten
@@ -71,7 +71,9 @@
             </li>
             <li>
                 Skalar: eine Matrix kann mit einem Skalar, also einer reellen Zahl, multipliziert werden.
-                Dabei wird jedes Element der Matrix mit dem Skalar multipliziert. Zu beachten ist, dass dieser Skalar als Bruch einzugeben ist.
+                Dabei wird jedes Element der Matrix mit dem Skalar multipliziert. Zu beachten ist, dass 
+                die Eingabe von nicht-ganzzahligen Skalaren nur als Bruch
+                möglich ist.
             </li>
             <li>
                 (): um die Reihenfolge der Berechnungen zu definieren, können Klammern genutzt werden. Die
@@ -79,12 +81,14 @@
                 Rechenoperationen entspricht Klammer vor Punkt vor Strich.
             </li>
             <li>
-                ^T: Um die Transponierte einer Matrix zu berechnen, wird der Matrixname mit einem hochgestellten T versehen.
-                Die Transponation einer Matrix entspricht der Spiegelung der Matrix an ihrer Hauptdiagonalen.
+                ^T: Um die Transponierte einer Matrix zu berechnen, wird der Matrixname mit einem hochgestellten T
+                versehen.
+                Das Transponieren einer Matrix entspricht der Spiegelung der Matrix an ihrer Hauptdiagonalen.
             </li>
             <li>
                 ^-1: Um die Inverse einer Matrix zu berechnen, wird der Matrixname mit einem hochgestellten -1 versehen.
-                Die Inverse einer Matrix entspricht der Matrix, die mit der ursprünglichen Matrix multipliziert die Einheitsmatrix ergibt.
+                Die Inverse einer Matrix entspricht der Matrix, die mit der ursprünglichen Matrix multipliziert die
+                Einheitsmatrix ergibt.
             </li>
         </ul>
         </p>
@@ -92,7 +96,7 @@
             Nach Eingabe der durchzuführenden Rechnung kann die Berechnung über den Button "Berechnen"
             durchgeführt werden. Das
             Ergebnis wird in der Matrix neben dem Textfeld ausgegeben. Sollte die im Textfeld angegebene
-            Berechnung nicht korrekt
+            Berechnung syntaktisch oder mathematisch nicht korrekt
             sein, ist die Durchführung der Berechnung nicht möglich und es wird eine Fehlermeldung geworfen.
         </p>
         <p>
