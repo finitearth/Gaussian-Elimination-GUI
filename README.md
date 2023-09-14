@@ -22,6 +22,8 @@
 
 [Testing 1](https://youtu.be/yEvrGH4f36A) [Testing 2](https://youtu.be/qif9V5AaZqc)
 
+[Präsentation](https://1drv.ms/p/s!Ar4Q0qGkEcfwgmRMJ1Yi6dudDBnx?e=P6Fz0z)
+
 ## Aufgabenstellung
 ### Problemstellung:
 In der linearen Algebra wird Gauß-Algorithmus beispielsweise zur Lösung linearer Gleichungssysteme, für Matrizengleichungen und zur Determinantenberechnung eingesetzt. Der Algorithmus arbeitet iterativ auf Matrizendarstellungen, an denen sich in jedem Schritt nur wenig ändert, aber viel zu schreiben ist. Dies lässt sich über eine
