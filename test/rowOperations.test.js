@@ -107,11 +107,11 @@ test("handleComboboxButtons should work if the combobox is created the first tim
 
     // check whether everything has been created correctly
     expect(combobox_1.children.length).toBe(7);
-    // check number of select options in the first dropdown
+    // check number of select options in all dropdowns
     expect(combobox_1.children[1].children.length).toBe(2);
     expect(combobox_1.children[3].children.length).toBe(2);
     expect(combobox_1.children[5].children.length).toBe(2);
-    expect(combobox_1.children[6].children.length).toBe(table.nRows);
+    expect(combobox_1.children[4].children.length).toBe(table.nRows);
 });
 
 test("handleComboboxButtons should save user inputs after the user collapsed the combobox", () => {
