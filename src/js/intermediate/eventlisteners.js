@@ -126,7 +126,7 @@ export function listenTableDimension(
                 }
 
                 // Add row description if provided
-                if (rowDescription[0]) {
+                if (rowDescription && rowDescription[0]) {
                     table.addRowDescription(rowDescription[1][0], rowDescription[1][1]);
                 }
 
