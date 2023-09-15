@@ -14,17 +14,14 @@
 <body class="help-body">
     <div class="help-content">
         <p>
-            Die Inverse einer Matrix wird in der linearen Algebra unter anderem bei der Lösung linearer Gleichungssysteme verwendet. 
-            Die inverse Matrix ist die Matrix, die multipliziert mit der ursprünglichen Matrix die Einheitsmatrix ergibt. Die 
+            Auf dieser Seite kann die Inverse einer Matrix berechnet werden.
+            Die Inverse ist diejenige Matrix, die multipliziert mit der ursprünglichen Matrix die Einheitsmatrix ergibt. Die 
             Einheitsmatrix oder auch Identitätsmatrix ist eine quadratische Matrix, deren Elemente auf der Hauptdiagonalen 
             eins und überall sonst null sind. Zum Berechnen der Inversen bietet sich unter anderem der Gauß-Algorithmus an. 
         </p>
         <p>
-            Diese Seite kann für die Berechnung der Inversen, aber auch zur Gleichung zweier Matrizen genutzt werden. 
-        </p>
-        <p>
-            Zuerst wird die Dimension spezifiziert. Da es sich bei der Einheitsmatrix um eine quadratische Matrix handelt, 
-            die Anzahl an Zeilen also identisch zur Anzahl der Spalten ist, kann hier nur die gesamte Dimension angepasst 
+            Zuerst wird die Dimension spezifiziert. Da die Inverse nur für quadratische Matrizen
+            berechnet werden kann, kann hier nur die gesamte Dimension angepasst 
             werden. Hierfür kann die entsprechende Zahl direkt in das Textfeld eingegeben, oder die Zahl über die Pfeile 
             rechts im Textfeld angepasst werden. Hier gilt die Mindest- und Maximalgröße von 2 bzw. 9. Nach der Anpassung 
             der Dimensionen kann mit den Zeilenoperationen begonnen werden. Über die Pfeile neben den rechten Seiten können 
@@ -32,8 +29,8 @@
             Zeilenoperationen einzugeben. 
             Alle Koeffizienten einer Zeile können mit einem Skalar multipliziert oder durch ein Skalar dividiert 
             werden. Der entsprechende Operator kann im ersten Dropdown ausgewählt werden. Im zweiten und dritten Dropdown
-            kann die Zeile um eine andere Zeile addiert oder subtrahiert werden, wobei die Zahlen in Klammern 
-            den Beshriftungen der Zeilen auf der Seite entsprechen. Die Zeile, mit der die aktuelle Zeile 
+            kann die Zeile mit einer anderen Zeile addiert oder subtrahiert werden, wobei die Zahlen in Klammern 
+            den Beschriftungen der Zeilen entsprechen. Die Zeile, mit der die aktuelle Zeile 
             verrechnet werden soll, kann außerdem mit einem beliebigen Wert multipliziert oder um einen beliebigen 
             Wert dividiert werden. 
             Sobald alle Werte eingegeben wurden, kann die Berechnung 
@@ -41,16 +38,24 @@
             Liefert das Ergebnis der Berechnung ein zufriedenstellendes Ergebnis, können die Werte mit dem Button "Hoch" nach 
             oben übertragen werden, sodass mit dem Ergebnis weitergerechnet werden kann. Sollte das Ergebnis nicht den 
             Erwartungen entsprechen, können die zuvor eingegebenen Werte abgeändert und das Ergebnis neu berechnet werden, 
-            so lange bis das gewünschte Ergebnis herauskommt.
+            so lange bis das gewünschte Ergebnis entsteht.
+        </p>
+        
+        <p>
+            Alternativ kann die Lösung stattdessen auch direkt vom System berechnet werden. 
+            Dazu wird der Button "Lösen" verwendet. Die Lösung wird dann direkt in den unteren Matrizen ausgegeben.
         </p>
         <p>
-            Sollte es Probleme beim schrittweisen Lösen geben, kann die Lösung stattdessen auch vom System berechnet werden. 
-            Dazu wird der Button "Lösen" verwendet. Die Lösung wird dann direkt in den unteren Matrizen ausgegeben. Um die 
-            Berechnung der Inversen zu üben kann über den Button "Aufgabe erstellen" eine zufällige Aufgabe kreiert werden. 
-            Die Aufgabe wird automatisch an die angegebene Dimension angepasst. Auch auf dieser Seite kann über den 
-            Toggle-Button zwischen Dezimalzahlen und Bruchzahlen gewechselt werden. Sollten bereits Werte in den Matrizen 
-            stehen, werden diese automatisch umgerechnet und abgeändert. Um die Werte auf Null und die Matrizen zurückzusetzen 
-            kann der Button "Leeren" verwendet werden.
+            Anstelle der Einheitsmatrix kann auch eine beliebige andere quadratische
+            Matrix eingegeben werden. Damit wird die Aufgabe zu einer
+            Matrizengleichung. Die Matrizengleichung kann dann ebenfalls mit dem Gauß-Algorithmus gelöst werden.
+        </p>
+            Um die Berechnung zu üben, kann über den Button "Aufgabe erstellen" eine zufällige Aufgabe kreiert werden. 
+            Die Aufgabe wird automatisch an die angegebene Dimension angepasst. Hier wird jedoch nur die linke Matrix befüllt,
+            da die rechte standardmäßig mit der Einheitsmatrix befüllt ist. Auch auf dieser Seite kann über den 
+            Toggle-Button zwischen Dezimal- und Bruchdarstellung gewechselt werden. Um alle Werte auf Nullzu setzen,
+            kann der Button "Leeren" verwendet werden, wobei hier auch die rechte
+            Matrix geleert wird.
         </p>
     </div>
 </body>
