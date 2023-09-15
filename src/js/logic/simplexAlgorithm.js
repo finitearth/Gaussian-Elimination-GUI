@@ -21,7 +21,7 @@ export function simplexAlgorithm(coefMatrix, bMatrix) {
     let count = 0;
     while (!finished) {
         count += 1;
-        if (count > 100) {
+        if (count > 1000) {
             throw new InvalidInputException("Invalid Matrix");
         }
         // check for lowest negative value
@@ -60,7 +60,8 @@ export function simplexAlgorithm(coefMatrix, bMatrix) {
             }
             value = coefMatrix.getCell(i, pivotColumn);
             let bValue = bMatrix.getCell(i, 0);
-            if (bValue.div(value).lower(pivotRowValue)) {
+            let bDivValue = bValue.div(value);
+            if (bDivValue.lower(pivotRowValue)&&!bDivValue.lower(ZERO)) {
                 pivotRow = i;
                 pivotRowValue = bValue.div(value);
             }

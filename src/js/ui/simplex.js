@@ -46,6 +46,7 @@ setEventListenerFunction(
         try {
             result = simplexAlgorithm(coefMatrix, bMatrix);
         } catch (e) {
+            console.log(e)
             throw new InvalidInputException("Invalider Input");
         }
         return result;
