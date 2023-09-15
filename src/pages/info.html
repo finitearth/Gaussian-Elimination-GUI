@@ -73,15 +73,15 @@
                         zur Bedienung bzw. Verwendung der Seite, unter anderem mit Erklärung der Buttons.
                     </p>
                     <p>
-                        Allgemein gilt, dass die Dimension der Matrizen flexibel anpassbar ist, die Matrix muss jedoch
-                        mindestens 2x2 bzw. darf maximal 9x9
-                        groß sein. Kleinere oder größere Matrizen sind nicht möglich. Ist eine Zelle einer Matrix nicht
-                        ausgefüllt, so wird dieses automatisch mit
+                        Allgemein gilt, dass die Dimensionen der Matrizen in der Anwendung flexibel anpassbar ist. Die Anwendung
+                        unterstützt dabei Größen zwischen 2x2 (Minimum) und 9x9 (Maximum).
+                        Kleinere oder größere Matrizen sind nicht möglich. Ist eine Zelle einer Matrix nicht
+                        ausgefüllt, so wird diese von der Anwendung automatisch mit
                         dem Wert 0 belegt und erkannt.
                     </p>
                     <p>
-                        Die Angabe der Zellenwerte innerhalb einer Matrix erfolgt entweder als Dezimalzahlen oder als
-                        Brüche. Auf jeder
+                        Die Angabe der Zellenwerte innerhalb einer Matrix erfolgt entweder als Integerwerte, Dezimalzahlen oder als
+                        Brüche (Schreibweise: Zähler/Nenner). Auf jeder
                         Unterseite steht ein Toggle-Button zur Verfügung, um von Dezimalzahlen auf Brüche und von Brüche
                         auf Dezimalzahlen
                         umzustellen.
@@ -102,8 +102,8 @@
                         Matrizen erreicht ist.
                         Bei jeder Matrix kann die Anzahl an Spalten und Zeilen flexibel angepasst werden, wobei auch
                         hier die Mindest- und Maximalgrenzen
-                        von 2 bzw. 9 gelten. Um die Anzahl an Zeilen und Spalten anzupassen müssen die '+'- und
-                        '-'-Buttons im oberen linken Eck der Matrizen verwendet werdne.
+                        von 2 bzw. 9 gelten. Um die Anzahl an Zeilen und Spalten anzupassen, müssen die '+'- und
+                        '-'-Buttons im oberen linken Eck der Matrizen verwendet werden.
                         Im Seitenabschnitt 'Berechnung' steht ein Freitextfeld zur Verfügung, in welchem die
                         durchzuführene Berechnung angegeben
                         werden kann. Um die Berechnung durchführen zu können, muss sie korrekt sein.
@@ -115,9 +115,9 @@
                         <li>ein - für die Subtraktion von Matrizen</li>
                         <li>ein * für die Multiplikation von Matrizen</li>
                         <li>eine Zahl und ein * für das Skalarprodukt</li>
-                        <li>ein hochgestellter T für die transponierte Matrix</li>
+                        <li>ein hochgestelltes T für die transponierte Matrix</li>
                         <li>ein hochgestelltes (-1) für die Inverse einer Matrix</li>
-                        <li>sowie Klammern, um die Reihenfolge der Operationen zu bestimmen</li>
+                        <li>runde Klammern, um die Reihenfolge der Operationen zu bestimmen</li>
                     </ul>
                     Nach Eingabe der Berechnung kann die Berechnung, wenn sie korrekt ist, über den Button 'Berechnen'
                     ausgeführt werden.
@@ -155,7 +155,7 @@
                     <p>
                         Die Unterseite
                         <a href="gleichungssystem.html">Gl-System</a>
-                        kannst genutzt werden, um Gleichungssysteme schrittweise selbst zu lösen oder um die Lösung
+                        kann genutzt werden, um Gleichungssysteme schrittweise selbst zu lösen oder um die Lösung
                         sofort zu erhalten. Zuerst
                         wird im ersten Abschnitt die Anzahl an Gleichungen (entspricht Anzahl der Zeilen), die Anzahl
                         der Variablen (entspricht
@@ -164,19 +164,19 @@
                         die Pfeile abgeändert werde. Danach folgen die Eingabefelder für die Gleichungen. Rechts davon
                         befindet sich pro Zeile eine Zeilenoperation mit
                         Drop-Down- und Eingabe-
-                        Felden. Mithilfe dieser können die Zeilenoperationen, die durchgeführt werden sollen,
+                        Feldern. Mithilfe dieser können die Zeilenoperationen, die durchgeführt werden sollen,
                         zusammengestellt werden. Die
-                        Comob-Box kann, falls nicht benötigt, über den Button mit dem Pfeil nach links 
+                        Combo-Boxen können, falls nicht benötigt, über den Button mit dem Pfeil nach links 
                         eingeklappt und selbstverständlich auch wieder ausgeklappt werden. Wenn die auszuführenden
                         Zeilenoperationen eingegeben wurden,
                         können diese über den Button 'Berechnen' durchgeführt werden. Der Button gibt das Ergebnis der
                         Verrechnung der Matrix
-                        mit den Zeilenoperationen darunter in der unteren Matrix aus. Wenn das Ergebnis zufriedenstellend
+                        mit den Zeilenoperationen in der unteren Matrix aus. Wenn das Ergebnis zufriedenstellend
                         ist, kann es über den
                         Button 'Hoch' auf die Eingabematrix übertragen werden, um damit weiterzurechnen.
                         Falls Hilfe beim
                         Lösen des Gleichungssystems benötigt wird, kann das Gleichungssystem 
-                        über den Button 'Lösen' sofort gelöst werden.
+                        über den Button 'Lösen' sofort vom System gelöst werden.
                     </p>
                 </div>
                 <div id="inversenberechnung">
@@ -184,9 +184,9 @@
                     <p>
                         Die Unterseite
                         <a href="matrixinversion.html">Inversenberechnung</a>
-                        kannt nicht nur zur Berechnung der Inverse einer Matrix, sondern auch zur Gleichung zweier
-                        Matrizen genutzt werden. Die
-                        Dimension der beiden Matrizen werden direkt im ersten Abschnitt auf der Seite angegeben. Wie auf
+                        kann nicht nur zur Berechnung der Inverse einer Matrix, sondern auch zur Lösung einer Matrizen-Gleichung 
+                        genutzt werden. Die
+                        Dimensionen der beiden Matrizen werden direkt im ersten Abschnitt auf der Seite angegeben. Wie auf
                         den anderen Seiten handelt
                         es sich dabei um ein Textfeld, in das die Anzahl der Dimensionen direkt eingetragen oder über
                         die Pfeile verändert werden
@@ -194,7 +194,7 @@
                         mit der Einheitsmatrix zur
                         Berechnung der Inversen. Die Werte lassen sich überschreiben, falls nicht die Inverse berechnet,
                         sondern eine
-                        Matrizengleichung gelöst werden soll. Wie auf der Unterseite Gl-System lösen kann hier
+                        Matrizengleichung gelöst werden soll. Wie auf der Unterseite GL-System kann hier
                         schrittweise über Zeilenoperationen
                         zur Lösung gelangt werden. Die Eingabe der Zeilenoperationen erfolgt über die Combo-Boxen, die
                         über die Buttons mit den
@@ -217,8 +217,12 @@
                         der Anzahl Unbekannten können die Textboxen im oberen linken Bereich direkt unter der 
                         Seitenüberschrift genutzt werden. Die gewünschte Anzahl kann entweder direkt in die 
                         Textbox eingetippt werden oder der Wert kann über die Pfeile am rechten Rand der Textboxen 
-                        inkrementiert bzw. dekrementiert werden. In der unteren Matrix wird das Ergebnis der Optimierung 
-                        ausgegeben.
+                        inkrementiert bzw. dekrementiert werden. Das lineare Optimierungsproblem kann anschließend
+                        in die Eingabe-Simplex-Tabelle eingetragen werden. Hierbei ist darauf zu achten, dass
+                        die Eingabe im Standardformat erfolgt. Details hierzu sind der Hilfe der Unterseite zu entnehmen.
+                        Anschließend kann das lineare Optimierungsproblem vom System gelöst werden lassen. Dieses
+                        verwendet hierzu den Simplex-Algorithmus. In der unteren Simplex-Tabelle (Ausgabe) wird 
+                        schließlich das Ergebnis der Optimierung ausgegeben.
                     </p>
                 </div>
             </div>
