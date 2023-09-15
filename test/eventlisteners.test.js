@@ -10,6 +10,10 @@ import { Table } from "../src/js/intermediate/table.js";
 import { Matrix } from "../src/js/logic/matrix.js";
 import { Fraction } from "../src/js/logic/fraction.js";
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 describe("modifyDimListener()", () => {
     let mockTables;
 
@@ -72,9 +76,6 @@ describe("modifyDimListener()", () => {
     it("should decrease the number of rows when the remove row button is clicked", () => {
         // Call the function with the mock tables
         modifyDimListener(mockTables);
-
-        console.log("Hier bin ich")
-        console.log(getById("input-nr-rows").value)
 
         // Click the remove row button
         getById("removerow").click();
@@ -144,9 +145,9 @@ describe("listenTableDimension", () => {
     test("sets number of rows for tables when rowsOrCols is 'rows'", () => {
         listenTableDimension("input", tables, [], "rows");
 
-        input.value = 5;
+        input.value = 4;
         input.dispatchEvent(new dom.window.Event("input"));
-        expect(tables[0].rows).toHaveLength(5);
+        expect(tables[0].rows).toHaveLength(4);
     });
 
     test("sets number of columns for tables when rowsOrCols is 'cols'", () => {

@@ -236,8 +236,6 @@ test("add cell should work", () => {
 
     expect(cell1Child.id).toEqual(table.id + ".0.2");
     expect(cell2Child.id).toEqual(table.id + ".1.2");
-
-    // console.log(table.tableContainer.innerHTML);
 });
 
 test("add row description should work", () => {
