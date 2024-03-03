@@ -1,24 +1,6 @@
+"# Laufanalyse-Tool" 
+=======
 # Gaussian-Elimination-GUI
-
-[Projekt-Management-Erfassung](https://studdhbwravensburgde-my.sharepoint.com/:x:/g/personal/zehle_stud_dhbw-ravensburg_de/EXdnNVqxOzZCrMk2JGXxkzEBhl5z2LFMcxcc-FJXPtnsGg?e=dXEflv)
-
-[Roadmap](https://studdhbwravensburgde-my.sharepoint.com/:x:/g/personal/zehle_stud_dhbw-ravensburg_de/EUKGem-HioxGrjMDwSRo-_IBsFOJlwYDM2RfY3tRczElTw?e=QmkJxQ) bzw. [Neuer Zeitplan](https://1drv.ms/x/s!AhK81gm731irgbRaTP1bJrRHCT7c9w?e=e8CbIj)
-
-[Pflichtenheft](https://1drv.ms/w/s!AhK81gm731ir0hlTKhvvPQOeoOEg?e=RnXUFw)
-
-[Produktdokumentation](https://1drv.ms/w/s!AhK81gm731irgbRUTIgN8IJKMfr8Dg?e=pjXc5w)
-
-[Projektdokumentation](https://1drv.ms/w/s!AhK81gm731irgbRWVJYBbCt_Es0K2g?e=7feFQI)
-
-[Projektstrukturplan](https://1drv.ms/w/s!AhK81gm731irgbVt_XEdRbahvMw7Vg?e=i1tCcS)
-
-[Arbeitspaketliste](https://1drv.ms/x/s!AhK81gm731irgbYpLyxtBh6B7oAthg?e=TLrZGx)
-
-[Meilensteintrendanalyse](https://1drv.ms/x/s!AhK81gm731irgbZM7OiW7hp9tRZoXQ?e=HXE8t5)
-
-[Risikoregister und -portfolio Projektbeginn](https://1drv.ms/x/s!Ar4Q0qGkEcfwgkuVmkh4NXHzXZcJ?e=9Q4SLb)
-
-[Risikoregister und -portfolio Projektende](https://1drv.ms/x/s!Ar4Q0qGkEcfwgkoy5Ll-Tqymqri0?e=wYBeOQ)
 
 [Testing 1](https://youtu.be/yEvrGH4f36A) [Testing 2](https://youtu.be/qif9V5AaZqc)
 
@@ -53,4 +35,4 @@ npm install --save-dev babel-jest @babel/core @babel/preset-env
 npm i jest-environment-jsdom --save-dev
 npm install jest --global
 
-```
+``
