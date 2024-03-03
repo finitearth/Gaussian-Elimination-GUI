@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Info</title>
+
+    <link rel="stylesheet" href="../style/style.css" type="text/css" />
+    <link rel="stylesheet" href="../style/info-style.css" type="text/css" />
+    <link rel="icon" href="../images/icon_logo.png" />
+</head>
+
+<body>
+    <nav id="navbar"></nav>
+
+    <header>
+        <h1>Information</h1>
+    </header>
+
+    <main>
+        <div class="page-divider">
+            <div class="guide-container">
+                <div class="guide-outline">
+                    <h2>Inhalt</h2>
+                    <ol class="guide-outline-list">
+                        <li>
+                            <a href="info.html#allgemein">Allgemein</a>
+                        </li>
+                        <li>
+                            <a href="info.html#matrizenrechnung">Matrizenrechnung</a>
+                        </li>
+                        <li>
+                            <a href="info.html#matrixoperationen">Matrixoperationen</a>
+                        </li>
+                        <li>
+                            <a href="info.html#gl-system">Gl-System</a>
+                        </li>
+                        <li>
+                            <a href="info.html#inversenberechnung">Inversenberechnung</a>
+                        </li>
+                        <li>
+                            <a href="info.html#simplex">Simplex</a>
+                        </li>
+                    </ol>
+                </div>
+
+                <div id="allgemein">
+                    <h2>Allgemein</h2>
+                    <p>
+                        Diese Seite dient der Beschreibung, wie die Website zu nutzen ist. Auf diese Seite kann auf
+                        jeder Unterseite über den Link
+                        im Menü in der oberen rechten Ecke über ⓘ zugegriffen werden.
+                        Weitere Informationen wie mathematische Hintergründe und Tipps sind jeweils auf den Unterseiten
+                        passend zur
+                        jeweiligen Themenstellung zu finden.
+                    </p>
+                    <p>
+                        Die
+                        <a href="../index.html">Startseite</a>
+                        dient als Einstiegspunkt auf die Website. Sie beinhaltet Links zu allen Unterseiten. 
+                        Mit einem Klick auf das Logo auf der Startseite gelangt man ebenfalls auf die vorliegende Seite.
+                        Im unteren rechten Eck ist außerdem ein Link zum
+                        <a href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
+                        angegeben. Dieser ist zudem auf jeder Unterseite ebenfalls zu finden.
+                    </p>
+                    <p>
+                        Jede Unterseite verfügt über einen Hilfe-Button oben rechts. Durch Drücken des Buttons öffnet
+                        sich ein Fenster,
+                        welches Tipps und Hilfestellung passend zum Thema der Seite beinhaltet. Außerdem beinhaltet das
+                        Fenster nähere Informationen
+                        zur Bedienung bzw. Verwendung der Seite, unter anderem mit Erklärung der Buttons.
+                    </p>
+                    <p>
+                        Allgemein gilt, dass die Dimensionen der Matrizen in der Anwendung flexibel anpassbar ist. Die Anwendung
+                        unterstützt dabei Größen zwischen 2x2 (Minimum) und 9x9 (Maximum).
+                        Kleinere oder größere Matrizen sind nicht möglich. Ist eine Zelle einer Matrix nicht
+                        ausgefüllt, so wird diese von der Anwendung automatisch mit
+                        dem Wert 0 belegt und erkannt.
+                    </p>
+                    <p>
+                        Die Angabe der Zellenwerte innerhalb einer Matrix erfolgt entweder als Integerwerte, Dezimalzahlen oder als
+                        Brüche (Schreibweise: Zähler/Nenner). Auf jeder
+                        Unterseite steht ein Toggle-Button zur Verfügung, um von Dezimalzahlen auf Brüche und von Brüche
+                        auf Dezimalzahlen
+                        umzustellen.
+                    </p>
+                     <p>
+                        Jede Seite beinhaltet zudem einen Leeren-Button, über den bisherige Eingaben aus den Zellen 
+                        gelöscht werden können. 
+                    </p>
+                </div>
+                <div id="matrizenrechnung">
+                    <h2>Matrizenrechnung</h2>
+                    <p>
+                        Auf der Unterseite
+                        <a href="matrizenrechnung.html">Matrizenrechnung</a>
+                        können bis zu 26 Matrizen erstellt und Berechnungen darauf ausgeführt werden. Standardmäßig
+                        beinhaltet die Seite 2 Input-Matrizen.
+                        Mit dem Button '+ Matrix hinzufügen' wird eine weitere Matrix hinzugefügt, bis das Limit von 26
+                        Matrizen erreicht ist.
+                        Bei jeder Matrix kann die Anzahl an Spalten und Zeilen flexibel angepasst werden, wobei auch
+                        hier die Mindest- und Maximalgrenzen
+                        von 2 bzw. 9 gelten. Um die Anzahl an Zeilen und Spalten anzupassen, müssen die '+'- und
+                        '-'-Buttons im oberen linken Eck der Matrizen verwendet werden.
+                        Im Seitenabschnitt 'Berechnung' steht ein Freitextfeld zur Verfügung, in welchem die
+                        durchzuführene Berechnung angegeben
+                        werden kann. Um die Berechnung durchführen zu können, muss sie korrekt sein.
+                        Um sicherzustellen, dass eine korrekte Berechnung erfolgt sind folgende Objekte und Operationen
+                        zu verwenden:
+                    <ul>
+                        <li>die Matrizen selbst - diese werden angesprochen über den jeweiligen Buchstaben</li>
+                        <li>ein + für die Addition von Matrizen</li>
+                        <li>ein - für die Subtraktion von Matrizen</li>
+                        <li>ein * für die Multiplikation von Matrizen</li>
+                        <li>eine Zahl und ein * für das Skalarprodukt</li>
+                        <li>ein hochgestelltes T für die transponierte Matrix</li>
+                        <li>ein hochgestelltes (-1) für die Inverse einer Matrix</li>
+                        <li>runde Klammern, um die Reihenfolge der Operationen zu bestimmen</li>
+                    </ul>
+                    Nach Eingabe der Berechnung kann die Berechnung, wenn sie korrekt ist, über den Button 'Berechnen'
+                    ausgeführt werden.
+                    Das Ergebnis wird in der Matrix neben dem Freitextfeld angezeigt.
+                    </p>
+                </div>
+                <div id="matrixoperationen">
+                    <h2>Matrixoperationen</h2>
+                    <p>
+                        Die Unterseite
+                        <a href="matrixoperationen.html">Matrixoperationen</a>
+                        bietet die Möglichkeit, die Inverse, die Determinante oder die transponierte Matrix einer Matrix
+                        ausgeben zu lassen.
+                        Die Anzahl an Zeilen und Spalten auf dieser Unterseite kann auf zwei Arten angepasst werden. Zum
+                        einen können die
+                        '+'- und '-'-Buttons im oberen linken Eck der Input-Matrix genutzt werden. Zum anderen können
+                        die Textboxen im oberen
+                        linken Bereich der Seite direkt unter der Seitenüberschrift genutzt werden. Die gewünschte
+                        Anzahl kann entweder direkt
+                        in die Textbox eingetippt werden oder der Wert kann über die Pfeile am rechten Rand der
+                        Textboxen inkrementiert bzw.
+                        dekrementiert werden. Für die durchzuführenden Matrixoperationen stehen drei Buttons unterhalb
+                        der Eingabematrix zur
+                        Verfügung:
+                        <ul>
+                            <li>M⁻¹ zur Matrixinversion</li>
+                            <li>|M| zur Ausgabe der Determinante</li>
+                            <li>Mᵀ zum Transponieren der Matrix</li>
+                        </ul>
+                        In der unteren Matrix wird das Ergebnis der Operation ausgegeben.
+                    </p>
+                </div>
+                <div id="gl-system">
+                    <h2>Gl-System</h2>
+                    <p>
+                        Die Unterseite
+                        <a href="gleichungssystem.html">Gl-System</a>
+                        kann genutzt werden, um Gleichungssysteme schrittweise selbst zu lösen oder um die Lösung
+                        sofort zu erhalten. Zuerst
+                        wird im ersten Abschnitt die Anzahl an Gleichungen (entspricht Anzahl der Zeilen), die Anzahl
+                        der Variablen (entspricht
+                        Anzahl der Spalten) und Anzahl rechte Seiten ausgewählt. Die entsprechende Anzahl kann direkt im
+                        Feld angeben oder über
+                        die Pfeile abgeändert werde. Danach folgen die Eingabefelder für die Gleichungen. Rechts davon
+                        befindet sich pro Zeile eine Zeilenoperation mit
+                        Drop-Down- und Eingabe-
+                        Feldern. Mithilfe dieser können die Zeilenoperationen, die durchgeführt werden sollen,
+                        zusammengestellt werden. Die
+                        Combo-Boxen können, falls nicht benötigt, über den Button mit dem Pfeil nach links 
+                        eingeklappt und selbstverständlich auch wieder ausgeklappt werden. Wenn die auszuführenden
+                        Zeilenoperationen eingegeben wurden,
+                        können diese über den Button 'Berechnen' durchgeführt werden. Der Button gibt das Ergebnis der
+                        Verrechnung der Matrix
+                        mit den Zeilenoperationen in der unteren Matrix aus. Wenn das Ergebnis zufriedenstellend
+                        ist, kann es über den
+                        Button 'Hoch' auf die Eingabematrix übertragen werden, um damit weiterzurechnen.
+                        Falls Hilfe beim
+                        Lösen des Gleichungssystems benötigt wird, kann das Gleichungssystem 
+                        über den Button 'Lösen' sofort vom System gelöst werden.
+                    </p>
+                </div>
+                <div id="inversenberechnung">
+                    <h2>Inversenberechnung</h2>
+                    <p>
+                        Die Unterseite
+                        <a href="matrixinversion.html">Inversenberechnung</a>
+                        kann nicht nur zur Berechnung der Inverse einer Matrix, sondern auch zur Lösung einer Matrizen-Gleichung 
+                        genutzt werden. Die
+                        Dimensionen der beiden Matrizen werden direkt im ersten Abschnitt auf der Seite angegeben. Wie auf
+                        den anderen Seiten handelt
+                        es sich dabei um ein Textfeld, in das die Anzahl der Dimensionen direkt eingetragen oder über
+                        die Pfeile verändert werden
+                        kann. Danach folgen die Eingabefelder für die beiden Matrizen. Die rechte Matrix ist vorbelegt
+                        mit der Einheitsmatrix zur
+                        Berechnung der Inversen. Die Werte lassen sich überschreiben, falls nicht die Inverse berechnet,
+                        sondern eine
+                        Matrizengleichung gelöst werden soll. Wie auf der Unterseite GL-System kann hier
+                        schrittweise über Zeilenoperationen
+                        zur Lösung gelangt werden. Die Eingabe der Zeilenoperationen erfolgt über die Combo-Boxen, die
+                        über die Buttons mit den
+                        Pfeilen nach rechts bzw. links ein- und ausgeklappt werden können. Nach Eingabe der
+                        Zeilenoperationen kann die Berechnung
+                        über den Button 'Berechnen' durchgeführt werden. Das Ergebnis wird in den unteren Matrizen
+                        angezeigt. Wenn das Ergebnis
+                        zufriedenstellend ist und damit weitergerechnet werden soll, kann es über den Button 'Hoch' in
+                        die Eingabematrizen
+                        übertragen werden. Außerdem kann über den
+                        Button 'Lösen' direkt die Lösung ausgegeben werden.
+                    </p>
+                </div>
+                <div id="simplex">
+                    <h2>Simplex</h2>
+                    <p>
+                        Die Unterseite <a href="simplex.html">Simplex</a> bietet die Möglichkeit, ein lineares 
+                        Optimierungsproblem zu lösen. Dabei können 1 bis 8 Nebenbedingungen neben der Zielfunktion 
+                        angegeben werden und bis zu 9 Unbekannte. Zum Anpassen der Anzahl der Nebenbedingungen und 
+                        der Anzahl Unbekannten können die Textboxen im oberen linken Bereich direkt unter der 
+                        Seitenüberschrift genutzt werden. Die gewünschte Anzahl kann entweder direkt in die 
+                        Textbox eingetippt werden oder der Wert kann über die Pfeile am rechten Rand der Textboxen 
+                        inkrementiert bzw. dekrementiert werden. Das lineare Optimierungsproblem kann anschließend
+                        in die Eingabe-Simplex-Tabelle eingetragen werden. Hierbei ist darauf zu achten, dass
+                        die Eingabe im Standardformat erfolgt. Details hierzu sind der Hilfe der Unterseite zu entnehmen.
+                        Anschließend kann das lineare Optimierungsproblem vom System gelöst werden lassen. Dieses
+                        verwendet hierzu den Simplex-Algorithmus. In der unteren Simplex-Tabelle (Ausgabe) wird 
+                        schließlich das Ergebnis der Optimierung ausgegeben.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <a href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
+    </footer>
+</body>
+
+<script src="../js/ui/navbar.js"></script>
+
+</html>

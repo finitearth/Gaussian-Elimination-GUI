@@ -1,0 +1,64 @@
+/* Style for page Matrizenrechnung */
+
+/* Layout */
+.matrix-overflow-box {
+    height: 33vh;
+    width: 50%;
+    min-width: 20em;
+    overflow: auto;
+    border: 1px solid var(--input-border-color-light);
+    border-radius: 5px;
+    padding: 0.5em;
+    position: relative;
+    float: left;
+}
+
+.container-button-left {
+    margin-left: 0.5em;
+    float: left;
+}
+
+.container-button-right {
+    float: right;
+}
+
+/* Special buttons */
+.button-matrix {
+    /* buttons to add/remove a matrix */
+    width: 8.5em;
+    background-repeat: no-repeat;
+    background-size: 3em 3em;
+    vertical-align: middle;
+    padding-left: 3em;
+}
+
+.add {
+    background-image: url("../images/icon_plus.png");
+}
+
+.remove {
+    background-image: url("../images/icon_minus.png");
+}
+
+.button-calculate {
+    background-image: url("../images/icon_calculate.png");
+    background-repeat: no-repeat;
+    background-size: 3em 3em;
+    vertical-align: middle;
+    padding-left: 3em;
+    width: 8.5em;
+    float: right;
+}
+
+/* Style matrix names */
+.letter {
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+/* Style equation */
+.equation-input {
+    width: 12.5em;
+    text-align: left;
+    padding: 0 0.5em;
+}

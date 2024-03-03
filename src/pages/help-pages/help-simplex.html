@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hilfe - Simplex</title>
+
+    <link rel="stylesheet" href="../../style/style.css" type="text/css" />
+    <link rel="icon" href="../images/icon_logo.png" />
+</head>
+
+<body class="help-body">
+    <div class="help-content">
+        <p>
+            Der Simplex-Algorithmus ist ein effizientes Verfahren zur Lösung von linearen Optimierungsproblemen. Diese Probleme 
+            bestehen darin, eine lineare Zielfunktion unter linearen Gleichungs- oder Ungleichungsbedingungen zu maximieren oder 
+            zu minimieren. Im unternehmerischen Kontext kann ein solches Problem beispielsweise sein, die Kosten zu minimieren 
+            oder Gewinne zu maximieren. Der Simplex-Algorithmus arbeitet, indem er schrittweise Ecken (Vertices) eines 
+            n-dimensionalen Polyeders (mögliche Lösungsbereiche) überprüft, bis er die optimale Lösung findet. Die grundlegenden 
+            Schritte des Algorithmus sind:
+        </p>
+        <ul>
+            <li>
+                Start in einer zulässigen Ecke des Polyeders, die eine der Ecken des zulässigen Bereichs (Nebenbedingungen) darstellt
+            </li>
+            <li>
+                Prüfung, entlang welcher anliegenden Kante (Grenze des Zulässigen Bereichs) die größte Verbesserung möglich ist
+            </li>
+            <li>
+                Schritt zum nächsten Eckpunkt entlang der Kante
+            </li>
+            <li>
+                so lange wiederholen, bis keine Verbesserung mehr möglich ist
+            </li>
+        </ul>
+        <p>
+            Der Simplex-Algorithmus bewegt sich schrittweise von einer Ecke des Polyeders zur nächsten, wobei er bei jedem Schritt 
+            die Zielfunktion verbessert oder zumindest nicht verschlechtert. Das Verfahren endet, wenn keine weitere Verbesserung 
+            möglich ist und die optimale Lösung erreicht wurde. Zur Lösung von Algorithmen ist eine konsistente Formulierung notwendig. 
+            Um den Simplex numerisch zu lösen ist das Standardformat bzw. die Normalform notwendig. Bedingungen hierfür sind:
+        </p>
+        <ul>
+            <li>
+                Nur Minimierung
+            </li>
+            <li>
+                Nur Gleichheitsnebenbedingungen
+            </li>
+            <li>
+                Nur nicht-negative Variablen
+            </li>
+            <li>
+                Nur positive rechte Seiten der Nebenbedingungen
+            </li>
+        </ul>
+        <p>
+            Sollte das vorliegende lineare Optimierungsproblem nicht im Standardformat vorliegen ist eine Überführung notwendig. 
+            Hierbei kann wie folgt vorgegangen werden:
+        </p>
+        <ul>
+            <li>
+                Minimierung: Der Simplex-Algorithmus ist in der Regel so formuliert, dass er Minimierungsprobleme löst. Hierzu kann 
+                eine zu maximierende Zielfunktion mit (-1) multipliziert werden
+            </li>
+            <li>
+                Gleichheitsnebenbedingungen: Ungleichheitsnebenbedingungen müssen in Gleichheitsnebenbedingungen umgewandelt werden. 
+                Dies geschieht über sogenannte Slack-Variablen. Aus x1 + x2 ≤ 70 wird x1 + x2 + x3 = 70. Bei x3 handelt es sich dabei 
+                um die Slack-Variable. Sie steht für die Differenz zwischen (x1 + x2) und 70. Aus x1 + x2 ≥ 70 wird x1 + x2 - x4 = 70.
+            </li>
+            <li>
+                Nur nicht-negative Variablen: Variablen, die negative Werte annehmen können, müssen in nicht-negative Variablen 
+                umgewandelt werden. Dies kann durch die Addition von positiven Differenzvariablen geschehen.
+            </li>
+            <li>
+                Nur positive rechte Seiten der Nebenbedingungen: Nebenbedingungen mit negativen rechten Seiten können umgeformt werden, 
+                indem sie mit (-1) multipliziert werden.
+            </li>
+        </ul>
+        <p>
+            Die Umwandlung der Bedingungen in das Standardformat hat keine Auswirkungen auf die Lösbarkeit oder die optimale Lösung 
+            des Problems. Wenn alle Bedingungen des Standardformat erfüllt sind, können die Funktion und die Nebenbedingungen in die 
+            obere Eingabe-Matrix geschrieben werden. Hierbei ist darauf zu achten, dass zuerst die Nebenbedingungen aufgeführt werden und in 
+            der letzten Zeile der Matrix die Funktion. Die Anzahl an Zeilen und Spalten kann flexibel angepasst werden bis zur 
+            Mindest- bzw. Maximalgröße von 2 bzw. 9. Über den Button "Lösen" kann das Ergebnis der linearen Optimierung über den Simplex-Algorithmus
+            durch das System berechnet 
+            werden. Nach der Durchführung der Berechnung wird das Ergebnis in der unteren Matrix ausgegeben. 
+            Für alle Variablen, die in nur in einer Zeile eine 1 aufweisen und in den übrigen
+            eine 0, kann der zugehörige Wert jeweils aus der Zeile mit der 1 auf der rechten Seite abgelesen werden.
+            Die übrigen Variablen haben den Wert 0.
+            Der optimale Wert der Zielfunktion kann auf der rechten Seite in der Zeile der Zielfunktion abgelesen werden.
+        </p>
+        <p>    
+            Auch auf dieser Seite kann über den Toggle-Button zwischen Dezimal- und Bruchdarstellung gewechselt werden. 
+            Um die Werte auf Null 
+            und die Matrizen zurückzusetzen, kann der Button "Leeren" verwendet werden.
+        </p>
+    </div>
+</body>
+
+</html>

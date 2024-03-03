@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Matrizenrechnung</title>
+
+    <link rel="stylesheet" href="../style/style.css" type="text/css" />
+    <link rel="stylesheet" href="../style/matrizenrechnung-style.css" type="text/css" />
+    <link rel="icon" href="../images/icon_logo.png" />
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav id="navbar"></nav>
+
+    <!-- Header and Helpbutton -->
+    <header>
+        <h1>Matrizenrechnung</h1>
+        <button id="button-help-modal" class="button-outline button-help">Hilfe</button>
+    </header>
+
+    <main>
+        <!-- Help modal -->
+        <div id="help-modal" class="modal">
+            <div class="modal-content">
+                <span id="span-close" class="close">&times;</span>
+                <h2>Hilfe - Matrizenrechnung</h2>
+                <h3 class="subheading-help">Bedienungsanleitung & Tipps</h3>
+                <iframe src="help-pages/help-matrizenrechnung.html" title="Hilfe Matrizenrechnung"
+                    class="help-content-box"></iframe>
+            </div>
+        </div>
+
+        <!-- Error Alert -->
+        <div id="alert" class="alert hidden"></div>
+
+        <!-- Matrix creation and Buttons -->
+        <div class="page-divider">
+            <!-- Input matrices -->
+            <div class="matrix-overflow-box">
+                <h2>Matrizen anlegen</h2>
+                <div id="table"></div>
+            </div>
+            <!-- Buttons add and remove matrix -->
+            <div class="container-button-left">
+                <button id="button-add-table" class="button-primary button-matrix add">Matrix hinzufügen</button><br>
+                <button id="remove-table" class="button-primary button-matrix remove">Matrix entfernen</button>
+            </div>
+            <!-- Buttons clear and conversion -->
+            <div class="container-button-right">
+                <button id="button-clear" class="button-primary button-clear">Leeren</button>
+                <br>
+                <label class="switch">
+                    <input type="checkbox" id="button-representation-conversion" />
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Equation input and output table -->
+        <div class="page-divider">
+            <h2>Berechnung</h2>
+            <button id="button-calculate" class="button-primary button-calculate">
+                Berechnen
+            </button>
+            <table>
+                <tr>
+                    <td>
+                        <input id="input-equation" type="text" class="equation-input" placeholder="bspw. A+B"/>
+                    </td>
+                    <td>=</td>
+                    <td>
+                        <div id="table-result"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </main>
+
+    <!-- Impressum link -->
+    <footer>
+        <a href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
+    </footer>
+</body>
+
+<!-- Script imports -->
+<script src="../js/ui/navbar.js"></script>
+<script src="../js/ui/matrizenRechnung.js" type="module"></script>
+<script src="../js/ui/modal.js"></script>
+
+</html>

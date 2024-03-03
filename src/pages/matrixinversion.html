@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Inversenberechnung</title>
+
+    <link rel="stylesheet" href="../style/style.css" type="text/css" />
+    <link rel="stylesheet" href="../style/gleichungssystem-matrixinversion-style.css" type="text/css" />
+    <link rel="icon" href="../images/icon_logo.png" />
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav id="navbar"></nav>
+
+    <!-- Header and Helpbutton -->
+    <header>
+        <h1>Inversenberechnung</h1>
+        <button id="button-help-modal" class="button-outline button-help">Hilfe</button>
+    </header>
+
+    <main>
+        <!-- Help modal -->
+        <div id="help-modal" class="modal">
+            <div class="modal-content">
+                <span id="span-close" class="close">&times;</span>
+                <h2>Hilfe - Inversenberechnung</h2>
+                <h3 class="subheading-help">Bedienungsanleitung & Tipps</h3>
+                <iframe src="help-pages/help-matrixinversion.html" title="Hilfe Inversenberechnung"
+                    class="help-content-box"></iframe>
+            </div>
+        </div>
+
+        <!-- Error Alert -->
+        <div id="alert" class="alert hidden"></div>
+        
+        <!-- Dimension input and Buttons -->
+        <div class="page-divider">
+            <label for="button-dimension">Dimensionen:</label>
+            <input id="button-dimension" type="number">
+            <button id="button-generate-excercise" class="button-primary button-generate-exercise button-bar">
+                Aufgabe erstellen
+            </button>
+            <button id="button-clear" class="button-primary button-clear button-bar">
+                Leeren
+            </button>
+            <label class="switch button-bar">
+                <input type="checkbox" id="button-representation-conversion">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <!-- Input matrices -->
+        <div class="page-divider align-center">
+            <table id="table">
+                <tr id="table_row">
+                    <td id="table-element-1"></td>
+                    <td class="vertical"></td>
+                    <td id="table-element-2"></td>
+                    <td class="vertical"></td>
+                    <td class="vertical"></td>
+                    <td id="Operation" class="operations">
+                        <table id="operations-table"></table>
+                    </td>
+                </tr>
+            </table>
+        </div> 
+
+        <!-- Operation buttons -->
+        <div class="container-button">
+            <button id="button-calculate" class="button-primary button-gl-inv button-down">Berechnen</button>
+            <button id="button-solve-solution" class="button-primary button-gl-inv button-solve">Lösen</button>
+            <button id="button-adapt-result" class="button-primary button-gl-inv button-up">Hoch</button>
+        </div>
+
+        <!-- Output matrices -->
+        <div class="page-divider align-center">
+            <table id="resultContainerTable">
+                <td id="resultContainerTableRowCol1"></td>
+                <td class="vertical"></td>
+                <td id="resultContainerTableRowCol2"></td>
+            </table>
+        </div>
+    </main>
+
+    <!-- Impressum link -->
+    <footer>
+        <a href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
+    </footer>
+</body>
+
+<!-- Script imports -->
+<script src="../js/ui/navbar.js"></script>
+<script src="../js/ui/matrixinversion.js" type="module"></script>
+<script src="../js/ui/modal.js"></script>
+
+</html>

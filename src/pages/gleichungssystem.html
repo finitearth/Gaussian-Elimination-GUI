@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Gleichungssystem lösen</title>
+
+    <link rel="stylesheet" href="../style/style.css" type="text/css" />
+    <link rel="stylesheet" href="../style/gleichungssystem-matrixinversion-style.css" type="text/css" />
+    <link rel="icon" href="../images/icon_logo.png" />
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav id="navbar"></nav>
+
+    <!-- Header and Helpbutton -->
+    <header>
+        <h1>Gleichungssystem lösen</h1>
+        <button id="button-help-modal" class="button-outline button-help">Hilfe</button>
+    </header>
+
+    <main>
+        <!-- Help modal -->
+        <div id="help-modal" class="modal">
+            <div class="modal-content">
+                <span id="span-close" class="close">&times;</span>
+                <h2>Hilfe - Gleichungssystem Lösen</h2>
+                <h3 class="subheading-help">Bedienungsanleitung & Tipps</h3>
+                <iframe src="help-pages/help-gleichungssystem.html" title="Hilfe Gleichungssytem lösen"
+                    class="help-content-box"></iframe>
+            </div>
+        </div>
+
+        <!-- Error Alert -->
+        <div id="alert" class="alert hidden"></div>
+
+        <!-- Dimension input and Buttons -->
+        <div class="page-divider">
+            <label for="input-nr-eq">Anzahl Gleichungen:</label>
+            <input type="number" id="input-nr-eq" name="input-nr-eq" />
+            <label for="input-nr-var">Anzahl Variablen:</label>
+            <input type="number" id="input-nr-var" name="input-nr-var" />
+            <label for="input-nr-b">Anzahl rechte Seiten:</label>
+            <input type="number" id="input-nr-b" name="input-nr-b" />
+            <button id="button-generate-excercise" class="button-primary button-generate-exercise button-bar">
+                Aufgabe erstellen
+            </button>
+            <button id="button-clear" class="button-primary button-clear button-bar">
+                Leeren
+            </button>
+            <label class="switch button-bar">
+                <input type="checkbox" id="button-representation-conversion" />
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <!-- GL-System Input and row operations -->
+        <div class="page-divider align-center">
+            <table id="table" class="table">
+                <tr id="table_row">
+                    <td id="table-coef"></td>
+                    <td class="vertical"></td>
+                    <td id="table-sol"></td>
+                    <td class="vertical"></td>
+                    <td class="vertical"></td>
+                    <td id="Operation" class="operations">
+                        <table id="operations-table"></table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Operation buttons -->
+        <div class="container-button">
+            <button class="button-primary button-gl-inv button-down" id="button-calculate">
+                Berechnen
+            </button>
+            <button class="button-primary button-gl-inv button-solve" id="button-solve">
+                Lösen
+            </button>
+            <button class="button-primary button-gl-inv button-up" id="button-adapt-result">
+                Hoch
+            </button>
+        </div>
+
+        <!-- output GL-System -->
+        <div class="page-divider align-center">
+            <table>
+                <tr id="table_row">
+                    <td id="table-res-coef"></td>
+                    <td id="table_vertical_4" class="vertical"></td>
+                    <td id="table-res-sol"></td>
+                </tr>
+            </table>
+        </div>
+    </main>
+
+    <!-- Impressum link -->
+    <footer>
+        <a href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
+    </footer>
+</body>
+
+<!-- Script imports -->
+<script src="../js/ui/modal.js"></script>
+<script src="../js/ui/navbar.js"></script>
+<script src="../js/ui/gleichungssystem.js" type="module"></script>
+
+</html>

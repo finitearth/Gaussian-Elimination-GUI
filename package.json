@@ -1,0 +1,15 @@
+{
+    "scripts": {
+        "test": "jest"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.22.9",
+        "@babel/preset-env": "^7.22.9",
+        "babel-jest": "^29.6.1",
+        "jest-environment-jsdom": "^29.6.1",
+        "text-encoding": "^0.7.0"
+    },
+    "dependencies": {
+        "@testing-library/react": "^14.0.0"
+    }
+}

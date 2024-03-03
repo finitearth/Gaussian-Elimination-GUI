@@ -1,0 +1,32 @@
+/* Info-Page */
+
+.guide-container {
+    height: 62.5vh;
+    overflow: auto;
+}
+
+.guide-container p {
+    font-size: 12pt;
+    padding-right: 2.5em;
+}
+
+.guide-outline {
+    padding: 0 0 0.25em 0.5em;
+    margin-bottom: 0.5em;
+    border: 1px solid var(--input-border-color-light);
+    border-radius: 5px;
+    width: 20em;
+}
+
+.guide-outline-list {
+    list-style-type: none;
+    font-size: 14pt;
+    margin-top: 0;
+}
+
+.guide-outline-list>li:before {
+    content: "❱";
+    padding-right: 0.25em;
+    text-align: right;
+    color: var(--primary-color);
+}

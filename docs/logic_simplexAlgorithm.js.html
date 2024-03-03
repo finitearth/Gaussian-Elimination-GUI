@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: logic/simplexAlgorithm.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: logic/simplexAlgorithm.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { InvalidInputException } from "../exceptions.js";
+import { Fraction, NEGONE, ZERO } from "./fraction.js";
+
+/**
+ * Solves a linear programming problem using the Simplex Algorithm.
+ * The function iteratively performs operations on the coefficient and b matrices
+ * to find an optimal solution. The algorithm follows these steps:
+ * 1. Check for the lowest negative value in the last row.
+ * 2. Choose the pivot column based on the most negative value.
+ * 3. Choose the pivot row based on a specific criterion (lowest b/pivot column).
+ * 4. Generate a 1 in the pivot element and zeros everywhere else in the pivot column.
+ * 5. Repeat from step 1.
+ *
+ * @param {Matrix} coefMatrix - The coefficient matrix in the linear programming problem.
+ * @param {Matrix} bMatrix - The 'b' matrix containing the constants.
+ * @returns {Array&lt;Matrix>} - The optimized coefficient and b matrices.
+ * @throws Will throw an error if the algorithm doesn't converge within 100 iterations.
+ */
+export function simplexAlgorithm(coefMatrix, bMatrix) {
+    let finished = false;
+    let count = 0;
+    while (!finished) {
+        count += 1;
+        if (count > 1000) {
+            throw new InvalidInputException("Invalid Matrix");
+        }
+        // check for lowest negative value
+        finished = true;
+        coefMatrix
+            .getRow(coefMatrix.nRows - 1)
+            .iterateElements()
+            .forEach(([i, j, value]) => {
+                if (value.lower(ZERO)) {
+                    finished = false;
+                }
+            });
+        if (finished) {
+            break;
+        }
+
+        // choose pivotcolumn
+        let pivotColumn = 0;
+        let pivotColumnValue = ZERO;
+        coefMatrix
+            .getRow(coefMatrix.nRows - 1)
+            .iterateElements()
+            .forEach(([i, j, value]) => {
+                if (value.lower(pivotColumnValue)) {
+                    pivotColumn = j;
+                    pivotColumnValue = value;
+                }
+            });
+
+        // choose pivotrow
+        let pivotRow = 0;
+        let pivotRowValue = new Fraction(Number.MAX_VALUE, 1);
+        coefMatrix.iterateElements().forEach(([i, j, value]) => {
+            if (j !== pivotColumn || i === coefMatrix.nRows - 1) {
+                return;
+            }
+            value = coefMatrix.getCell(i, pivotColumn);
+            let bValue = bMatrix.getCell(i, 0);
+            let bDivValue = bValue.div(value);
+            if (bDivValue.lower(pivotRowValue)&amp;&amp;!bDivValue.lower(ZERO)) {
+                pivotRow = i;
+                pivotRowValue = bValue.div(value);
+            }
+        });
+        // generate 1 in pivotelement and 0s every where else in pivot column
+        let pivotElement = coefMatrix.getCell(pivotRow, pivotColumn);
+        coefMatrix = coefMatrix.multiplyRowByScalar(
+            pivotRow,
+            pivotElement.inverse()
+        );
+        bMatrix = bMatrix.multiplyRowByScalar(pivotRow, pivotElement.inverse());
+
+        for (let i = 0; i &lt; coefMatrix.nRows; i++) {
+            if (i === pivotRow) {
+                continue;
+            }
+
+            let value = coefMatrix.getCell(i, pivotColumn).mul(NEGONE);
+            coefMatrix = coefMatrix.addRow(
+                i,
+                coefMatrix.getRow(pivotRow).mul(value)
+            );
+            bMatrix = bMatrix.addRow(i, bMatrix.getRow(pivotRow).mul(value));
+        }
+    }
+
+    return [coefMatrix, bMatrix];
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DivByZeroException_DivByZeroException.html">DivByZeroException</a></li><li><a href="Fraction.html">Fraction</a></li><li><a href="InvalidInputException_InvalidInputException.html">InvalidInputException</a></li><li><a href="InvalidMatrixDimension_InvalidMatrixDimension.html">InvalidMatrixDimension</a></li><li><a href="InvalidRowOperationException_InvalidRowOperationException.html">InvalidRowOperationException</a></li><li><a href="Matrix.html">Matrix</a></li><li><a href="RowOperation.html">RowOperation</a></li><li><a href="Table.html">Table</a></li><li><a href="UnsolvableMatrixException_UnsolvableMatrixException.html">UnsolvableMatrixException</a></li></ul><h3>Global</h3><ul><li><a href="global.html#NEGONE">NEGONE</a></li><li><a href="global.html#ONE">ONE</a></li><li><a href="global.html#ZERO">ZERO</a></li><li><a href="global.html#adaptComboboxes">adaptComboboxes</a></li><li><a href="global.html#addCombobox">addCombobox</a></li><li><a href="global.html#addKeyDownListener">addKeyDownListener</a></li><li><a href="global.html#addTable">addTable</a></li><li><a href="global.html#alertError">alertError</a></li><li><a href="global.html#applyRowOperations">applyRowOperations</a></li><li><a href="global.html#calculate">calculate</a></li><li><a href="global.html#checkValidity">checkValidity</a></li><li><a href="global.html#clearRowOperations">clearRowOperations</a></li><li><a href="global.html#clearTables">clearTables</a></li><li><a href="global.html#closeModal">closeModal</a></li><li><a href="global.html#createHTMLForNavbar">createHTMLForNavbar</a></li><li><a href="global.html#evaluate">evaluate</a></li><li><a href="global.html#gaussElimination">gaussElimination</a></li><li><a href="global.html#generateMatrix">generateMatrix</a></li><li><a href="global.html#getById">getById</a></li><li><a href="global.html#getEmptyMatrix">getEmptyMatrix</a></li><li><a href="global.html#getRandomMatrix">getRandomMatrix</a></li><li><a href="global.html#getUnitMatrix">getUnitMatrix</a></li><li><a href="global.html#listenTableDimension">listenTableDimension</a></li><li><a href="global.html#modifyDimListener">modifyDimListener</a></li><li><a href="global.html#removeCombobox">removeCombobox</a></li><li><a href="global.html#removeTable">removeTable</a></li><li><a href="global.html#setEventListenerFunction">setEventListenerFunction</a></li><li><a href="global.html#simplexAlgorithm">simplexAlgorithm</a></li><li><a href="global.html#stringToFraction">stringToFraction</a></li><li><a href="global.html#updateRowOperations">updateRowOperations</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Sep 15 2023 10:53:10 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

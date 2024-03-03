@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Matrixoperationen</title>
+
+    <link rel="stylesheet" href="../style/style.css" type="text/css" />
+    <link rel="icon" href="../images/icon_logo.png" />
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav id="navbar"></nav>
+
+    <!-- Header and Helpbutton -->
+    <header>
+        <h1>Matrixoperationen</h1>
+        <button id="button-help-modal" class="button-outline button-help">Hilfe</button>
+    </header>
+
+    <main>
+        <!-- Help modal -->
+        <div id="help-modal" class="modal">
+            <div class="modal-content">
+                <span id="span-close" class="close">&times;</span>
+                <h2>Hilfe - Matrixoperationen</h2>
+                <h3 class="subheading-help">Bedienungsanleitung & Tipps</h3>
+                <iframe src="help-pages/help-matrixoperationen.html" title="Hilfe - Matrixoperationen"
+                    class="help-content-box"></iframe>
+            </div>
+        </div>
+
+        <!-- Error Alert -->
+        <div id="alert" class="alert hidden"></div>
+
+        <!-- Dimension input and Buttons -->
+        <form class="page-divider">
+            <label for="input-nr-rows">Anzahl Zeilen:</label>
+            <input type="number" id="input-nr-rows" />
+            <label for="input-nr-cols">Anzahl Spalten:</label>
+            <input type="number" id="input-nr-cols" />
+            <button id="button-clear" class="button-primary button-clear button-bar">Leeren</button>
+            <label class="switch button-bar">
+                <input type="checkbox" id="button-representation-conversion" />
+                <span class="slider round"></span>
+            </label>
+        </form>
+
+        <!-- Input Table -->
+        <div class="page-divider align-center">
+            <table id="input-table-placeholder"></table>
+        </div>
+
+        <!-- Operations -->
+        <div class="container-button">
+            <button class="button-primary" id="button-inverse">M⁻¹</button>
+            <button class="button-primary" id="button-determinant">|M|</button>
+            <button class="button-primary" id="button-transpose">Mᵀ</button>
+        </div>
+
+        <!-- Output Table -->
+        <div class="page-divider align-center">
+            <table id="output-table-placeholder"></table>
+        </div>
+    </main>
+
+    <!-- Impressum link -->
+    <footer>
+        <a href="http://www.kirchbergnet.de/impressum.php">Impressum</a>
+    </footer>
+</body>
+
+<!-- Script imports -->
+<script src="../js/ui/navbar.js"></script>
+<script src="../js/ui/matrixoperationen.js" type="module"></script>
+<script src="../js/ui/modal.js"></script>
+
+</html>
