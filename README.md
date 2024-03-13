@@ -1,5 +1,3 @@
-"# Laufanalyse-Tool" 
-=======
 # Gaussian-Elimination-GUI
 
 [Testing 1](https://youtu.be/yEvrGH4f36A) [Testing 2](https://youtu.be/qif9V5AaZqc)
